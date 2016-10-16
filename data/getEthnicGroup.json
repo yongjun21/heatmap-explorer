@@ -1,0 +1,714 @@
+[
+	{
+		"planning_area": "Yishun",
+		"chinese": 128180,
+		"malays": 31068,
+		"indian": 19684,
+		"others": 5383,
+		"year": 2010
+	},
+	{
+		"planning_area": "Sengkang",
+		"chinese": 131925,
+		"malays": 17087,
+		"indian": 13849,
+		"others": 4193,
+		"year": 2010
+	},
+	{
+		"planning_area": "Hougang",
+		"chinese": 176952,
+		"malays": 17418,
+		"indian": 17465,
+		"others": 4836,
+		"year": 2010
+	},
+	{
+		"planning_area": "Changi",
+		"chinese": 643,
+		"malays": 333,
+		"indian": 358,
+		"others": 44,
+		"year": 2010
+	},
+	{
+		"planning_area": "Sembawang",
+		"chinese": 52252,
+		"malays": 9947,
+		"indian": 7014,
+		"others": 3354,
+		"year": 2010
+	},
+	{
+		"planning_area": "Jurong East",
+		"chinese": 62133,
+		"malays": 14082,
+		"indian": 9749,
+		"others": 2118,
+		"year": 2010
+	},
+	{
+		"planning_area": "Pasir Ris",
+		"chinese": 89983,
+		"malays": 27227,
+		"indian": 11061,
+		"others": 5540,
+		"year": 2010
+	},
+	{
+		"planning_area": "Punggol",
+		"chinese": 46995,
+		"malays": 6840,
+		"indian": 3792,
+		"others": 1507,
+		"year": 2010
+	},
+	{
+		"planning_area": "Woodlands",
+		"chinese": 149447,
+		"malays": 62006,
+		"indian": 27157,
+		"others": 6446,
+		"year": 2010
+	},
+	{
+		"planning_area": "Jurong West",
+		"chinese": 184625,
+		"malays": 48663,
+		"indian": 27129,
+		"others": 7064,
+		"year": 2010
+	},
+	{
+		"planning_area": "Choa Chu Kang",
+		"chinese": 123702,
+		"malays": 29180,
+		"indian": 15749,
+		"others": 4660,
+		"year": 2010
+	},
+	{
+		"planning_area": "Bukit Panjang",
+		"chinese": 96079,
+		"malays": 20598,
+		"indian": 9161,
+		"others": 2896,
+		"year": 2010
+	},
+	{
+		"planning_area": "Serangoon",
+		"chinese": 103695,
+		"malays": 5777,
+		"indian": 11735,
+		"others": 3575,
+		"year": 2010
+	},
+	{
+		"planning_area": "Bukit Timah",
+		"chinese": 60364,
+		"malays": 720,
+		"indian": 3497,
+		"others": 5733,
+		"year": 2010
+	},
+	{
+		"planning_area": "Tampines",
+		"chinese": 173677,
+		"malays": 57584,
+		"indian": 21411,
+		"others": 9071,
+		"year": 2010
+	},
+	{
+		"planning_area": "Bedok",
+		"chinese": 209892,
+		"malays": 47179,
+		"indian": 25348,
+		"others": 12100,
+		"year": 2010
+	},
+	{
+		"planning_area": "Marine Parade",
+		"chinese": 35667,
+		"malays": 3426,
+		"indian": 5842,
+		"others": 2382,
+		"year": 2010
+	},
+	{
+		"planning_area": "Queenstown",
+		"chinese": 76268,
+		"malays": 8266,
+		"indian": 8324,
+		"others": 4194,
+		"year": 2010
+	},
+	{
+		"planning_area": "Kallang",
+		"chinese": 74566,
+		"malays": 7309,
+		"indian": 13964,
+		"others": 2887,
+		"year": 2010
+	},
+	{
+		"planning_area": "Bukit Merah",
+		"chinese": 124684,
+		"malays": 11350,
+		"indian": 15790,
+		"others": 4458,
+		"year": 2010
+	},
+	{
+		"planning_area": "Downtown Core",
+		"chinese": 2430,
+		"malays": 20,
+		"indian": 222,
+		"others": 39,
+		"year": 2010
+	},
+	{
+		"planning_area": "Tanglin",
+		"chinese": 12910,
+		"malays": 194,
+		"indian": 1580,
+		"others": 2609,
+		"year": 2010
+	},
+	{
+		"planning_area": "Novena",
+		"chinese": 37155,
+		"malays": 2018,
+		"indian": 4134,
+		"others": 2680,
+		"year": 2010
+	},
+	{
+		"planning_area": "Bukit Batok",
+		"chinese": 104265,
+		"malays": 20482,
+		"indian": 15257,
+		"others": 4193,
+		"year": 2010
+	},
+	{
+		"planning_area": "Clementi",
+		"chinese": 69266,
+		"malays": 10728,
+		"indian": 8152,
+		"others": 3691,
+		"year": 2010
+	},
+	{
+		"planning_area": "Bishan",
+		"chinese": 77303,
+		"malays": 4045,
+		"indian": 7223,
+		"others": 2727,
+		"year": 2010
+	},
+	{
+		"planning_area": "Toa Payoh",
+		"chinese": 101943,
+		"malays": 9621,
+		"indian": 9607,
+		"others": 3472,
+		"year": 2010
+	},
+	{
+		"planning_area": "Ang Mo Kio",
+		"chinese": 146966,
+		"malays": 12873,
+		"indian": 14952,
+		"others": 4506,
+		"year": 2010
+	},
+	{
+		"planning_area": "Singapore River",
+		"chinese": 1170,
+		"malays": 18,
+		"indian": 102,
+		"others": 406,
+		"year": 2010
+	},
+	{
+		"planning_area": "Outram",
+		"chinese": 16196,
+		"malays": 1286,
+		"indian": 1423,
+		"others": 481,
+		"year": 2010
+	},
+	{
+		"planning_area": "Geylang",
+		"chinese": 90654,
+		"malays": 15394,
+		"indian": 10618,
+		"others": 3960,
+		"year": 2010
+	},
+	{
+		"planning_area": "Newton",
+		"chinese": 3730,
+		"malays": 53,
+		"indian": 662,
+		"others": 896,
+		"year": 2010
+	},
+	{
+		"planning_area": "River Valley",
+		"chinese": 5739,
+		"malays": 59,
+		"indian": 1113,
+		"others": 1187,
+		"year": 2010
+	},
+	{
+		"planning_area": "Rochor",
+		"chinese": 10279,
+		"malays": 500,
+		"indian": 3015,
+		"others": 306,
+		"year": 2010
+	},
+	{
+		"planning_area": "Ang Mo Kio",
+		"chinese": 143270,
+		"malays": 13090,
+		"indian": 14160,
+		"others": 4300,
+		"year": 2015
+	},
+	{
+		"planning_area": "Bedok",
+		"chinese": 208880,
+		"malays": 44000,
+		"indian": 25090,
+		"others": 11790,
+		"year": 2015
+	},
+	{
+		"planning_area": "Bishan",
+		"chinese": 77220,
+		"malays": 3770,
+		"indian": 7000,
+		"others": 2720,
+		"year": 2015
+	},
+	{
+		"planning_area": "Boon Lay",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Bukit Batok",
+		"chinese": 102080,
+		"malays": 19570,
+		"indian": 13710,
+		"others": 3910,
+		"year": 2015
+	},
+	{
+		"planning_area": "Bukit Merah",
+		"chinese": 122630,
+		"malays": 13430,
+		"indian": 15130,
+		"others": 4690,
+		"year": 2015
+	},
+	{
+		"planning_area": "Bukit Panjang",
+		"chinese": 103300,
+		"malays": 22230,
+		"indian": 10310,
+		"others": 3240,
+		"year": 2015
+	},
+	{
+		"planning_area": "Bukit Timah",
+		"chinese": 64160,
+		"malays": 770,
+		"indian": 3660,
+		"others": 5930,
+		"year": 2015
+	},
+	{
+		"planning_area": "Geylang",
+		"chinese": 88030,
+		"malays": 15270,
+		"indian": 9900,
+		"others": 3730,
+		"year": 2015
+	},
+	{
+		"planning_area": "Kallang",
+		"chinese": 75790,
+		"malays": 7970,
+		"indian": 14490,
+		"others": 2960,
+		"year": 2015
+	},
+	{
+		"planning_area": "Novena",
+		"chinese": 38860,
+		"malays": 2120,
+		"indian": 4210,
+		"others": 2830,
+		"year": 2015
+	},
+	{
+		"planning_area": "Pasir Ris",
+		"chinese": 93900,
+		"malays": 28440,
+		"indian": 11910,
+		"others": 5650,
+		"year": 2015
+	},
+	{
+		"planning_area": "Hougang",
+		"chinese": 181690,
+		"malays": 17650,
+		"indian": 18050,
+		"others": 4920,
+		"year": 2015
+	},
+	{
+		"planning_area": "Jurong East",
+		"chinese": 60100,
+		"malays": 13740,
+		"indian": 9140,
+		"others": 1960,
+		"year": 2015
+	},
+	{
+		"planning_area": "Lim Chu Kang",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Mandai",
+		"chinese": 1710,
+		"malays": 100,
+		"indian": 240,
+		"others": 70,
+		"year": 2015
+	},
+	{
+		"planning_area": "Marine Parade",
+		"chinese": 36630,
+		"malays": 3510,
+		"indian": 6020,
+		"others": 2590,
+		"year": 2015
+	},
+	{
+		"planning_area": "North-Eastern Islands",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Pioneer",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Jurong West",
+		"chinese": 190190,
+		"malays": 48630,
+		"indian": 27080,
+		"others": 6700,
+		"year": 2015
+	},
+	{
+		"planning_area": "Paya Lebar",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Punggol",
+		"chinese": 84900,
+		"malays": 14490,
+		"indian": 7720,
+		"others": 2690,
+		"year": 2015
+	},
+	{
+		"planning_area": "Queenstown",
+		"chinese": 77430,
+		"malays": 8700,
+		"indian": 8010,
+		"others": 3970,
+		"year": 2015
+	},
+	{
+		"planning_area": "Seletar",
+		"chinese": 170,
+		"malays": 0,
+		"indian": 30,
+		"others": 60,
+		"year": 2015
+	},
+	{
+		"planning_area": "Sembawang",
+		"chinese": 55600,
+		"malays": 10310,
+		"indian": 7180,
+		"others": 3320,
+		"year": 2015
+	},
+	{
+		"planning_area": "Sengkang",
+		"chinese": 160580,
+		"malays": 22590,
+		"indian": 18200,
+		"others": 5320,
+		"year": 2015
+	},
+	{
+		"planning_area": "Serangoon",
+		"chinese": 101440,
+		"malays": 5170,
+		"indian": 10750,
+		"others": 3300,
+		"year": 2015
+	},
+	{
+		"planning_area": "Central Water Catchment",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Changi",
+		"chinese": 1200,
+		"malays": 720,
+		"indian": 470,
+		"others": 140,
+		"year": 2015
+	},
+	{
+		"planning_area": "Sungei Kadut",
+		"chinese": 660,
+		"malays": 0,
+		"indian": 100,
+		"others": 30,
+		"year": 2015
+	},
+	{
+		"planning_area": "Tampines",
+		"chinese": 175470,
+		"malays": 56010,
+		"indian": 21560,
+		"others": 8190,
+		"year": 2015
+	},
+	{
+		"planning_area": "Downtown Core",
+		"chinese": 2820,
+		"malays": 40,
+		"indian": 300,
+		"others": 340,
+		"year": 2015
+	},
+	{
+		"planning_area": "Tanglin",
+		"chinese": 14170,
+		"malays": 190,
+		"indian": 1930,
+		"others": 2730,
+		"year": 2015
+	},
+	{
+		"planning_area": "Tengah",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Toa Payoh",
+		"chinese": 102250,
+		"malays": 9900,
+		"indian": 9300,
+		"others": 3520,
+		"year": 2015
+	},
+	{
+		"planning_area": "Marina East",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Woodlands",
+		"chinese": 153740,
+		"malays": 62310,
+		"indian": 27800,
+		"others": 6380,
+		"year": 2015
+	},
+	{
+		"planning_area": "Marina South",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Museum",
+		"chinese": 220,
+		"malays": 0,
+		"indian": 40,
+		"others": 120,
+		"year": 2015
+	},
+	{
+		"planning_area": "Newton",
+		"chinese": 4850,
+		"malays": 50,
+		"indian": 760,
+		"others": 1220,
+		"year": 2015
+	},
+	{
+		"planning_area": "Changi Bay",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Choa Chu Kang",
+		"chinese": 123460,
+		"malays": 29620,
+		"indian": 16480,
+		"others": 4800,
+		"year": 2015
+	},
+	{
+		"planning_area": "Clementi",
+		"chinese": 70650,
+		"malays": 9960,
+		"indian": 7620,
+		"others": 3370,
+		"year": 2015
+	},
+	{
+		"planning_area": "Singapore River",
+		"chinese": 1870,
+		"malays": 20,
+		"indian": 230,
+		"others": 620,
+		"year": 2015
+	},
+	{
+		"planning_area": "Straits View",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Simpang",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Southern Islands",
+		"chinese": 800,
+		"malays": 30,
+		"indian": 140,
+		"others": 500,
+		"year": 2015
+	},
+	{
+		"planning_area": "Tuas",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Western Islands",
+		"chinese": 0,
+		"malays": 0,
+		"indian": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"planning_area": "Western Water Catchment",
+		"chinese": 730,
+		"malays": 0,
+		"indian": 90,
+		"others": 70,
+		"year": 2015
+	},
+	{
+		"planning_area": "Yishun",
+		"chinese": 142300,
+		"malays": 33940,
+		"indian": 20250,
+		"others": 5520,
+		"year": 2015
+	},
+	{
+		"planning_area": "Orchard",
+		"chinese": 610,
+		"malays": 0,
+		"indian": 80,
+		"others": 230,
+		"year": 2015
+	},
+	{
+		"planning_area": "Outram",
+		"chinese": 18030,
+		"malays": 1930,
+		"indian": 1580,
+		"others": 550,
+		"year": 2015
+	},
+	{
+		"planning_area": "River Valley",
+		"chinese": 6460,
+		"malays": 100,
+		"indian": 1280,
+		"others": 1410,
+		"year": 2015
+	},
+	{
+		"planning_area": "Rochor",
+		"chinese": 10470,
+		"malays": 650,
+		"indian": 2970,
+		"others": 530,
+		"year": 2015
+	}
+]
