@@ -48,7 +48,7 @@ const datasets = [{
   endpoint: 'getTypeOfDwellingPop'
 }]
 
-Promise.all(datasets.slice(0, 1).map(ds => {
+Promise.all(datasets.slice(17, 19).map(ds => {
   const urls = flatten(
     ['2010', '2015'].map(year => planningAreas[year].map(pa => {
       const query = {
