@@ -5,50 +5,9 @@ const planningAreas = {
   '2010': require('sg-heatmap/data/planning_area_2008.json'),
   '2015': require('sg-heatmap/data/planning_area_2014.json')
 }
+import {TOKEN, ENDPOINTS} from './constants'
 
-const TOKEN = process.env.ONEMAP_TOKEN
-
-const datasets = [{
-  endpoint: 'getEconomicStatus'
-}, {
-  endpoint: 'getEducationAttending'
-}, {
-  endpoint: 'getEthnicGroup'
-}, {
-  endpoint: 'getHouseholdMonthlyIncomeWork'
-}, {
-  endpoint: 'getHouseholdSize'
-}, {
-  endpoint: 'getHouseholdStructure'
-}, {
-  endpoint: 'getIncomeFromWork'
-}, {
-  endpoint: 'getIndustry'
-}, {
-  endpoint: 'getLanguageLiterate'
-}, {
-  endpoint: 'getMaritalStatus'
-}, {
-  endpoint: 'getModeOfTransportSchool'
-}, {
-  endpoint: 'getModeOfTransportWork'
-}, {
-  endpoint: 'getOccupation'
-}, {
-  endpoint: 'getPopulationAgeGroup'
-}, {
-  endpoint: 'getReligion'
-}, {
-  endpoint: 'getSpokenAtHome'
-}, {
-  endpoint: 'getTenancy'
-}, {
-  endpoint: 'getTypeOfDwellingHousehold'
-}, {
-  endpoint: 'getTypeOfDwellingPop'
-}]
-
-Promise.all(datasets.slice(17, 19).map(ds => {
+Promise.all(ENDPOINTS.slice(17, 19).map(ep => {
   const urls = flatten(
     ['2010', '2015'].map(year => planningAreas[year].map(pa => {
       const query = {
@@ -56,7 +15,7 @@ Promise.all(datasets.slice(17, 19).map(ds => {
         planningArea: pa.properties.Planning_Area_Name,
         year: year
       }
-      return `https://developers.onemap.sg/privateapi/popapi/${ds.endpoint}?${getQueryString(query)}`
+      return `https://developers.onemap.sg/privateapi/popapi/${ep}?${getQueryString(query)}`
     }))
   )
 
@@ -68,7 +27,7 @@ Promise.all(datasets.slice(17, 19).map(ds => {
     return fetchResult
   })).then(flatten).then(data => {
     const validData = data.filter(d => d.Result !== 'No Data Available!')
-    fs.writeFileSync('data/' + ds.endpoint + '.json', JSON.stringify(validData, null, '\t'))
+    fs.writeFileSync('data/' + ep + '.json', JSON.stringify(validData, null, '\t'))
   }).catch(err => {
     if (err) throw err
   })
