@@ -21,3 +21,8 @@ export const ENDPOINTS = [
   'getTypeOfDwellingHousehold',
   'getTypeOfDwellingPop'
 ]
+
+export const WITHGENDER = [
+  'getEconomicStatus',
+  'getMaritalStatus'
+]
