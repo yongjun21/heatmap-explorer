@@ -1,3 +1,6 @@
 node_modules/
-dist/bundle.js
+dist/bundle.js*
+dist/bundle.css*
+data/Census2010.json
+data/Census2015.json
 .DS_Store
