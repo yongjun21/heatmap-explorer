@@ -5,15 +5,15 @@ import groupBy from 'lodash/groupBy'
 import forEach from 'lodash/forEach'
 import omit from 'lodash/omit'
 
-import {ENDPOINTS, WITHGENDER} from './constants'
+import {ONEMAP_ENDPOINTS, WITHGENDER} from './constants'
 
 export class Census2015 extends SgHeatmap2014 {
   constructor () {
     super()
     this.registerUpdater(upsertValueAtKey)
     matchPlanningAreaName(this)
-    ENDPOINTS.forEach(ep => {
-      let data = require('../data/' + ep + '.json')
+    ONEMAP_ENDPOINTS.forEach(ep => {
+      let data = require('../data/processed/' + ep + '.json')
       if (WITHGENDER.indexOf(ep) > -1) data = mergeGender(data)
       data.filter(d => d.year === 2015).forEach(d => {
         this.update(d.planning_area.toUpperCase(), {
@@ -30,8 +30,8 @@ export class Census2010 extends SgHeatmap2008 {
     super()
     this.registerUpdater(upsertValueAtKey)
     matchPlanningAreaName(this)
-    ENDPOINTS.forEach(ep => {
-      let data = require('../data/' + ep + '.json')
+    ONEMAP_ENDPOINTS.forEach(ep => {
+      let data = require('../data/processed/' + ep + '.json')
       if (WITHGENDER.indexOf(ep) > -1) data = mergeGender(data)
       data.filter(d => d.year === 2010).forEach(d => {
         this.update(d.planning_area.toUpperCase(), {
@@ -60,7 +60,7 @@ function matchPlanningAreaName (heatmap) {
 function mergeGender (data) {
   const mergedData = []
   forEach(groupBy(data, 'year'), (group, year) => {
-    forEach(groupBy(group, 'planning_area'), (group, planning_area) => {
+    forEach(groupBy(group, 'planning_area'), (group, planning_area) => { // eslint-disable-line
       mergedData.push(
         group.reduce((j, d) => {
           return Object.assign(j, {[d.gender]: omit(d, ['year', 'planning_area', 'gender'])})

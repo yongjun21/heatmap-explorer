@@ -27,7 +27,7 @@ Promise.all(ONEMAP_ENDPOINTS.slice(17, 19).map(ep => {
     return fetchResult
   })).then(flatten).then(data => {
     const validData = data.filter(d => d.Result !== 'No Data Available!')
-    fs.writeFileSync('data/' + ep + '.json', JSON.stringify(validData, null, '\t'))
+    fs.writeFileSync('data/raw/' + ep + '.json', JSON.stringify(validData, null, '\t'))
   }).catch(err => {
     if (err) throw err
   })

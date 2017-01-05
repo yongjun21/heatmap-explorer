@@ -1,6 +1,5 @@
 node_modules/
 dist/bundle.js*
 dist/bundle.css*
-data/Census2010.json
-data/Census2015.json
+data/processed/
 .DS_Store
