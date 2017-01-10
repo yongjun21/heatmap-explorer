@@ -71,7 +71,6 @@ export class PopulationSubzoneMP08 extends SubzoneMP08 {
   }
 }
 
-/*
 export class PopulationSubzoneMP98 extends SubzoneMP98 {
   constructor () {
     super()
@@ -81,7 +80,6 @@ export class PopulationSubzoneMP98 extends SubzoneMP98 {
     YEAR2MAP['mp98'].forEach(processPopulationData('SUBZONE_N').bind(this))
   }
 }
-*/
 
 export class PopulationPlanningAreaMP14 extends PlanningAreaMP14 {
   constructor () {
@@ -160,7 +158,7 @@ function upsertValueAtKey ({key, value}, state) {
 }
 
 function customUpdater ({key, value, def}, state) {
-  state[key] = state[key] || def
+  state[key] = state[key] || Object.assign({}, def)
   for (let k in state[key]) {
     state[key][k] += value[k]
   }
