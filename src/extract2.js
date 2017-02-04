@@ -19,7 +19,7 @@ for (let key in endpoints) {
     .then(results => {
       const data = Object.keys(DATAGOVSG_ENDPOINTS).slice(17, 51)
         .reduce((obj, k, i) => Object.assign(obj, {[k]: results[i]}), {})
-      fs.writeFileSync('data/' + key + '.json', JSON.stringify(data, null, '\t'))
+      fs.writeFileSync('data/raw/' + key + '.json', JSON.stringify(data, null, '\t'))
     })
     .catch(console.error)
 }

@@ -17,6 +17,9 @@ module.exports = {
       test: /\.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/
+    }, {
+      test: /\.json$/,
+      loader: 'json-loader'
     }]
   },
   vue: {
@@ -40,7 +43,11 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.common.js'
-    }
+    },
+    fallback: path.join(__dirname, 'node_modules')
+  },
+  resolveLoader: {
+    fallback: path.join(__dirname, 'node_modules')
   },
   devtool: 'source-map'
 }

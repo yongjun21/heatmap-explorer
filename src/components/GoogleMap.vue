@@ -4,9 +4,8 @@
 
 <script>
 import {googleMapsStyles} from '../constants'
-import SgHeatmap from 'sg-heatmap'
-import hextile from 'hextile'
-import URAregionMP98 from 'sg-heatmap/dist/predefined/URA_region_mp98'
+import SgHeatmap from 'sg-heatmap/dist/predefined/URA_region_mp08'
+import {tiledMap} from 'sg-heatmap/dist/helpers'
 
 export default {
   mounted () {
@@ -17,18 +16,19 @@ export default {
       maxZoom: 16,
       styles: googleMapsStyles.blueWater
     })
-    const basemap = new URAregionMP98().children
-    console.log(basemap)
-    const tiledMap = hextile(basemap, {shape: 'hexagon'})
-    console.log(tiledMap)
-    this.heatmap = new SgHeatmap(tiledMap)
-    this.heatmap.initializeRenderer({
+    this.heatmap = new SgHeatmap()
+    tiledMap(this.heatmap, {shape: 'hexagon', tilt: 90, width: 1000, center: [104.819836, 1.352083]})
+    const renderer = this.heatmap.initializeRenderer({
       weight: 1,
       color: 'black',
       opacity: 1,
       fillColor: 'white',
       fillOpacity: 0.4
     }, {fillOpacity: 0.7})
+    renderer.setMap(this.map)
+    renderer.addListener('click', event => {
+      console.log(event.feature)
+    })
   }
 }
 </script>

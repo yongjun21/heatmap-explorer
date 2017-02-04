@@ -39,7 +39,11 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.common.js'
-    }
+    },
+    fallback: path.join(__dirname, 'node_modules')
+  },
+  resolveLoader: {
+    fallback: path.join(__dirname, 'node_modules')
   },
   devServer: {
     port: 9000,
