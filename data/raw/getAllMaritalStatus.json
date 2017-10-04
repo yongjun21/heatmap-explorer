@@ -1,0 +1,2482 @@
+[
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"single": 23691,
+		"married": 41664,
+		"widowed": 7024,
+		"divorced": 2783,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"single": 28306,
+		"married": 41575,
+		"widowed": 1651,
+		"divorced": 1830,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"single": 36713,
+		"married": 62117,
+		"widowed": 1900,
+		"divorced": 1989,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"single": 31579,
+		"married": 62027,
+		"widowed": 9263,
+		"divorced": 3221,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"single": 9857,
+		"married": 22083,
+		"widowed": 2941,
+		"divorced": 1013,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"single": 10856,
+		"married": 21827,
+		"widowed": 517,
+		"divorced": 491,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"single": 12750,
+		"married": 31381,
+		"widowed": 3120,
+		"divorced": 1509,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"single": 15405,
+		"married": 31454,
+		"widowed": 807,
+		"divorced": 775,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"single": 24241,
+		"married": 33161,
+		"widowed": 1801,
+		"divorced": 1618,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"single": 19546,
+		"married": 32707,
+		"widowed": 7643,
+		"divorced": 2452,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"single": 11115,
+		"married": 24212,
+		"widowed": 536,
+		"divorced": 418,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"single": 8971,
+		"married": 24232,
+		"widowed": 2635,
+		"divorced": 946,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"single": 6530,
+		"married": 15787,
+		"widowed": 1574,
+		"divorced": 499,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"single": 6204,
+		"married": 15274,
+		"widowed": 302,
+		"divorced": 250,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"single": 162,
+		"married": 215,
+		"widowed": 5,
+		"divorced": 5,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"single": 94,
+		"married": 198,
+		"widowed": 29,
+		"divorced": 5,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"single": 14071,
+		"married": 36340,
+		"widowed": 639,
+		"divorced": 548,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"single": 11302,
+		"married": 36421,
+		"widowed": 3189,
+		"divorced": 1142,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"single": 13516,
+		"married": 21235,
+		"widowed": 747,
+		"divorced": 702,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"single": 12567,
+		"married": 21376,
+		"widowed": 3247,
+		"divorced": 1196,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"single": 594,
+		"married": 1014,
+		"widowed": 217,
+		"divorced": 54,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"single": 770,
+		"married": 1091,
+		"widowed": 63,
+		"divorced": 41,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"single": 13886,
+		"married": 26203,
+		"widowed": 5568,
+		"divorced": 1824,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"single": 17640,
+		"married": 26480,
+		"widowed": 1069,
+		"divorced": 1184,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"single": 26653,
+		"married": 49204,
+		"widowed": 1327,
+		"divorced": 1265,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"single": 21648,
+		"married": 49674,
+		"widowed": 6221,
+		"divorced": 2127,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"single": 10387,
+		"married": 22140,
+		"widowed": 2498,
+		"divorced": 892,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"single": 12795,
+		"married": 21967,
+		"widowed": 519,
+		"divorced": 565,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"single": 19858,
+		"married": 50051,
+		"widowed": 4867,
+		"divorced": 1824,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"single": 26044,
+		"married": 50079,
+		"widowed": 1148,
+		"divorced": 1262,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"single": 11278,
+		"married": 20308,
+		"widowed": 4282,
+		"divorced": 1302,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"single": 15132,
+		"married": 21214,
+		"widowed": 1052,
+		"divorced": 975,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"single": 5420,
+		"married": 9692,
+		"widowed": 351,
+		"divorced": 449,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"single": 5569,
+		"married": 9936,
+		"widowed": 2038,
+		"divorced": 712,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"single": 589,
+		"married": 1435,
+		"widowed": 148,
+		"divorced": 53,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"single": 568,
+		"married": 1345,
+		"widowed": 21,
+		"divorced": 85,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"single": 5365,
+		"married": 9860,
+		"widowed": 343,
+		"divorced": 293,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"single": 5140,
+		"married": 9913,
+		"widowed": 1794,
+		"divorced": 448,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "58",
+		"planning_area": "Others",
+		"single": 466,
+		"married": 847,
+		"widowed": 108,
+		"divorced": 29,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "58",
+		"planning_area": "Others",
+		"single": 472,
+		"married": 881,
+		"widowed": 24,
+		"divorced": 21,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"single": 4355,
+		"married": 4799,
+		"widowed": 355,
+		"divorced": 380,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"single": 3209,
+		"married": 4451,
+		"widowed": 1419,
+		"divorced": 413,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"single": 7777,
+		"married": 28944,
+		"widowed": 2508,
+		"divorced": 973,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"single": 8619,
+		"married": 28664,
+		"widowed": 393,
+		"divorced": 495,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"single": 14024,
+		"married": 22441,
+		"widowed": 861,
+		"divorced": 1130,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"single": 11860,
+		"married": 22132,
+		"widowed": 4884,
+		"divorced": 1765,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"single": 1014,
+		"married": 2042,
+		"widowed": 291,
+		"divorced": 121,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"single": 948,
+		"married": 2008,
+		"widowed": 67,
+		"divorced": 50,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"single": 2093,
+		"married": 3536,
+		"widowed": 905,
+		"divorced": 174,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"single": 2654,
+		"married": 3807,
+		"widowed": 202,
+		"divorced": 144,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"single": 2084,
+		"married": 6696,
+		"widowed": 553,
+		"divorced": 298,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"single": 2350,
+		"married": 6629,
+		"widowed": 140,
+		"divorced": 96,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"single": 5003,
+		"married": 13046,
+		"widowed": 197,
+		"divorced": 202,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"single": 4360,
+		"married": 13044,
+		"widowed": 1389,
+		"divorced": 419,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"single": 15029,
+		"married": 29394,
+		"widowed": 837,
+		"divorced": 533,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"single": 13354,
+		"married": 29734,
+		"widowed": 3973,
+		"divorced": 1227,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"single": 24188,
+		"married": 59851,
+		"widowed": 7085,
+		"divorced": 2793,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"single": 28069,
+		"married": 59082,
+		"widowed": 1205,
+		"divorced": 1317,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"single": 1171,
+		"married": 3081,
+		"widowed": 43,
+		"divorced": 62,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"single": 1501,
+		"married": 3150,
+		"widowed": 395,
+		"divorced": 144,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"single": 17347,
+		"married": 26356,
+		"widowed": 1286,
+		"divorced": 1409,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"single": 15354,
+		"married": 26558,
+		"widowed": 5780,
+		"divorced": 1945,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"single": 19797,
+		"married": 49308,
+		"widowed": 1061,
+		"divorced": 1156,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"single": 15882,
+		"married": 49814,
+		"widowed": 4464,
+		"divorced": 2280,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"single": 18030,
+		"married": 42944,
+		"widowed": 4604,
+		"divorced": 2332,
+		"year": 2000,
+		"gender": "Female"
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"single": 22529,
+		"married": 43117,
+		"widowed": 1110,
+		"divorced": 1140,
+		"year": 2000,
+		"gender": "Male"
+	},
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"single": 26666,
+		"married": 42992,
+		"widowed": 1478,
+		"divorced": 2197,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"single": 24706,
+		"married": 42420,
+		"widowed": 8290,
+		"divorced": 4424,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"single": 43753,
+		"married": 71251,
+		"widowed": 2204,
+		"divorced": 3303,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"single": 39018,
+		"married": 70419,
+		"widowed": 11643,
+		"divorced": 5430,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"single": 12715,
+		"married": 22999,
+		"widowed": 3124,
+		"divorced": 1553,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"single": 13550,
+		"married": 22968,
+		"widowed": 556,
+		"divorced": 652,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"single": 20891,
+		"married": 36971,
+		"widowed": 760,
+		"divorced": 1140,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"single": 18214,
+		"married": 36000,
+		"widowed": 4208,
+		"divorced": 2531,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"single": 23560,
+		"married": 36361,
+		"widowed": 1738,
+		"divorced": 2627,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"single": 20837,
+		"married": 35498,
+		"widowed": 8961,
+		"divorced": 3979,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"single": 15785,
+		"married": 32551,
+		"widowed": 3500,
+		"divorced": 1728,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"single": 17978,
+		"married": 32665,
+		"widowed": 693,
+		"divorced": 921,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"single": 8901,
+		"married": 17795,
+		"widowed": 1887,
+		"divorced": 975,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"single": 7837,
+		"married": 17740,
+		"widowed": 429,
+		"divorced": 469,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"single": 198,
+		"married": 596,
+		"widowed": 48,
+		"divorced": 35,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"single": 226,
+		"married": 623,
+		"widowed": 0,
+		"divorced": 29,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"single": 23148,
+		"married": 44429,
+		"widowed": 852,
+		"divorced": 1377,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"single": 20823,
+		"married": 44071,
+		"widowed": 4502,
+		"divorced": 2026,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"single": 12653,
+		"married": 21758,
+		"widowed": 3812,
+		"divorced": 1862,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"single": 12381,
+		"married": 21860,
+		"widowed": 731,
+		"divorced": 1073,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"single": 539,
+		"married": 888,
+		"widowed": 193,
+		"divorced": 56,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"single": 640,
+		"married": 907,
+		"widowed": 25,
+		"divorced": 75,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"single": 16165,
+		"married": 27105,
+		"widowed": 5882,
+		"divorced": 2745,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"single": 19417,
+		"married": 28379,
+		"widowed": 1161,
+		"divorced": 1742,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"single": 30069,
+		"married": 52325,
+		"widowed": 7614,
+		"divorced": 3431,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"single": 31809,
+		"married": 52920,
+		"widowed": 1492,
+		"divorced": 1834,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"single": 10731,
+		"married": 21635,
+		"widowed": 2794,
+		"divorced": 1299,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"single": 13590,
+		"married": 22043,
+		"widowed": 561,
+		"divorced": 720,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"single": 30068,
+		"married": 67399,
+		"widowed": 7092,
+		"divorced": 3953,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"single": 36603,
+		"married": 69376,
+		"widowed": 1361,
+		"divorced": 2323,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"single": 15896,
+		"married": 23159,
+		"widowed": 937,
+		"divorced": 1658,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"single": 13170,
+		"married": 22392,
+		"widowed": 5083,
+		"divorced": 2286,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "47",
+		"planning_area": "Mandai",
+		"single": 159,
+		"married": 457,
+		"widowed": 6,
+		"divorced": 6,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "47",
+		"planning_area": "Mandai",
+		"single": 213,
+		"married": 404,
+		"widowed": 25,
+		"divorced": 32,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"single": 5652,
+		"married": 11174,
+		"widowed": 394,
+		"divorced": 546,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"single": 5913,
+		"married": 11043,
+		"widowed": 2143,
+		"divorced": 984,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"single": 763,
+		"married": 1502,
+		"widowed": 124,
+		"divorced": 117,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"single": 573,
+		"married": 1513,
+		"widowed": 41,
+		"divorced": 79,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"single": 5919,
+		"married": 11217,
+		"widowed": 1931,
+		"divorced": 812,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"single": 5876,
+		"married": 11371,
+		"widowed": 387,
+		"divorced": 610,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "58",
+		"planning_area": "Others",
+		"single": 358,
+		"married": 776,
+		"widowed": 73,
+		"divorced": 18,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "58",
+		"planning_area": "Others",
+		"single": 377,
+		"married": 764,
+		"widowed": 13,
+		"divorced": 43,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"single": 2395,
+		"married": 3247,
+		"widowed": 1202,
+		"divorced": 518,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"single": 3388,
+		"married": 3547,
+		"widowed": 263,
+		"divorced": 511,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"single": 15984,
+		"married": 33255,
+		"widowed": 3219,
+		"divorced": 1385,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"single": 18127,
+		"married": 33426,
+		"widowed": 675,
+		"divorced": 968,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "20",
+		"planning_area": "Punggol",
+		"single": 5016,
+		"married": 16692,
+		"widowed": 1403,
+		"divorced": 859,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "20",
+		"planning_area": "Punggol",
+		"single": 5108,
+		"married": 16710,
+		"widowed": 209,
+		"divorced": 366,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"single": 12860,
+		"married": 22994,
+		"widowed": 831,
+		"divorced": 1357,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"single": 12821,
+		"married": 22889,
+		"widowed": 4894,
+		"divorced": 2385,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"single": 946,
+		"married": 1940,
+		"widowed": 57,
+		"divorced": 58,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"single": 1186,
+		"married": 1880,
+		"widowed": 243,
+		"divorced": 181,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"single": 2359,
+		"married": 3620,
+		"widowed": 126,
+		"divorced": 186,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"single": 2011,
+		"married": 3461,
+		"widowed": 782,
+		"divorced": 315,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"single": 7412,
+		"married": 18849,
+		"widowed": 1958,
+		"divorced": 899,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"single": 8279,
+		"married": 19078,
+		"widowed": 265,
+		"divorced": 343,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"single": 17810,
+		"married": 45069,
+		"widowed": 708,
+		"divorced": 1057,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"single": 15994,
+		"married": 45183,
+		"widowed": 4082,
+		"divorced": 2089,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"single": 16931,
+		"married": 30404,
+		"widowed": 4721,
+		"divorced": 1922,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"single": 18314,
+		"married": 30738,
+		"widowed": 892,
+		"divorced": 986,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "55",
+		"planning_area": "Singapore River",
+		"single": 230,
+		"married": 389,
+		"widowed": 14,
+		"divorced": 59,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "55",
+		"planning_area": "Singapore River",
+		"single": 264,
+		"married": 372,
+		"widowed": 0,
+		"divorced": 44,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"single": 39215,
+		"married": 62711,
+		"widowed": 1366,
+		"divorced": 1684,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"single": 35013,
+		"married": 62616,
+		"widowed": 8532,
+		"divorced": 4240,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"single": 1980,
+		"married": 4331,
+		"widowed": 380,
+		"divorced": 256,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"single": 1771,
+		"married": 4392,
+		"widowed": 84,
+		"divorced": 184,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"single": 17395,
+		"married": 28502,
+		"widowed": 6358,
+		"divorced": 3152,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"single": 18896,
+		"married": 28561,
+		"widowed": 1275,
+		"divorced": 1768,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"single": 27139,
+		"married": 59812,
+		"widowed": 6129,
+		"divorced": 3722,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"single": 32151,
+		"married": 60577,
+		"widowed": 1258,
+		"divorced": 2156,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"single": 27021,
+		"married": 44696,
+		"widowed": 1026,
+		"divorced": 2041,
+		"year": 2010,
+		"gender": "Male"
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"single": 24112,
+		"married": 43950,
+		"widowed": 5856,
+		"divorced": 3730,
+		"year": 2010,
+		"gender": "Female"
+	},
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"single": 27200,
+		"married": 44100,
+		"widowed": 2100,
+		"divorced": 2700,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"single": 24500,
+		"married": 43900,
+		"widowed": 8400,
+		"divorced": 4400,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"single": 35500,
+		"married": 67400,
+		"widowed": 12700,
+		"divorced": 5600,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"single": 40200,
+		"married": 68200,
+		"widowed": 2700,
+		"divorced": 3500,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"single": 12900,
+		"married": 21900,
+		"widowed": 3500,
+		"divorced": 1900,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"single": 12300,
+		"married": 22400,
+		"widowed": 900,
+		"divorced": 600,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "5",
+		"planning_area": "Boon Lay",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "5",
+		"planning_area": "Boon Lay",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"single": 20400,
+		"married": 34100,
+		"widowed": 5200,
+		"divorced": 2800,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"single": 20800,
+		"married": 34400,
+		"widowed": 1100,
+		"divorced": 1400,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"single": 20400,
+		"married": 35100,
+		"widowed": 9200,
+		"divorced": 4500,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"single": 22600,
+		"married": 36700,
+		"widowed": 1500,
+		"divorced": 2500,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"single": 17100,
+		"married": 37200,
+		"widowed": 3800,
+		"divorced": 1900,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"single": 19700,
+		"married": 38300,
+		"widowed": 600,
+		"divorced": 1000,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"single": 7200,
+		"married": 19900,
+		"widowed": 300,
+		"divorced": 400,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"single": 9500,
+		"married": 19600,
+		"widowed": 1500,
+		"divorced": 700,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "12",
+		"planning_area": "Central Water Catchment",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "12",
+		"planning_area": "Central Water Catchment",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "14",
+		"planning_area": "Changi Bay",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "14",
+		"planning_area": "Changi Bay",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"single": 24400,
+		"married": 44800,
+		"widowed": 1000,
+		"divorced": 1200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"single": 25100,
+		"married": 44600,
+		"widowed": 5100,
+		"divorced": 2900,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"single": 10400,
+		"married": 22000,
+		"widowed": 1100,
+		"divorced": 1200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"single": 11100,
+		"married": 21100,
+		"widowed": 4300,
+		"divorced": 1500,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"single": 14000,
+		"married": 24800,
+		"widowed": 5500,
+		"divorced": 3000,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"single": 15900,
+		"married": 26300,
+		"widowed": 800,
+		"divorced": 2200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"single": 32100,
+		"married": 53500,
+		"widowed": 1500,
+		"divorced": 1900,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"single": 30600,
+		"married": 52900,
+		"widowed": 7800,
+		"divorced": 4400,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"single": 10100,
+		"married": 20200,
+		"widowed": 3700,
+		"divorced": 1400,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"single": 12300,
+		"married": 21500,
+		"widowed": 300,
+		"divorced": 1200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"single": 33400,
+		"married": 72200,
+		"widowed": 8400,
+		"divorced": 4700,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"single": 38100,
+		"married": 73600,
+		"widowed": 1900,
+		"divorced": 2700,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"single": 14000,
+		"married": 22600,
+		"widowed": 5200,
+		"divorced": 2400,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"single": 13900,
+		"married": 23900,
+		"widowed": 1000,
+		"divorced": 1700,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "46",
+		"planning_area": "Lim Chu Kang",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "46",
+		"planning_area": "Lim Chu Kang",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "47",
+		"planning_area": "Mandai",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "47",
+		"planning_area": "Mandai",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "39",
+		"planning_area": "Marina East",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "39",
+		"planning_area": "Marina East",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "40",
+		"planning_area": "Marina South",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "40",
+		"planning_area": "Marina South",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"single": 5700,
+		"married": 10200,
+		"widowed": 200,
+		"divorced": 500,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"single": 5800,
+		"married": 10000,
+		"widowed": 2100,
+		"divorced": 1300,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "41",
+		"planning_area": "Museum",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "41",
+		"planning_area": "Museum",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "49",
+		"planning_area": "North-Eastern Islands",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "49",
+		"planning_area": "North-Eastern Islands",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"single": 6600,
+		"married": 11200,
+		"widowed": 300,
+		"divorced": 400,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"single": 5600,
+		"married": 10900,
+		"widowed": 1400,
+		"divorced": 800,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "43",
+		"planning_area": "Orchard",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "43",
+		"planning_area": "Orchard",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"single": 2400,
+		"married": 4800,
+		"widowed": 1100,
+		"divorced": 600,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"single": 2700,
+		"married": 5200,
+		"widowed": 200,
+		"divorced": 400,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"single": 20400,
+		"married": 36000,
+		"widowed": 1000,
+		"divorced": 1300,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"single": 19800,
+		"married": 35200,
+		"widowed": 3400,
+		"divorced": 2300,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "52",
+		"planning_area": "Paya Lebar",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "52",
+		"planning_area": "Paya Lebar",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "19",
+		"planning_area": "Pioneer",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "19",
+		"planning_area": "Pioneer",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "20",
+		"planning_area": "Punggol",
+		"single": 7700,
+		"married": 30500,
+		"widowed": 600,
+		"divorced": 1200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "20",
+		"planning_area": "Punggol",
+		"single": 7500,
+		"married": 30700,
+		"widowed": 2300,
+		"divorced": 2300,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"single": 13900,
+		"married": 22700,
+		"widowed": 1000,
+		"divorced": 1300,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"single": 13500,
+		"married": 20800,
+		"widowed": 5700,
+		"divorced": 2800,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "22",
+		"planning_area": "Seletar",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "22",
+		"planning_area": "Seletar",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"single": 10100,
+		"married": 21200,
+		"widowed": 300,
+		"divorced": 700,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"single": 8400,
+		"married": 20700,
+		"widowed": 2000,
+		"divorced": 1400,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"single": 22400,
+		"married": 61700,
+		"widowed": 1100,
+		"divorced": 1200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"single": 21900,
+		"married": 60500,
+		"widowed": 4800,
+		"divorced": 4400,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"single": 19600,
+		"married": 30300,
+		"widowed": 5600,
+		"divorced": 2500,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"single": 19200,
+		"married": 30400,
+		"widowed": 800,
+		"divorced": 1000,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "26",
+		"planning_area": "Simpang",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "26",
+		"planning_area": "Simpang",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "55",
+		"planning_area": "Singapore River",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "55",
+		"planning_area": "Singapore River",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "27",
+		"planning_area": "Southern Islands",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "27",
+		"planning_area": "Southern Islands",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "56",
+		"planning_area": "Straits View",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "56",
+		"planning_area": "Straits View",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "28",
+		"planning_area": "Sungei Kadut",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "28",
+		"planning_area": "Sungei Kadut",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"single": 41500,
+		"married": 67600,
+		"widowed": 2000,
+		"divorced": 2800,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"single": 37100,
+		"married": 65400,
+		"widowed": 9900,
+		"divorced": 5400,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"single": 2200,
+		"married": 4800,
+		"widowed": 500,
+		"divorced": 300,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"single": 1400,
+		"married": 4800,
+		"widowed": 100,
+		"divorced": 200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "31",
+		"planning_area": "Tengah",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "31",
+		"planning_area": "Tengah",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"single": 18800,
+		"married": 28800,
+		"widowed": 5800,
+		"divorced": 3200,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"single": 18300,
+		"married": 29800,
+		"widowed": 1200,
+		"divorced": 2000,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "33",
+		"planning_area": "Tuas",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "33",
+		"planning_area": "Tuas",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "34",
+		"planning_area": "Western Islands",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "34",
+		"planning_area": "Western Islands",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "35",
+		"planning_area": "Western Water Catchment",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "35",
+		"planning_area": "Western Water Catchment",
+		"single": 0,
+		"married": 0,
+		"widowed": 0,
+		"divorced": 0,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"single": 33300,
+		"married": 62100,
+		"widowed": 1300,
+		"divorced": 2200,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"single": 30400,
+		"married": 60500,
+		"widowed": 6400,
+		"divorced": 5500,
+		"year": 2015,
+		"gender": "Female"
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"single": 27800,
+		"married": 51800,
+		"widowed": 1700,
+		"divorced": 2800,
+		"year": 2015,
+		"gender": "Male"
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"single": 25000,
+		"married": 51100,
+		"widowed": 6700,
+		"divorced": 5600,
+		"year": 2015,
+		"gender": "Female"
+	}
+]

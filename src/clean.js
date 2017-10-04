@@ -1,4 +1,4 @@
-const Heatmaps = require('./heatmaps')
+import * as Heatmaps from './heatmaps'
 import fs from 'fs'
 
 Object.keys(Heatmaps).forEach(key => {

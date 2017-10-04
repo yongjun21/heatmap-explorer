@@ -26,7 +26,7 @@ export class Census2015 extends PlanningAreaMP14 {
       data.filter(d => d.year === 2015).forEach(d => {
         this.update(d.planning_area.toUpperCase(), {
           key: ep,
-          value: omit(d, ['year', 'planning_area'])
+          value: omit(d, ['id', 'year', 'planning_area'])
         })
       })
     })
@@ -44,7 +44,25 @@ export class Census2010 extends PlanningAreaMP08 {
       data.filter(d => d.year === 2010).forEach(d => {
         this.update(d.planning_area.toUpperCase(), {
           key: ep,
-          value: omit(d, ['year', 'planning_area'])
+          value: omit(d, ['id', 'year', 'planning_area'])
+        })
+      })
+    })
+  }
+}
+
+export class Census2000 extends PlanningAreaMP98 {
+  constructor () {
+    super()
+    this.registerUpdater(upsertValueAtKey)
+    matchPlanningAreaName(this)
+    ONEMAP_ENDPOINTS.forEach(ep => {
+      let data = require('../data/raw/' + ep + '.json')
+      if (WITHGENDER.indexOf(ep) > -1) data = mergeGender(data)
+      data.filter(d => d.year === 2000).forEach(d => {
+        this.update(d.planning_area.toUpperCase(), {
+          key: ep,
+          value: omit(d, ['id', 'year', 'planning_area'])
         })
       })
     })
@@ -189,7 +207,7 @@ function mergeGender (data) {
     forEach(groupBy(group, 'planning_area'), (group, planning_area) => { // eslint-disable-line
       mergedData.push(
         group.reduce((j, d) => {
-          return Object.assign(j, {[d.gender]: omit(d, ['year', 'planning_area', 'gender'])})
+          return Object.assign(j, {[d.gender]: omit(d, ['id', 'year', 'planning_area', 'gender'])})
         }, {year: +year, planning_area})
       )
     })

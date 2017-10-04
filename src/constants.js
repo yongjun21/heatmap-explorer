@@ -1,30 +1,32 @@
-export const ONEMAP_TOKEN = process.env.ONEMAP_TOKEN
+export const ONEMAP_TOKEN = 'https://developers.onemap.sg/publicapi/publicsessionid'
 
 export const ONEMAP_ENDPOINTS = [
-  'getEconomicStatus',
-  'getEducationAttending',
-  'getEthnicGroup',
-  'getHouseholdMonthlyIncomeWork',
-  'getHouseholdSize',
-  'getHouseholdStructure',
-  'getIncomeFromWork',
-  'getIndustry',
-  'getLanguageLiterate',
-  'getMaritalStatus',
-  'getModeOfTransportSchool',
-  'getModeOfTransportWork',
-  'getOccupation',
-  'getPopulationAgeGroup',
-  'getReligion',
-  'getSpokenAtHome',
-  'getTenancy',
-  'getTypeOfDwellingHousehold',
-  'getTypeOfDwellingPop'
+  'getAllEconomicStatus',
+  'getAllEducationAttending',
+  'getAllEthnicGroup',
+  'getAllHouseholdMonthlyIncomeWork',
+  'getAllHouseholdSize',
+  'getAllHouseholdStructure',
+  'getAllIncomeFromWork',
+  'getAllIndustry',
+  'getAllLanguageLiterate',
+  'getAllMaritalStatus',
+  'getAllModeOfTransportSchool',
+  'getAllModeOfTransportWork',
+  'getAllOccupation',
+  'getAllPopulationAgeGroup',
+  'getAllReligion',
+  'getAllSpokenAtHome',
+  'getAllTenancy',
+  'getAllTypeOfDwellingHousehold',
+  'getAllTypeOfDwellingPop'
 ]
 
 export const WITHGENDER = [
-  'getEconomicStatus',
-  'getMaritalStatus'
+  'getAllEconomicStatus',
+  'getAllEthnicGroup',
+  'getAllMaritalStatus',
+  'getAllPopulationAgeGroup'
 ]
 
 export const DATAGOVSG_ENDPOINTS = {

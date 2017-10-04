@@ -1,0 +1,994 @@
+[
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"owner": 48822,
+		"tenant": 4796,
+		"others": 484,
+		"year": 2000
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"owner": 68816,
+		"tenant": 5060,
+		"others": 958,
+		"year": 2000
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"owner": 23743,
+		"tenant": 939,
+		"others": 273,
+		"year": 2000
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"owner": 34569,
+		"tenant": 1380,
+		"others": 304,
+		"year": 2000
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"owner": 37420,
+		"tenant": 8616,
+		"others": 440,
+		"year": 2000
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"owner": 25287,
+		"tenant": 687,
+		"others": 197,
+		"year": 2000
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"owner": 14419,
+		"tenant": 1847,
+		"others": 546,
+		"year": 2000
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"owner": 147,
+		"tenant": 102,
+		"others": 31,
+		"year": 2000
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"owner": 37081,
+		"tenant": 619,
+		"others": 158,
+		"year": 2000
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"owner": 25721,
+		"tenant": 1985,
+		"others": 200,
+		"year": 2000
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"owner": 1094,
+		"tenant": 308,
+		"others": 24,
+		"year": 2000
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"owner": 29390,
+		"tenant": 4486,
+		"others": 517,
+		"year": 2000
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"owner": 52572,
+		"tenant": 1660,
+		"others": 561,
+		"year": 2000
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"owner": 24074,
+		"tenant": 615,
+		"others": 200,
+		"year": 2000
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"owner": 53559,
+		"tenant": 1729,
+		"others": 448,
+		"year": 2000
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"owner": 22336,
+		"tenant": 6137,
+		"others": 539,
+		"year": 2000
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"owner": 10709,
+		"tenant": 2224,
+		"others": 321,
+		"year": 2000
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"owner": 1235,
+		"tenant": 388,
+		"others": 93,
+		"year": 2000
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"owner": 10632,
+		"tenant": 1379,
+		"others": 273,
+		"year": 2000
+	},
+	{
+		"id": "58",
+		"planning_area": "Others",
+		"owner": 799,
+		"tenant": 225,
+		"others": 89,
+		"year": 2000
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"owner": 4696,
+		"tenant": 3262,
+		"others": 89,
+		"year": 2000
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"owner": 29023,
+		"tenant": 598,
+		"others": 181,
+		"year": 2000
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"owner": 27359,
+		"tenant": 3329,
+		"others": 525,
+		"year": 2000
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"owner": 2018,
+		"tenant": 534,
+		"others": 174,
+		"year": 2000
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"owner": 4154,
+		"tenant": 672,
+		"others": 143,
+		"year": 2000
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"owner": 6976,
+		"tenant": 85,
+		"others": 100,
+		"year": 2000
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"owner": 13500,
+		"tenant": 167,
+		"others": 101,
+		"year": 2000
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"owner": 31738,
+		"tenant": 983,
+		"others": 454,
+		"year": 2000
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"owner": 64124,
+		"tenant": 1339,
+		"others": 436,
+		"year": 2000
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"owner": 3035,
+		"tenant": 630,
+		"others": 205,
+		"year": 2000
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"owner": 32444,
+		"tenant": 4336,
+		"others": 386,
+		"year": 2000
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"owner": 52451,
+		"tenant": 1403,
+		"others": 329,
+		"year": 2000
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"owner": 47705,
+		"tenant": 876,
+		"others": 273,
+		"year": 2000
+	},
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"owner": 50755,
+		"tenant": 8307,
+		"others": 644,
+		"year": 2010
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"owner": 78754,
+		"tenant": 11087,
+		"others": 1383,
+		"year": 2010
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"owner": 24950,
+		"tenant": 2240,
+		"others": 267,
+		"year": 2010
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"owner": 39975,
+		"tenant": 3750,
+		"others": 408,
+		"year": 2010
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"owner": 42018,
+		"tenant": 13092,
+		"others": 516,
+		"year": 2010
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"owner": 34172,
+		"tenant": 1831,
+		"others": 336,
+		"year": 2010
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"owner": 16618,
+		"tenant": 3550,
+		"others": 490,
+		"year": 2010
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"owner": 259,
+		"tenant": 343,
+		"others": 176,
+		"year": 2010
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"owner": 44830,
+		"tenant": 2646,
+		"others": 436,
+		"year": 2010
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"owner": 26672,
+		"tenant": 3791,
+		"others": 329,
+		"year": 2010
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"owner": 1020,
+		"tenant": 348,
+		"others": 61,
+		"year": 2010
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"owner": 31557,
+		"tenant": 7981,
+		"others": 748,
+		"year": 2010
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"owner": 57678,
+		"tenant": 3756,
+		"others": 851,
+		"year": 2010
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"owner": 24332,
+		"tenant": 1669,
+		"others": 291,
+		"year": 2010
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"owner": 70350,
+		"tenant": 6800,
+		"others": 934,
+		"year": 2010
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"owner": 25707,
+		"tenant": 9301,
+		"others": 466,
+		"year": 2010
+	},
+	{
+		"id": "47",
+		"planning_area": "Mandai",
+		"owner": 426,
+		"tenant": 49,
+		"others": 13,
+		"year": 2010
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"owner": 11926,
+		"tenant": 3243,
+		"others": 330,
+		"year": 2010
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"owner": 1199,
+		"tenant": 835,
+		"others": 141,
+		"year": 2010
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"owner": 12120,
+		"tenant": 2787,
+		"others": 301,
+		"year": 2010
+	},
+	{
+		"id": "58",
+		"planning_area": "Others",
+		"owner": 592,
+		"tenant": 369,
+		"others": 64,
+		"year": 2010
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"owner": 3650,
+		"tenant": 3620,
+		"others": 118,
+		"year": 2010
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"owner": 33290,
+		"tenant": 2430,
+		"others": 337,
+		"year": 2010
+	},
+	{
+		"id": "20",
+		"planning_area": "Punggol",
+		"owner": 17139,
+		"tenant": 764,
+		"others": 140,
+		"year": 2010
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"owner": 28238,
+		"tenant": 5710,
+		"others": 416,
+		"year": 2010
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"owner": 1651,
+		"tenant": 916,
+		"others": 181,
+		"year": 2010
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"owner": 4120,
+		"tenant": 994,
+		"others": 142,
+		"year": 2010
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"owner": 19193,
+		"tenant": 1120,
+		"others": 299,
+		"year": 2010
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"owner": 45264,
+		"tenant": 2098,
+		"others": 425,
+		"year": 2010
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"owner": 33104,
+		"tenant": 2385,
+		"others": 497,
+		"year": 2010
+	},
+	{
+		"id": "55",
+		"planning_area": "Singapore River",
+		"owner": 469,
+		"tenant": 285,
+		"others": 44,
+		"year": 2010
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"owner": 67913,
+		"tenant": 4868,
+		"others": 810,
+		"year": 2010
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"owner": 3683,
+		"tenant": 1648,
+		"others": 256,
+		"year": 2010
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"owner": 34421,
+		"tenant": 7998,
+		"others": 558,
+		"year": 2010
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"owner": 61494,
+		"tenant": 6167,
+		"others": 618,
+		"year": 2010
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"owner": 49335,
+		"tenant": 3756,
+		"others": 485,
+		"year": 2010
+	},
+	{
+		"id": "2",
+		"planning_area": "Ang Mo Kio",
+		"owner": 54700,
+		"tenant": 7700,
+		"others": 100,
+		"year": 2015
+	},
+	{
+		"id": "3",
+		"planning_area": "Bedok",
+		"owner": 82900,
+		"tenant": 8700,
+		"others": 600,
+		"year": 2015
+	},
+	{
+		"id": "4",
+		"planning_area": "Bishan",
+		"owner": 25300,
+		"tenant": 2300,
+		"others": 200,
+		"year": 2015
+	},
+	{
+		"id": "5",
+		"planning_area": "Boon Lay",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "6",
+		"planning_area": "Bukit Batok",
+		"owner": 41300,
+		"tenant": 2500,
+		"others": 300,
+		"year": 2015
+	},
+	{
+		"id": "7",
+		"planning_area": "Bukit Merah",
+		"owner": 44300,
+		"tenant": 10700,
+		"others": 200,
+		"year": 2015
+	},
+	{
+		"id": "8",
+		"planning_area": "Bukit Panjang",
+		"owner": 39300,
+		"tenant": 1900,
+		"others": 100,
+		"year": 2015
+	},
+	{
+		"id": "11",
+		"planning_area": "Bukit Timah",
+		"owner": 20900,
+		"tenant": 2600,
+		"others": 500,
+		"year": 2015
+	},
+	{
+		"id": "12",
+		"planning_area": "Central Water Catchment",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "13",
+		"planning_area": "Changi",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "14",
+		"planning_area": "Changi Bay",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "15",
+		"planning_area": "Choa Chu Kang",
+		"owner": 47500,
+		"tenant": 1500,
+		"others": 300,
+		"year": 2015
+	},
+	{
+		"id": "16",
+		"planning_area": "Clementi",
+		"owner": 26900,
+		"tenant": 2900,
+		"others": 200,
+		"year": 2015
+	},
+	{
+		"id": "38",
+		"planning_area": "Downtown Core",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "17",
+		"planning_area": "Geylang",
+		"owner": 31800,
+		"tenant": 5300,
+		"others": 400,
+		"year": 2015
+	},
+	{
+		"id": "18",
+		"planning_area": "Hougang",
+		"owner": 60500,
+		"tenant": 3400,
+		"others": 400,
+		"year": 2015
+	},
+	{
+		"id": "9",
+		"planning_area": "Jurong East",
+		"owner": 24300,
+		"tenant": 1200,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "10",
+		"planning_area": "Jurong West",
+		"owner": 76200,
+		"tenant": 5100,
+		"others": 300,
+		"year": 2015
+	},
+	{
+		"id": "45",
+		"planning_area": "Kallang",
+		"owner": 29400,
+		"tenant": 6900,
+		"others": 100,
+		"year": 2015
+	},
+	{
+		"id": "46",
+		"planning_area": "Lim Chu Kang",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "47",
+		"planning_area": "Mandai",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "39",
+		"planning_area": "Marina East",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "40",
+		"planning_area": "Marina South",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "48",
+		"planning_area": "Marine Parade",
+		"owner": 12400,
+		"tenant": 2600,
+		"others": 200,
+		"year": 2015
+	},
+	{
+		"id": "41",
+		"planning_area": "Museum",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "42",
+		"planning_area": "Newton",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "49",
+		"planning_area": "North-Eastern Islands",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "50",
+		"planning_area": "Novena",
+		"owner": 13000,
+		"tenant": 2500,
+		"others": 200,
+		"year": 2015
+	},
+	{
+		"id": "43",
+		"planning_area": "Orchard",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "44",
+		"planning_area": "Outram",
+		"owner": 5800,
+		"tenant": 2600,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "51",
+		"planning_area": "Pasir Ris",
+		"owner": 38400,
+		"tenant": 2000,
+		"others": 100,
+		"year": 2015
+	},
+	{
+		"id": "52",
+		"planning_area": "Paya Lebar",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "19",
+		"planning_area": "Pioneer",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "20",
+		"planning_area": "Punggol",
+		"owner": 31900,
+		"tenant": 1300,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "21",
+		"planning_area": "Queenstown",
+		"owner": 31700,
+		"tenant": 3600,
+		"others": 300,
+		"year": 2015
+	},
+	{
+		"id": "53",
+		"planning_area": "River Valley",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "54",
+		"planning_area": "Rochor",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "22",
+		"planning_area": "Seletar",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "23",
+		"planning_area": "Sembawang",
+		"owner": 22100,
+		"tenant": 900,
+		"others": 100,
+		"year": 2015
+	},
+	{
+		"id": "24",
+		"planning_area": "Sengkang",
+		"owner": 62200,
+		"tenant": 2300,
+		"others": 100,
+		"year": 2015
+	},
+	{
+		"id": "25",
+		"planning_area": "Serangoon",
+		"owner": 36300,
+		"tenant": 2300,
+		"others": 400,
+		"year": 2015
+	},
+	{
+		"id": "26",
+		"planning_area": "Simpang",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "55",
+		"planning_area": "Singapore River",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "27",
+		"planning_area": "Southern Islands",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "56",
+		"planning_area": "Straits View",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "28",
+		"planning_area": "Sungei Kadut",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "29",
+		"planning_area": "Tampines",
+		"owner": 76100,
+		"tenant": 3500,
+		"others": 300,
+		"year": 2015
+	},
+	{
+		"id": "30",
+		"planning_area": "Tanglin",
+		"owner": 4900,
+		"tenant": 1900,
+		"others": 200,
+		"year": 2015
+	},
+	{
+		"id": "31",
+		"planning_area": "Tengah",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "32",
+		"planning_area": "Toa Payoh",
+		"owner": 36800,
+		"tenant": 6100,
+		"others": 200,
+		"year": 2015
+	},
+	{
+		"id": "33",
+		"planning_area": "Tuas",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "34",
+		"planning_area": "Western Islands",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "35",
+		"planning_area": "Western Water Catchment",
+		"owner": 0,
+		"tenant": 0,
+		"others": 0,
+		"year": 2015
+	},
+	{
+		"id": "36",
+		"planning_area": "Woodlands",
+		"owner": 65900,
+		"tenant": 4400,
+		"others": 100,
+		"year": 2015
+	},
+	{
+		"id": "37",
+		"planning_area": "Yishun",
+		"owner": 59500,
+		"tenant": 3100,
+		"others": 300,
+		"year": 2015
+	}
+]
