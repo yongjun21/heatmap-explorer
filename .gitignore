@@ -1,6 +1,6 @@
 node_modules/
-dist/bundle.js*
-dist/bundle.css*
-data/processed/
+data/raw/
+
+
 .DS_Store
 *.log

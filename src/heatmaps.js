@@ -8,25 +8,24 @@ import SubzoneMP98 from 'sg-heatmap/dist/predefined/URA_subzone_mp98'
 import DwellingTypeData from '../data/raw/DwellingType.json'
 import ResidentData from '../data/raw/Resident.json'
 
-import {ONEMAP_ENDPOINTS, WITHGENDER, YEAR2MAP,
+import {ONEMAP_ENDPOINTS, YEAR2MAP,
   DWELLING_TYPES_BLANK, RESIDENT_BLANK} from './constants'
 
-import groupBy from 'lodash/groupBy'
-import forEach from 'lodash/forEach'
 import omit from 'lodash/omit'
 
 export class Census2015 extends PlanningAreaMP14 {
   constructor () {
     super()
-    this.registerUpdater(upsertValueAtKey)
+    this.registerUpdater(upsertValueAtPath)
     matchPlanningAreaName(this)
     ONEMAP_ENDPOINTS.forEach(ep => {
-      let data = require('../data/raw/' + ep + '.json')
-      if (WITHGENDER.indexOf(ep) > -1) data = mergeGender(data)
+      const data = require('../data/raw/' + ep + '.json')
       data.filter(d => d.year === 2015).forEach(d => {
+        const path = ['2015', ep]
+        if (d.gender) path.push(d.gender)
         this.update(d.planning_area.toUpperCase(), {
-          key: ep,
-          value: omit(d, ['id', 'year', 'planning_area'])
+          path: path,
+          value: omit(d, ['id', 'year', 'planning_area', 'gender'])
         })
       })
     })
@@ -36,15 +35,16 @@ export class Census2015 extends PlanningAreaMP14 {
 export class Census2010 extends PlanningAreaMP08 {
   constructor () {
     super()
-    this.registerUpdater(upsertValueAtKey)
+    this.registerUpdater(upsertValueAtPath)
     matchPlanningAreaName(this)
     ONEMAP_ENDPOINTS.forEach(ep => {
-      let data = require('../data/raw/' + ep + '.json')
-      if (WITHGENDER.indexOf(ep) > -1) data = mergeGender(data)
+      const data = require('../data/raw/' + ep + '.json')
       data.filter(d => d.year === 2010).forEach(d => {
+        const path = ['2010', ep]
+        if (d.gender) path.push(d.gender)
         this.update(d.planning_area.toUpperCase(), {
-          key: ep,
-          value: omit(d, ['id', 'year', 'planning_area'])
+          path: path,
+          value: omit(d, ['id', 'year', 'planning_area', 'gender'])
         })
       })
     })
@@ -54,15 +54,16 @@ export class Census2010 extends PlanningAreaMP08 {
 export class Census2000 extends PlanningAreaMP98 {
   constructor () {
     super()
-    this.registerUpdater(upsertValueAtKey)
+    this.registerUpdater(upsertValueAtPath)
     matchPlanningAreaName(this)
     ONEMAP_ENDPOINTS.forEach(ep => {
-      let data = require('../data/raw/' + ep + '.json')
-      if (WITHGENDER.indexOf(ep) > -1) data = mergeGender(data)
+      const data = require('../data/raw/' + ep + '.json')
       data.filter(d => d.year === 2000).forEach(d => {
+        const path = ['2000', ep]
+        if (d.gender) path.push(d.gender)
         this.update(d.planning_area.toUpperCase(), {
-          key: ep,
-          value: omit(d, ['id', 'year', 'planning_area'])
+          path: path,
+          value: omit(d, ['id', 'year', 'planning_area', 'gender'])
         })
       })
     })
@@ -131,55 +132,68 @@ export class PopulationPlanningAreaMP98 extends PlanningAreaMP98 {
 
 function processPopulationData (targetKey) {
   return function (year) {
-    const keyH = [year, 'DwellingType'].join('.')
-    const key = [year, 'Resident'].join('.')
-    const keyM = [year, 'Resident', 'Male'].join('.')
-    const keyF = [year, 'Resident', 'Female'].join('.')
+    const pathH = [year, 'DwellingType']
+    const pathT = [year, 'Resident', 'Total']
+    const pathM = [year, 'Resident', 'Male']
 
-    DwellingTypeData[keyH].forEach(record => {
+    DwellingTypeData[pathH.join('.')].forEach(record => {
       this.update(record[targetKey], {
-        key: keyH,
+        path: pathH,
         value: record,
-        def: DWELLING_TYPES_BLANK
+        template: DWELLING_TYPES_BLANK
       })
     })
 
-    ResidentData[key].forEach(record => {
+    ResidentData[pathT.join('.')].forEach(record => {
       this.update(record[targetKey], {
-        key: key,
+        path: pathT,
         value: record,
-        def: RESIDENT_BLANK
+        template: RESIDENT_BLANK
       })
     })
 
-    ResidentData[keyM].forEach(record => {
+    ResidentData[pathM.join('.')].forEach(record => {
       this.update(record[targetKey], {
-        key: keyM,
+        path: pathM,
         value: record,
-        def: RESIDENT_BLANK
+        template: RESIDENT_BLANK
       })
     })
 
     this.children.forEach(c => {
-      if (!(key in c.state) || !(keyM in c.state)) return
-      c.state[keyF] = Object.keys(RESIDENT_BLANK).reduce((obj, k) => {
-        obj[k] = c.state[key][k] - c.state[keyM][k]
-        return obj
-      }, {})
+      Object.keys(c.state).forEach(year => {
+        if (!('Resident' in c.state[year])) return
+        if (!('Total' in c.state[year]['Resident']) || !('Male' in c.state[year]['Resident'])) return
+
+        c.state[year]['Resident']['Female'] = {}
+        Object.keys(RESIDENT_BLANK).forEach(k => {
+          c.state[year]['Resident']['Female'][k] =
+            c.state[year]['Resident']['Total'][k] -
+            c.state[year]['Resident']['Male'][k]
+        })
+      })
     })
   }
 }
 
-function upsertValueAtKey ({key, value}, state) {
-  state[key] = value
+function upsertValueAtPath ({path, value}, state) {
+  let key
+  [key, ...path] = path
+  if (path.length > 0) {
+    state[key] = state[key] || {}
+    upsertValueAtPath({path, value}, state[key])
+  } else {
+    state[key] = value
+  }
   return state
 }
 
-function customUpdater ({key, value, def}, state) {
-  state[key] = state[key] || Object.assign({}, def)
-  for (let k in state[key]) {
-    state[key][k] += value[k]
+function customUpdater ({path, value, template}, state) {
+  const updated = Object.assign({}, template)
+  for (let k in updated) {
+    updated[k] += value[k]
   }
+  upsertValueAtPath({path, value: updated}, state)
   return state
 }
 
@@ -188,6 +202,7 @@ function matchPlanningAreaName (heatmap) {
     return key === this.properties.Planning_Area_Name
   }
   heatmap.bin = function (key) {
+    key = key.replace('/', ' & ')
     return heatmap.children.filter(c => inside.call(c, key))
   }
 }
@@ -197,20 +212,7 @@ function matchSubzoneName (heatmap) {
     return key === this.properties.Subzone_Name
   }
   heatmap.bin = function (key) {
+    key = key.replace('/', ' & ')
     return heatmap.children.filter(c => inside.call(c, key))
   }
-}
-
-function mergeGender (data) {
-  const mergedData = []
-  forEach(groupBy(data, 'year'), (group, year) => {
-    forEach(groupBy(group, 'planning_area'), (group, planning_area) => { // eslint-disable-line
-      mergedData.push(
-        group.reduce((j, d) => {
-          return Object.assign(j, {[d.gender]: omit(d, ['id', 'year', 'planning_area', 'gender'])})
-        }, {year: +year, planning_area})
-      )
-    })
-  })
-  return mergedData
 }

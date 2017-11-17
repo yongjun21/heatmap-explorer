@@ -17,7 +17,7 @@ for (let key in endpoints) {
 
   Promise.all(fetchResults)
     .then(results => {
-      const data = Object.keys(DATAGOVSG_ENDPOINTS).slice(17, 51)
+      const data = endpoints[key]
         .reduce((obj, k, i) => Object.assign(obj, {[k]: results[i]}), {})
       fs.writeFileSync('data/raw/' + key + '.json', JSON.stringify(data, null, '\t'))
     })
