@@ -32,7 +32,8 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0,0'
 }, {
   label: 'Resident Population By Subzone',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -67,7 +68,8 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0,0'
 }, {
   label: 'Age Distribution of Resident Population By Planning Area',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -118,7 +120,8 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0%'
 }, {
   label: 'Age Distribution of Resident Population By Subzone',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -169,7 +172,8 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0%'
 }, {
   label: 'Age Distribution of Resident Population By Planning Area (Male)',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -220,7 +224,8 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0%'
 }, {
   label: 'Age Distribution of Resident Population By Subzone (Male)',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -271,7 +276,8 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0%'
 }, {
   label: 'Age Distribution of Resident Population By Planning Area (Female)',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -322,7 +328,8 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0%'
 }, {
   label: 'Age Distribution of Resident Population By Subzone (Female)',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
@@ -373,5 +380,6 @@ export default [{
     2014: {source: 2, control: 0},
     2015: {source: 2, control: 0},
     2016: {source: 2, control: 0}
-  }
+  },
+  format: '0%'
 }]
