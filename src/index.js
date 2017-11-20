@@ -1,10 +1,10 @@
 import SgHeatmap from 'sg-heatmap'
 import supportLeaflet from 'sg-heatmap/dist/es/plugins/leaflet'
-import {YlOrRd} from 'sg-heatmap/dist/es/helpers/color'
+import {YlOrRd, optimizePointSpread} from 'sg-heatmap/dist/es/helpers/color'
 
 import numeral from 'numeral'
-
 import themes from './themes'
+
 // import {googleMapsStyles} from './constants'
 
 const $map = document.querySelector('.map-container')
@@ -57,7 +57,7 @@ const store = {
         .then(heatmap => {
           supportLeaflet(heatmap)
           modifyGetStat(heatmap)
-          const colorScale = YlOrRd(3)
+          const colorScale = YlOrRd()
           heatmap.initializeRenderer(colorScale, {
             weight: 1,
             color: 'black',
@@ -89,6 +89,7 @@ const store = {
                   delete stat.values[key]
                 }
               })
+              stat.min = Math.min(...Object.values(stat.values))
               return stat
             }
           }
@@ -156,22 +157,22 @@ function generateAccessor (control, year) {
     case 'range':
       return (start, end) => {
         return d => accessors.reduce((sum, accessor, index) => {
-          if (index < start || index > end) return sum
+          if (index < start || index >= end) return sum
           return sum + accessor(d)
         }, 0) / norm(d)
       }
   }
 }
 
-function render (accessor, format = '0') {
-  const {values} = store.heatmap.getStat(accessor)
+function render (accessor, format) {
+  const stat = store.heatmap.getStat(accessor)
   store.heatmap.renderer.eachLayer(layer => {
-    if (layer.feature.id in values) {
-      const formatted = numeral(values[layer.feature.id]).format(format)
+    if (layer.feature.id in stat.values) {
+      const formatted = numeral(stat.values[layer.feature.id]).format(format || '0')
       layer.feature.properties._value = formatted
     }
   })
-  store.heatmap.render(accessor)
+  store.heatmap.render(accessor, optimizePointSpread(stat))
 }
 
 function get (d, path) {

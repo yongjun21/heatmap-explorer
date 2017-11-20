@@ -17,7 +17,7 @@ export default {
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
-      presets: [['es2015', {modules: false}]]
+      presets: ['es2015-rollup']
     }),
     cleanup()
   ]

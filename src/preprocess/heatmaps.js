@@ -5,8 +5,8 @@ import SubzoneMP14 from 'sg-heatmap/dist/predefined/URA_subzone_mp14'
 import SubzoneMP08 from 'sg-heatmap/dist/predefined/URA_subzone_mp08'
 import SubzoneMP98 from 'sg-heatmap/dist/predefined/URA_subzone_mp98'
 
-import DwellingTypeData from '../data/raw/DwellingType.json'
-import ResidentData from '../data/raw/Resident.json'
+import DwellingTypeData from '../../data/raw/DwellingType.json'
+import ResidentData from '../../data/raw/Resident.json'
 
 import {ONEMAP_ENDPOINTS, YEAR2MAP,
   DWELLING_TYPES_BLANK, RESIDENT_BLANK} from './constants'
@@ -19,7 +19,7 @@ export class Census2015 extends PlanningAreaMP14 {
     this.registerUpdater(upsertValueAtPath)
     matchPlanningAreaName(this)
     ONEMAP_ENDPOINTS.forEach(ep => {
-      const data = require('../data/raw/' + ep + '.json')
+      const data = require('../../data/raw/' + ep + '.json')
       data.filter(d => d.year === 2015).forEach(d => {
         const path = ['2015', ep]
         if (d.gender) path.push(d.gender)
@@ -38,7 +38,7 @@ export class Census2010 extends PlanningAreaMP08 {
     this.registerUpdater(upsertValueAtPath)
     matchPlanningAreaName(this)
     ONEMAP_ENDPOINTS.forEach(ep => {
-      const data = require('../data/raw/' + ep + '.json')
+      const data = require('../../data/raw/' + ep + '.json')
       data.filter(d => d.year === 2010).forEach(d => {
         const path = ['2010', ep]
         if (d.gender) path.push(d.gender)
@@ -57,7 +57,7 @@ export class Census2000 extends PlanningAreaMP98 {
     this.registerUpdater(upsertValueAtPath)
     matchPlanningAreaName(this)
     ONEMAP_ENDPOINTS.forEach(ep => {
-      const data = require('../data/raw/' + ep + '.json')
+      const data = require('../../data/raw/' + ep + '.json')
       data.filter(d => d.year === 2000).forEach(d => {
         const path = ['2000', ep]
         if (d.gender) path.push(d.gender)
