@@ -84,7 +84,7 @@ const store = {
             heatmap.getStat = function () {
               const stat = _getStat.apply(heatmap, arguments)
               Object.keys(stat.values).forEach(key => {
-                if (!stat.values[key]) {
+                if (stat.values[key] == null) {
                   stat.unchanged.push(key)
                   delete stat.values[key]
                 }
@@ -101,7 +101,7 @@ const store = {
 
 window.store = store
 
-onChange(3, 0, 0, 5)
+onChange(1, 10, 0, 5)
 
 function onChange (selectedTheme, selectedYear, start, end) {
   const theme = themes[selectedTheme]
@@ -139,27 +139,43 @@ function generateAccessor (control, year) {
     }
   })
 
-  const norm = control.normalize ? d => get(d[year], control.normalize) || 1 : d => 1
+  const threshold = control.threshold || 0
+  const norm = control.normalize ? d => get(d[year], control.normalize) : d => 1
 
   switch (control.type) {
     case 'radio':
       return selected => {
-        return d => accessors[selected](d) / norm(d)
+        return d => {
+          const nom = accessors[selected](d)
+          const denom = norm(d)
+          if ((control.normalize ? denom : nom) < threshold) return null
+          return nom / denom
+        }
       }
 
     case 'checkbox':
       return selected => {
-        return d => selected.reduce((sum, index) => {
-          return sum + accessors[index](d)
-        }, 0) / norm(d)
+        return d => {
+          const nom = selected.reduce((sum, index) => {
+            return sum + accessors[index](d)
+          }, 0)
+          const denom = norm(d)
+          if ((control.normalize ? denom : nom) < threshold) return null
+          return nom / denom
+        }
       }
 
     case 'range':
       return (start, end) => {
-        return d => accessors.reduce((sum, accessor, index) => {
-          if (index < start || index >= end) return sum
-          return sum + accessor(d)
-        }, 0) / norm(d)
+        return d => {
+          const nom = accessors.reduce((sum, accessor, index) => {
+            if (index < start || index >= end) return sum
+            return sum + accessor(d)
+          }, 0)
+          const denom = norm(d)
+          if ((control.normalize ? denom : nom) < threshold) return null
+          return nom / denom
+        }
       }
   }
 }

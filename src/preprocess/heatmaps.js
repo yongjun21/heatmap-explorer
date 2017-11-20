@@ -23,7 +23,7 @@ export class Census2015 extends PlanningAreaMP14 {
       data.filter(d => d.year === 2015).forEach(d => {
         const path = ['2015', ep]
         if (d.gender) path.push(d.gender)
-        this.update(d.planning_area.toUpperCase(), {
+        this.update({planningArea: d.planning_area.toUpperCase()}, {
           path: path,
           value: omit(d, ['id', 'year', 'planning_area', 'gender'])
         })
@@ -42,7 +42,7 @@ export class Census2010 extends PlanningAreaMP08 {
       data.filter(d => d.year === 2010).forEach(d => {
         const path = ['2010', ep]
         if (d.gender) path.push(d.gender)
-        this.update(d.planning_area.toUpperCase(), {
+        this.update({planningArea: d.planning_area.toUpperCase()}, {
           path: path,
           value: omit(d, ['id', 'year', 'planning_area', 'gender'])
         })
@@ -61,7 +61,7 @@ export class Census2000 extends PlanningAreaMP98 {
       data.filter(d => d.year === 2000).forEach(d => {
         const path = ['2000', ep]
         if (d.gender) path.push(d.gender)
-        this.update(d.planning_area.toUpperCase(), {
+        this.update({planningArea: d.planning_area.toUpperCase()}, {
           path: path,
           value: omit(d, ['id', 'year', 'planning_area', 'gender'])
         })
@@ -76,7 +76,7 @@ export class PopulationSubzoneMP14 extends SubzoneMP14 {
     this.registerUpdater(customUpdater)
     matchSubzoneName(this)
 
-    YEAR2MAP['mp14'].forEach(processPopulationData('SUBZONE_N').bind(this))
+    YEAR2MAP['mp14'].forEach(processPopulationData().bind(this))
   }
 }
 
@@ -86,7 +86,7 @@ export class PopulationSubzoneMP08 extends SubzoneMP08 {
     this.registerUpdater(customUpdater)
     matchSubzoneName(this)
 
-    YEAR2MAP['mp08'].forEach(processPopulationData('SUBZONE_N').bind(this))
+    YEAR2MAP['mp08'].forEach(processPopulationData().bind(this))
   }
 }
 
@@ -96,7 +96,7 @@ export class PopulationSubzoneMP98 extends SubzoneMP98 {
     this.registerUpdater(customUpdater)
     matchSubzoneName(this)
 
-    YEAR2MAP['mp98'].forEach(processPopulationData('SUBZONE_N').bind(this))
+    YEAR2MAP['mp98'].forEach(processPopulationData().bind(this))
   }
 }
 
@@ -106,7 +106,7 @@ export class PopulationPlanningAreaMP14 extends PlanningAreaMP14 {
     this.registerUpdater(customUpdater)
     matchPlanningAreaName(this)
 
-    YEAR2MAP['mp14'].forEach(processPopulationData('PLN_AREA_N').bind(this))
+    YEAR2MAP['mp14'].forEach(processPopulationData().bind(this))
   }
 }
 
@@ -116,7 +116,7 @@ export class PopulationPlanningAreaMP08 extends PlanningAreaMP08 {
     this.registerUpdater(customUpdater)
     matchPlanningAreaName(this)
 
-    YEAR2MAP['mp08'].forEach(processPopulationData('PLN_AREA_N').bind(this))
+    YEAR2MAP['mp08'].forEach(processPopulationData().bind(this))
   }
 }
 
@@ -126,18 +126,21 @@ export class PopulationPlanningAreaMP98 extends PlanningAreaMP98 {
     this.registerUpdater(customUpdater)
     matchPlanningAreaName(this)
 
-    YEAR2MAP['mp98'].forEach(processPopulationData('PLN_AREA_N').bind(this))
+    YEAR2MAP['mp98'].forEach(processPopulationData().bind(this))
   }
 }
 
-function processPopulationData (targetKey) {
+function processPopulationData () {
   return function (year) {
     const pathH = [year, 'DwellingType']
     const pathT = [year, 'Resident', 'Total']
     const pathM = [year, 'Resident', 'Male']
 
     DwellingTypeData[pathH.join('.')].forEach(record => {
-      this.update(record[targetKey], {
+      this.update({
+        planningArea: record.PLN_AREA_N,
+        subzone: record.SUBZONE_N
+      }, {
         path: pathH,
         value: record,
         template: DWELLING_TYPES_BLANK
@@ -145,7 +148,10 @@ function processPopulationData (targetKey) {
     })
 
     ResidentData[pathT.join('.')].forEach(record => {
-      this.update(record[targetKey], {
+      this.update({
+        planningArea: record.PLN_AREA_N,
+        subzone: record.SUBZONE_N
+      }, {
         path: pathT,
         value: record,
         template: RESIDENT_BLANK
@@ -153,7 +159,10 @@ function processPopulationData (targetKey) {
     })
 
     ResidentData[pathM.join('.')].forEach(record => {
-      this.update(record[targetKey], {
+      this.update({
+        planningArea: record.PLN_AREA_N,
+        subzone: record.SUBZONE_N
+      }, {
         path: pathM,
         value: record,
         template: RESIDENT_BLANK
@@ -199,20 +208,22 @@ function customUpdater ({path, value, template}, state) {
 
 function matchPlanningAreaName (heatmap) {
   function inside (key) {
-    return key === this.properties.Planning_Area_Name
+    return key.planningArea === this.properties.Planning_Area_Name
   }
   heatmap.bin = function (key) {
-    key = key.replace('/', ' & ')
+    key.planningArea = key.planningArea.replace('/', ' & ')
     return heatmap.children.filter(c => inside.call(c, key))
   }
 }
 
 function matchSubzoneName (heatmap) {
   function inside (key) {
-    return key === this.properties.Subzone_Name
+    return key.planningArea === this.properties.Planning_Area_Name &&
+           key.subzone === this.properties.Subzone_Name
   }
   heatmap.bin = function (key) {
-    key = key.replace('/', ' & ')
+    key.planningArea = key.planningArea.replace('/', ' & ')
+    key.subzone = key.subzone.replace('/', ' & ')
     return heatmap.children.filter(c => inside.call(c, key))
   }
 }

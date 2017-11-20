@@ -12,7 +12,8 @@ export default [{
       {label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true},
       {label: 'Male', keys: ['Resident.Male.TOTAL']},
       {label: 'Female', keys: ['Resident.Female.TOTAL']}
-    ]
+    ],
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -48,7 +49,8 @@ export default [{
       {label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true},
       {label: 'Male', keys: ['Resident.Male.TOTAL']},
       {label: 'Female', keys: ['Resident.Female.TOTAL']}
-    ]
+    ],
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -100,7 +102,8 @@ export default [{
       {label: '80 to 84', keys: ['Resident.Total.BET80TO84']},
       {label: 'Over 85', keys: ['Resident.Total.OVER85']}
     ],
-    normalize: 'Resident.Total.TOTAL'
+    normalize: 'Resident.Total.TOTAL',
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -152,7 +155,8 @@ export default [{
       {label: '80 to 84', keys: ['Resident.Total.BET80TO84']},
       {label: 'Over 85', keys: ['Resident.Total.OVER85']}
     ],
-    normalize: 'Resident.Total.TOTAL'
+    normalize: 'Resident.Total.TOTAL',
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -204,7 +208,8 @@ export default [{
       {label: '80 to 84', keys: ['Resident.Male.BET80TO84']},
       {label: 'Over 85', keys: ['Resident.Male.OVER85']}
     ],
-    normalize: 'Resident.Male.TOTAL'
+    normalize: 'Resident.Male.TOTAL',
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -256,7 +261,8 @@ export default [{
       {label: '80 to 84', keys: ['Resident.Male.BET80TO84']},
       {label: 'Over 85', keys: ['Resident.Male.OVER85']}
     ],
-    normalize: 'Resident.Male.TOTAL'
+    normalize: 'Resident.Male.TOTAL',
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -308,7 +314,8 @@ export default [{
       {label: '80 to 84', keys: ['Resident.Female.BET80TO84']},
       {label: 'Over 85', keys: ['Resident.Female.OVER85']}
     ],
-    normalize: 'Resident.Female.TOTAL'
+    normalize: 'Resident.Female.TOTAL',
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -360,7 +367,8 @@ export default [{
       {label: '80 to 84', keys: ['Resident.Female.BET80TO84']},
       {label: 'Over 85', keys: ['Resident.Female.OVER85']}
     ],
-    normalize: 'Resident.Female.TOTAL'
+    normalize: 'Resident.Female.TOTAL',
+    threshold: 1000
   }],
   mapping: {
     2000: {source: 0, control: 0},
