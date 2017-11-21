@@ -5808,7 +5808,7 @@ var themes = [{
   controls: [{
     type: 'radio',
     items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }],
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: { source: 0, control: 0 },
@@ -5868,7 +5868,7 @@ var themes = [{
     type: 'range',
     items: [{ label: '0 to 4', keys: ['Resident.Total.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Total.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Total.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Total.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Total.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Total.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Total.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Total.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Total.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Total.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Total.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Total.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Total.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Total.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Total.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Total.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Total.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Total.OVER85'] }],
     normalize: 'Resident.Total.TOTAL',
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: { source: 0, control: 0 },
@@ -5928,7 +5928,7 @@ var themes = [{
     type: 'range',
     items: [{ label: '0 to 4', keys: ['Resident.Male.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Male.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Male.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Male.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Male.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Male.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Male.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Male.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Male.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Male.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Male.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Male.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Male.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Male.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Male.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Male.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Male.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Male.OVER85'] }],
     normalize: 'Resident.Male.TOTAL',
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: { source: 0, control: 0 },
@@ -5988,7 +5988,7 @@ var themes = [{
     type: 'range',
     items: [{ label: '0 to 4', keys: ['Resident.Female.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Female.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Female.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Female.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Female.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Female.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Female.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Female.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Female.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Female.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Female.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Female.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Female.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Female.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Female.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Female.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Female.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Female.OVER85'] }],
     normalize: 'Resident.Female.TOTAL',
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: { source: 0, control: 0 },
@@ -6022,33 +6022,16 @@ var toConsumableArray = function (arr) {
   }
 };
 
-var $map = document.querySelector('.map-container');
-var map = L.map($map, {
-  center: [1.352083, 103.819836],
-  zoom: 12,
-  minZoom: 12,
-  maxZoom: 17,
-  maxBounds: [[1.16, 103.582], [1.48073, 104.1647]],
-  maxBoundsViscosity: 1.0
-});
-L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
-  detectRetina: true,
-  attribution: 'Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
-}).addTo(map);
-map.attributionControl.setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>');
+var map = void 0;
 var store = {
   source: null,
-  control: null,
-  accessor: null,
   heatmap: null,
   cache: {},
   load: function load(key) {
     var _this = this;
     if (key in this.cache) {
-      if (this.heatmap && !(this.heatmap instanceof Promise)) {
-        this.heatmap.renderer.removeFrom(map);
-      }
       if (this.cache[key] instanceof Promise) return this.cache[key];
+      if (this.heatmap) this.heatmap.renderer.removeFrom(map);
       this.source = key;
       this.heatmap = this.cache[key];
       this.heatmap.renderer.addTo(map);
@@ -6065,16 +6048,25 @@ var store = {
         heatmap.initializeRenderer(colorScale, {
           weight: 1,
           color: 'black',
-          opacity: 1,
+          opacity: 0.3,
           fillColor: 'white',
           fillOpacity: 0.3
-        }, { fillOpacity: 0.7 });
+        }, {
+          weight: 2,
+          fillOpacity: 0.7,
+          opacity: 1
+        });
         heatmap.renderer.bindTooltip(function (layer) {
-          var area = layer.feature.properties.Subzone_Name || layer.feature.properties.Planning_Area_Name;
-          var value = layer.feature.properties._value;
-          var content = [area];
-          if (value) content.push(value);
-          return content.join(' ');
+          var content = [layer.feature.properties.Planning_Area_Name, layer.feature.properties.Subzone_Name, layer.feature.properties._value];
+          var $content = document.createElement('div');
+          content.filter(function (item) {
+            return item;
+          }).forEach(function (item) {
+            var $p = document.createElement('p');
+            $p.textContent = item;
+            $content.appendChild($p);
+          });
+          return $content;
         });
         _this.source = key;
         _this.heatmap = heatmap;
@@ -6098,93 +6090,130 @@ var store = {
       });
       return this.cache[key];
     }
+  },
+  render: function render(accessor, format) {
+    var stat = this.heatmap.getStat(accessor);
+    this.heatmap.renderer.eachLayer(function (layer) {
+      if (layer.feature.id in stat.values) {
+        var formatted = numeral(stat.values[layer.feature.id]).format(format || '0');
+        layer.feature.properties._value = formatted;
+      }
+    });
+    this.heatmap.render(accessor, optimizePointSpread(stat));
   }
 };
-window.store = store;
-onChange(1, 10, 0, 5);
-function onChange(selectedTheme, selectedYear, start, end) {
-  var theme = themes[selectedTheme];
-  var year = theme.years[selectedYear];
-  var source = theme.sources[theme.mapping[year].source];
-  var control = theme.controls[theme.mapping[year].control];
-  if (store.source === source) {
-    if (store.control === control) {
-      render(store.accessor(start, end), theme.format);
-    } else {
-      store.control = control;
-      store.accessor = generateAccessor(control, year);
-      render(store.accessor(start, end), theme.format);
+window.vm = new Vue({
+  el: '#app',
+  data: {
+    themes: themes,
+    selectedTheme: 5,
+    selectedYear: 0,
+    selectedItem: 0,
+    selectedItem2: 5
+  },
+  computed: {
+    theme: function theme() {
+      return this.themes[this.selectedTheme];
+    },
+    year: function year() {
+      return this.theme.years[this.selectedYear];
+    },
+    source: function source() {
+      return this.theme.sources[this.theme.mapping[this.year].source];
+    },
+    control: function control() {
+      return this.theme.controls[this.theme.mapping[this.year].control];
+    },
+    accessor: function accessor() {
+      var control = this.control,
+          year = this.year;
+      var accessors = control.items.map(function (item) {
+        return function (d) {
+          return item.keys.reduce(function (sum, path) {
+            return sum + get(d[year], path);
+          }, 0);
+        };
+      });
+      var threshold = control.threshold || 0;
+      var norm = control.normalize ? function (d) {
+        return get(d[year], control.normalize);
+      } : function (d) {
+        return 1;
+      };
+      switch (control.type) {
+        case 'radio':
+          return function (selected) {
+            return function (d) {
+              var nom = accessors[selected](d);
+              var denom = norm(d);
+              if ((control.normalize ? denom : nom) < threshold) return null;
+              return nom / denom;
+            };
+          };
+        case 'checkbox':
+          return function (selected) {
+            return function (d) {
+              var nom = selected.reduce(function (sum, index) {
+                return sum + accessors[index](d);
+              }, 0);
+              var denom = norm(d);
+              if ((control.normalize ? denom : nom) < threshold) return null;
+              return nom / denom;
+            };
+          };
+        case 'range':
+          return function (start, end) {
+            return function (d) {
+              var nom = accessors.reduce(function (sum, accessor, index) {
+                if (index < start || index >= end) return sum;
+                return sum + accessor(d);
+              }, 0);
+              var denom = norm(d);
+              if ((control.normalize ? denom : nom) < threshold) return null;
+              return nom / denom;
+            };
+          };
+      }
     }
-    return;
-  }
-  var heatmap = store.load(source);
-  if (heatmap instanceof Promise) {
-    heatmap.then(function () {
-      return onChange(selectedTheme, selectedYear, start, end);
+  },
+  methods: {
+    onChange: function onChange() {
+      var _this2 = this;
+      if (store.source === this.source) {
+        store.render(this.accessor(this.selectedItem, this.selectedItem2), this.theme.format);
+      }
+      var heatmap = store.load(this.source);
+      if (heatmap instanceof Promise) {
+        heatmap.then(function () {
+          return _this2.onChange();
+        });
+      } else {
+        store.render(this.accessor(this.selectedItem, this.selectedItem2), this.theme.format);
+      }
+    }
+  },
+  mounted: function mounted() {
+    map = L.map(this.$refs.map, {
+      center: [1.352083, 103.819836],
+      zoom: 12,
+      minZoom: 12,
+      maxZoom: 17,
+      maxBounds: [[1.16, 103.582], [1.48073, 104.1647]],
+      maxBoundsViscosity: 1.0
     });
-  } else {
-    onChange(selectedTheme, selectedYear, start, end);
+    L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
+      detectRetina: true,
+      attribution: 'Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
+    }).addTo(map);
+    map.attributionControl.setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>');
+    this.onChange();
+  },
+  watch: {
+    accessor: 'onChange',
+    selectedItem: 'onChange',
+    selectedItem2: 'onChange'
   }
-}
-function generateAccessor(control, year) {
-  var accessors = control.items.map(function (item) {
-    return function (d) {
-      return item.keys.reduce(function (sum, path) {
-        return sum + get(d[year], path);
-      }, 0);
-    };
-  });
-  var threshold = control.threshold || 0;
-  var norm = control.normalize ? function (d) {
-    return get(d[year], control.normalize);
-  } : function (d) {
-    return 1;
-  };
-  switch (control.type) {
-    case 'radio':
-      return function (selected) {
-        return function (d) {
-          var nom = accessors[selected](d);
-          var denom = norm(d);
-          if ((control.normalize ? denom : nom) < threshold) return null;
-          return nom / denom;
-        };
-      };
-    case 'checkbox':
-      return function (selected) {
-        return function (d) {
-          var nom = selected.reduce(function (sum, index) {
-            return sum + accessors[index](d);
-          }, 0);
-          var denom = norm(d);
-          if ((control.normalize ? denom : nom) < threshold) return null;
-          return nom / denom;
-        };
-      };
-    case 'range':
-      return function (start, end) {
-        return function (d) {
-          var nom = accessors.reduce(function (sum, accessor, index) {
-            if (index < start || index >= end) return sum;
-            return sum + accessor(d);
-          }, 0);
-          var denom = norm(d);
-          if ((control.normalize ? denom : nom) < threshold) return null;
-          return nom / denom;
-        };
-      };
-  }
-}
-function render(accessor, format) {
-  var stat = store.heatmap.getStat(accessor);
-  store.heatmap.renderer.eachLayer(function (layer) {
-    if (layer.feature.id in stat.values) {
-      var formatted = numeral(stat.values[layer.feature.id]).format(format || '0');
-      layer.feature.properties._value = formatted;
-    }
-  });
-  store.heatmap.render(accessor, optimizePointSpread(stat));
-}
+});
 function get(d, path) {
   var value = d;
   path.split('.').forEach(function (key) {
