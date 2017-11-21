@@ -50,7 +50,7 @@ export default [{
       {label: 'Male', keys: ['Resident.Male.TOTAL']},
       {label: 'Female', keys: ['Resident.Female.TOTAL']}
     ],
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -156,7 +156,7 @@ export default [{
       {label: 'Over 85', keys: ['Resident.Total.OVER85']}
     ],
     normalize: 'Resident.Total.TOTAL',
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -262,7 +262,7 @@ export default [{
       {label: 'Over 85', keys: ['Resident.Male.OVER85']}
     ],
     normalize: 'Resident.Male.TOTAL',
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -368,7 +368,7 @@ export default [{
       {label: 'Over 85', keys: ['Resident.Female.OVER85']}
     ],
     normalize: 'Resident.Female.TOTAL',
-    threshold: 1000
+    threshold: 500
   }],
   mapping: {
     2000: {source: 0, control: 0},

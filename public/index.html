@@ -15,13 +15,24 @@
     #app, .map-container {
       height: 100%;
     }
+
+    .leaflet-tooltip p {
+      margin: 0;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    .leaflet-tooltip p:first-child {
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
   <div id="app">
-    <div class="map-container">
+    <div class="map-container" ref="map">
   </div>
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ7kA90kT6tiOfVciR1L8hK-avHkJLP3o"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
   <script src="bundle.js"></script>
 </body>

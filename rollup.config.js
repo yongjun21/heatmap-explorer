@@ -1,7 +1,7 @@
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
-import json from 'rollup-plugin-json'
+import vue from 'rollup-plugin-vue'
 import cleanup from 'rollup-plugin-cleanup'
 
 export default {
@@ -13,7 +13,7 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    json(),
+    vue(),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
