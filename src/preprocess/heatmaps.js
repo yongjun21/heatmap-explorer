@@ -142,7 +142,7 @@ function processPopulationData () {
         subzone: record.SUBZONE_N
       }, {
         path: pathH,
-        value: record,
+        record: record,
         template: DWELLING_TYPES_BLANK
       })
     })
@@ -153,7 +153,7 @@ function processPopulationData () {
         subzone: record.SUBZONE_N
       }, {
         path: pathT,
-        value: record,
+        record: record,
         template: RESIDENT_BLANK
       })
     })
@@ -164,7 +164,7 @@ function processPopulationData () {
         subzone: record.SUBZONE_N
       }, {
         path: pathM,
-        value: record,
+        record: record,
         template: RESIDENT_BLANK
       })
     })
@@ -197,12 +197,23 @@ function upsertValueAtPath ({path, value}, state) {
   return state
 }
 
-function customUpdater ({path, value, template}, state) {
-  const updated = Object.assign({}, template)
-  for (let k in updated) {
-    updated[k] += value[k]
+function incrementValueAtPath ({path, value}, state) {
+  let key
+  [key, ...path] = path
+  if (path.length > 0) {
+    state[key] = state[key] || {}
+    incrementValueAtPath({path, value}, state[key])
+  } else {
+    state[key] = state[key] || 0
+    state[key] += value
   }
-  upsertValueAtPath({path, value: updated}, state)
+  return state
+}
+
+function customUpdater ({path, record, template}, state) {
+  Object.keys(template).forEach(key => {
+    incrementValueAtPath({path: [...path, key], value: record[key]}, state)
+  })
   return state
 }
 
