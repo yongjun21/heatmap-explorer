@@ -10,10 +10,57 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      font-family: sans-serif;
     }
 
-    #app, .map-container {
+    #app {
       height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .theme-container {
+      flex-grow: 0;
+    }
+
+    .map-container {
+      flex-grow: 1;
+    }
+
+    .theme-label {
+      vertical-align: middle;
+      font-size: 1.2em;
+      font-weight: 500;
+      margin: 0 1em;
+    }
+
+    .theme-control {
+      vertical-align: bottom;
+      display: inline-block;
+      width: 600px;
+      margin: 4px 0;
+    }
+
+    .theme-control .dropdown-toggle {
+      height: 66px;
+    }
+
+    .theme-control i {
+      display: none;
+    }
+
+    .theme-control input {
+      position: absolute !important;
+      padding: 0 1em !important;
+    }
+
+    .theme-control li {
+      overflow-x: hidden;
+    }
+
+    .theme-control li a {
+      overflow-x: hidden;
+      text-overflow: ellipsis;
     }
 
     .leaflet-tooltip p {
@@ -29,7 +76,17 @@
 </head>
 <body>
   <div id="app">
-    <div class="map-container" ref="map">
+    <div class="theme-container">
+      <label class="theme-label">Selected theme</label>
+      <v-select class="theme-control"
+        v-model="selectedTheme"
+        :options="themes"
+        multiple
+        placeholder="Pick one or two themes to display"></v-select>
+    </div>
+    <div class="map-container" ref="map"></div>
+    <layer :theme="theme" :year="year"></layer>
+    <layer :theme="theme2" :year="year"></layer>
   </div>
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ7kA90kT6tiOfVciR1L8hK-avHkJLP3o"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>

@@ -45,7 +45,8 @@
   "dependencies": {
     "lodash": "^4.16.4",
     "numeral": "^2.0.6",
-    "sg-heatmap": "^3.3.0"
+    "sg-heatmap": "^3.3.0",
+    "vue-select": "^2.3.0"
   },
   "standard": {
     "globals": [

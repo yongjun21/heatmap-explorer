@@ -20,5 +20,6 @@ export default {
       presets: ['es2015-rollup']
     }),
     cleanup()
-  ]
+  ],
+  sourcemap: true
 }
