@@ -1,5 +1,9 @@
 import store from './store'
 
+import RadioGroup from './components/RadioGroup.vue'
+import CheckboxGroup from './components/CheckboxGroup.vue'
+import RangeSelector from './components/RangeSelector.vue'
+
 export default {
   data () {
     return {
@@ -111,6 +115,11 @@ export default {
     style () {
       store.adjust(this.id, this.style)
     }
+  },
+  components: {
+    RadioGroup,
+    CheckboxGroup,
+    RangeSelector
   }
 }
 

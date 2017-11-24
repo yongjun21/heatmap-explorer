@@ -1,5 +1,6 @@
 import vSelect from 'vue-select'
 import vSlider from 'vue-slider-component'
+import CheckboxRadio from 'vue-checkbox-radio'
 
 import {YlOrRd, GnBu} from 'sg-heatmap/dist/es/helpers/color'
 
@@ -7,6 +8,7 @@ import store from './store'
 import layer from './layer'
 import themes from './themes'
 
+Vue.use(CheckboxRadio)
 Vue.component('v-select', vSelect)
 Vue.component('v-slider', vSlider)
 
@@ -16,8 +18,8 @@ window.vm = new Vue({
     themes: themes,
     years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
     colors: [YlOrRd(), GnBu()],
-    theme: null,
-    theme2: null,
+    baseTheme: null,
+    compareTheme: null,
     selectedYear: 2016,
     blend: 0
   },
@@ -25,27 +27,27 @@ window.vm = new Vue({
     selectedTheme: {
       get () {
         const arr = []
-        if (this.theme) arr.push(this.theme)
-        if (this.theme2) arr.push(this.theme2)
+        if (this.baseTheme) arr.push(this.baseTheme)
+        if (this.compareTheme) arr.push(this.compareTheme)
         return arr
       },
       set (arr) {
-        this.theme = arr[0]
-        this.theme2 = arr[2] || arr[1]
+        this.baseTheme = arr[0]
+        this.compareTheme = arr[2] || arr[1]
       }
     },
-    year () {
-      return this.theme &&
-        this.theme.years.filter(year => year <= this.selectedYear).pop()
+    baseYear () {
+      return this.baseTheme &&
+        this.baseTheme.years.filter(year => year <= this.selectedYear).pop()
     },
-    year2 () {
-      return this.theme2 &&
-        this.theme2.years.filter(year => year <= this.selectedYear).pop()
+    compareYear () {
+      return this.compareTheme &&
+        this.compareTheme.years.filter(year => year <= this.selectedYear).pop()
     }
   },
   watch: {
-    theme2 (value) {
-      if (!value) this.blend = 0
+    compareTheme (theme) {
+      if (!theme) this.blend = 0
     }
   },
   mounted () {
