@@ -33,8 +33,8 @@
       v-model="blend"
       min="0"
       max="1"
-      interval="0.01"
-      :disabled="!theme2"
+      interval="0.05"
+      :disabled="!compareTheme"
       direction="vertical"
       reverse
       :tooltip="false"
@@ -43,14 +43,14 @@
       height="60%">
     </v-slider>
     <layer
-      :theme="theme"
-      :year="year"
+      :theme="baseTheme"
+      :year="baseYear"
       :color="colors[0]"
       :opacity="1 - blend">
     </layer>
     <layer
-      :theme="theme2"
-      :year="year2"
+      :theme="compareTheme"
+      :year="compareYear"
       :color="colors[1]"
       :opacity="blend">
     </layer>
