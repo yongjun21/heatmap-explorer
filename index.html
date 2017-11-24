@@ -4,75 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Department of Statistics Population Census Heatmap</title>
-  <link href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-    }
-
-    #app {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .theme-container {
-      flex-grow: 0;
-    }
-
-    .map-container {
-      flex-grow: 1;
-    }
-
-    .theme-label {
-      vertical-align: middle;
-      font-size: 1.2em;
-      font-weight: 500;
-      margin: 0 1em;
-    }
-
-    .theme-control {
-      vertical-align: bottom;
-      display: inline-block;
-      width: 600px;
-      margin: 4px 0;
-    }
-
-    .theme-control .dropdown-toggle {
-      height: 66px;
-    }
-
-    .theme-control i {
-      display: none;
-    }
-
-    .theme-control input {
-      position: absolute !important;
-      padding: 0 1em !important;
-    }
-
-    .theme-control li {
-      overflow-x: hidden;
-    }
-
-    .theme-control li a {
-      overflow-x: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .leaflet-tooltip p {
-      margin: 0;
-      font-size: 10px;
-      text-align: center;
-    }
-
-    .leaflet-tooltip p:first-child {
-      font-weight: 500;
-    }
-  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app">
@@ -82,13 +15,46 @@
         v-model="selectedTheme"
         :options="themes"
         multiple
-        placeholder="Pick one or two themes to display"></v-select>
+        placeholder="Pick one or two themes to display">
+      </v-select>
     </div>
     <div class="map-container" ref="map"></div>
-    <layer :theme="theme" :year="year"></layer>
-    <layer :theme="theme2" :year="year"></layer>
+    <v-slider class="year-control"
+      v-model="selectedYear"
+      :data="years"
+      lazy
+      piecewise-label
+      :tooltip="false"
+      :speed="0.1"
+      width="90%"
+      height="8">
+    </v-slider>
+    <v-slider class="blend-control"
+      v-model="blend"
+      min="0"
+      max="1"
+      interval="0.01"
+      :disabled="!theme2"
+      direction="vertical"
+      reverse
+      :tooltip="false"
+      :speed="0"
+      width="8"
+      height="60%">
+    </v-slider>
+    <layer
+      :theme="theme"
+      :year="year"
+      :color="colors[0]"
+      :opacity="1 - blend">
+    </layer>
+    <layer
+      :theme="theme2"
+      :year="year2"
+      :color="colors[1]"
+      :opacity="blend">
+    </layer>
   </div>
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZ7kA90kT6tiOfVciR1L8hK-avHkJLP3o"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
   <script src="bundle.js"></script>
