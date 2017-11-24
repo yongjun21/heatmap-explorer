@@ -1,18 +1,25 @@
 import vSelect from 'vue-select'
+import vSlider from 'vue-slider-component'
+
+import {YlOrRd, GnBu} from 'sg-heatmap/dist/es/helpers/color'
 
 import store from './store'
 import layer from './layer'
 import themes from './themes'
 
 Vue.component('v-select', vSelect)
+Vue.component('v-slider', vSlider)
 
 window.vm = new Vue({
   el: '#app',
   data: {
     themes: themes,
+    years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+    colors: [YlOrRd(), GnBu()],
     theme: null,
     theme2: null,
-    selectedYear: 0
+    selectedYear: 2016,
+    blend: 0
   },
   computed: {
     selectedTheme: {
@@ -28,7 +35,17 @@ window.vm = new Vue({
       }
     },
     year () {
-      return this.theme && this.theme.years[this.selectedYear]
+      return this.theme &&
+        this.theme.years.filter(year => year <= this.selectedYear).pop()
+    },
+    year2 () {
+      return this.theme2 &&
+        this.theme2.years.filter(year => year <= this.selectedYear).pop()
+    }
+  },
+  watch: {
+    theme2 (value) {
+      if (!value) this.blend = 0
     }
   },
   mounted () {

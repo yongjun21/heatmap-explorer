@@ -20,2493 +20,10 @@ staticClass:"no-options"},[t._t("no-options",[t._v("Sorry, no matching options."
 var vSelect = unwrapExports(vueSelect);
 var vueSelect_1 = vueSelect.VueSelect;
 
-var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-var _freeGlobal = freeGlobal;
-
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-var root = _freeGlobal || freeSelf || Function('return this')();
-var _root = root;
-
-var Symbol$1 = _root.Symbol;
-var _Symbol = Symbol$1;
-
-var objectProto = Object.prototype;
-var hasOwnProperty = objectProto.hasOwnProperty;
-var nativeObjectToString = objectProto.toString;
-var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
-function getRawTag(value) {
-  var isOwn = hasOwnProperty.call(value, symToStringTag$1),
-      tag = value[symToStringTag$1];
-  try {
-    value[symToStringTag$1] = undefined;
-    var unmasked = true;
-  } catch (e) {}
-  var result = nativeObjectToString.call(value);
-  if (unmasked) {
-    if (isOwn) {
-      value[symToStringTag$1] = tag;
-    } else {
-      delete value[symToStringTag$1];
-    }
-  }
-  return result;
-}
-var _getRawTag = getRawTag;
-
-var objectProto$1 = Object.prototype;
-var nativeObjectToString$1 = objectProto$1.toString;
-function objectToString(value) {
-  return nativeObjectToString$1.call(value);
-}
-var _objectToString = objectToString;
-
-var nullTag = '[object Null]';
-var undefinedTag = '[object Undefined]';
-var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
-function baseGetTag(value) {
-  if (value == null) {
-    return value === undefined ? undefinedTag : nullTag;
-  }
-  return (symToStringTag && symToStringTag in Object(value))
-    ? _getRawTag(value)
-    : _objectToString(value);
-}
-var _baseGetTag = baseGetTag;
-
-function isObjectLike(value) {
-  return value != null && typeof value == 'object';
-}
-var isObjectLike_1 = isObjectLike;
-
-var symbolTag = '[object Symbol]';
-function isSymbol(value) {
-  return typeof value == 'symbol' ||
-    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
-}
-var isSymbol_1 = isSymbol;
-
-function baseExtremum(array, iteratee, comparator) {
-  var index = -1,
-      length = array.length;
-  while (++index < length) {
-    var value = array[index],
-        current = iteratee(value);
-    if (current != null && (computed === undefined
-          ? (current === current && !isSymbol_1(current))
-          : comparator(current, computed)
-        )) {
-      var computed = current,
-          result = value;
-    }
-  }
-  return result;
-}
-var _baseExtremum = baseExtremum;
-
-function listCacheClear() {
-  this.__data__ = [];
-  this.size = 0;
-}
-var _listCacheClear = listCacheClear;
-
-function eq(value, other) {
-  return value === other || (value !== value && other !== other);
-}
-var eq_1 = eq;
-
-function assocIndexOf(array, key) {
-  var length = array.length;
-  while (length--) {
-    if (eq_1(array[length][0], key)) {
-      return length;
-    }
-  }
-  return -1;
-}
-var _assocIndexOf = assocIndexOf;
-
-var arrayProto = Array.prototype;
-var splice = arrayProto.splice;
-function listCacheDelete(key) {
-  var data = this.__data__,
-      index = _assocIndexOf(data, key);
-  if (index < 0) {
-    return false;
-  }
-  var lastIndex = data.length - 1;
-  if (index == lastIndex) {
-    data.pop();
-  } else {
-    splice.call(data, index, 1);
-  }
-  --this.size;
-  return true;
-}
-var _listCacheDelete = listCacheDelete;
-
-function listCacheGet(key) {
-  var data = this.__data__,
-      index = _assocIndexOf(data, key);
-  return index < 0 ? undefined : data[index][1];
-}
-var _listCacheGet = listCacheGet;
-
-function listCacheHas(key) {
-  return _assocIndexOf(this.__data__, key) > -1;
-}
-var _listCacheHas = listCacheHas;
-
-function listCacheSet(key, value) {
-  var data = this.__data__,
-      index = _assocIndexOf(data, key);
-  if (index < 0) {
-    ++this.size;
-    data.push([key, value]);
-  } else {
-    data[index][1] = value;
-  }
-  return this;
-}
-var _listCacheSet = listCacheSet;
-
-function ListCache(entries) {
-  var index = -1,
-      length = entries == null ? 0 : entries.length;
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-ListCache.prototype.clear = _listCacheClear;
-ListCache.prototype['delete'] = _listCacheDelete;
-ListCache.prototype.get = _listCacheGet;
-ListCache.prototype.has = _listCacheHas;
-ListCache.prototype.set = _listCacheSet;
-var _ListCache = ListCache;
-
-function stackClear() {
-  this.__data__ = new _ListCache;
-  this.size = 0;
-}
-var _stackClear = stackClear;
-
-function stackDelete(key) {
-  var data = this.__data__,
-      result = data['delete'](key);
-  this.size = data.size;
-  return result;
-}
-var _stackDelete = stackDelete;
-
-function stackGet(key) {
-  return this.__data__.get(key);
-}
-var _stackGet = stackGet;
-
-function stackHas(key) {
-  return this.__data__.has(key);
-}
-var _stackHas = stackHas;
-
-function isObject(value) {
-  var type = typeof value;
-  return value != null && (type == 'object' || type == 'function');
-}
-var isObject_1 = isObject;
-
-var asyncTag = '[object AsyncFunction]';
-var funcTag = '[object Function]';
-var genTag = '[object GeneratorFunction]';
-var proxyTag = '[object Proxy]';
-function isFunction(value) {
-  if (!isObject_1(value)) {
-    return false;
-  }
-  var tag = _baseGetTag(value);
-  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
-}
-var isFunction_1 = isFunction;
-
-var coreJsData = _root['__core-js_shared__'];
-var _coreJsData = coreJsData;
-
-var maskSrcKey = (function() {
-  var uid = /[^.]+$/.exec(_coreJsData && _coreJsData.keys && _coreJsData.keys.IE_PROTO || '');
-  return uid ? ('Symbol(src)_1.' + uid) : '';
-}());
-function isMasked(func) {
-  return !!maskSrcKey && (maskSrcKey in func);
-}
-var _isMasked = isMasked;
-
-var funcProto$1 = Function.prototype;
-var funcToString$1 = funcProto$1.toString;
-function toSource(func) {
-  if (func != null) {
-    try {
-      return funcToString$1.call(func);
-    } catch (e) {}
-    try {
-      return (func + '');
-    } catch (e) {}
-  }
-  return '';
-}
-var _toSource = toSource;
-
-var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
-var reIsHostCtor = /^\[object .+?Constructor\]$/;
-var funcProto = Function.prototype;
-var objectProto$2 = Object.prototype;
-var funcToString = funcProto.toString;
-var hasOwnProperty$1 = objectProto$2.hasOwnProperty;
-var reIsNative = RegExp('^' +
-  funcToString.call(hasOwnProperty$1).replace(reRegExpChar, '\\$&')
-  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
-);
-function baseIsNative(value) {
-  if (!isObject_1(value) || _isMasked(value)) {
-    return false;
-  }
-  var pattern = isFunction_1(value) ? reIsNative : reIsHostCtor;
-  return pattern.test(_toSource(value));
-}
-var _baseIsNative = baseIsNative;
-
-function getValue(object, key) {
-  return object == null ? undefined : object[key];
-}
-var _getValue = getValue;
-
-function getNative(object, key) {
-  var value = _getValue(object, key);
-  return _baseIsNative(value) ? value : undefined;
-}
-var _getNative = getNative;
-
-var Map = _getNative(_root, 'Map');
-var _Map = Map;
-
-var nativeCreate = _getNative(Object, 'create');
-var _nativeCreate = nativeCreate;
-
-function hashClear() {
-  this.__data__ = _nativeCreate ? _nativeCreate(null) : {};
-  this.size = 0;
-}
-var _hashClear = hashClear;
-
-function hashDelete(key) {
-  var result = this.has(key) && delete this.__data__[key];
-  this.size -= result ? 1 : 0;
-  return result;
-}
-var _hashDelete = hashDelete;
-
-var HASH_UNDEFINED = '__lodash_hash_undefined__';
-var objectProto$3 = Object.prototype;
-var hasOwnProperty$2 = objectProto$3.hasOwnProperty;
-function hashGet(key) {
-  var data = this.__data__;
-  if (_nativeCreate) {
-    var result = data[key];
-    return result === HASH_UNDEFINED ? undefined : result;
-  }
-  return hasOwnProperty$2.call(data, key) ? data[key] : undefined;
-}
-var _hashGet = hashGet;
-
-var objectProto$4 = Object.prototype;
-var hasOwnProperty$3 = objectProto$4.hasOwnProperty;
-function hashHas(key) {
-  var data = this.__data__;
-  return _nativeCreate ? (data[key] !== undefined) : hasOwnProperty$3.call(data, key);
-}
-var _hashHas = hashHas;
-
-var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
-function hashSet(key, value) {
-  var data = this.__data__;
-  this.size += this.has(key) ? 0 : 1;
-  data[key] = (_nativeCreate && value === undefined) ? HASH_UNDEFINED$1 : value;
-  return this;
-}
-var _hashSet = hashSet;
-
-function Hash(entries) {
-  var index = -1,
-      length = entries == null ? 0 : entries.length;
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-Hash.prototype.clear = _hashClear;
-Hash.prototype['delete'] = _hashDelete;
-Hash.prototype.get = _hashGet;
-Hash.prototype.has = _hashHas;
-Hash.prototype.set = _hashSet;
-var _Hash = Hash;
-
-function mapCacheClear() {
-  this.size = 0;
-  this.__data__ = {
-    'hash': new _Hash,
-    'map': new (_Map || _ListCache),
-    'string': new _Hash
-  };
-}
-var _mapCacheClear = mapCacheClear;
-
-function isKeyable(value) {
-  var type = typeof value;
-  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
-    ? (value !== '__proto__')
-    : (value === null);
-}
-var _isKeyable = isKeyable;
-
-function getMapData(map, key) {
-  var data = map.__data__;
-  return _isKeyable(key)
-    ? data[typeof key == 'string' ? 'string' : 'hash']
-    : data.map;
-}
-var _getMapData = getMapData;
-
-function mapCacheDelete(key) {
-  var result = _getMapData(this, key)['delete'](key);
-  this.size -= result ? 1 : 0;
-  return result;
-}
-var _mapCacheDelete = mapCacheDelete;
-
-function mapCacheGet(key) {
-  return _getMapData(this, key).get(key);
-}
-var _mapCacheGet = mapCacheGet;
-
-function mapCacheHas(key) {
-  return _getMapData(this, key).has(key);
-}
-var _mapCacheHas = mapCacheHas;
-
-function mapCacheSet(key, value) {
-  var data = _getMapData(this, key),
-      size = data.size;
-  data.set(key, value);
-  this.size += data.size == size ? 0 : 1;
-  return this;
-}
-var _mapCacheSet = mapCacheSet;
-
-function MapCache(entries) {
-  var index = -1,
-      length = entries == null ? 0 : entries.length;
-  this.clear();
-  while (++index < length) {
-    var entry = entries[index];
-    this.set(entry[0], entry[1]);
-  }
-}
-MapCache.prototype.clear = _mapCacheClear;
-MapCache.prototype['delete'] = _mapCacheDelete;
-MapCache.prototype.get = _mapCacheGet;
-MapCache.prototype.has = _mapCacheHas;
-MapCache.prototype.set = _mapCacheSet;
-var _MapCache = MapCache;
-
-var LARGE_ARRAY_SIZE = 200;
-function stackSet(key, value) {
-  var data = this.__data__;
-  if (data instanceof _ListCache) {
-    var pairs = data.__data__;
-    if (!_Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
-      pairs.push([key, value]);
-      this.size = ++data.size;
-      return this;
-    }
-    data = this.__data__ = new _MapCache(pairs);
-  }
-  data.set(key, value);
-  this.size = data.size;
-  return this;
-}
-var _stackSet = stackSet;
-
-function Stack(entries) {
-  var data = this.__data__ = new _ListCache(entries);
-  this.size = data.size;
-}
-Stack.prototype.clear = _stackClear;
-Stack.prototype['delete'] = _stackDelete;
-Stack.prototype.get = _stackGet;
-Stack.prototype.has = _stackHas;
-Stack.prototype.set = _stackSet;
-var _Stack = Stack;
-
-var HASH_UNDEFINED$2 = '__lodash_hash_undefined__';
-function setCacheAdd(value) {
-  this.__data__.set(value, HASH_UNDEFINED$2);
-  return this;
-}
-var _setCacheAdd = setCacheAdd;
-
-function setCacheHas(value) {
-  return this.__data__.has(value);
-}
-var _setCacheHas = setCacheHas;
-
-function SetCache(values) {
-  var index = -1,
-      length = values == null ? 0 : values.length;
-  this.__data__ = new _MapCache;
-  while (++index < length) {
-    this.add(values[index]);
-  }
-}
-SetCache.prototype.add = SetCache.prototype.push = _setCacheAdd;
-SetCache.prototype.has = _setCacheHas;
-var _SetCache = SetCache;
-
-function arraySome(array, predicate) {
-  var index = -1,
-      length = array == null ? 0 : array.length;
-  while (++index < length) {
-    if (predicate(array[index], index, array)) {
-      return true;
-    }
-  }
-  return false;
-}
-var _arraySome = arraySome;
-
-function cacheHas(cache, key) {
-  return cache.has(key);
-}
-var _cacheHas = cacheHas;
-
-var COMPARE_PARTIAL_FLAG$2 = 1;
-var COMPARE_UNORDERED_FLAG$1 = 2;
-function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
-  var isPartial = bitmask & COMPARE_PARTIAL_FLAG$2,
-      arrLength = array.length,
-      othLength = other.length;
-  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
-    return false;
-  }
-  var stacked = stack.get(array);
-  if (stacked && stack.get(other)) {
-    return stacked == other;
-  }
-  var index = -1,
-      result = true,
-      seen = (bitmask & COMPARE_UNORDERED_FLAG$1) ? new _SetCache : undefined;
-  stack.set(array, other);
-  stack.set(other, array);
-  while (++index < arrLength) {
-    var arrValue = array[index],
-        othValue = other[index];
-    if (customizer) {
-      var compared = isPartial
-        ? customizer(othValue, arrValue, index, other, array, stack)
-        : customizer(arrValue, othValue, index, array, other, stack);
-    }
-    if (compared !== undefined) {
-      if (compared) {
-        continue;
-      }
-      result = false;
-      break;
-    }
-    if (seen) {
-      if (!_arraySome(other, function(othValue, othIndex) {
-            if (!_cacheHas(seen, othIndex) &&
-                (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
-              return seen.push(othIndex);
-            }
-          })) {
-        result = false;
-        break;
-      }
-    } else if (!(
-          arrValue === othValue ||
-            equalFunc(arrValue, othValue, bitmask, customizer, stack)
-        )) {
-      result = false;
-      break;
-    }
-  }
-  stack['delete'](array);
-  stack['delete'](other);
-  return result;
-}
-var _equalArrays = equalArrays;
-
-var Uint8Array = _root.Uint8Array;
-var _Uint8Array = Uint8Array;
-
-function mapToArray(map) {
-  var index = -1,
-      result = Array(map.size);
-  map.forEach(function(value, key) {
-    result[++index] = [key, value];
-  });
-  return result;
-}
-var _mapToArray = mapToArray;
-
-function setToArray(set) {
-  var index = -1,
-      result = Array(set.size);
-  set.forEach(function(value) {
-    result[++index] = value;
-  });
-  return result;
-}
-var _setToArray = setToArray;
-
-var COMPARE_PARTIAL_FLAG$3 = 1;
-var COMPARE_UNORDERED_FLAG$2 = 2;
-var boolTag = '[object Boolean]';
-var dateTag = '[object Date]';
-var errorTag = '[object Error]';
-var mapTag = '[object Map]';
-var numberTag = '[object Number]';
-var regexpTag = '[object RegExp]';
-var setTag = '[object Set]';
-var stringTag = '[object String]';
-var symbolTag$1 = '[object Symbol]';
-var arrayBufferTag = '[object ArrayBuffer]';
-var dataViewTag = '[object DataView]';
-var symbolProto = _Symbol ? _Symbol.prototype : undefined;
-var symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
-function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
-  switch (tag) {
-    case dataViewTag:
-      if ((object.byteLength != other.byteLength) ||
-          (object.byteOffset != other.byteOffset)) {
-        return false;
-      }
-      object = object.buffer;
-      other = other.buffer;
-    case arrayBufferTag:
-      if ((object.byteLength != other.byteLength) ||
-          !equalFunc(new _Uint8Array(object), new _Uint8Array(other))) {
-        return false;
-      }
-      return true;
-    case boolTag:
-    case dateTag:
-    case numberTag:
-      return eq_1(+object, +other);
-    case errorTag:
-      return object.name == other.name && object.message == other.message;
-    case regexpTag:
-    case stringTag:
-      return object == (other + '');
-    case mapTag:
-      var convert = _mapToArray;
-    case setTag:
-      var isPartial = bitmask & COMPARE_PARTIAL_FLAG$3;
-      convert || (convert = _setToArray);
-      if (object.size != other.size && !isPartial) {
-        return false;
-      }
-      var stacked = stack.get(object);
-      if (stacked) {
-        return stacked == other;
-      }
-      bitmask |= COMPARE_UNORDERED_FLAG$2;
-      stack.set(object, other);
-      var result = _equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
-      stack['delete'](object);
-      return result;
-    case symbolTag$1:
-      if (symbolValueOf) {
-        return symbolValueOf.call(object) == symbolValueOf.call(other);
-      }
-  }
-  return false;
-}
-var _equalByTag = equalByTag;
-
-function arrayPush(array, values) {
-  var index = -1,
-      length = values.length,
-      offset = array.length;
-  while (++index < length) {
-    array[offset + index] = values[index];
-  }
-  return array;
-}
-var _arrayPush = arrayPush;
-
-var isArray = Array.isArray;
-var isArray_1 = isArray;
-
-function baseGetAllKeys(object, keysFunc, symbolsFunc) {
-  var result = keysFunc(object);
-  return isArray_1(object) ? result : _arrayPush(result, symbolsFunc(object));
-}
-var _baseGetAllKeys = baseGetAllKeys;
-
-function arrayFilter(array, predicate) {
-  var index = -1,
-      length = array == null ? 0 : array.length,
-      resIndex = 0,
-      result = [];
-  while (++index < length) {
-    var value = array[index];
-    if (predicate(value, index, array)) {
-      result[resIndex++] = value;
-    }
-  }
-  return result;
-}
-var _arrayFilter = arrayFilter;
-
-function stubArray() {
-  return [];
-}
-var stubArray_1 = stubArray;
-
-var objectProto$7 = Object.prototype;
-var propertyIsEnumerable = objectProto$7.propertyIsEnumerable;
-var nativeGetSymbols = Object.getOwnPropertySymbols;
-var getSymbols = !nativeGetSymbols ? stubArray_1 : function(object) {
-  if (object == null) {
-    return [];
-  }
-  object = Object(object);
-  return _arrayFilter(nativeGetSymbols(object), function(symbol) {
-    return propertyIsEnumerable.call(object, symbol);
-  });
-};
-var _getSymbols = getSymbols;
-
-function baseTimes(n, iteratee) {
-  var index = -1,
-      result = Array(n);
-  while (++index < n) {
-    result[index] = iteratee(index);
-  }
-  return result;
-}
-var _baseTimes = baseTimes;
-
-var argsTag$1 = '[object Arguments]';
-function baseIsArguments(value) {
-  return isObjectLike_1(value) && _baseGetTag(value) == argsTag$1;
-}
-var _baseIsArguments = baseIsArguments;
-
-var objectProto$9 = Object.prototype;
-var hasOwnProperty$7 = objectProto$9.hasOwnProperty;
-var propertyIsEnumerable$1 = objectProto$9.propertyIsEnumerable;
-var isArguments = _baseIsArguments(function() { return arguments; }()) ? _baseIsArguments : function(value) {
-  return isObjectLike_1(value) && hasOwnProperty$7.call(value, 'callee') &&
-    !propertyIsEnumerable$1.call(value, 'callee');
-};
-var isArguments_1 = isArguments;
-
-function stubFalse() {
-  return false;
-}
-var stubFalse_1 = stubFalse;
-
-var isBuffer_1 = createCommonjsModule(function (module, exports) {
-var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
-var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
-var moduleExports = freeModule && freeModule.exports === freeExports;
-var Buffer = moduleExports ? _root.Buffer : undefined;
-var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
-var isBuffer = nativeIsBuffer || stubFalse_1;
-module.exports = isBuffer;
+var dist = createCommonjsModule(function (module, exports) {
+!function(t,e){module.exports=e();}(commonjsGlobal,function(){return function(t){function e(s){if(i[s])return i[s].exports;var r=i[s]={i:s,l:!1,exports:{}};return t[s].call(r.exports,r,r.exports,e), r.l=!0, r.exports}var i={};return e.m=t, e.c=i, e.i=function(t){return t}, e.d=function(t,i,s){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:s});}, e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i), i}, e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)}, e.p="", e(e.s=2)}([function(t,e,i){i(7);var s=i(5)(i(1),i(6),null,null);t.exports=s.exports;},function(t,e,i){Object.defineProperty(e,"__esModule",{value:!0}), e.default={name:"VueSliderComponent",data:function(){return{flag:!1,size:0,currentValue:0,currentSlider:0}},props:{width:{type:[Number,String],default:"auto"},height:{type:[Number,String],default:6},data:{type:Array,default:null},dotSize:{type:Number,default:16},dotWidth:{type:Number,required:!1},dotHeight:{type:Number,required:!1},min:{type:Number,default:0},max:{type:Number,default:100},interval:{type:Number,default:1},show:{type:Boolean,default:!0},disabled:{type:Boolean,default:!1},piecewise:{type:Boolean,default:!1},tooltip:{type:[String,Boolean],default:"always"},eventType:{type:String,default:"auto"},direction:{type:String,default:"horizontal"},reverse:{type:Boolean,default:!1},lazy:{type:Boolean,default:!1},clickable:{type:Boolean,default:!0},speed:{type:Number,default:.5},realTime:{type:Boolean,default:!1},stopPropagation:{type:Boolean,default:!1},value:{type:[String,Number,Array],default:0},piecewiseLabel:{type:Boolean,default:!1},sliderStyle:[Array,Object],tooltipDir:[Array,String],formatter:[String,Function],piecewiseStyle:Object,piecewiseActiveStyle:Object,processStyle:Object,bgStyle:Object,tooltipStyle:[Array,Object],labelStyle:Object,labelActiveStyle:Object},computed:{dotWidthVal:function(){return"number"==typeof this.dotWidth?this.dotWidth:this.dotSize},dotHeightVal:function(){return"number"==typeof this.dotHeight?this.dotHeight:this.dotSize},flowDirection:function(){return"vue-slider-"+this.direction+(this.reverse?"-reverse":"")},tooltipDirection:function(){var t=this.tooltipDir||("vertical"===this.direction?"left":"top");return Array.isArray(t)?this.isRange?t:t[1]:this.isRange?[t,t]:t},tooltipStatus:function(){return"hover"===this.tooltip&&this.flag?"vue-slider-always":this.tooltip?"vue-slider-"+this.tooltip:""},tooltipClass:function(){return["vue-slider-tooltip-"+this.tooltipDirection,"vue-slider-tooltip"]},isDisabled:function(){return"none"===this.eventType||this.disabled},disabledClass:function(){return this.disabled?"vue-slider-disabled":""},isRange:function(){return Array.isArray(this.value)},slider:function(){return this.isRange?[this.$refs.dot0,this.$refs.dot1]:this.$refs.dot},minimum:function(){return this.data?0:this.min},val:{get:function(){return this.data?this.isRange?[this.data[this.currentValue[0]],this.data[this.currentValue[1]]]:this.data[this.currentValue]:this.currentValue},set:function(t){if(this.data)if(this.isRange){var e=this.data.indexOf(t[0]),i=this.data.indexOf(t[1]);e>-1&&i>-1&&(this.currentValue=[e,i]);}else{var s=this.data.indexOf(t);s>-1&&(this.currentValue=s);}else this.currentValue=t;}},currentIndex:function(){return this.isRange?this.data?this.currentValue:[(this.currentValue[0]-this.minimum)/this.spacing,(this.currentValue[1]-this.minimum)/this.spacing]:(this.currentValue-this.minimum)/this.spacing},indexRange:function(){return this.isRange?this.currentIndex:[0,this.currentIndex]},maximum:function(){return this.data?this.data.length-1:this.max},multiple:function(){var t=(""+this.interval).split(".")[1];return t?Math.pow(10,t.length):1},spacing:function(){return this.data?1:this.interval},total:function(){return this.data?this.data.length-1:(~~((this.maximum-this.minimum)*this.multiple)%(this.interval*this.multiple)!=0&&console.error("[Vue-slider warn]: Prop[interval] is illegal, Please make sure that the interval can be divisible"), (this.maximum-this.minimum)/this.interval)},gap:function(){return this.size/this.total},position:function(){return this.isRange?[(this.currentValue[0]-this.minimum)/this.spacing*this.gap,(this.currentValue[1]-this.minimum)/this.spacing*this.gap]:(this.currentValue-this.minimum)/this.spacing*this.gap},limit:function(){return this.isRange?[[0,this.position[1]],[this.position[0],this.size]]:[0,this.size]},valueLimit:function(){return this.isRange?[[this.minimum,this.currentValue[1]],[this.currentValue[0],this.maximum]]:[this.minimum,this.maximum]},wrapStyles:function(){return"vertical"===this.direction?{height:"number"==typeof this.height?this.height+"px":this.height,padding:this.dotHeightVal/2+"px "+this.dotWidthVal/2+"px"}:{width:"number"==typeof this.width?this.width+"px":this.width,padding:this.dotHeightVal/2+"px "+this.dotWidthVal/2+"px"}},sliderStyles:function(){return Array.isArray(this.sliderStyle)?this.isRange?this.sliderStyle:this.sliderStyle[1]:this.isRange?[this.sliderStyle,this.sliderStyle]:this.sliderStyle},tooltipStyles:function(){return Array.isArray(this.tooltipStyle)?this.isRange?this.tooltipStyle:this.tooltipStyle[1]:this.isRange?[this.tooltipStyle,this.tooltipStyle]:this.tooltipStyle},elemStyles:function(){return"vertical"===this.direction?{width:this.width+"px",height:"100%"}:{height:this.height+"px"}},dotStyles:function(){return"vertical"===this.direction?{width:this.dotWidthVal+"px",height:this.dotHeightVal+"px",left:-(this.dotWidthVal-this.width)/2+"px"}:{width:this.dotWidthVal+"px",height:this.dotHeightVal+"px",top:-(this.dotHeightVal-this.height)/2+"px"}},piecewiseDotStyle:function(){return"vertical"===this.direction?{width:this.width+"px",height:this.width+"px"}:{width:this.height+"px",height:this.height+"px"}},piecewiseDotWrap:function(){if(!this.piecewise&&!this.piecewiseLabel)return!1;for(var t=[],e=0;e<=this.total;e++){var i="vertical"===this.direction?{bottom:this.gap*e-this.width/2+"px",left:0}:{left:this.gap*e-this.height/2+"px",top:0},s=this.reverse?this.total-e:e,r=this.data?this.data[s]:this.spacing*s+this.min;t.push({style:i,label:this.formatter?this.formatting(r):r,inRange:s>=this.indexRange[0]&&s<=this.indexRange[1]});}return t}},watch:{value:function(t){this.flag||this.setValue(t,!0);},max:function(t){var e=this.limitValue(this.val);!1!==e&&this.setValue(e), this.refresh();},min:function(t){var e=this.limitValue(this.val);!1!==e&&this.setValue(e), this.refresh();},show:function(t){var e=this;t&&!this.size&&this.$nextTick(function(){e.refresh();});}},methods:{bindEvents:function(){document.addEventListener("touchmove",this.moving,{passive:!1}), document.addEventListener("touchend",this.moveEnd,{passive:!1}), document.addEventListener("mousemove",this.moving), document.addEventListener("mouseup",this.moveEnd), document.addEventListener("mouseleave",this.moveEnd), window.addEventListener("resize",this.refresh);},unbindEvents:function(){window.removeEventListener("resize",this.refresh), document.removeEventListener("touchmove",this.moving), document.removeEventListener("touchend",this.moveEnd), document.removeEventListener("mousemove",this.moving), document.removeEventListener("mouseup",this.moveEnd), document.removeEventListener("mouseleave",this.moveEnd);},formatting:function(t){return"string"==typeof this.formatter?this.formatter.replace(/\{value\}/,t):this.formatter(t)},getPos:function(t){return this.realTime&&this.getStaticData(), "vertical"===this.direction?this.reverse?t.pageY-this.offset:this.size-(t.pageY-this.offset):this.reverse?this.size-(t.clientX-this.offset):t.clientX-this.offset},wrapClick:function(t){if(this.isDisabled||!this.clickable)return!1;var e=this.getPos(t);this.isRange&&(this.currentSlider=e>(this.position[1]-this.position[0])/2+this.position[0]?1:0), this.setValueOnPos(e);},moveStart:function(t,e){if(this.stopPropagation&&t.stopPropagation(), this.isDisabled)return!1;this.isRange&&(this.currentSlider=e), this.flag=!0, this.$emit("drag-start",this);},moving:function(t){if(this.stopPropagation&&t.stopPropagation(), !this.flag)return!1;t.preventDefault(), t.targetTouches&&t.targetTouches[0]&&(t=t.targetTouches[0]), this.setValueOnPos(this.getPos(t),!0);},moveEnd:function(t){if(this.stopPropagation&&t.stopPropagation(), !this.flag)return!1;this.$emit("drag-end",this), this.lazy&&this.isDiff(this.val,this.value)&&this.syncValue(), this.flag=!1, this.setPosition();},setValueOnPos:function(t,e){var i=this.isRange?this.limit[this.currentSlider]:this.limit,s=this.isRange?this.valueLimit[this.currentSlider]:this.valueLimit;if(t>=i[0]&&t<=i[1]){this.setTransform(t);var r=(Math.round(t/this.gap)*(this.spacing*this.multiple)+this.minimum*this.multiple)/this.multiple;this.setCurrentValue(r,e);}else t<i[0]?(this.setTransform(i[0]), this.setCurrentValue(s[0]), 1===this.currentSlider&&(this.currentSlider=0)):(this.setTransform(i[1]), this.setCurrentValue(s[1]), 0===this.currentSlider&&(this.currentSlider=1));},isDiff:function(t,e){return Object.prototype.toString.call(t)!==Object.prototype.toString.call(e)||(Array.isArray(t)&&t.length===e.length?t.some(function(t,i){return t!==e[i]}):t!==e)},setCurrentValue:function(t,e){if(t<this.minimum||t>this.maximum)return!1;this.isRange?this.isDiff(this.currentValue[this.currentSlider],t)&&(this.currentValue.splice(this.currentSlider,1,t), this.lazy&&this.flag||this.syncValue()):this.isDiff(this.currentValue,t)&&(this.currentValue=t, this.lazy&&this.flag||this.syncValue()), e||this.setPosition();},setIndex:function(t){if(Array.isArray(t)&&this.isRange){var e=void 0;e=this.data?[this.data[t[0]],this.data[t[1]]]:[this.spacing*t[0]+this.minimum,this.spacing*t[1]+this.minimum], this.setValue(e);}else t=this.spacing*t+this.minimum, this.isRange&&(this.currentSlider=t>(this.currentValue[1]-this.currentValue[0])/2+this.currentValue[0]?1:0), this.setCurrentValue(t);},setValue:function(t,e,i){var s=this;if(this.isDiff(this.val,t)){var r=this.limitValue(t);this.val=!1!==r?this.isRange?r.concat():r:this.isRange?t.concat():t, this.syncValue(e);}this.$nextTick(function(){return s.setPosition(i)});},setPosition:function(t){this.flag||this.setTransitionTime(void 0===t?this.speed:t), this.isRange?(this.currentSlider=0, this.setTransform(this.position[this.currentSlider]), this.currentSlider=1, this.setTransform(this.position[this.currentSlider])):this.setTransform(this.position), this.flag||this.setTransitionTime(0);},setTransform:function(t){var e=("vertical"===this.direction?this.dotHeightVal/2-t:t-this.dotWidthVal/2)*(this.reverse?-1:1),i="vertical"===this.direction?"translateY("+e+"px)":"translateX("+e+"px)",s=(0===this.currentSlider?this.position[1]-t:t-this.position[0])+"px",r=(0===this.currentSlider?t:this.position[0])+"px";this.isRange?(this.slider[this.currentSlider].style.transform=i, this.slider[this.currentSlider].style.WebkitTransform=i, this.slider[this.currentSlider].style.msTransform=i, "vertical"===this.direction?(this.$refs.process.style.height=s, this.$refs.process.style[this.reverse?"top":"bottom"]=r):(this.$refs.process.style.width=s, this.$refs.process.style[this.reverse?"right":"left"]=r)):(this.slider.style.transform=i, this.slider.style.WebkitTransform=i, this.slider.style.msTransform=i, "vertical"===this.direction?(this.$refs.process.style.height=t+"px", this.$refs.process.style[this.reverse?"top":"bottom"]=0):(this.$refs.process.style.width=t+"px", this.$refs.process.style[this.reverse?"right":"left"]=0));},setTransitionTime:function(t){if(t||this.$refs.process.offsetWidth, this.isRange){for(var e=0;e<this.slider.length;e++)this.slider[e].style.transitionDuration=t+"s", this.slider[e].style.WebkitTransitionDuration=t+"s";this.$refs.process.style.transitionDuration=t+"s", this.$refs.process.style.WebkitTransitionDuration=t+"s";}else this.slider.style.transitionDuration=t+"s", this.slider.style.WebkitTransitionDuration=t+"s", this.$refs.process.style.transitionDuration=t+"s", this.$refs.process.style.WebkitTransitionDuration=t+"s";},limitValue:function(t){var e=this;if(this.data)return t;var i=!1;return this.isRange?t=t.map(function(t){return t<e.min?(i=!0, e.min):t>e.max?(i=!0, e.max):t}):t>this.max?(i=!0, t=this.max):t<this.min&&(i=!0, t=this.min), i&&t},syncValue:function(t){t||this.$emit("callback",this.val), this.$emit("input",this.isRange?this.val.concat():this.val);},getValue:function(){return this.val},getIndex:function(){return this.currentIndex},getStaticData:function(){this.$refs.elem&&(this.size="vertical"===this.direction?this.$refs.elem.offsetHeight:this.$refs.elem.offsetWidth, this.offset="vertical"===this.direction?this.$refs.elem.getBoundingClientRect().top+window.pageYOffset||document.documentElement.scrollTop:this.$refs.elem.getBoundingClientRect().left);},refresh:function(){this.$refs.elem&&(this.getStaticData(), this.setPosition());}},mounted:function(){var t=this;"undefined"!=typeof window&&"undefined"!=typeof document&&this.$nextTick(function(){t.getStaticData(), t.setValue(t.value,!0,0), t.bindEvents();});},beforeDestroy:function(){this.unbindEvents();}};},function(t,e,i){var s=i(0);t.exports=s;},function(t,e,i){e=t.exports=i(4)(), e.push([t.i,'.vue-slider-component{position:relative;box-sizing:border-box;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.vue-slider-component.vue-slider-disabled{opacity:.5;cursor:not-allowed}.vue-slider-component.vue-slider-has-label{margin-bottom:15px}.vue-slider-component.vue-slider-disabled .vue-slider-dot{cursor:not-allowed}.vue-slider-component .vue-slider{position:relative;display:block;border-radius:15px;background-color:#ccc}.vue-slider-component .vue-slider:after{content:"";position:absolute;left:0;top:0;width:100%;height:100%;z-index:2}.vue-slider-component .vue-slider-process{position:absolute;border-radius:15px;background-color:#3498db;transition:all 0s;z-index:1}.vue-slider-component.vue-slider-horizontal .vue-slider-process{width:0;height:100%;top:0;left:0;will-change:width}.vue-slider-component.vue-slider-vertical .vue-slider-process{width:100%;height:0;bottom:0;left:0;will-change:height}.vue-slider-component.vue-slider-horizontal-reverse .vue-slider-process{width:0;height:100%;top:0;right:0}.vue-slider-component.vue-slider-vertical-reverse .vue-slider-process{width:100%;height:0;top:0;left:0}.vue-slider-component .vue-slider-dot{position:absolute;border-radius:50%;background-color:#fff;box-shadow:.5px .5px 2px 1px rgba(0,0,0,.32);transition:all 0s;will-change:transform;cursor:pointer;z-index:3}.vue-slider-component.vue-slider-horizontal .vue-slider-dot{left:0}.vue-slider-component.vue-slider-vertical .vue-slider-dot{bottom:0}.vue-slider-component.vue-slider-horizontal-reverse .vue-slider-dot{right:0}.vue-slider-component.vue-slider-vertical-reverse .vue-slider-dot{top:0}.vue-slider-component .vue-slider-tooltip-wrap{display:none;position:absolute;z-index:9}.vue-slider-component .vue-slider-tooltip{display:block;font-size:14px;white-space:nowrap;padding:2px 5px;min-width:20px;text-align:center;color:#fff;border-radius:5px;border:1px solid #3498db;background-color:#3498db}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-top{top:-9px;left:50%;-webkit-transform:translate(-50%,-100%);transform:translate(-50%,-100%)}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-bottom{bottom:-9px;left:50%;-webkit-transform:translate(-50%,100%);transform:translate(-50%,100%)}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-left{top:50%;left:-9px;-webkit-transform:translate(-100%,-50%);transform:translate(-100%,-50%)}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-right{top:50%;right:-9px;-webkit-transform:translate(100%,-50%);transform:translate(100%,-50%)}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-top .vue-slider-tooltip:before{content:"";position:absolute;bottom:-10px;left:50%;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-top-color:inherit;-webkit-transform:translate(-50%);transform:translate(-50%)}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-bottom .vue-slider-tooltip:before{content:"";position:absolute;top:-10px;left:50%;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-bottom-color:inherit;-webkit-transform:translate(-50%);transform:translate(-50%)}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-left .vue-slider-tooltip:before{content:"";position:absolute;top:50%;right:-10px;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-left-color:inherit;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.vue-slider-component .vue-slider-tooltip-wrap.vue-slider-tooltip-right .vue-slider-tooltip:before{content:"";position:absolute;top:50%;left:-10px;width:0;height:0;border:5px solid transparent;border:6px solid transparent\\0;border-right-color:inherit;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.vue-slider-component .vue-slider-dot.vue-slider-hover:hover .vue-slider-tooltip-wrap{display:block}.vue-slider-component .vue-slider-dot.vue-slider-always .vue-slider-tooltip-wrap{display:block!important}.vue-slider-component .vue-slider-piecewise{position:absolute;width:100%;padding:0;margin:0;left:0;top:0;height:100%;list-style:none}.vue-slider-component .vue-slider-piecewise-item{position:absolute;width:8px;height:8px}.vue-slider-component .vue-slider-piecewise-dot{position:absolute;left:50%;top:50%;width:100%;height:100%;display:inline-block;background-color:rgba(0,0,0,.16);border-radius:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:2;transition:all .3s}.vue-slider-component .vue-slider-piecewise-item:first-child .vue-slider-piecewise-dot,.vue-slider-component .vue-slider-piecewise-item:last-child .vue-slider-piecewise-dot{visibility:hidden}.vue-slider-component.vue-slider-horizontal-reverse .vue-slider-piecewise-label,.vue-slider-component.vue-slider-horizontal .vue-slider-piecewise-label{position:absolute;display:inline-block;top:100%;left:50%;white-space:nowrap;font-size:12px;color:#333;-webkit-transform:translate(-50%,8px);transform:translate(-50%,8px);visibility:visible}.vue-slider-component.vue-slider-vertical-reverse .vue-slider-piecewise-label,.vue-slider-component.vue-slider-vertical .vue-slider-piecewise-label{position:absolute;display:inline-block;top:50%;left:100%;white-space:nowrap;font-size:12px;color:#333;-webkit-transform:translate(8px,-50%);transform:translate(8px,-50%);visibility:visible}.vue-slider-component .vue-slider-sr-only{clip:rect(1px,1px,1px,1px);height:1px;width:1px;overflow:hidden;position:absolute!important}',""]);},function(t,e){t.exports=function(){var t=[];return t.toString=function(){for(var t=[],e=0;e<this.length;e++){var i=this[e];i[2]?t.push("@media "+i[2]+"{"+i[1]+"}"):t.push(i[1]);}return t.join("")}, t.i=function(e,i){"string"==typeof e&&(e=[[null,e,""]]);for(var s={},r=0;r<this.length;r++){var n=this[r][0];"number"==typeof n&&(s[n]=!0);}for(r=0;r<e.length;r++){var o=e[r];"number"==typeof o[0]&&s[o[0]]||(i&&!o[2]?o[2]=i:i&&(o[2]="("+o[2]+") and ("+i+")"), t.push(o));}}, t};},function(t,e){t.exports=function(t,e,i,s){var r,n=t=t||{},o=typeof t.default;"object"!==o&&"function"!==o||(r=t, n=t.default);var l="function"==typeof n?n.options:n;if(e&&(l.render=e.render, l.staticRenderFns=e.staticRenderFns), i&&(l._scopeId=i), s){var a=Object.create(l.computed||null);Object.keys(s).forEach(function(t){var e=s[t];a[t]=function(){return e};}), l.computed=a;}return{esModule:r,exports:n,options:l}};},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{directives:[{name:"show",rawName:"v-show",value:t.show,expression:"show"}],ref:"wrap",class:["vue-slider-component",t.flowDirection,t.disabledClass,{"vue-slider-has-label":t.piecewiseLabel}],style:t.wrapStyles,on:{click:t.wrapClick}},[i("div",{ref:"elem",staticClass:"vue-slider",style:[t.elemStyles,t.bgStyle],attrs:{"aria-hidden":"true"}},[t.isRange?[i("div",{ref:"dot0",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.dotStyles,t.sliderStyles[0]],on:{mousedown:function(e){t.moveStart(e,0);},touchstart:function(e){t.moveStart(e,0);}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[0],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[0]},[t._v(t._s(t.formatter?t.formatting(t.val[0]):t.val[0]))])],{value:t.val[0],index:0})],2)]),t._v(" "),i("div",{ref:"dot1",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.dotStyles,t.sliderStyles[1]],on:{mousedown:function(e){t.moveStart(e,1);},touchstart:function(e){t.moveStart(e,1);}}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection[1],"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles[1]},[t._v(t._s(t.formatter?t.formatting(t.val[1]):t.val[1]))])],{value:t.val[1],index:1})],2)])]:[i("div",{ref:"dot",class:[t.tooltipStatus,"vue-slider-dot"],style:[t.dotStyles,t.sliderStyles],on:{mousedown:t.moveStart,touchstart:t.moveStart}},[i("span",{class:["vue-slider-tooltip-"+t.tooltipDirection,"vue-slider-tooltip-wrap"]},[t._t("tooltip",[i("span",{staticClass:"vue-slider-tooltip",style:t.tooltipStyles},[t._v(t._s(t.formatter?t.formatting(t.val):t.val))])],{value:t.val})],2)])],t._v(" "),i("ul",{staticClass:"vue-slider-piecewise"},t._l(t.piecewiseDotWrap,function(e,s){return i("li",{key:s,staticClass:"vue-slider-piecewise-item",style:[t.piecewiseDotStyle,e.style]},[t._t("piecewise",[t.piecewise?i("span",{staticClass:"vue-slider-piecewise-dot",style:[t.piecewiseStyle,e.inRange?t.piecewiseActiveStyle:null]}):t._e()],{label:e.label,index:s,first:0===s,last:s===t.piecewiseDotWrap.length-1}),t._v(" "),t._t("label",[t.piecewiseLabel?i("span",{staticClass:"vue-slider-piecewise-label",style:[t.labelStyle,e.inRange?t.labelActiveStyle:null]},[t._v("\n\t\t\t\t\t\t"+t._s(e.label)+"\n\t\t\t\t\t")]):t._e()],{label:e.label,index:s,first:0===s,last:s===t.piecewiseDotWrap.length-1})],2)})),t._v(" "),i("div",{ref:"process",staticClass:"vue-slider-process",style:t.processStyle})],2),t._v(" "),t.isRange||t.data?t._e():i("input",{directives:[{name:"model",rawName:"v-model",value:t.val,expression:"val"}],staticClass:"vue-slider-sr-only",attrs:{type:"range",min:t.min,max:t.max},domProps:{value:t.val},on:{__r:function(e){t.val=e.target.value;}}})])},staticRenderFns:[]};},function(t,e,i){var s=i(3);"string"==typeof s&&(s=[[t.i,s,""]]), s.locals&&(t.exports=s.locals);i(8)("743d98f5",s,!0);},function(t,e,i){function s(t){for(var e=0;e<t.length;e++){var i=t[e],s=h[i.id];if(s){s.refs++;for(var r=0;r<s.parts.length;r++)s.parts[r](i.parts[r]);for(;r<i.parts.length;r++)s.parts.push(n(i.parts[r]));s.parts.length>i.parts.length&&(s.parts.length=i.parts.length);}else{for(var o=[],r=0;r<i.parts.length;r++)o.push(n(i.parts[r]));h[i.id]={id:i.id,refs:1,parts:o};}}}function r(){var t=document.createElement("style");return t.type="text/css", d.appendChild(t), t}function n(t){var e,i,s=document.querySelector('style[data-vue-ssr-id~="'+t.id+'"]');if(s){if(f)return v;s.parentNode.removeChild(s);}if(m){var n=c++;s=p||(p=r()), e=o.bind(null,s,n,!1), i=o.bind(null,s,n,!0);}else s=r(), e=l.bind(null,s), i=function(){s.parentNode.removeChild(s);};return e(t), function(s){if(s){if(s.css===t.css&&s.media===t.media&&s.sourceMap===t.sourceMap)return;e(t=s);}else i();}}function o(t,e,i,s){var r=i?"":s.css;if(t.styleSheet)t.styleSheet.cssText=g(e,r);else{var n=document.createTextNode(r),o=t.childNodes;o[e]&&t.removeChild(o[e]), o.length?t.insertBefore(n,o[e]):t.appendChild(n);}}function l(t,e){var i=e.css,s=e.media,r=e.sourceMap;if(s&&t.setAttribute("media",s), r&&(i+="\n/*# sourceURL="+r.sources[0]+" */", i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */"), t.styleSheet)t.styleSheet.cssText=i;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(i));}}var a="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!a)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var u=i(9),h={},d=a&&(document.head||document.getElementsByTagName("head")[0]),p=null,c=0,f=!1,v=function(){},m="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());t.exports=function(t,e,i){f=i;var r=u(t,e);return s(r), function(e){for(var i=[],n=0;n<r.length;n++){var o=r[n],l=h[o.id];l.refs--, i.push(l);}e?(r=u(t,e), s(r)):r=[];for(var n=0;n<i.length;n++){var l=i[n];if(0===l.refs){for(var a=0;a<l.parts.length;a++)l.parts[a]();delete h[l.id];}}}};var g=function(){var t=[];return function(e,i){return t[e]=i, t.filter(Boolean).join("\n")}}();},function(t,e){t.exports=function(t,e){for(var i=[],s={},r=0;r<e.length;r++){var n=e[r],o=n[0],l=n[1],a=n[2],u=n[3],h={id:t+":"+r,css:l,media:a,sourceMap:u};s[o]?s[o].parts.push(h):i.push(s[o]={id:o,parts:[h]});}return i};}])});
 });
-
-var MAX_SAFE_INTEGER = 9007199254740991;
-var reIsUint = /^(?:0|[1-9]\d*)$/;
-function isIndex(value, length) {
-  length = length == null ? MAX_SAFE_INTEGER : length;
-  return !!length &&
-    (typeof value == 'number' || reIsUint.test(value)) &&
-    (value > -1 && value % 1 == 0 && value < length);
-}
-var _isIndex = isIndex;
-
-var MAX_SAFE_INTEGER$1 = 9007199254740991;
-function isLength(value) {
-  return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER$1;
-}
-var isLength_1 = isLength;
-
-var argsTag$2 = '[object Arguments]';
-var arrayTag$1 = '[object Array]';
-var boolTag$1 = '[object Boolean]';
-var dateTag$1 = '[object Date]';
-var errorTag$1 = '[object Error]';
-var funcTag$1 = '[object Function]';
-var mapTag$1 = '[object Map]';
-var numberTag$1 = '[object Number]';
-var objectTag$1 = '[object Object]';
-var regexpTag$1 = '[object RegExp]';
-var setTag$1 = '[object Set]';
-var stringTag$1 = '[object String]';
-var weakMapTag = '[object WeakMap]';
-var arrayBufferTag$1 = '[object ArrayBuffer]';
-var dataViewTag$1 = '[object DataView]';
-var float32Tag = '[object Float32Array]';
-var float64Tag = '[object Float64Array]';
-var int8Tag = '[object Int8Array]';
-var int16Tag = '[object Int16Array]';
-var int32Tag = '[object Int32Array]';
-var uint8Tag = '[object Uint8Array]';
-var uint8ClampedTag = '[object Uint8ClampedArray]';
-var uint16Tag = '[object Uint16Array]';
-var uint32Tag = '[object Uint32Array]';
-var typedArrayTags = {};
-typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
-typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
-typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
-typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
-typedArrayTags[uint32Tag] = true;
-typedArrayTags[argsTag$2] = typedArrayTags[arrayTag$1] =
-typedArrayTags[arrayBufferTag$1] = typedArrayTags[boolTag$1] =
-typedArrayTags[dataViewTag$1] = typedArrayTags[dateTag$1] =
-typedArrayTags[errorTag$1] = typedArrayTags[funcTag$1] =
-typedArrayTags[mapTag$1] = typedArrayTags[numberTag$1] =
-typedArrayTags[objectTag$1] = typedArrayTags[regexpTag$1] =
-typedArrayTags[setTag$1] = typedArrayTags[stringTag$1] =
-typedArrayTags[weakMapTag] = false;
-function baseIsTypedArray(value) {
-  return isObjectLike_1(value) &&
-    isLength_1(value.length) && !!typedArrayTags[_baseGetTag(value)];
-}
-var _baseIsTypedArray = baseIsTypedArray;
-
-function baseUnary(func) {
-  return function(value) {
-    return func(value);
-  };
-}
-var _baseUnary = baseUnary;
-
-var _nodeUtil = createCommonjsModule(function (module, exports) {
-var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
-var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
-var moduleExports = freeModule && freeModule.exports === freeExports;
-var freeProcess = moduleExports && _freeGlobal.process;
-var nodeUtil = (function() {
-  try {
-    return freeProcess && freeProcess.binding && freeProcess.binding('util');
-  } catch (e) {}
-}());
-module.exports = nodeUtil;
-});
-
-var nodeIsTypedArray = _nodeUtil && _nodeUtil.isTypedArray;
-var isTypedArray = nodeIsTypedArray ? _baseUnary(nodeIsTypedArray) : _baseIsTypedArray;
-var isTypedArray_1 = isTypedArray;
-
-var objectProto$8 = Object.prototype;
-var hasOwnProperty$6 = objectProto$8.hasOwnProperty;
-function arrayLikeKeys(value, inherited) {
-  var isArr = isArray_1(value),
-      isArg = !isArr && isArguments_1(value),
-      isBuff = !isArr && !isArg && isBuffer_1(value),
-      isType = !isArr && !isArg && !isBuff && isTypedArray_1(value),
-      skipIndexes = isArr || isArg || isBuff || isType,
-      result = skipIndexes ? _baseTimes(value.length, String) : [],
-      length = result.length;
-  for (var key in value) {
-    if ((inherited || hasOwnProperty$6.call(value, key)) &&
-        !(skipIndexes && (
-           key == 'length' ||
-           (isBuff && (key == 'offset' || key == 'parent')) ||
-           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
-           _isIndex(key, length)
-        ))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-var _arrayLikeKeys = arrayLikeKeys;
-
-var objectProto$11 = Object.prototype;
-function isPrototype(value) {
-  var Ctor = value && value.constructor,
-      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$11;
-  return value === proto;
-}
-var _isPrototype = isPrototype;
-
-function overArg(func, transform) {
-  return function(arg) {
-    return func(transform(arg));
-  };
-}
-var _overArg = overArg;
-
-var nativeKeys = _overArg(Object.keys, Object);
-var _nativeKeys = nativeKeys;
-
-var objectProto$10 = Object.prototype;
-var hasOwnProperty$8 = objectProto$10.hasOwnProperty;
-function baseKeys(object) {
-  if (!_isPrototype(object)) {
-    return _nativeKeys(object);
-  }
-  var result = [];
-  for (var key in Object(object)) {
-    if (hasOwnProperty$8.call(object, key) && key != 'constructor') {
-      result.push(key);
-    }
-  }
-  return result;
-}
-var _baseKeys = baseKeys;
-
-function isArrayLike(value) {
-  return value != null && isLength_1(value.length) && !isFunction_1(value);
-}
-var isArrayLike_1 = isArrayLike;
-
-function keys(object) {
-  return isArrayLike_1(object) ? _arrayLikeKeys(object) : _baseKeys(object);
-}
-var keys_1 = keys;
-
-function getAllKeys(object) {
-  return _baseGetAllKeys(object, keys_1, _getSymbols);
-}
-var _getAllKeys = getAllKeys;
-
-var COMPARE_PARTIAL_FLAG$4 = 1;
-var objectProto$6 = Object.prototype;
-var hasOwnProperty$5 = objectProto$6.hasOwnProperty;
-function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
-  var isPartial = bitmask & COMPARE_PARTIAL_FLAG$4,
-      objProps = _getAllKeys(object),
-      objLength = objProps.length,
-      othProps = _getAllKeys(other),
-      othLength = othProps.length;
-  if (objLength != othLength && !isPartial) {
-    return false;
-  }
-  var index = objLength;
-  while (index--) {
-    var key = objProps[index];
-    if (!(isPartial ? key in other : hasOwnProperty$5.call(other, key))) {
-      return false;
-    }
-  }
-  var stacked = stack.get(object);
-  if (stacked && stack.get(other)) {
-    return stacked == other;
-  }
-  var result = true;
-  stack.set(object, other);
-  stack.set(other, object);
-  var skipCtor = isPartial;
-  while (++index < objLength) {
-    key = objProps[index];
-    var objValue = object[key],
-        othValue = other[key];
-    if (customizer) {
-      var compared = isPartial
-        ? customizer(othValue, objValue, key, other, object, stack)
-        : customizer(objValue, othValue, key, object, other, stack);
-    }
-    if (!(compared === undefined
-          ? (objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack))
-          : compared
-        )) {
-      result = false;
-      break;
-    }
-    skipCtor || (skipCtor = key == 'constructor');
-  }
-  if (result && !skipCtor) {
-    var objCtor = object.constructor,
-        othCtor = other.constructor;
-    if (objCtor != othCtor &&
-        ('constructor' in object && 'constructor' in other) &&
-        !(typeof objCtor == 'function' && objCtor instanceof objCtor &&
-          typeof othCtor == 'function' && othCtor instanceof othCtor)) {
-      result = false;
-    }
-  }
-  stack['delete'](object);
-  stack['delete'](other);
-  return result;
-}
-var _equalObjects = equalObjects;
-
-var DataView = _getNative(_root, 'DataView');
-var _DataView = DataView;
-
-var Promise$1 = _getNative(_root, 'Promise');
-var _Promise = Promise$1;
-
-var Set = _getNative(_root, 'Set');
-var _Set = Set;
-
-var WeakMap = _getNative(_root, 'WeakMap');
-var _WeakMap = WeakMap;
-
-var mapTag$2 = '[object Map]';
-var objectTag$2 = '[object Object]';
-var promiseTag = '[object Promise]';
-var setTag$2 = '[object Set]';
-var weakMapTag$1 = '[object WeakMap]';
-var dataViewTag$2 = '[object DataView]';
-var dataViewCtorString = _toSource(_DataView);
-var mapCtorString = _toSource(_Map);
-var promiseCtorString = _toSource(_Promise);
-var setCtorString = _toSource(_Set);
-var weakMapCtorString = _toSource(_WeakMap);
-var getTag = _baseGetTag;
-if ((_DataView && getTag(new _DataView(new ArrayBuffer(1))) != dataViewTag$2) ||
-    (_Map && getTag(new _Map) != mapTag$2) ||
-    (_Promise && getTag(_Promise.resolve()) != promiseTag) ||
-    (_Set && getTag(new _Set) != setTag$2) ||
-    (_WeakMap && getTag(new _WeakMap) != weakMapTag$1)) {
-  getTag = function(value) {
-    var result = _baseGetTag(value),
-        Ctor = result == objectTag$2 ? value.constructor : undefined,
-        ctorString = Ctor ? _toSource(Ctor) : '';
-    if (ctorString) {
-      switch (ctorString) {
-        case dataViewCtorString: return dataViewTag$2;
-        case mapCtorString: return mapTag$2;
-        case promiseCtorString: return promiseTag;
-        case setCtorString: return setTag$2;
-        case weakMapCtorString: return weakMapTag$1;
-      }
-    }
-    return result;
-  };
-}
-var _getTag = getTag;
-
-var COMPARE_PARTIAL_FLAG$1 = 1;
-var argsTag = '[object Arguments]';
-var arrayTag = '[object Array]';
-var objectTag = '[object Object]';
-var objectProto$5 = Object.prototype;
-var hasOwnProperty$4 = objectProto$5.hasOwnProperty;
-function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
-  var objIsArr = isArray_1(object),
-      othIsArr = isArray_1(other),
-      objTag = objIsArr ? arrayTag : _getTag(object),
-      othTag = othIsArr ? arrayTag : _getTag(other);
-  objTag = objTag == argsTag ? objectTag : objTag;
-  othTag = othTag == argsTag ? objectTag : othTag;
-  var objIsObj = objTag == objectTag,
-      othIsObj = othTag == objectTag,
-      isSameTag = objTag == othTag;
-  if (isSameTag && isBuffer_1(object)) {
-    if (!isBuffer_1(other)) {
-      return false;
-    }
-    objIsArr = true;
-    objIsObj = false;
-  }
-  if (isSameTag && !objIsObj) {
-    stack || (stack = new _Stack);
-    return (objIsArr || isTypedArray_1(object))
-      ? _equalArrays(object, other, bitmask, customizer, equalFunc, stack)
-      : _equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
-  }
-  if (!(bitmask & COMPARE_PARTIAL_FLAG$1)) {
-    var objIsWrapped = objIsObj && hasOwnProperty$4.call(object, '__wrapped__'),
-        othIsWrapped = othIsObj && hasOwnProperty$4.call(other, '__wrapped__');
-    if (objIsWrapped || othIsWrapped) {
-      var objUnwrapped = objIsWrapped ? object.value() : object,
-          othUnwrapped = othIsWrapped ? other.value() : other;
-      stack || (stack = new _Stack);
-      return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
-    }
-  }
-  if (!isSameTag) {
-    return false;
-  }
-  stack || (stack = new _Stack);
-  return _equalObjects(object, other, bitmask, customizer, equalFunc, stack);
-}
-var _baseIsEqualDeep = baseIsEqualDeep;
-
-function baseIsEqual(value, other, bitmask, customizer, stack) {
-  if (value === other) {
-    return true;
-  }
-  if (value == null || other == null || (!isObjectLike_1(value) && !isObjectLike_1(other))) {
-    return value !== value && other !== other;
-  }
-  return _baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
-}
-var _baseIsEqual = baseIsEqual;
-
-var COMPARE_PARTIAL_FLAG = 1;
-var COMPARE_UNORDERED_FLAG = 2;
-function baseIsMatch(object, source, matchData, customizer) {
-  var index = matchData.length,
-      length = index,
-      noCustomizer = !customizer;
-  if (object == null) {
-    return !length;
-  }
-  object = Object(object);
-  while (index--) {
-    var data = matchData[index];
-    if ((noCustomizer && data[2])
-          ? data[1] !== object[data[0]]
-          : !(data[0] in object)
-        ) {
-      return false;
-    }
-  }
-  while (++index < length) {
-    data = matchData[index];
-    var key = data[0],
-        objValue = object[key],
-        srcValue = data[1];
-    if (noCustomizer && data[2]) {
-      if (objValue === undefined && !(key in object)) {
-        return false;
-      }
-    } else {
-      var stack = new _Stack;
-      if (customizer) {
-        var result = customizer(objValue, srcValue, key, object, source, stack);
-      }
-      if (!(result === undefined
-            ? _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack)
-            : result
-          )) {
-        return false;
-      }
-    }
-  }
-  return true;
-}
-var _baseIsMatch = baseIsMatch;
-
-function isStrictComparable(value) {
-  return value === value && !isObject_1(value);
-}
-var _isStrictComparable = isStrictComparable;
-
-function getMatchData(object) {
-  var result = keys_1(object),
-      length = result.length;
-  while (length--) {
-    var key = result[length],
-        value = object[key];
-    result[length] = [key, value, _isStrictComparable(value)];
-  }
-  return result;
-}
-var _getMatchData = getMatchData;
-
-function matchesStrictComparable(key, srcValue) {
-  return function(object) {
-    if (object == null) {
-      return false;
-    }
-    return object[key] === srcValue &&
-      (srcValue !== undefined || (key in Object(object)));
-  };
-}
-var _matchesStrictComparable = matchesStrictComparable;
-
-function baseMatches(source) {
-  var matchData = _getMatchData(source);
-  if (matchData.length == 1 && matchData[0][2]) {
-    return _matchesStrictComparable(matchData[0][0], matchData[0][1]);
-  }
-  return function(object) {
-    return object === source || _baseIsMatch(object, source, matchData);
-  };
-}
-var _baseMatches = baseMatches;
-
-var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
-var reIsPlainProp = /^\w*$/;
-function isKey(value, object) {
-  if (isArray_1(value)) {
-    return false;
-  }
-  var type = typeof value;
-  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
-      value == null || isSymbol_1(value)) {
-    return true;
-  }
-  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
-    (object != null && value in Object(object));
-}
-var _isKey = isKey;
-
-var FUNC_ERROR_TEXT = 'Expected a function';
-function memoize(func, resolver) {
-  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
-    throw new TypeError(FUNC_ERROR_TEXT);
-  }
-  var memoized = function() {
-    var args = arguments,
-        key = resolver ? resolver.apply(this, args) : args[0],
-        cache = memoized.cache;
-    if (cache.has(key)) {
-      return cache.get(key);
-    }
-    var result = func.apply(this, args);
-    memoized.cache = cache.set(key, result) || cache;
-    return result;
-  };
-  memoized.cache = new (memoize.Cache || _MapCache);
-  return memoized;
-}
-memoize.Cache = _MapCache;
-var memoize_1 = memoize;
-
-var MAX_MEMOIZE_SIZE = 500;
-function memoizeCapped(func) {
-  var result = memoize_1(func, function(key) {
-    if (cache.size === MAX_MEMOIZE_SIZE) {
-      cache.clear();
-    }
-    return key;
-  });
-  var cache = result.cache;
-  return result;
-}
-var _memoizeCapped = memoizeCapped;
-
-var reLeadingDot = /^\./;
-var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
-var reEscapeChar = /\\(\\)?/g;
-var stringToPath = _memoizeCapped(function(string) {
-  var result = [];
-  if (reLeadingDot.test(string)) {
-    result.push('');
-  }
-  string.replace(rePropName, function(match, number, quote, string) {
-    result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
-  });
-  return result;
-});
-var _stringToPath = stringToPath;
-
-function arrayMap(array, iteratee) {
-  var index = -1,
-      length = array == null ? 0 : array.length,
-      result = Array(length);
-  while (++index < length) {
-    result[index] = iteratee(array[index], index, array);
-  }
-  return result;
-}
-var _arrayMap = arrayMap;
-
-var INFINITY = 1 / 0;
-var symbolProto$1 = _Symbol ? _Symbol.prototype : undefined;
-var symbolToString = symbolProto$1 ? symbolProto$1.toString : undefined;
-function baseToString(value) {
-  if (typeof value == 'string') {
-    return value;
-  }
-  if (isArray_1(value)) {
-    return _arrayMap(value, baseToString) + '';
-  }
-  if (isSymbol_1(value)) {
-    return symbolToString ? symbolToString.call(value) : '';
-  }
-  var result = (value + '');
-  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
-}
-var _baseToString = baseToString;
-
-function toString(value) {
-  return value == null ? '' : _baseToString(value);
-}
-var toString_1 = toString;
-
-function castPath(value, object) {
-  if (isArray_1(value)) {
-    return value;
-  }
-  return _isKey(value, object) ? [value] : _stringToPath(toString_1(value));
-}
-var _castPath = castPath;
-
-var INFINITY$1 = 1 / 0;
-function toKey(value) {
-  if (typeof value == 'string' || isSymbol_1(value)) {
-    return value;
-  }
-  var result = (value + '');
-  return (result == '0' && (1 / value) == -INFINITY$1) ? '-0' : result;
-}
-var _toKey = toKey;
-
-function baseGet(object, path) {
-  path = _castPath(path, object);
-  var index = 0,
-      length = path.length;
-  while (object != null && index < length) {
-    object = object[_toKey(path[index++])];
-  }
-  return (index && index == length) ? object : undefined;
-}
-var _baseGet = baseGet;
-
-function get(object, path, defaultValue) {
-  var result = object == null ? undefined : _baseGet(object, path);
-  return result === undefined ? defaultValue : result;
-}
-var get_1 = get;
-
-function baseHasIn(object, key) {
-  return object != null && key in Object(object);
-}
-var _baseHasIn = baseHasIn;
-
-function hasPath(object, path, hasFunc) {
-  path = _castPath(path, object);
-  var index = -1,
-      length = path.length,
-      result = false;
-  while (++index < length) {
-    var key = _toKey(path[index]);
-    if (!(result = object != null && hasFunc(object, key))) {
-      break;
-    }
-    object = object[key];
-  }
-  if (result || ++index != length) {
-    return result;
-  }
-  length = object == null ? 0 : object.length;
-  return !!length && isLength_1(length) && _isIndex(key, length) &&
-    (isArray_1(object) || isArguments_1(object));
-}
-var _hasPath = hasPath;
-
-function hasIn(object, path) {
-  return object != null && _hasPath(object, path, _baseHasIn);
-}
-var hasIn_1 = hasIn;
-
-var COMPARE_PARTIAL_FLAG$5 = 1;
-var COMPARE_UNORDERED_FLAG$3 = 2;
-function baseMatchesProperty(path, srcValue) {
-  if (_isKey(path) && _isStrictComparable(srcValue)) {
-    return _matchesStrictComparable(_toKey(path), srcValue);
-  }
-  return function(object) {
-    var objValue = get_1(object, path);
-    return (objValue === undefined && objValue === srcValue)
-      ? hasIn_1(object, path)
-      : _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG$5 | COMPARE_UNORDERED_FLAG$3);
-  };
-}
-var _baseMatchesProperty = baseMatchesProperty;
-
-function identity(value) {
-  return value;
-}
-var identity_1 = identity;
-
-function baseProperty(key) {
-  return function(object) {
-    return object == null ? undefined : object[key];
-  };
-}
-var _baseProperty = baseProperty;
-
-function basePropertyDeep(path) {
-  return function(object) {
-    return _baseGet(object, path);
-  };
-}
-var _basePropertyDeep = basePropertyDeep;
-
-function property(path) {
-  return _isKey(path) ? _baseProperty(_toKey(path)) : _basePropertyDeep(path);
-}
-var property_1 = property;
-
-function baseIteratee(value) {
-  if (typeof value == 'function') {
-    return value;
-  }
-  if (value == null) {
-    return identity_1;
-  }
-  if (typeof value == 'object') {
-    return isArray_1(value)
-      ? _baseMatchesProperty(value[0], value[1])
-      : _baseMatches(value);
-  }
-  return property_1(value);
-}
-var _baseIteratee = baseIteratee;
-
-function baseLt(value, other) {
-  return value < other;
-}
-var _baseLt = baseLt;
-
-function minBy(array, iteratee) {
-  return (array && array.length)
-    ? _baseExtremum(array, _baseIteratee(iteratee, 2), _baseLt)
-    : undefined;
-}
-var minBy_1 = minBy;
-
-function baseGt(value, other) {
-  return value > other;
-}
-var _baseGt = baseGt;
-
-function maxBy(array, iteratee) {
-  return (array && array.length)
-    ? _baseExtremum(array, _baseIteratee(iteratee, 2), _baseGt)
-    : undefined;
-}
-var maxBy_1 = maxBy;
-
-function arrayEach(array, iteratee) {
-  var index = -1,
-      length = array == null ? 0 : array.length;
-  while (++index < length) {
-    if (iteratee(array[index], index, array) === false) {
-      break;
-    }
-  }
-  return array;
-}
-var _arrayEach = arrayEach;
-
-var defineProperty = (function() {
-  try {
-    var func = _getNative(Object, 'defineProperty');
-    func({}, '', {});
-    return func;
-  } catch (e) {}
-}());
-var _defineProperty$1 = defineProperty;
-
-function baseAssignValue(object, key, value) {
-  if (key == '__proto__' && _defineProperty$1) {
-    _defineProperty$1(object, key, {
-      'configurable': true,
-      'enumerable': true,
-      'value': value,
-      'writable': true
-    });
-  } else {
-    object[key] = value;
-  }
-}
-var _baseAssignValue = baseAssignValue;
-
-var objectProto$12 = Object.prototype;
-var hasOwnProperty$9 = objectProto$12.hasOwnProperty;
-function assignValue(object, key, value) {
-  var objValue = object[key];
-  if (!(hasOwnProperty$9.call(object, key) && eq_1(objValue, value)) ||
-      (value === undefined && !(key in object))) {
-    _baseAssignValue(object, key, value);
-  }
-}
-var _assignValue = assignValue;
-
-function copyObject(source, props, object, customizer) {
-  var isNew = !object;
-  object || (object = {});
-  var index = -1,
-      length = props.length;
-  while (++index < length) {
-    var key = props[index];
-    var newValue = customizer
-      ? customizer(object[key], source[key], key, object, source)
-      : undefined;
-    if (newValue === undefined) {
-      newValue = source[key];
-    }
-    if (isNew) {
-      _baseAssignValue(object, key, newValue);
-    } else {
-      _assignValue(object, key, newValue);
-    }
-  }
-  return object;
-}
-var _copyObject = copyObject;
-
-function baseAssign(object, source) {
-  return object && _copyObject(source, keys_1(source), object);
-}
-var _baseAssign = baseAssign;
-
-function nativeKeysIn(object) {
-  var result = [];
-  if (object != null) {
-    for (var key in Object(object)) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-var _nativeKeysIn = nativeKeysIn;
-
-var objectProto$13 = Object.prototype;
-var hasOwnProperty$10 = objectProto$13.hasOwnProperty;
-function baseKeysIn(object) {
-  if (!isObject_1(object)) {
-    return _nativeKeysIn(object);
-  }
-  var isProto = _isPrototype(object),
-      result = [];
-  for (var key in object) {
-    if (!(key == 'constructor' && (isProto || !hasOwnProperty$10.call(object, key)))) {
-      result.push(key);
-    }
-  }
-  return result;
-}
-var _baseKeysIn = baseKeysIn;
-
-function keysIn$1(object) {
-  return isArrayLike_1(object) ? _arrayLikeKeys(object, true) : _baseKeysIn(object);
-}
-var keysIn_1 = keysIn$1;
-
-function baseAssignIn(object, source) {
-  return object && _copyObject(source, keysIn_1(source), object);
-}
-var _baseAssignIn = baseAssignIn;
-
-var _cloneBuffer = createCommonjsModule(function (module, exports) {
-var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
-var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
-var moduleExports = freeModule && freeModule.exports === freeExports;
-var Buffer = moduleExports ? _root.Buffer : undefined,
-    allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined;
-function cloneBuffer(buffer, isDeep) {
-  if (isDeep) {
-    return buffer.slice();
-  }
-  var length = buffer.length,
-      result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
-  buffer.copy(result);
-  return result;
-}
-module.exports = cloneBuffer;
-});
-
-function copyArray(source, array) {
-  var index = -1,
-      length = source.length;
-  array || (array = Array(length));
-  while (++index < length) {
-    array[index] = source[index];
-  }
-  return array;
-}
-var _copyArray = copyArray;
-
-function copySymbols(source, object) {
-  return _copyObject(source, _getSymbols(source), object);
-}
-var _copySymbols = copySymbols;
-
-var getPrototype = _overArg(Object.getPrototypeOf, Object);
-var _getPrototype = getPrototype;
-
-var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
-var getSymbolsIn = !nativeGetSymbols$1 ? stubArray_1 : function(object) {
-  var result = [];
-  while (object) {
-    _arrayPush(result, _getSymbols(object));
-    object = _getPrototype(object);
-  }
-  return result;
-};
-var _getSymbolsIn = getSymbolsIn;
-
-function copySymbolsIn(source, object) {
-  return _copyObject(source, _getSymbolsIn(source), object);
-}
-var _copySymbolsIn = copySymbolsIn;
-
-function getAllKeysIn(object) {
-  return _baseGetAllKeys(object, keysIn_1, _getSymbolsIn);
-}
-var _getAllKeysIn = getAllKeysIn;
-
-var objectProto$14 = Object.prototype;
-var hasOwnProperty$11 = objectProto$14.hasOwnProperty;
-function initCloneArray(array) {
-  var length = array.length,
-      result = array.constructor(length);
-  if (length && typeof array[0] == 'string' && hasOwnProperty$11.call(array, 'index')) {
-    result.index = array.index;
-    result.input = array.input;
-  }
-  return result;
-}
-var _initCloneArray = initCloneArray;
-
-function cloneArrayBuffer(arrayBuffer) {
-  var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
-  new _Uint8Array(result).set(new _Uint8Array(arrayBuffer));
-  return result;
-}
-var _cloneArrayBuffer = cloneArrayBuffer;
-
-function cloneDataView(dataView, isDeep) {
-  var buffer = isDeep ? _cloneArrayBuffer(dataView.buffer) : dataView.buffer;
-  return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
-}
-var _cloneDataView = cloneDataView;
-
-function addMapEntry(map, pair) {
-  map.set(pair[0], pair[1]);
-  return map;
-}
-var _addMapEntry = addMapEntry;
-
-function arrayReduce(array, iteratee, accumulator, initAccum) {
-  var index = -1,
-      length = array == null ? 0 : array.length;
-  if (initAccum && length) {
-    accumulator = array[++index];
-  }
-  while (++index < length) {
-    accumulator = iteratee(accumulator, array[index], index, array);
-  }
-  return accumulator;
-}
-var _arrayReduce = arrayReduce;
-
-var CLONE_DEEP_FLAG$2 = 1;
-function cloneMap(map, isDeep, cloneFunc) {
-  var array = isDeep ? cloneFunc(_mapToArray(map), CLONE_DEEP_FLAG$2) : _mapToArray(map);
-  return _arrayReduce(array, _addMapEntry, new map.constructor);
-}
-var _cloneMap = cloneMap;
-
-var reFlags = /\w*$/;
-function cloneRegExp(regexp) {
-  var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
-  result.lastIndex = regexp.lastIndex;
-  return result;
-}
-var _cloneRegExp = cloneRegExp;
-
-function addSetEntry(set, value) {
-  set.add(value);
-  return set;
-}
-var _addSetEntry = addSetEntry;
-
-var CLONE_DEEP_FLAG$3 = 1;
-function cloneSet(set, isDeep, cloneFunc) {
-  var array = isDeep ? cloneFunc(_setToArray(set), CLONE_DEEP_FLAG$3) : _setToArray(set);
-  return _arrayReduce(array, _addSetEntry, new set.constructor);
-}
-var _cloneSet = cloneSet;
-
-var symbolProto$2 = _Symbol ? _Symbol.prototype : undefined;
-var symbolValueOf$1 = symbolProto$2 ? symbolProto$2.valueOf : undefined;
-function cloneSymbol(symbol) {
-  return symbolValueOf$1 ? Object(symbolValueOf$1.call(symbol)) : {};
-}
-var _cloneSymbol = cloneSymbol;
-
-function cloneTypedArray(typedArray, isDeep) {
-  var buffer = isDeep ? _cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
-  return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
-}
-var _cloneTypedArray = cloneTypedArray;
-
-var boolTag$3 = '[object Boolean]';
-var dateTag$3 = '[object Date]';
-var mapTag$4 = '[object Map]';
-var numberTag$3 = '[object Number]';
-var regexpTag$3 = '[object RegExp]';
-var setTag$4 = '[object Set]';
-var stringTag$3 = '[object String]';
-var symbolTag$3 = '[object Symbol]';
-var arrayBufferTag$3 = '[object ArrayBuffer]';
-var dataViewTag$4 = '[object DataView]';
-var float32Tag$2 = '[object Float32Array]';
-var float64Tag$2 = '[object Float64Array]';
-var int8Tag$2 = '[object Int8Array]';
-var int16Tag$2 = '[object Int16Array]';
-var int32Tag$2 = '[object Int32Array]';
-var uint8Tag$2 = '[object Uint8Array]';
-var uint8ClampedTag$2 = '[object Uint8ClampedArray]';
-var uint16Tag$2 = '[object Uint16Array]';
-var uint32Tag$2 = '[object Uint32Array]';
-function initCloneByTag(object, tag, cloneFunc, isDeep) {
-  var Ctor = object.constructor;
-  switch (tag) {
-    case arrayBufferTag$3:
-      return _cloneArrayBuffer(object);
-    case boolTag$3:
-    case dateTag$3:
-      return new Ctor(+object);
-    case dataViewTag$4:
-      return _cloneDataView(object, isDeep);
-    case float32Tag$2: case float64Tag$2:
-    case int8Tag$2: case int16Tag$2: case int32Tag$2:
-    case uint8Tag$2: case uint8ClampedTag$2: case uint16Tag$2: case uint32Tag$2:
-      return _cloneTypedArray(object, isDeep);
-    case mapTag$4:
-      return _cloneMap(object, isDeep, cloneFunc);
-    case numberTag$3:
-    case stringTag$3:
-      return new Ctor(object);
-    case regexpTag$3:
-      return _cloneRegExp(object);
-    case setTag$4:
-      return _cloneSet(object, isDeep, cloneFunc);
-    case symbolTag$3:
-      return _cloneSymbol(object);
-  }
-}
-var _initCloneByTag = initCloneByTag;
-
-var objectCreate = Object.create;
-var baseCreate = (function() {
-  function object() {}
-  return function(proto) {
-    if (!isObject_1(proto)) {
-      return {};
-    }
-    if (objectCreate) {
-      return objectCreate(proto);
-    }
-    object.prototype = proto;
-    var result = new object;
-    object.prototype = undefined;
-    return result;
-  };
-}());
-var _baseCreate = baseCreate;
-
-function initCloneObject(object) {
-  return (typeof object.constructor == 'function' && !_isPrototype(object))
-    ? _baseCreate(_getPrototype(object))
-    : {};
-}
-var _initCloneObject = initCloneObject;
-
-var CLONE_DEEP_FLAG$1 = 1;
-var CLONE_FLAT_FLAG = 2;
-var CLONE_SYMBOLS_FLAG$1 = 4;
-var argsTag$3 = '[object Arguments]';
-var arrayTag$2 = '[object Array]';
-var boolTag$2 = '[object Boolean]';
-var dateTag$2 = '[object Date]';
-var errorTag$2 = '[object Error]';
-var funcTag$2 = '[object Function]';
-var genTag$1 = '[object GeneratorFunction]';
-var mapTag$3 = '[object Map]';
-var numberTag$2 = '[object Number]';
-var objectTag$3 = '[object Object]';
-var regexpTag$2 = '[object RegExp]';
-var setTag$3 = '[object Set]';
-var stringTag$2 = '[object String]';
-var symbolTag$2 = '[object Symbol]';
-var weakMapTag$2 = '[object WeakMap]';
-var arrayBufferTag$2 = '[object ArrayBuffer]';
-var dataViewTag$3 = '[object DataView]';
-var float32Tag$1 = '[object Float32Array]';
-var float64Tag$1 = '[object Float64Array]';
-var int8Tag$1 = '[object Int8Array]';
-var int16Tag$1 = '[object Int16Array]';
-var int32Tag$1 = '[object Int32Array]';
-var uint8Tag$1 = '[object Uint8Array]';
-var uint8ClampedTag$1 = '[object Uint8ClampedArray]';
-var uint16Tag$1 = '[object Uint16Array]';
-var uint32Tag$1 = '[object Uint32Array]';
-var cloneableTags = {};
-cloneableTags[argsTag$3] = cloneableTags[arrayTag$2] =
-cloneableTags[arrayBufferTag$2] = cloneableTags[dataViewTag$3] =
-cloneableTags[boolTag$2] = cloneableTags[dateTag$2] =
-cloneableTags[float32Tag$1] = cloneableTags[float64Tag$1] =
-cloneableTags[int8Tag$1] = cloneableTags[int16Tag$1] =
-cloneableTags[int32Tag$1] = cloneableTags[mapTag$3] =
-cloneableTags[numberTag$2] = cloneableTags[objectTag$3] =
-cloneableTags[regexpTag$2] = cloneableTags[setTag$3] =
-cloneableTags[stringTag$2] = cloneableTags[symbolTag$2] =
-cloneableTags[uint8Tag$1] = cloneableTags[uint8ClampedTag$1] =
-cloneableTags[uint16Tag$1] = cloneableTags[uint32Tag$1] = true;
-cloneableTags[errorTag$2] = cloneableTags[funcTag$2] =
-cloneableTags[weakMapTag$2] = false;
-function baseClone(value, bitmask, customizer, key, object, stack) {
-  var result,
-      isDeep = bitmask & CLONE_DEEP_FLAG$1,
-      isFlat = bitmask & CLONE_FLAT_FLAG,
-      isFull = bitmask & CLONE_SYMBOLS_FLAG$1;
-  if (customizer) {
-    result = object ? customizer(value, key, object, stack) : customizer(value);
-  }
-  if (result !== undefined) {
-    return result;
-  }
-  if (!isObject_1(value)) {
-    return value;
-  }
-  var isArr = isArray_1(value);
-  if (isArr) {
-    result = _initCloneArray(value);
-    if (!isDeep) {
-      return _copyArray(value, result);
-    }
-  } else {
-    var tag = _getTag(value),
-        isFunc = tag == funcTag$2 || tag == genTag$1;
-    if (isBuffer_1(value)) {
-      return _cloneBuffer(value, isDeep);
-    }
-    if (tag == objectTag$3 || tag == argsTag$3 || (isFunc && !object)) {
-      result = (isFlat || isFunc) ? {} : _initCloneObject(value);
-      if (!isDeep) {
-        return isFlat
-          ? _copySymbolsIn(value, _baseAssignIn(result, value))
-          : _copySymbols(value, _baseAssign(result, value));
-      }
-    } else {
-      if (!cloneableTags[tag]) {
-        return object ? value : {};
-      }
-      result = _initCloneByTag(value, tag, baseClone, isDeep);
-    }
-  }
-  stack || (stack = new _Stack);
-  var stacked = stack.get(value);
-  if (stacked) {
-    return stacked;
-  }
-  stack.set(value, result);
-  var keysFunc = isFull
-    ? (isFlat ? _getAllKeysIn : _getAllKeys)
-    : (isFlat ? keysIn : keys_1);
-  var props = isArr ? undefined : keysFunc(value);
-  _arrayEach(props || value, function(subValue, key) {
-    if (props) {
-      key = subValue;
-      subValue = value[key];
-    }
-    _assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
-  });
-  return result;
-}
-var _baseClone = baseClone;
-
-var CLONE_DEEP_FLAG = 1;
-var CLONE_SYMBOLS_FLAG = 4;
-function cloneDeep(value) {
-  return _baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
-}
-var cloneDeep_1 = cloneDeep;
-
-function isEqual(value, other) {
-  return _baseIsEqual(value, other);
-}
-var isEqual_1 = isEqual;
-
-function arrayAggregator(array, setter, iteratee, accumulator) {
-  var index = -1,
-      length = array == null ? 0 : array.length;
-  while (++index < length) {
-    var value = array[index];
-    setter(accumulator, value, iteratee(value), array);
-  }
-  return accumulator;
-}
-var _arrayAggregator = arrayAggregator;
-
-function createBaseFor(fromRight) {
-  return function(object, iteratee, keysFunc) {
-    var index = -1,
-        iterable = Object(object),
-        props = keysFunc(object),
-        length = props.length;
-    while (length--) {
-      var key = props[fromRight ? length : ++index];
-      if (iteratee(iterable[key], key, iterable) === false) {
-        break;
-      }
-    }
-    return object;
-  };
-}
-var _createBaseFor = createBaseFor;
-
-var baseFor = _createBaseFor();
-var _baseFor = baseFor;
-
-function baseForOwn(object, iteratee) {
-  return object && _baseFor(object, iteratee, keys_1);
-}
-var _baseForOwn = baseForOwn;
-
-function createBaseEach(eachFunc, fromRight) {
-  return function(collection, iteratee) {
-    if (collection == null) {
-      return collection;
-    }
-    if (!isArrayLike_1(collection)) {
-      return eachFunc(collection, iteratee);
-    }
-    var length = collection.length,
-        index = fromRight ? length : -1,
-        iterable = Object(collection);
-    while ((fromRight ? index-- : ++index < length)) {
-      if (iteratee(iterable[index], index, iterable) === false) {
-        break;
-      }
-    }
-    return collection;
-  };
-}
-var _createBaseEach = createBaseEach;
-
-var baseEach = _createBaseEach(_baseForOwn);
-var _baseEach = baseEach;
-
-function baseAggregator(collection, setter, iteratee, accumulator) {
-  _baseEach(collection, function(value, key, collection) {
-    setter(accumulator, value, iteratee(value), collection);
-  });
-  return accumulator;
-}
-var _baseAggregator = baseAggregator;
-
-function createAggregator(setter, initializer) {
-  return function(collection, iteratee) {
-    var func = isArray_1(collection) ? _arrayAggregator : _baseAggregator,
-        accumulator = initializer ? initializer() : {};
-    return func(collection, setter, _baseIteratee(iteratee, 2), accumulator);
-  };
-}
-var _createAggregator = createAggregator;
-
-var partition = _createAggregator(function(result, value, key) {
-  result[key ? 0 : 1].push(value);
-}, function() { return [[], []]; });
-var partition_1 = partition;
-
-var polyline_1 = createCommonjsModule(function (module) {
-var polyline = {};
-function py2_round(value) {
-    return Math.floor(Math.abs(value) + 0.5) * Math.sign(value);
-}
-function encode(current, previous, factor) {
-    current = py2_round(current * factor);
-    previous = py2_round(previous * factor);
-    var coordinate = current - previous;
-    coordinate <<= 1;
-    if (current - previous < 0) {
-        coordinate = ~coordinate;
-    }
-    var output = '';
-    while (coordinate >= 0x20) {
-        output += String.fromCharCode((0x20 | (coordinate & 0x1f)) + 63);
-        coordinate >>= 5;
-    }
-    output += String.fromCharCode(coordinate + 63);
-    return output;
-}
-polyline.decode = function(str, precision) {
-    var index = 0,
-        lat = 0,
-        lng = 0,
-        coordinates = [],
-        shift = 0,
-        result = 0,
-        byte = null,
-        latitude_change,
-        longitude_change,
-        factor = Math.pow(10, precision || 5);
-    while (index < str.length) {
-        byte = null;
-        shift = 0;
-        result = 0;
-        do {
-            byte = str.charCodeAt(index++) - 63;
-            result |= (byte & 0x1f) << shift;
-            shift += 5;
-        } while (byte >= 0x20);
-        latitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-        shift = result = 0;
-        do {
-            byte = str.charCodeAt(index++) - 63;
-            result |= (byte & 0x1f) << shift;
-            shift += 5;
-        } while (byte >= 0x20);
-        longitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
-        lat += latitude_change;
-        lng += longitude_change;
-        coordinates.push([lat / factor, lng / factor]);
-    }
-    return coordinates;
-};
-polyline.encode = function(coordinates, precision) {
-    if (!coordinates.length) { return ''; }
-    var factor = Math.pow(10, precision || 5),
-        output = encode(coordinates[0][0], 0, factor) + encode(coordinates[0][1], 0, factor);
-    for (var i = 1; i < coordinates.length; i++) {
-        var a = coordinates[i], b = coordinates[i - 1];
-        output += encode(a[0], b[0], factor);
-        output += encode(a[1], b[1], factor);
-    }
-    return output;
-};
-function flipped(coords) {
-    var flipped = [];
-    for (var i = 0; i < coords.length; i++) {
-        flipped.push(coords[i].slice().reverse());
-    }
-    return flipped;
-}
-polyline.fromGeoJSON = function(geojson, precision) {
-    if (geojson && geojson.type === 'Feature') {
-        geojson = geojson.geometry;
-    }
-    if (!geojson || geojson.type !== 'LineString') {
-        throw new Error('Input must be a GeoJSON LineString');
-    }
-    return polyline.encode(flipped(geojson.coordinates), precision);
-};
-polyline.toGeoJSON = function(str, precision) {
-    var coords = polyline.decode(str, precision);
-    return {
-        type: 'LineString',
-        coordinates: flipped(coords)
-    };
-};
-if ('object' === 'object' && module.exports) {
-    module.exports = polyline;
-}
-});
-
-function SVY21(config) {
-  var defaultConfig = {
-    a: 6378137,
-    f: 1 / 298.257223563,
-    oLat: 1.366666,
-    oLon: 103.833333,
-    oN: 38744.572,
-    oE: 28001.642,
-    k: 1
-  };
-  Object.assign(this, defaultConfig, config);
-  this.b = this.a * (1 - this.f);
-  this.e2 = 2 * this.f - this.f * this.f;
-  this.e4 = this.e2 * this.e2;
-  this.e6 = this.e4 * this.e2;
-  this.A0 = 1 - this.e2 / 4 - 3 * this.e4 / 64 - 5 * this.e6 / 256;
-  this.A2 = 3.0 / 8.0 * (this.e2 + this.e4 / 4 + 15 * this.e6 / 128);
-  this.A4 = 15.0 / 256.0 * (this.e4 + 3 * this.e6 / 4);
-  this.A6 = 35 * this.e6 / 3072;
-}
-SVY21.prototype.computeSVY21 = function (lat, lon) {
-  var latR = lat * Math.PI / 180;
-  var sinLat = Math.sin(latR);
-  var sin2Lat = sinLat * sinLat;
-  var cosLat = Math.cos(latR);
-  var cos2Lat = cosLat * cosLat;
-  var cos3Lat = cos2Lat * cosLat;
-  var cos4Lat = cos3Lat * cosLat;
-  var cos5Lat = cos4Lat * cosLat;
-  var cos6Lat = cos5Lat * cosLat;
-  var cos7Lat = cos6Lat * cosLat;
-  var rho = this.calcRho(sin2Lat);
-  var v = this.calcV(sin2Lat);
-  var psi = v / rho;
-  var t = Math.tan(latR);
-  var w = (lon - this.oLon) * Math.PI / 180;
-  var M = this.calcM(lat);
-  var Mo = this.calcM(this.oLat);
-  var w2 = w * w;
-  var w4 = w2 * w2;
-  var w6 = w4 * w2;
-  var w8 = w6 * w2;
-  var psi2 = psi * psi;
-  var psi3 = psi2 * psi;
-  var psi4 = psi3 * psi;
-  var t2 = t * t;
-  var t4 = t2 * t2;
-  var t6 = t4 * t2;
-  var nTerm1 = w2 / 2 * v * sinLat * cosLat;
-  var nTerm2 = w4 / 24 * v * sinLat * cos3Lat * (4 * psi2 + psi - t2);
-  var nTerm3 = w6 / 720 * v * sinLat * cos5Lat * (8 * psi4 * (11 - 24 * t2) - 28 * psi3 * (1 - 6 * t2) + psi2 * (1 - 32 * t2) - psi * 2 * t2 + t4);
-  var nTerm4 = w8 / 40320 * v * sinLat * cos7Lat * (1385 - 3111 * t2 + 543 * t4 - t6);
-  var N = this.oN + this.k * (M - Mo + nTerm1 + nTerm2 + nTerm3 + nTerm4);
-  var eTerm1 = w2 / 6 * cos2Lat * (psi - t2);
-  var eTerm2 = w4 / 120 * cos4Lat * (4 * psi3 * (1 - 6 * t2) + psi2 * (1 + 8 * t2) - psi * 2 * t2 + t4);
-  var eTerm3 = w6 / 5040 * cos6Lat * (61 - 479 * t2 + 179 * t4 - t6);
-  var E = this.oE + this.k * v * w * cosLat * (1 + eTerm1 + eTerm2 + eTerm3);
-  return { N: N, E: E };
-};
-SVY21.prototype.computeLatLon = function (N, E) {
-  var Nprime = N - this.oN;
-  var Mo = this.calcM(this.oLat);
-  var Mprime = Mo + Nprime / this.k;
-  var n = (this.a - this.b) / (this.a + this.b);
-  var n2 = n * n;
-  var n3 = n2 * n;
-  var n4 = n2 * n2;
-  var G = this.a * (1 - n) * (1 - n2) * (1 + 9 * n2 / 4 + 225 * n4 / 64) * (Math.PI / 180);
-  var sigma = Mprime * Math.PI / (180.0 * G);
-  var latPrimeT1 = (3 * n / 2 - 27 * n3 / 32) * Math.sin(2 * sigma);
-  var latPrimeT2 = (21 * n2 / 16 - 55 * n4 / 32) * Math.sin(4 * sigma);
-  var latPrimeT3 = 151 * n3 / 96 * Math.sin(6 * sigma);
-  var latPrimeT4 = 1097 * n4 / 512 * Math.sin(8 * sigma);
-  var latPrime = sigma + latPrimeT1 + latPrimeT2 + latPrimeT3 + latPrimeT4;
-  var sinLatPrime = Math.sin(latPrime);
-  var sin2LatPrime = sinLatPrime * sinLatPrime;
-  var rhoPrime = this.calcRho(sin2LatPrime);
-  var vPrime = this.calcV(sin2LatPrime);
-  var psiPrime = vPrime / rhoPrime;
-  var psiPrime2 = psiPrime * psiPrime;
-  var psiPrime3 = psiPrime2 * psiPrime;
-  var psiPrime4 = psiPrime3 * psiPrime;
-  var tPrime = Math.tan(latPrime);
-  var tPrime2 = tPrime * tPrime;
-  var tPrime4 = tPrime2 * tPrime2;
-  var tPrime6 = tPrime4 * tPrime2;
-  var Eprime = E - this.oE;
-  var x = Eprime / (this.k * vPrime);
-  var x2 = x * x;
-  var x3 = x2 * x;
-  var x5 = x3 * x2;
-  var x7 = x5 * x2;
-  var latFactor = tPrime / (this.k * rhoPrime);
-  var latTerm1 = latFactor * (Eprime * x / 2);
-  var latTerm2 = latFactor * (Eprime * x3 / 24) * (-4 * psiPrime2 + 9 * psiPrime * (1 - tPrime2) + 12 * tPrime2);
-  var latTerm3 = latFactor * (Eprime * x5 / 720) * (8 * psiPrime4 * (11 - 24 * tPrime2) - 12 * psiPrime3 * (21 - 71 * tPrime2) + 15 * psiPrime2 * (15 - 98 * tPrime2 + 15 * tPrime4) + 180 * psiPrime * (5 * tPrime2 - 3 * tPrime4) + 360 * tPrime4);
-  var latTerm4 = latFactor * (Eprime * x7 / 40320) * (1385 - 3633 * tPrime2 + 4095 * tPrime4 + 1575 * tPrime6);
-  var lat = latPrime - latTerm1 + latTerm2 - latTerm3 + latTerm4;
-  var secLatPrime = 1.0 / Math.cos(lat);
-  var lonTerm1 = x * secLatPrime;
-  var lonTerm2 = x3 * secLatPrime / 6 * (psiPrime + 2 * tPrime2);
-  var lonTerm3 = x5 * secLatPrime / 120 * (-4 * psiPrime3 * (1 - 6 * tPrime2) + psiPrime2 * (9 - 68 * tPrime2) + 72 * psiPrime * tPrime2 + 24 * tPrime4);
-  var lonTerm4 = x7 * secLatPrime / 5040 * (61 + 662 * tPrime2 + 1320 * tPrime4 + 720 * tPrime6);
-  var lon = this.oLon * Math.PI / 180 + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4;
-  return { lat: lat / (Math.PI / 180), lon: lon / (Math.PI / 180) };
-};
-SVY21.prototype.calcM = function (lat, lon) {
-  var latR = lat * Math.PI / 180;
-  return this.a * (this.A0 * latR - this.A2 * Math.sin(2 * latR) + this.A4 * Math.sin(4 * latR) - this.A6 * Math.sin(6 * latR));
-};
-SVY21.prototype.calcRho = function (sin2Lat) {
-  var num = this.a * (1 - this.e2);
-  var denom = Math.pow(1 - this.e2 * sin2Lat, 3.0 / 2.0);
-  return num / denom;
-};
-SVY21.prototype.calcV = function (sin2Lat) {
-  var poly = 1 - this.e2 * sin2Lat;
-  return this.a / Math.sqrt(poly);
-};
-
-var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-var PRECISION = 7;
-var svy21 = new SVY21();
-function inside(_ref, polyline$$1) {
-  var _ref2 = _slicedToArray$1(_ref, 2),
-      lng = _ref2[0],
-      lat = _ref2[1];
-  var isInside = false;
-  for (var i = 1; i < polyline$$1.length; i++) {
-    var deltaY_plus = polyline$$1[i][1] - lat;
-    var deltaY_minus = lat - polyline$$1[i - 1][1];
-    if (deltaY_plus > 0 && deltaY_minus <= 0) continue;
-    if (deltaY_plus < 0 && deltaY_minus >= 0) continue;
-    var deltaX = (deltaY_plus * polyline$$1[i - 1][0] + deltaY_minus * polyline$$1[i][0]) / (deltaY_plus + deltaY_minus) - lng;
-    if (deltaX <= 0) continue;
-    isInside = !isInside;
-  }
-  return isInside;
-}
-function encodePolyline(arr) {
-  return polyline_1.encode(arr, PRECISION);
-}
-function decodePolyline(str) {
-  return polyline_1.decode(str, PRECISION).map(function (_ref3) {
-    var _ref4 = _slicedToArray$1(_ref3, 2),
-        lng = _ref4[0],
-        lat = _ref4[1];
-    return [Math.round(lng * Math.pow(10, PRECISION - 2)) / Math.pow(10, PRECISION - 2), Math.round(lat * Math.pow(10, PRECISION - 2)) / Math.pow(10, PRECISION - 2)];
-  });
-}
-
-
-function toLinearRing(polyline$$1) {
-  var linearRing = typeof polyline$$1 === 'string' ? decodePolyline(polyline$$1) : cloneDeep_1(polyline$$1);
-  var firstPoint = linearRing[0];
-  var lastPoint = linearRing[linearRing.length - 1];
-  if (firstPoint[0] !== lastPoint[0] || firstPoint[1] !== lastPoint[1]) {
-    linearRing.push(firstPoint);
-  }
-  return linearRing;
-}
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-var SgHeatmap = function () {
-  function SgHeatmap(data) {
-    _classCallCheck(this, SgHeatmap);
-    var _data = typeof data === 'string' ? JSON.parse(data) : data;
-    if (!(_data instanceof Array)) throw new Error('Expects an array of feature objects');
-    this.children = _data.map(function (f) {
-      return new Feature(f);
-    });
-    this._defaultState = {};
-    this._updaters = [];
-    this._stats = {};
-  }
-  _createClass(SgHeatmap, [{
-    key: 'setDefaultState',
-    value: function setDefaultState(_key, value) {
-      this._defaultState[_key] = value;
-      this.children.forEach(function (c) {
-        if (_key in c.state) return;
-        c.state[_key] = cloneDeep_1(value);
-      });
-      return this;
-    }
-  }, {
-    key: 'resetState',
-    value: function resetState() {
-      var _this = this;
-      this.children.forEach(function (c) {
-        c.state = cloneDeep_1(_this._defaultState);
-      });
-      return this;
-    }
-  }, {
-    key: 'registerUpdater',
-    value: function registerUpdater(fn) {
-      this._updaters.push(fn);
-      return this;
-    }
-  }, {
-    key: 'inspectUpdaters',
-    value: function inspectUpdaters() {
-      this._updaters.map(function (fn, i) {
-        console.log('Inspecting updater "' + (i + 1) + '"');
-        console.log(fn);
-      });
-    }
-  }, {
-    key: 'registerStat',
-    value: function registerStat(key, fn) {
-      this._stats[key] = fn;
-      return this;
-    }
-  }, {
-    key: 'inspectStats',
-    value: function inspectStats() {
-      var _this2 = this;
-      Object.keys(this._stats).forEach(function (key, i) {
-        console.log('Inspecting stat "' + key + '"');
-        console.log(_this2._stats[key]);
-      });
-    }
-  }, {
-    key: 'bin',
-    value: function bin(lnglat) {
-      return this.children.filter(function (c) {
-        return c.inside(lnglat);
-      });
-    }
-  }, {
-    key: 'update',
-    value: function update(lnglat, weight) {
-      var _this3 = this;
-      this.bin(lnglat).forEach(function (c) {
-        c.state = _this3._updaters.reduce(function (nextState, fn) {
-          return Object.assign(nextState, fn(weight, c.state));
-        }, {});
-      });
-      return this;
-    }
-  }, {
-    key: 'getStat',
-    value: function getStat(stat) {
-      var _this4 = this;
-      var fn = typeof stat === 'function' ? stat : this._stats[stat];
-      var _partition = partition_1(this.children, function (c) {
-        return !isEqual_1(_this4._defaultState, c.state);
-      }),
-          _partition2 = _slicedToArray(_partition, 2),
-          changed = _partition2[0],
-          unchanged = _partition2[1];
-      var listedValues = [];
-      var values = changed.reduce(function (stats, c) {
-        var value = fn(c.state, c.properties);
-        listedValues.push(value);
-        return Object.assign(stats, _defineProperty({}, c.id, value));
-      }, {});
-      return {
-        stat: stat,
-        values: values,
-        unchanged: unchanged.map(function (c) {
-          return c.id;
-        }),
-        min: minBy_1(listedValues),
-        max: maxBy_1(listedValues)
-      };
-    }
-  }, {
-    key: 'initializeRenderer',
-    value: function initializeRenderer(colorScale) {
-      var _this5 = this;
-      var defaultStyle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var addonStyle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      if (!window) throw new Error('Method initializeRenderer should only be called browser-side');
-      if (!window.google) throw new Error('Google Maps not loaded');
-      if ('renderer' in this) {
-        console.log('Existing renderer replaced');
-        this.renderer.setMap(null);
-      }
-      this.colorScale = colorScale;
-      this.renderer = new window.google.maps.Data({
-        style: function style(feature) {
-          var styleOptions = Object.assign({}, defaultStyle);
-          var color = feature.getProperty('color');
-          if (color) Object.assign(styleOptions, addonStyle, { fillColor: color });
-          return styleOptions;
-        }
-      });
-      this.children.forEach(function (c) {
-        _this5.renderer.addGeoJson({
-          id: c.id,
-          type: 'Feature',
-          geometry: c.geometry,
-          properties: Object.assign({ color: null }, c.properties)
-        });
-      });
-      return this.renderer;
-    }
-  }, {
-    key: 'render',
-    value: function render(stat) {
-      var _this6 = this;
-      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      if (!this.renderer) throw new Error('Renderer has not been initialized');
-      var _getStat = this.getStat(stat),
-          statValues = _getStat.values,
-          unchanged = _getStat.unchanged,
-          min = _getStat.min,
-          max = _getStat.max;
-      var domain = options.domain || [min, max];
-      function normalize(value) {
-        return (value - domain[0]) / (domain[1] - domain[0]);
-      }
-      Object.keys(statValues).forEach(function (key) {
-        var normalized = normalize(statValues[key]);
-        var transformed = Math.pow(normalized, options.transform || 1);
-        var color = _this6.colorScale(transformed);
-        _this6.renderer.getFeatureById(key).setProperty('color', color);
-      });
-      unchanged.forEach(function (key) {
-        _this6.renderer.getFeatureById(key).setProperty('color', null);
-      });
-    }
-  }, {
-    key: 'clone',
-    value: function clone() {
-      var includeState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      var cloned = new SgHeatmap(this.children);
-      cloned._updaters = [].concat(_toConsumableArray(this._updaters));
-      cloned._stats = _extends({}, this._stats);
-      if (includeState) {
-        cloned._defaultState = this.defaultState;
-      } else {
-        cloned.children.forEach(function (c) {
-          c.state = {};
-        });
-      }
-      return cloned;
-    }
-  }, {
-    key: 'serialize',
-    value: function serialize() {
-      var includeState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      return '[' + this.children.map(function (c) {
-        return c.serialize(includeState);
-      }).join(',') + ']';
-    }
-  }]);
-  return SgHeatmap;
-}();
-var Feature = function () {
-  function Feature(data) {
-    _classCallCheck(this, Feature);
-    if (!('id' in data)) throw new Error('Feature object requires id');
-    if (!('geometry' in data)) throw new Error('Geometry not specified in feature object');
-    this.type = 'Feature';
-    this.id = data.id;
-    this.properties = data.properties ? cloneDeep_1(data.properties) : {};
-    this.geometry = {};
-    this.geometry.type = data.geometry.type;
-    if (this.geometry.type === 'Polygon') {
-      this.geometry.coordinates = data.geometry.coordinates.map(toLinearRing);
-      this.geometry.bbox = 'bbox' in data.geometry ? cloneDeep_1(data.geometry.bbox) : [minBy_1(this.geometry.coordinates[0], function (v) {
-        return v[0];
-      })[0], minBy_1(this.geometry.coordinates[0], function (v) {
-        return v[1];
-      })[1], maxBy_1(this.geometry.coordinates[0], function (v) {
-        return v[0];
-      })[0], maxBy_1(this.geometry.coordinates[0], function (v) {
-        return v[1];
-      })[1]];
-    } else if (this.geometry.type === 'MultiPolygon') {
-      this.geometry.coordinates = data.geometry.coordinates.map(function (polygon) {
-        return polygon.map(toLinearRing);
-      });
-      if ('bbox' in data.geometry) {
-        this.geometry.bbox = cloneDeep_1(data.geometry.bbox);
-      } else {
-        var bboxs = this.geometry.coordinates.map(function (polygon) {
-          return [minBy_1(polygon[0], function (v) {
-            return v[0];
-          })[0], minBy_1(polygon[0], function (v) {
-            return v[1];
-          })[1], maxBy_1(polygon[0], function (v) {
-            return v[0];
-          })[0], maxBy_1(polygon[0], function (v) {
-            return v[1];
-          })[1]];
-        });
-        this.geometry.bbox = [minBy_1(bboxs, function (v) {
-          return v[0];
-        })[0], minBy_1(bboxs, function (v) {
-          return v[1];
-        })[1], maxBy_1(bboxs, function (v) {
-          return v[2];
-        })[2], maxBy_1(bboxs, function (v) {
-          return v[3];
-        })[3]];
-      }
-    } else {
-      throw new Error('Feature geometry must be of type Polygon or MultiPolygon');
-    }
-    this.state = 'state' in data ? cloneDeep_1(data.state) : {};
-  }
-  _createClass(Feature, [{
-    key: 'inside',
-    value: function inside$$1(location) {
-      var _location = _slicedToArray(location, 2),
-          lng = _location[0],
-          lat = _location[1];
-      if (lng < this.geometry.bbox[0]) return false;
-      if (lat < this.geometry.bbox[1]) return false;
-      if (lng > this.geometry.bbox[2]) return false;
-      if (lat > this.geometry.bbox[3]) return false;
-      if (this.geometry.type === 'Polygon') {
-        return inside([lng, lat], this.geometry.coordinates[0]);
-      } else {
-        return this.geometry.coordinates.some(function (polygon) {
-          return inside([lng, lat], polygon[0]);
-        });
-      }
-    }
-  }, {
-    key: 'serialize',
-    value: function serialize() {
-      var includeState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      var id = this.id,
-          properties = this.properties,
-          geometry = this.geometry,
-          state = this.state;
-      var _geometry = {
-        type: geometry.type,
-        bbox: geometry.bbox,
-        coordinates: geometry.type === 'Polygon' ? geometry.coordinates.map(encodePolyline) : geometry.coordinates.map(function (polygon) {
-          return polygon.map(encodePolyline);
-        })
-      };
-      var _state = includeState ? state : {};
-      return JSON.stringify({ id: id, properties: properties, geometry: _geometry, state: _state });
-    }
-  }]);
-  return Feature;
-}();
-
-function supportLeaflet(heatmap) {
-  function initializeRenderer(colorScale) {
-    var defaultStyle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var addonStyle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    if (!window) throw new Error('Method initializeRenderer should only be called browser-side');
-    if (!window.L) throw new Error('Leaflet not loaded');
-    if ('renderer' in this) {
-      console.log('Existing renderer replaced');
-      this.renderer.remove();
-    }
-    this.colorScale = colorScale;
-    this.renderer = window.L.geoJSON(null, {
-      style: function style(feature) {
-        var styleOptions = Object.assign({}, defaultStyle);
-        var color = feature.properties.color;
-        if (color) Object.assign(styleOptions, addonStyle, { fillColor: color });
-        return styleOptions;
-      }
-    }).addData(this.children.map(function (c) {
-      return {
-        id: c.id,
-        type: 'Feature',
-        geometry: c.geometry,
-        properties: Object.assign({ color: null }, c.properties)
-      };
-    }));
-    return this.renderer;
-  }
-  function render(stat) {
-    var _this = this;
-    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-    if (!this.renderer) throw new Error('Renderer has not been initialized');
-    var _getStat = this.getStat(stat),
-        statValues = _getStat.values,
-        min = _getStat.min,
-        max = _getStat.max;
-    var domain = options.domain || [min, max];
-    function normalize(value) {
-      return (value - domain[0]) / (domain[1] - domain[0]);
-    }
-    this.renderer.eachLayer(function (layer) {
-      var key = layer.feature.id;
-      if (key in statValues) {
-        var normalized = normalize(statValues[key]);
-        var transformed = Math.pow(normalized, options.transform || 1);
-        layer.feature.properties.color = _this.colorScale(transformed);
-      } else {
-        layer.feature.properties.color = null;
-      }
-      _this.renderer.resetStyle(layer);
-    });
-  }
-  heatmap.initializeRenderer = initializeRenderer.bind(heatmap);
-  heatmap.render = render.bind(heatmap);
-}
+var vSlider = unwrapExports(dist);
 
 var chroma = createCommonjsModule(function (module, exports) {
 /**
@@ -4947,7 +2464,7 @@ var chroma = createCommonjsModule(function (module, exports) {
 }).call(commonjsGlobal);
 });
 
-var _slicedToArray$2 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 function getColorScale(colorArray) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   Object.assign({
@@ -5004,7 +2521,7 @@ function optimizePointSpread(stat, options) {
     k = Math.exp(Math.log(k) - options.gamma * beta * k);
     if (scoreHistory.length >= 2) {
       var _scoreHistory$slice = scoreHistory.slice(-2),
-          _scoreHistory$slice2 = _slicedToArray$2(_scoreHistory$slice, 2),
+          _scoreHistory$slice2 = _slicedToArray(_scoreHistory$slice, 2),
           prevScore = _scoreHistory$slice2[0],
           lastScore = _scoreHistory$slice2[1];
       if (Math.abs(lastScore - prevScore) < options.epsilon) return 'break';
@@ -5018,7 +2535,9 @@ function optimizePointSpread(stat, options) {
 }
 
 
-
+function GnBu() {
+  return getColorScale('GnBu', { correctLightness: false });
+}
 
 
 
@@ -5029,6 +2548,2496 @@ function optimizePointSpread(stat, options) {
 
 function YlOrRd() {
   return getColorScale('YlOrRd', { correctLightness: false });
+}
+
+var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+var _freeGlobal = freeGlobal;
+
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+var root = _freeGlobal || freeSelf || Function('return this')();
+var _root = root;
+
+var Symbol$1 = _root.Symbol;
+var _Symbol = Symbol$1;
+
+var objectProto = Object.prototype;
+var hasOwnProperty = objectProto.hasOwnProperty;
+var nativeObjectToString = objectProto.toString;
+var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag$1),
+      tag = value[symToStringTag$1];
+  try {
+    value[symToStringTag$1] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag$1] = tag;
+    } else {
+      delete value[symToStringTag$1];
+    }
+  }
+  return result;
+}
+var _getRawTag = getRawTag;
+
+var objectProto$1 = Object.prototype;
+var nativeObjectToString$1 = objectProto$1.toString;
+function objectToString(value) {
+  return nativeObjectToString$1.call(value);
+}
+var _objectToString = objectToString;
+
+var nullTag = '[object Null]';
+var undefinedTag = '[object Undefined]';
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? _getRawTag(value)
+    : _objectToString(value);
+}
+var _baseGetTag = baseGetTag;
+
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+var isObjectLike_1 = isObjectLike;
+
+var symbolTag = '[object Symbol]';
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
+}
+var isSymbol_1 = isSymbol;
+
+function baseExtremum(array, iteratee, comparator) {
+  var index = -1,
+      length = array.length;
+  while (++index < length) {
+    var value = array[index],
+        current = iteratee(value);
+    if (current != null && (computed === undefined
+          ? (current === current && !isSymbol_1(current))
+          : comparator(current, computed)
+        )) {
+      var computed = current,
+          result = value;
+    }
+  }
+  return result;
+}
+var _baseExtremum = baseExtremum;
+
+function listCacheClear() {
+  this.__data__ = [];
+  this.size = 0;
+}
+var _listCacheClear = listCacheClear;
+
+function eq(value, other) {
+  return value === other || (value !== value && other !== other);
+}
+var eq_1 = eq;
+
+function assocIndexOf(array, key) {
+  var length = array.length;
+  while (length--) {
+    if (eq_1(array[length][0], key)) {
+      return length;
+    }
+  }
+  return -1;
+}
+var _assocIndexOf = assocIndexOf;
+
+var arrayProto = Array.prototype;
+var splice = arrayProto.splice;
+function listCacheDelete(key) {
+  var data = this.__data__,
+      index = _assocIndexOf(data, key);
+  if (index < 0) {
+    return false;
+  }
+  var lastIndex = data.length - 1;
+  if (index == lastIndex) {
+    data.pop();
+  } else {
+    splice.call(data, index, 1);
+  }
+  --this.size;
+  return true;
+}
+var _listCacheDelete = listCacheDelete;
+
+function listCacheGet(key) {
+  var data = this.__data__,
+      index = _assocIndexOf(data, key);
+  return index < 0 ? undefined : data[index][1];
+}
+var _listCacheGet = listCacheGet;
+
+function listCacheHas(key) {
+  return _assocIndexOf(this.__data__, key) > -1;
+}
+var _listCacheHas = listCacheHas;
+
+function listCacheSet(key, value) {
+  var data = this.__data__,
+      index = _assocIndexOf(data, key);
+  if (index < 0) {
+    ++this.size;
+    data.push([key, value]);
+  } else {
+    data[index][1] = value;
+  }
+  return this;
+}
+var _listCacheSet = listCacheSet;
+
+function ListCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+ListCache.prototype.clear = _listCacheClear;
+ListCache.prototype['delete'] = _listCacheDelete;
+ListCache.prototype.get = _listCacheGet;
+ListCache.prototype.has = _listCacheHas;
+ListCache.prototype.set = _listCacheSet;
+var _ListCache = ListCache;
+
+function stackClear() {
+  this.__data__ = new _ListCache;
+  this.size = 0;
+}
+var _stackClear = stackClear;
+
+function stackDelete(key) {
+  var data = this.__data__,
+      result = data['delete'](key);
+  this.size = data.size;
+  return result;
+}
+var _stackDelete = stackDelete;
+
+function stackGet(key) {
+  return this.__data__.get(key);
+}
+var _stackGet = stackGet;
+
+function stackHas(key) {
+  return this.__data__.has(key);
+}
+var _stackHas = stackHas;
+
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+var isObject_1 = isObject;
+
+var asyncTag = '[object AsyncFunction]';
+var funcTag = '[object Function]';
+var genTag = '[object GeneratorFunction]';
+var proxyTag = '[object Proxy]';
+function isFunction(value) {
+  if (!isObject_1(value)) {
+    return false;
+  }
+  var tag = _baseGetTag(value);
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+}
+var isFunction_1 = isFunction;
+
+var coreJsData = _root['__core-js_shared__'];
+var _coreJsData = coreJsData;
+
+var maskSrcKey = (function() {
+  var uid = /[^.]+$/.exec(_coreJsData && _coreJsData.keys && _coreJsData.keys.IE_PROTO || '');
+  return uid ? ('Symbol(src)_1.' + uid) : '';
+}());
+function isMasked(func) {
+  return !!maskSrcKey && (maskSrcKey in func);
+}
+var _isMasked = isMasked;
+
+var funcProto$1 = Function.prototype;
+var funcToString$1 = funcProto$1.toString;
+function toSource(func) {
+  if (func != null) {
+    try {
+      return funcToString$1.call(func);
+    } catch (e) {}
+    try {
+      return (func + '');
+    } catch (e) {}
+  }
+  return '';
+}
+var _toSource = toSource;
+
+var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
+var reIsHostCtor = /^\[object .+?Constructor\]$/;
+var funcProto = Function.prototype;
+var objectProto$2 = Object.prototype;
+var funcToString = funcProto.toString;
+var hasOwnProperty$1 = objectProto$2.hasOwnProperty;
+var reIsNative = RegExp('^' +
+  funcToString.call(hasOwnProperty$1).replace(reRegExpChar, '\\$&')
+  .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, '$1.*?') + '$'
+);
+function baseIsNative(value) {
+  if (!isObject_1(value) || _isMasked(value)) {
+    return false;
+  }
+  var pattern = isFunction_1(value) ? reIsNative : reIsHostCtor;
+  return pattern.test(_toSource(value));
+}
+var _baseIsNative = baseIsNative;
+
+function getValue(object, key) {
+  return object == null ? undefined : object[key];
+}
+var _getValue = getValue;
+
+function getNative(object, key) {
+  var value = _getValue(object, key);
+  return _baseIsNative(value) ? value : undefined;
+}
+var _getNative = getNative;
+
+var Map = _getNative(_root, 'Map');
+var _Map = Map;
+
+var nativeCreate = _getNative(Object, 'create');
+var _nativeCreate = nativeCreate;
+
+function hashClear() {
+  this.__data__ = _nativeCreate ? _nativeCreate(null) : {};
+  this.size = 0;
+}
+var _hashClear = hashClear;
+
+function hashDelete(key) {
+  var result = this.has(key) && delete this.__data__[key];
+  this.size -= result ? 1 : 0;
+  return result;
+}
+var _hashDelete = hashDelete;
+
+var HASH_UNDEFINED = '__lodash_hash_undefined__';
+var objectProto$3 = Object.prototype;
+var hasOwnProperty$2 = objectProto$3.hasOwnProperty;
+function hashGet(key) {
+  var data = this.__data__;
+  if (_nativeCreate) {
+    var result = data[key];
+    return result === HASH_UNDEFINED ? undefined : result;
+  }
+  return hasOwnProperty$2.call(data, key) ? data[key] : undefined;
+}
+var _hashGet = hashGet;
+
+var objectProto$4 = Object.prototype;
+var hasOwnProperty$3 = objectProto$4.hasOwnProperty;
+function hashHas(key) {
+  var data = this.__data__;
+  return _nativeCreate ? (data[key] !== undefined) : hasOwnProperty$3.call(data, key);
+}
+var _hashHas = hashHas;
+
+var HASH_UNDEFINED$1 = '__lodash_hash_undefined__';
+function hashSet(key, value) {
+  var data = this.__data__;
+  this.size += this.has(key) ? 0 : 1;
+  data[key] = (_nativeCreate && value === undefined) ? HASH_UNDEFINED$1 : value;
+  return this;
+}
+var _hashSet = hashSet;
+
+function Hash(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+Hash.prototype.clear = _hashClear;
+Hash.prototype['delete'] = _hashDelete;
+Hash.prototype.get = _hashGet;
+Hash.prototype.has = _hashHas;
+Hash.prototype.set = _hashSet;
+var _Hash = Hash;
+
+function mapCacheClear() {
+  this.size = 0;
+  this.__data__ = {
+    'hash': new _Hash,
+    'map': new (_Map || _ListCache),
+    'string': new _Hash
+  };
+}
+var _mapCacheClear = mapCacheClear;
+
+function isKeyable(value) {
+  var type = typeof value;
+  return (type == 'string' || type == 'number' || type == 'symbol' || type == 'boolean')
+    ? (value !== '__proto__')
+    : (value === null);
+}
+var _isKeyable = isKeyable;
+
+function getMapData(map, key) {
+  var data = map.__data__;
+  return _isKeyable(key)
+    ? data[typeof key == 'string' ? 'string' : 'hash']
+    : data.map;
+}
+var _getMapData = getMapData;
+
+function mapCacheDelete(key) {
+  var result = _getMapData(this, key)['delete'](key);
+  this.size -= result ? 1 : 0;
+  return result;
+}
+var _mapCacheDelete = mapCacheDelete;
+
+function mapCacheGet(key) {
+  return _getMapData(this, key).get(key);
+}
+var _mapCacheGet = mapCacheGet;
+
+function mapCacheHas(key) {
+  return _getMapData(this, key).has(key);
+}
+var _mapCacheHas = mapCacheHas;
+
+function mapCacheSet(key, value) {
+  var data = _getMapData(this, key),
+      size = data.size;
+  data.set(key, value);
+  this.size += data.size == size ? 0 : 1;
+  return this;
+}
+var _mapCacheSet = mapCacheSet;
+
+function MapCache(entries) {
+  var index = -1,
+      length = entries == null ? 0 : entries.length;
+  this.clear();
+  while (++index < length) {
+    var entry = entries[index];
+    this.set(entry[0], entry[1]);
+  }
+}
+MapCache.prototype.clear = _mapCacheClear;
+MapCache.prototype['delete'] = _mapCacheDelete;
+MapCache.prototype.get = _mapCacheGet;
+MapCache.prototype.has = _mapCacheHas;
+MapCache.prototype.set = _mapCacheSet;
+var _MapCache = MapCache;
+
+var LARGE_ARRAY_SIZE = 200;
+function stackSet(key, value) {
+  var data = this.__data__;
+  if (data instanceof _ListCache) {
+    var pairs = data.__data__;
+    if (!_Map || (pairs.length < LARGE_ARRAY_SIZE - 1)) {
+      pairs.push([key, value]);
+      this.size = ++data.size;
+      return this;
+    }
+    data = this.__data__ = new _MapCache(pairs);
+  }
+  data.set(key, value);
+  this.size = data.size;
+  return this;
+}
+var _stackSet = stackSet;
+
+function Stack(entries) {
+  var data = this.__data__ = new _ListCache(entries);
+  this.size = data.size;
+}
+Stack.prototype.clear = _stackClear;
+Stack.prototype['delete'] = _stackDelete;
+Stack.prototype.get = _stackGet;
+Stack.prototype.has = _stackHas;
+Stack.prototype.set = _stackSet;
+var _Stack = Stack;
+
+var HASH_UNDEFINED$2 = '__lodash_hash_undefined__';
+function setCacheAdd(value) {
+  this.__data__.set(value, HASH_UNDEFINED$2);
+  return this;
+}
+var _setCacheAdd = setCacheAdd;
+
+function setCacheHas(value) {
+  return this.__data__.has(value);
+}
+var _setCacheHas = setCacheHas;
+
+function SetCache(values) {
+  var index = -1,
+      length = values == null ? 0 : values.length;
+  this.__data__ = new _MapCache;
+  while (++index < length) {
+    this.add(values[index]);
+  }
+}
+SetCache.prototype.add = SetCache.prototype.push = _setCacheAdd;
+SetCache.prototype.has = _setCacheHas;
+var _SetCache = SetCache;
+
+function arraySome(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+  while (++index < length) {
+    if (predicate(array[index], index, array)) {
+      return true;
+    }
+  }
+  return false;
+}
+var _arraySome = arraySome;
+
+function cacheHas(cache, key) {
+  return cache.has(key);
+}
+var _cacheHas = cacheHas;
+
+var COMPARE_PARTIAL_FLAG$2 = 1;
+var COMPARE_UNORDERED_FLAG$1 = 2;
+function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG$2,
+      arrLength = array.length,
+      othLength = other.length;
+  if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+    return false;
+  }
+  var stacked = stack.get(array);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var index = -1,
+      result = true,
+      seen = (bitmask & COMPARE_UNORDERED_FLAG$1) ? new _SetCache : undefined;
+  stack.set(array, other);
+  stack.set(other, array);
+  while (++index < arrLength) {
+    var arrValue = array[index],
+        othValue = other[index];
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, arrValue, index, other, array, stack)
+        : customizer(arrValue, othValue, index, array, other, stack);
+    }
+    if (compared !== undefined) {
+      if (compared) {
+        continue;
+      }
+      result = false;
+      break;
+    }
+    if (seen) {
+      if (!_arraySome(other, function(othValue, othIndex) {
+            if (!_cacheHas(seen, othIndex) &&
+                (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+              return seen.push(othIndex);
+            }
+          })) {
+        result = false;
+        break;
+      }
+    } else if (!(
+          arrValue === othValue ||
+            equalFunc(arrValue, othValue, bitmask, customizer, stack)
+        )) {
+      result = false;
+      break;
+    }
+  }
+  stack['delete'](array);
+  stack['delete'](other);
+  return result;
+}
+var _equalArrays = equalArrays;
+
+var Uint8Array = _root.Uint8Array;
+var _Uint8Array = Uint8Array;
+
+function mapToArray(map) {
+  var index = -1,
+      result = Array(map.size);
+  map.forEach(function(value, key) {
+    result[++index] = [key, value];
+  });
+  return result;
+}
+var _mapToArray = mapToArray;
+
+function setToArray(set) {
+  var index = -1,
+      result = Array(set.size);
+  set.forEach(function(value) {
+    result[++index] = value;
+  });
+  return result;
+}
+var _setToArray = setToArray;
+
+var COMPARE_PARTIAL_FLAG$3 = 1;
+var COMPARE_UNORDERED_FLAG$2 = 2;
+var boolTag = '[object Boolean]';
+var dateTag = '[object Date]';
+var errorTag = '[object Error]';
+var mapTag = '[object Map]';
+var numberTag = '[object Number]';
+var regexpTag = '[object RegExp]';
+var setTag = '[object Set]';
+var stringTag = '[object String]';
+var symbolTag$1 = '[object Symbol]';
+var arrayBufferTag = '[object ArrayBuffer]';
+var dataViewTag = '[object DataView]';
+var symbolProto = _Symbol ? _Symbol.prototype : undefined;
+var symbolValueOf = symbolProto ? symbolProto.valueOf : undefined;
+function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+  switch (tag) {
+    case dataViewTag:
+      if ((object.byteLength != other.byteLength) ||
+          (object.byteOffset != other.byteOffset)) {
+        return false;
+      }
+      object = object.buffer;
+      other = other.buffer;
+    case arrayBufferTag:
+      if ((object.byteLength != other.byteLength) ||
+          !equalFunc(new _Uint8Array(object), new _Uint8Array(other))) {
+        return false;
+      }
+      return true;
+    case boolTag:
+    case dateTag:
+    case numberTag:
+      return eq_1(+object, +other);
+    case errorTag:
+      return object.name == other.name && object.message == other.message;
+    case regexpTag:
+    case stringTag:
+      return object == (other + '');
+    case mapTag:
+      var convert = _mapToArray;
+    case setTag:
+      var isPartial = bitmask & COMPARE_PARTIAL_FLAG$3;
+      convert || (convert = _setToArray);
+      if (object.size != other.size && !isPartial) {
+        return false;
+      }
+      var stacked = stack.get(object);
+      if (stacked) {
+        return stacked == other;
+      }
+      bitmask |= COMPARE_UNORDERED_FLAG$2;
+      stack.set(object, other);
+      var result = _equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
+      stack['delete'](object);
+      return result;
+    case symbolTag$1:
+      if (symbolValueOf) {
+        return symbolValueOf.call(object) == symbolValueOf.call(other);
+      }
+  }
+  return false;
+}
+var _equalByTag = equalByTag;
+
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+var _arrayPush = arrayPush;
+
+var isArray = Array.isArray;
+var isArray_1 = isArray;
+
+function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+  var result = keysFunc(object);
+  return isArray_1(object) ? result : _arrayPush(result, symbolsFunc(object));
+}
+var _baseGetAllKeys = baseGetAllKeys;
+
+function arrayFilter(array, predicate) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      resIndex = 0,
+      result = [];
+  while (++index < length) {
+    var value = array[index];
+    if (predicate(value, index, array)) {
+      result[resIndex++] = value;
+    }
+  }
+  return result;
+}
+var _arrayFilter = arrayFilter;
+
+function stubArray() {
+  return [];
+}
+var stubArray_1 = stubArray;
+
+var objectProto$7 = Object.prototype;
+var propertyIsEnumerable = objectProto$7.propertyIsEnumerable;
+var nativeGetSymbols = Object.getOwnPropertySymbols;
+var getSymbols = !nativeGetSymbols ? stubArray_1 : function(object) {
+  if (object == null) {
+    return [];
+  }
+  object = Object(object);
+  return _arrayFilter(nativeGetSymbols(object), function(symbol) {
+    return propertyIsEnumerable.call(object, symbol);
+  });
+};
+var _getSymbols = getSymbols;
+
+function baseTimes(n, iteratee) {
+  var index = -1,
+      result = Array(n);
+  while (++index < n) {
+    result[index] = iteratee(index);
+  }
+  return result;
+}
+var _baseTimes = baseTimes;
+
+var argsTag$1 = '[object Arguments]';
+function baseIsArguments(value) {
+  return isObjectLike_1(value) && _baseGetTag(value) == argsTag$1;
+}
+var _baseIsArguments = baseIsArguments;
+
+var objectProto$9 = Object.prototype;
+var hasOwnProperty$7 = objectProto$9.hasOwnProperty;
+var propertyIsEnumerable$1 = objectProto$9.propertyIsEnumerable;
+var isArguments = _baseIsArguments(function() { return arguments; }()) ? _baseIsArguments : function(value) {
+  return isObjectLike_1(value) && hasOwnProperty$7.call(value, 'callee') &&
+    !propertyIsEnumerable$1.call(value, 'callee');
+};
+var isArguments_1 = isArguments;
+
+function stubFalse() {
+  return false;
+}
+var stubFalse_1 = stubFalse;
+
+var isBuffer_1 = createCommonjsModule(function (module, exports) {
+var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
+var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
+var moduleExports = freeModule && freeModule.exports === freeExports;
+var Buffer = moduleExports ? _root.Buffer : undefined;
+var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
+var isBuffer = nativeIsBuffer || stubFalse_1;
+module.exports = isBuffer;
+});
+
+var MAX_SAFE_INTEGER = 9007199254740991;
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+function isIndex(value, length) {
+  length = length == null ? MAX_SAFE_INTEGER : length;
+  return !!length &&
+    (typeof value == 'number' || reIsUint.test(value)) &&
+    (value > -1 && value % 1 == 0 && value < length);
+}
+var _isIndex = isIndex;
+
+var MAX_SAFE_INTEGER$1 = 9007199254740991;
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER$1;
+}
+var isLength_1 = isLength;
+
+var argsTag$2 = '[object Arguments]';
+var arrayTag$1 = '[object Array]';
+var boolTag$1 = '[object Boolean]';
+var dateTag$1 = '[object Date]';
+var errorTag$1 = '[object Error]';
+var funcTag$1 = '[object Function]';
+var mapTag$1 = '[object Map]';
+var numberTag$1 = '[object Number]';
+var objectTag$1 = '[object Object]';
+var regexpTag$1 = '[object RegExp]';
+var setTag$1 = '[object Set]';
+var stringTag$1 = '[object String]';
+var weakMapTag = '[object WeakMap]';
+var arrayBufferTag$1 = '[object ArrayBuffer]';
+var dataViewTag$1 = '[object DataView]';
+var float32Tag = '[object Float32Array]';
+var float64Tag = '[object Float64Array]';
+var int8Tag = '[object Int8Array]';
+var int16Tag = '[object Int16Array]';
+var int32Tag = '[object Int32Array]';
+var uint8Tag = '[object Uint8Array]';
+var uint8ClampedTag = '[object Uint8ClampedArray]';
+var uint16Tag = '[object Uint16Array]';
+var uint32Tag = '[object Uint32Array]';
+var typedArrayTags = {};
+typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+typedArrayTags[uint32Tag] = true;
+typedArrayTags[argsTag$2] = typedArrayTags[arrayTag$1] =
+typedArrayTags[arrayBufferTag$1] = typedArrayTags[boolTag$1] =
+typedArrayTags[dataViewTag$1] = typedArrayTags[dateTag$1] =
+typedArrayTags[errorTag$1] = typedArrayTags[funcTag$1] =
+typedArrayTags[mapTag$1] = typedArrayTags[numberTag$1] =
+typedArrayTags[objectTag$1] = typedArrayTags[regexpTag$1] =
+typedArrayTags[setTag$1] = typedArrayTags[stringTag$1] =
+typedArrayTags[weakMapTag] = false;
+function baseIsTypedArray(value) {
+  return isObjectLike_1(value) &&
+    isLength_1(value.length) && !!typedArrayTags[_baseGetTag(value)];
+}
+var _baseIsTypedArray = baseIsTypedArray;
+
+function baseUnary(func) {
+  return function(value) {
+    return func(value);
+  };
+}
+var _baseUnary = baseUnary;
+
+var _nodeUtil = createCommonjsModule(function (module, exports) {
+var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
+var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
+var moduleExports = freeModule && freeModule.exports === freeExports;
+var freeProcess = moduleExports && _freeGlobal.process;
+var nodeUtil = (function() {
+  try {
+    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+  } catch (e) {}
+}());
+module.exports = nodeUtil;
+});
+
+var nodeIsTypedArray = _nodeUtil && _nodeUtil.isTypedArray;
+var isTypedArray = nodeIsTypedArray ? _baseUnary(nodeIsTypedArray) : _baseIsTypedArray;
+var isTypedArray_1 = isTypedArray;
+
+var objectProto$8 = Object.prototype;
+var hasOwnProperty$6 = objectProto$8.hasOwnProperty;
+function arrayLikeKeys(value, inherited) {
+  var isArr = isArray_1(value),
+      isArg = !isArr && isArguments_1(value),
+      isBuff = !isArr && !isArg && isBuffer_1(value),
+      isType = !isArr && !isArg && !isBuff && isTypedArray_1(value),
+      skipIndexes = isArr || isArg || isBuff || isType,
+      result = skipIndexes ? _baseTimes(value.length, String) : [],
+      length = result.length;
+  for (var key in value) {
+    if ((inherited || hasOwnProperty$6.call(value, key)) &&
+        !(skipIndexes && (
+           key == 'length' ||
+           (isBuff && (key == 'offset' || key == 'parent')) ||
+           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+           _isIndex(key, length)
+        ))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+var _arrayLikeKeys = arrayLikeKeys;
+
+var objectProto$11 = Object.prototype;
+function isPrototype(value) {
+  var Ctor = value && value.constructor,
+      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$11;
+  return value === proto;
+}
+var _isPrototype = isPrototype;
+
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+var _overArg = overArg;
+
+var nativeKeys = _overArg(Object.keys, Object);
+var _nativeKeys = nativeKeys;
+
+var objectProto$10 = Object.prototype;
+var hasOwnProperty$8 = objectProto$10.hasOwnProperty;
+function baseKeys(object) {
+  if (!_isPrototype(object)) {
+    return _nativeKeys(object);
+  }
+  var result = [];
+  for (var key in Object(object)) {
+    if (hasOwnProperty$8.call(object, key) && key != 'constructor') {
+      result.push(key);
+    }
+  }
+  return result;
+}
+var _baseKeys = baseKeys;
+
+function isArrayLike(value) {
+  return value != null && isLength_1(value.length) && !isFunction_1(value);
+}
+var isArrayLike_1 = isArrayLike;
+
+function keys(object) {
+  return isArrayLike_1(object) ? _arrayLikeKeys(object) : _baseKeys(object);
+}
+var keys_1 = keys;
+
+function getAllKeys(object) {
+  return _baseGetAllKeys(object, keys_1, _getSymbols);
+}
+var _getAllKeys = getAllKeys;
+
+var COMPARE_PARTIAL_FLAG$4 = 1;
+var objectProto$6 = Object.prototype;
+var hasOwnProperty$5 = objectProto$6.hasOwnProperty;
+function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+  var isPartial = bitmask & COMPARE_PARTIAL_FLAG$4,
+      objProps = _getAllKeys(object),
+      objLength = objProps.length,
+      othProps = _getAllKeys(other),
+      othLength = othProps.length;
+  if (objLength != othLength && !isPartial) {
+    return false;
+  }
+  var index = objLength;
+  while (index--) {
+    var key = objProps[index];
+    if (!(isPartial ? key in other : hasOwnProperty$5.call(other, key))) {
+      return false;
+    }
+  }
+  var stacked = stack.get(object);
+  if (stacked && stack.get(other)) {
+    return stacked == other;
+  }
+  var result = true;
+  stack.set(object, other);
+  stack.set(other, object);
+  var skipCtor = isPartial;
+  while (++index < objLength) {
+    key = objProps[index];
+    var objValue = object[key],
+        othValue = other[key];
+    if (customizer) {
+      var compared = isPartial
+        ? customizer(othValue, objValue, key, other, object, stack)
+        : customizer(objValue, othValue, key, object, other, stack);
+    }
+    if (!(compared === undefined
+          ? (objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack))
+          : compared
+        )) {
+      result = false;
+      break;
+    }
+    skipCtor || (skipCtor = key == 'constructor');
+  }
+  if (result && !skipCtor) {
+    var objCtor = object.constructor,
+        othCtor = other.constructor;
+    if (objCtor != othCtor &&
+        ('constructor' in object && 'constructor' in other) &&
+        !(typeof objCtor == 'function' && objCtor instanceof objCtor &&
+          typeof othCtor == 'function' && othCtor instanceof othCtor)) {
+      result = false;
+    }
+  }
+  stack['delete'](object);
+  stack['delete'](other);
+  return result;
+}
+var _equalObjects = equalObjects;
+
+var DataView = _getNative(_root, 'DataView');
+var _DataView = DataView;
+
+var Promise$1 = _getNative(_root, 'Promise');
+var _Promise = Promise$1;
+
+var Set = _getNative(_root, 'Set');
+var _Set = Set;
+
+var WeakMap = _getNative(_root, 'WeakMap');
+var _WeakMap = WeakMap;
+
+var mapTag$2 = '[object Map]';
+var objectTag$2 = '[object Object]';
+var promiseTag = '[object Promise]';
+var setTag$2 = '[object Set]';
+var weakMapTag$1 = '[object WeakMap]';
+var dataViewTag$2 = '[object DataView]';
+var dataViewCtorString = _toSource(_DataView);
+var mapCtorString = _toSource(_Map);
+var promiseCtorString = _toSource(_Promise);
+var setCtorString = _toSource(_Set);
+var weakMapCtorString = _toSource(_WeakMap);
+var getTag = _baseGetTag;
+if ((_DataView && getTag(new _DataView(new ArrayBuffer(1))) != dataViewTag$2) ||
+    (_Map && getTag(new _Map) != mapTag$2) ||
+    (_Promise && getTag(_Promise.resolve()) != promiseTag) ||
+    (_Set && getTag(new _Set) != setTag$2) ||
+    (_WeakMap && getTag(new _WeakMap) != weakMapTag$1)) {
+  getTag = function(value) {
+    var result = _baseGetTag(value),
+        Ctor = result == objectTag$2 ? value.constructor : undefined,
+        ctorString = Ctor ? _toSource(Ctor) : '';
+    if (ctorString) {
+      switch (ctorString) {
+        case dataViewCtorString: return dataViewTag$2;
+        case mapCtorString: return mapTag$2;
+        case promiseCtorString: return promiseTag;
+        case setCtorString: return setTag$2;
+        case weakMapCtorString: return weakMapTag$1;
+      }
+    }
+    return result;
+  };
+}
+var _getTag = getTag;
+
+var COMPARE_PARTIAL_FLAG$1 = 1;
+var argsTag = '[object Arguments]';
+var arrayTag = '[object Array]';
+var objectTag = '[object Object]';
+var objectProto$5 = Object.prototype;
+var hasOwnProperty$4 = objectProto$5.hasOwnProperty;
+function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+  var objIsArr = isArray_1(object),
+      othIsArr = isArray_1(other),
+      objTag = objIsArr ? arrayTag : _getTag(object),
+      othTag = othIsArr ? arrayTag : _getTag(other);
+  objTag = objTag == argsTag ? objectTag : objTag;
+  othTag = othTag == argsTag ? objectTag : othTag;
+  var objIsObj = objTag == objectTag,
+      othIsObj = othTag == objectTag,
+      isSameTag = objTag == othTag;
+  if (isSameTag && isBuffer_1(object)) {
+    if (!isBuffer_1(other)) {
+      return false;
+    }
+    objIsArr = true;
+    objIsObj = false;
+  }
+  if (isSameTag && !objIsObj) {
+    stack || (stack = new _Stack);
+    return (objIsArr || isTypedArray_1(object))
+      ? _equalArrays(object, other, bitmask, customizer, equalFunc, stack)
+      : _equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+  }
+  if (!(bitmask & COMPARE_PARTIAL_FLAG$1)) {
+    var objIsWrapped = objIsObj && hasOwnProperty$4.call(object, '__wrapped__'),
+        othIsWrapped = othIsObj && hasOwnProperty$4.call(other, '__wrapped__');
+    if (objIsWrapped || othIsWrapped) {
+      var objUnwrapped = objIsWrapped ? object.value() : object,
+          othUnwrapped = othIsWrapped ? other.value() : other;
+      stack || (stack = new _Stack);
+      return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+    }
+  }
+  if (!isSameTag) {
+    return false;
+  }
+  stack || (stack = new _Stack);
+  return _equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+}
+var _baseIsEqualDeep = baseIsEqualDeep;
+
+function baseIsEqual(value, other, bitmask, customizer, stack) {
+  if (value === other) {
+    return true;
+  }
+  if (value == null || other == null || (!isObjectLike_1(value) && !isObjectLike_1(other))) {
+    return value !== value && other !== other;
+  }
+  return _baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+}
+var _baseIsEqual = baseIsEqual;
+
+var COMPARE_PARTIAL_FLAG = 1;
+var COMPARE_UNORDERED_FLAG = 2;
+function baseIsMatch(object, source, matchData, customizer) {
+  var index = matchData.length,
+      length = index,
+      noCustomizer = !customizer;
+  if (object == null) {
+    return !length;
+  }
+  object = Object(object);
+  while (index--) {
+    var data = matchData[index];
+    if ((noCustomizer && data[2])
+          ? data[1] !== object[data[0]]
+          : !(data[0] in object)
+        ) {
+      return false;
+    }
+  }
+  while (++index < length) {
+    data = matchData[index];
+    var key = data[0],
+        objValue = object[key],
+        srcValue = data[1];
+    if (noCustomizer && data[2]) {
+      if (objValue === undefined && !(key in object)) {
+        return false;
+      }
+    } else {
+      var stack = new _Stack;
+      if (customizer) {
+        var result = customizer(objValue, srcValue, key, object, source, stack);
+      }
+      if (!(result === undefined
+            ? _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack)
+            : result
+          )) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+var _baseIsMatch = baseIsMatch;
+
+function isStrictComparable(value) {
+  return value === value && !isObject_1(value);
+}
+var _isStrictComparable = isStrictComparable;
+
+function getMatchData(object) {
+  var result = keys_1(object),
+      length = result.length;
+  while (length--) {
+    var key = result[length],
+        value = object[key];
+    result[length] = [key, value, _isStrictComparable(value)];
+  }
+  return result;
+}
+var _getMatchData = getMatchData;
+
+function matchesStrictComparable(key, srcValue) {
+  return function(object) {
+    if (object == null) {
+      return false;
+    }
+    return object[key] === srcValue &&
+      (srcValue !== undefined || (key in Object(object)));
+  };
+}
+var _matchesStrictComparable = matchesStrictComparable;
+
+function baseMatches(source) {
+  var matchData = _getMatchData(source);
+  if (matchData.length == 1 && matchData[0][2]) {
+    return _matchesStrictComparable(matchData[0][0], matchData[0][1]);
+  }
+  return function(object) {
+    return object === source || _baseIsMatch(object, source, matchData);
+  };
+}
+var _baseMatches = baseMatches;
+
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/;
+var reIsPlainProp = /^\w*$/;
+function isKey(value, object) {
+  if (isArray_1(value)) {
+    return false;
+  }
+  var type = typeof value;
+  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
+      value == null || isSymbol_1(value)) {
+    return true;
+  }
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+    (object != null && value in Object(object));
+}
+var _isKey = isKey;
+
+var FUNC_ERROR_TEXT = 'Expected a function';
+function memoize(func, resolver) {
+  if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  var memoized = function() {
+    var args = arguments,
+        key = resolver ? resolver.apply(this, args) : args[0],
+        cache = memoized.cache;
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+    var result = func.apply(this, args);
+    memoized.cache = cache.set(key, result) || cache;
+    return result;
+  };
+  memoized.cache = new (memoize.Cache || _MapCache);
+  return memoized;
+}
+memoize.Cache = _MapCache;
+var memoize_1 = memoize;
+
+var MAX_MEMOIZE_SIZE = 500;
+function memoizeCapped(func) {
+  var result = memoize_1(func, function(key) {
+    if (cache.size === MAX_MEMOIZE_SIZE) {
+      cache.clear();
+    }
+    return key;
+  });
+  var cache = result.cache;
+  return result;
+}
+var _memoizeCapped = memoizeCapped;
+
+var reLeadingDot = /^\./;
+var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+var reEscapeChar = /\\(\\)?/g;
+var stringToPath = _memoizeCapped(function(string) {
+  var result = [];
+  if (reLeadingDot.test(string)) {
+    result.push('');
+  }
+  string.replace(rePropName, function(match, number, quote, string) {
+    result.push(quote ? string.replace(reEscapeChar, '$1') : (number || match));
+  });
+  return result;
+});
+var _stringToPath = stringToPath;
+
+function arrayMap(array, iteratee) {
+  var index = -1,
+      length = array == null ? 0 : array.length,
+      result = Array(length);
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array);
+  }
+  return result;
+}
+var _arrayMap = arrayMap;
+
+var INFINITY = 1 / 0;
+var symbolProto$1 = _Symbol ? _Symbol.prototype : undefined;
+var symbolToString = symbolProto$1 ? symbolProto$1.toString : undefined;
+function baseToString(value) {
+  if (typeof value == 'string') {
+    return value;
+  }
+  if (isArray_1(value)) {
+    return _arrayMap(value, baseToString) + '';
+  }
+  if (isSymbol_1(value)) {
+    return symbolToString ? symbolToString.call(value) : '';
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+var _baseToString = baseToString;
+
+function toString(value) {
+  return value == null ? '' : _baseToString(value);
+}
+var toString_1 = toString;
+
+function castPath(value, object) {
+  if (isArray_1(value)) {
+    return value;
+  }
+  return _isKey(value, object) ? [value] : _stringToPath(toString_1(value));
+}
+var _castPath = castPath;
+
+var INFINITY$1 = 1 / 0;
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol_1(value)) {
+    return value;
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY$1) ? '-0' : result;
+}
+var _toKey = toKey;
+
+function baseGet(object, path) {
+  path = _castPath(path, object);
+  var index = 0,
+      length = path.length;
+  while (object != null && index < length) {
+    object = object[_toKey(path[index++])];
+  }
+  return (index && index == length) ? object : undefined;
+}
+var _baseGet = baseGet;
+
+function get(object, path, defaultValue) {
+  var result = object == null ? undefined : _baseGet(object, path);
+  return result === undefined ? defaultValue : result;
+}
+var get_1 = get;
+
+function baseHasIn(object, key) {
+  return object != null && key in Object(object);
+}
+var _baseHasIn = baseHasIn;
+
+function hasPath(object, path, hasFunc) {
+  path = _castPath(path, object);
+  var index = -1,
+      length = path.length,
+      result = false;
+  while (++index < length) {
+    var key = _toKey(path[index]);
+    if (!(result = object != null && hasFunc(object, key))) {
+      break;
+    }
+    object = object[key];
+  }
+  if (result || ++index != length) {
+    return result;
+  }
+  length = object == null ? 0 : object.length;
+  return !!length && isLength_1(length) && _isIndex(key, length) &&
+    (isArray_1(object) || isArguments_1(object));
+}
+var _hasPath = hasPath;
+
+function hasIn(object, path) {
+  return object != null && _hasPath(object, path, _baseHasIn);
+}
+var hasIn_1 = hasIn;
+
+var COMPARE_PARTIAL_FLAG$5 = 1;
+var COMPARE_UNORDERED_FLAG$3 = 2;
+function baseMatchesProperty(path, srcValue) {
+  if (_isKey(path) && _isStrictComparable(srcValue)) {
+    return _matchesStrictComparable(_toKey(path), srcValue);
+  }
+  return function(object) {
+    var objValue = get_1(object, path);
+    return (objValue === undefined && objValue === srcValue)
+      ? hasIn_1(object, path)
+      : _baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG$5 | COMPARE_UNORDERED_FLAG$3);
+  };
+}
+var _baseMatchesProperty = baseMatchesProperty;
+
+function identity(value) {
+  return value;
+}
+var identity_1 = identity;
+
+function baseProperty(key) {
+  return function(object) {
+    return object == null ? undefined : object[key];
+  };
+}
+var _baseProperty = baseProperty;
+
+function basePropertyDeep(path) {
+  return function(object) {
+    return _baseGet(object, path);
+  };
+}
+var _basePropertyDeep = basePropertyDeep;
+
+function property(path) {
+  return _isKey(path) ? _baseProperty(_toKey(path)) : _basePropertyDeep(path);
+}
+var property_1 = property;
+
+function baseIteratee(value) {
+  if (typeof value == 'function') {
+    return value;
+  }
+  if (value == null) {
+    return identity_1;
+  }
+  if (typeof value == 'object') {
+    return isArray_1(value)
+      ? _baseMatchesProperty(value[0], value[1])
+      : _baseMatches(value);
+  }
+  return property_1(value);
+}
+var _baseIteratee = baseIteratee;
+
+function baseLt(value, other) {
+  return value < other;
+}
+var _baseLt = baseLt;
+
+function minBy(array, iteratee) {
+  return (array && array.length)
+    ? _baseExtremum(array, _baseIteratee(iteratee, 2), _baseLt)
+    : undefined;
+}
+var minBy_1 = minBy;
+
+function baseGt(value, other) {
+  return value > other;
+}
+var _baseGt = baseGt;
+
+function maxBy(array, iteratee) {
+  return (array && array.length)
+    ? _baseExtremum(array, _baseIteratee(iteratee, 2), _baseGt)
+    : undefined;
+}
+var maxBy_1 = maxBy;
+
+function arrayEach(array, iteratee) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+  while (++index < length) {
+    if (iteratee(array[index], index, array) === false) {
+      break;
+    }
+  }
+  return array;
+}
+var _arrayEach = arrayEach;
+
+var defineProperty = (function() {
+  try {
+    var func = _getNative(Object, 'defineProperty');
+    func({}, '', {});
+    return func;
+  } catch (e) {}
+}());
+var _defineProperty$1 = defineProperty;
+
+function baseAssignValue(object, key, value) {
+  if (key == '__proto__' && _defineProperty$1) {
+    _defineProperty$1(object, key, {
+      'configurable': true,
+      'enumerable': true,
+      'value': value,
+      'writable': true
+    });
+  } else {
+    object[key] = value;
+  }
+}
+var _baseAssignValue = baseAssignValue;
+
+var objectProto$12 = Object.prototype;
+var hasOwnProperty$9 = objectProto$12.hasOwnProperty;
+function assignValue(object, key, value) {
+  var objValue = object[key];
+  if (!(hasOwnProperty$9.call(object, key) && eq_1(objValue, value)) ||
+      (value === undefined && !(key in object))) {
+    _baseAssignValue(object, key, value);
+  }
+}
+var _assignValue = assignValue;
+
+function copyObject(source, props, object, customizer) {
+  var isNew = !object;
+  object || (object = {});
+  var index = -1,
+      length = props.length;
+  while (++index < length) {
+    var key = props[index];
+    var newValue = customizer
+      ? customizer(object[key], source[key], key, object, source)
+      : undefined;
+    if (newValue === undefined) {
+      newValue = source[key];
+    }
+    if (isNew) {
+      _baseAssignValue(object, key, newValue);
+    } else {
+      _assignValue(object, key, newValue);
+    }
+  }
+  return object;
+}
+var _copyObject = copyObject;
+
+function baseAssign(object, source) {
+  return object && _copyObject(source, keys_1(source), object);
+}
+var _baseAssign = baseAssign;
+
+function nativeKeysIn(object) {
+  var result = [];
+  if (object != null) {
+    for (var key in Object(object)) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+var _nativeKeysIn = nativeKeysIn;
+
+var objectProto$13 = Object.prototype;
+var hasOwnProperty$10 = objectProto$13.hasOwnProperty;
+function baseKeysIn(object) {
+  if (!isObject_1(object)) {
+    return _nativeKeysIn(object);
+  }
+  var isProto = _isPrototype(object),
+      result = [];
+  for (var key in object) {
+    if (!(key == 'constructor' && (isProto || !hasOwnProperty$10.call(object, key)))) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+var _baseKeysIn = baseKeysIn;
+
+function keysIn$1(object) {
+  return isArrayLike_1(object) ? _arrayLikeKeys(object, true) : _baseKeysIn(object);
+}
+var keysIn_1 = keysIn$1;
+
+function baseAssignIn(object, source) {
+  return object && _copyObject(source, keysIn_1(source), object);
+}
+var _baseAssignIn = baseAssignIn;
+
+var _cloneBuffer = createCommonjsModule(function (module, exports) {
+var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
+var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
+var moduleExports = freeModule && freeModule.exports === freeExports;
+var Buffer = moduleExports ? _root.Buffer : undefined,
+    allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined;
+function cloneBuffer(buffer, isDeep) {
+  if (isDeep) {
+    return buffer.slice();
+  }
+  var length = buffer.length,
+      result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
+  buffer.copy(result);
+  return result;
+}
+module.exports = cloneBuffer;
+});
+
+function copyArray(source, array) {
+  var index = -1,
+      length = source.length;
+  array || (array = Array(length));
+  while (++index < length) {
+    array[index] = source[index];
+  }
+  return array;
+}
+var _copyArray = copyArray;
+
+function copySymbols(source, object) {
+  return _copyObject(source, _getSymbols(source), object);
+}
+var _copySymbols = copySymbols;
+
+var getPrototype = _overArg(Object.getPrototypeOf, Object);
+var _getPrototype = getPrototype;
+
+var nativeGetSymbols$1 = Object.getOwnPropertySymbols;
+var getSymbolsIn = !nativeGetSymbols$1 ? stubArray_1 : function(object) {
+  var result = [];
+  while (object) {
+    _arrayPush(result, _getSymbols(object));
+    object = _getPrototype(object);
+  }
+  return result;
+};
+var _getSymbolsIn = getSymbolsIn;
+
+function copySymbolsIn(source, object) {
+  return _copyObject(source, _getSymbolsIn(source), object);
+}
+var _copySymbolsIn = copySymbolsIn;
+
+function getAllKeysIn(object) {
+  return _baseGetAllKeys(object, keysIn_1, _getSymbolsIn);
+}
+var _getAllKeysIn = getAllKeysIn;
+
+var objectProto$14 = Object.prototype;
+var hasOwnProperty$11 = objectProto$14.hasOwnProperty;
+function initCloneArray(array) {
+  var length = array.length,
+      result = array.constructor(length);
+  if (length && typeof array[0] == 'string' && hasOwnProperty$11.call(array, 'index')) {
+    result.index = array.index;
+    result.input = array.input;
+  }
+  return result;
+}
+var _initCloneArray = initCloneArray;
+
+function cloneArrayBuffer(arrayBuffer) {
+  var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+  new _Uint8Array(result).set(new _Uint8Array(arrayBuffer));
+  return result;
+}
+var _cloneArrayBuffer = cloneArrayBuffer;
+
+function cloneDataView(dataView, isDeep) {
+  var buffer = isDeep ? _cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+  return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+}
+var _cloneDataView = cloneDataView;
+
+function addMapEntry(map, pair) {
+  map.set(pair[0], pair[1]);
+  return map;
+}
+var _addMapEntry = addMapEntry;
+
+function arrayReduce(array, iteratee, accumulator, initAccum) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+  if (initAccum && length) {
+    accumulator = array[++index];
+  }
+  while (++index < length) {
+    accumulator = iteratee(accumulator, array[index], index, array);
+  }
+  return accumulator;
+}
+var _arrayReduce = arrayReduce;
+
+var CLONE_DEEP_FLAG$2 = 1;
+function cloneMap(map, isDeep, cloneFunc) {
+  var array = isDeep ? cloneFunc(_mapToArray(map), CLONE_DEEP_FLAG$2) : _mapToArray(map);
+  return _arrayReduce(array, _addMapEntry, new map.constructor);
+}
+var _cloneMap = cloneMap;
+
+var reFlags = /\w*$/;
+function cloneRegExp(regexp) {
+  var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+  result.lastIndex = regexp.lastIndex;
+  return result;
+}
+var _cloneRegExp = cloneRegExp;
+
+function addSetEntry(set, value) {
+  set.add(value);
+  return set;
+}
+var _addSetEntry = addSetEntry;
+
+var CLONE_DEEP_FLAG$3 = 1;
+function cloneSet(set, isDeep, cloneFunc) {
+  var array = isDeep ? cloneFunc(_setToArray(set), CLONE_DEEP_FLAG$3) : _setToArray(set);
+  return _arrayReduce(array, _addSetEntry, new set.constructor);
+}
+var _cloneSet = cloneSet;
+
+var symbolProto$2 = _Symbol ? _Symbol.prototype : undefined;
+var symbolValueOf$1 = symbolProto$2 ? symbolProto$2.valueOf : undefined;
+function cloneSymbol(symbol) {
+  return symbolValueOf$1 ? Object(symbolValueOf$1.call(symbol)) : {};
+}
+var _cloneSymbol = cloneSymbol;
+
+function cloneTypedArray(typedArray, isDeep) {
+  var buffer = isDeep ? _cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+  return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+}
+var _cloneTypedArray = cloneTypedArray;
+
+var boolTag$3 = '[object Boolean]';
+var dateTag$3 = '[object Date]';
+var mapTag$4 = '[object Map]';
+var numberTag$3 = '[object Number]';
+var regexpTag$3 = '[object RegExp]';
+var setTag$4 = '[object Set]';
+var stringTag$3 = '[object String]';
+var symbolTag$3 = '[object Symbol]';
+var arrayBufferTag$3 = '[object ArrayBuffer]';
+var dataViewTag$4 = '[object DataView]';
+var float32Tag$2 = '[object Float32Array]';
+var float64Tag$2 = '[object Float64Array]';
+var int8Tag$2 = '[object Int8Array]';
+var int16Tag$2 = '[object Int16Array]';
+var int32Tag$2 = '[object Int32Array]';
+var uint8Tag$2 = '[object Uint8Array]';
+var uint8ClampedTag$2 = '[object Uint8ClampedArray]';
+var uint16Tag$2 = '[object Uint16Array]';
+var uint32Tag$2 = '[object Uint32Array]';
+function initCloneByTag(object, tag, cloneFunc, isDeep) {
+  var Ctor = object.constructor;
+  switch (tag) {
+    case arrayBufferTag$3:
+      return _cloneArrayBuffer(object);
+    case boolTag$3:
+    case dateTag$3:
+      return new Ctor(+object);
+    case dataViewTag$4:
+      return _cloneDataView(object, isDeep);
+    case float32Tag$2: case float64Tag$2:
+    case int8Tag$2: case int16Tag$2: case int32Tag$2:
+    case uint8Tag$2: case uint8ClampedTag$2: case uint16Tag$2: case uint32Tag$2:
+      return _cloneTypedArray(object, isDeep);
+    case mapTag$4:
+      return _cloneMap(object, isDeep, cloneFunc);
+    case numberTag$3:
+    case stringTag$3:
+      return new Ctor(object);
+    case regexpTag$3:
+      return _cloneRegExp(object);
+    case setTag$4:
+      return _cloneSet(object, isDeep, cloneFunc);
+    case symbolTag$3:
+      return _cloneSymbol(object);
+  }
+}
+var _initCloneByTag = initCloneByTag;
+
+var objectCreate = Object.create;
+var baseCreate = (function() {
+  function object() {}
+  return function(proto) {
+    if (!isObject_1(proto)) {
+      return {};
+    }
+    if (objectCreate) {
+      return objectCreate(proto);
+    }
+    object.prototype = proto;
+    var result = new object;
+    object.prototype = undefined;
+    return result;
+  };
+}());
+var _baseCreate = baseCreate;
+
+function initCloneObject(object) {
+  return (typeof object.constructor == 'function' && !_isPrototype(object))
+    ? _baseCreate(_getPrototype(object))
+    : {};
+}
+var _initCloneObject = initCloneObject;
+
+var CLONE_DEEP_FLAG$1 = 1;
+var CLONE_FLAT_FLAG = 2;
+var CLONE_SYMBOLS_FLAG$1 = 4;
+var argsTag$3 = '[object Arguments]';
+var arrayTag$2 = '[object Array]';
+var boolTag$2 = '[object Boolean]';
+var dateTag$2 = '[object Date]';
+var errorTag$2 = '[object Error]';
+var funcTag$2 = '[object Function]';
+var genTag$1 = '[object GeneratorFunction]';
+var mapTag$3 = '[object Map]';
+var numberTag$2 = '[object Number]';
+var objectTag$3 = '[object Object]';
+var regexpTag$2 = '[object RegExp]';
+var setTag$3 = '[object Set]';
+var stringTag$2 = '[object String]';
+var symbolTag$2 = '[object Symbol]';
+var weakMapTag$2 = '[object WeakMap]';
+var arrayBufferTag$2 = '[object ArrayBuffer]';
+var dataViewTag$3 = '[object DataView]';
+var float32Tag$1 = '[object Float32Array]';
+var float64Tag$1 = '[object Float64Array]';
+var int8Tag$1 = '[object Int8Array]';
+var int16Tag$1 = '[object Int16Array]';
+var int32Tag$1 = '[object Int32Array]';
+var uint8Tag$1 = '[object Uint8Array]';
+var uint8ClampedTag$1 = '[object Uint8ClampedArray]';
+var uint16Tag$1 = '[object Uint16Array]';
+var uint32Tag$1 = '[object Uint32Array]';
+var cloneableTags = {};
+cloneableTags[argsTag$3] = cloneableTags[arrayTag$2] =
+cloneableTags[arrayBufferTag$2] = cloneableTags[dataViewTag$3] =
+cloneableTags[boolTag$2] = cloneableTags[dateTag$2] =
+cloneableTags[float32Tag$1] = cloneableTags[float64Tag$1] =
+cloneableTags[int8Tag$1] = cloneableTags[int16Tag$1] =
+cloneableTags[int32Tag$1] = cloneableTags[mapTag$3] =
+cloneableTags[numberTag$2] = cloneableTags[objectTag$3] =
+cloneableTags[regexpTag$2] = cloneableTags[setTag$3] =
+cloneableTags[stringTag$2] = cloneableTags[symbolTag$2] =
+cloneableTags[uint8Tag$1] = cloneableTags[uint8ClampedTag$1] =
+cloneableTags[uint16Tag$1] = cloneableTags[uint32Tag$1] = true;
+cloneableTags[errorTag$2] = cloneableTags[funcTag$2] =
+cloneableTags[weakMapTag$2] = false;
+function baseClone(value, bitmask, customizer, key, object, stack) {
+  var result,
+      isDeep = bitmask & CLONE_DEEP_FLAG$1,
+      isFlat = bitmask & CLONE_FLAT_FLAG,
+      isFull = bitmask & CLONE_SYMBOLS_FLAG$1;
+  if (customizer) {
+    result = object ? customizer(value, key, object, stack) : customizer(value);
+  }
+  if (result !== undefined) {
+    return result;
+  }
+  if (!isObject_1(value)) {
+    return value;
+  }
+  var isArr = isArray_1(value);
+  if (isArr) {
+    result = _initCloneArray(value);
+    if (!isDeep) {
+      return _copyArray(value, result);
+    }
+  } else {
+    var tag = _getTag(value),
+        isFunc = tag == funcTag$2 || tag == genTag$1;
+    if (isBuffer_1(value)) {
+      return _cloneBuffer(value, isDeep);
+    }
+    if (tag == objectTag$3 || tag == argsTag$3 || (isFunc && !object)) {
+      result = (isFlat || isFunc) ? {} : _initCloneObject(value);
+      if (!isDeep) {
+        return isFlat
+          ? _copySymbolsIn(value, _baseAssignIn(result, value))
+          : _copySymbols(value, _baseAssign(result, value));
+      }
+    } else {
+      if (!cloneableTags[tag]) {
+        return object ? value : {};
+      }
+      result = _initCloneByTag(value, tag, baseClone, isDeep);
+    }
+  }
+  stack || (stack = new _Stack);
+  var stacked = stack.get(value);
+  if (stacked) {
+    return stacked;
+  }
+  stack.set(value, result);
+  var keysFunc = isFull
+    ? (isFlat ? _getAllKeysIn : _getAllKeys)
+    : (isFlat ? keysIn : keys_1);
+  var props = isArr ? undefined : keysFunc(value);
+  _arrayEach(props || value, function(subValue, key) {
+    if (props) {
+      key = subValue;
+      subValue = value[key];
+    }
+    _assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
+  });
+  return result;
+}
+var _baseClone = baseClone;
+
+var CLONE_DEEP_FLAG = 1;
+var CLONE_SYMBOLS_FLAG = 4;
+function cloneDeep(value) {
+  return _baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
+}
+var cloneDeep_1 = cloneDeep;
+
+function isEqual(value, other) {
+  return _baseIsEqual(value, other);
+}
+var isEqual_1 = isEqual;
+
+function arrayAggregator(array, setter, iteratee, accumulator) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+  while (++index < length) {
+    var value = array[index];
+    setter(accumulator, value, iteratee(value), array);
+  }
+  return accumulator;
+}
+var _arrayAggregator = arrayAggregator;
+
+function createBaseFor(fromRight) {
+  return function(object, iteratee, keysFunc) {
+    var index = -1,
+        iterable = Object(object),
+        props = keysFunc(object),
+        length = props.length;
+    while (length--) {
+      var key = props[fromRight ? length : ++index];
+      if (iteratee(iterable[key], key, iterable) === false) {
+        break;
+      }
+    }
+    return object;
+  };
+}
+var _createBaseFor = createBaseFor;
+
+var baseFor = _createBaseFor();
+var _baseFor = baseFor;
+
+function baseForOwn(object, iteratee) {
+  return object && _baseFor(object, iteratee, keys_1);
+}
+var _baseForOwn = baseForOwn;
+
+function createBaseEach(eachFunc, fromRight) {
+  return function(collection, iteratee) {
+    if (collection == null) {
+      return collection;
+    }
+    if (!isArrayLike_1(collection)) {
+      return eachFunc(collection, iteratee);
+    }
+    var length = collection.length,
+        index = fromRight ? length : -1,
+        iterable = Object(collection);
+    while ((fromRight ? index-- : ++index < length)) {
+      if (iteratee(iterable[index], index, iterable) === false) {
+        break;
+      }
+    }
+    return collection;
+  };
+}
+var _createBaseEach = createBaseEach;
+
+var baseEach = _createBaseEach(_baseForOwn);
+var _baseEach = baseEach;
+
+function baseAggregator(collection, setter, iteratee, accumulator) {
+  _baseEach(collection, function(value, key, collection) {
+    setter(accumulator, value, iteratee(value), collection);
+  });
+  return accumulator;
+}
+var _baseAggregator = baseAggregator;
+
+function createAggregator(setter, initializer) {
+  return function(collection, iteratee) {
+    var func = isArray_1(collection) ? _arrayAggregator : _baseAggregator,
+        accumulator = initializer ? initializer() : {};
+    return func(collection, setter, _baseIteratee(iteratee, 2), accumulator);
+  };
+}
+var _createAggregator = createAggregator;
+
+var partition = _createAggregator(function(result, value, key) {
+  result[key ? 0 : 1].push(value);
+}, function() { return [[], []]; });
+var partition_1 = partition;
+
+var polyline_1 = createCommonjsModule(function (module) {
+var polyline = {};
+function py2_round(value) {
+    return Math.floor(Math.abs(value) + 0.5) * Math.sign(value);
+}
+function encode(current, previous, factor) {
+    current = py2_round(current * factor);
+    previous = py2_round(previous * factor);
+    var coordinate = current - previous;
+    coordinate <<= 1;
+    if (current - previous < 0) {
+        coordinate = ~coordinate;
+    }
+    var output = '';
+    while (coordinate >= 0x20) {
+        output += String.fromCharCode((0x20 | (coordinate & 0x1f)) + 63);
+        coordinate >>= 5;
+    }
+    output += String.fromCharCode(coordinate + 63);
+    return output;
+}
+polyline.decode = function(str, precision) {
+    var index = 0,
+        lat = 0,
+        lng = 0,
+        coordinates = [],
+        shift = 0,
+        result = 0,
+        byte = null,
+        latitude_change,
+        longitude_change,
+        factor = Math.pow(10, precision || 5);
+    while (index < str.length) {
+        byte = null;
+        shift = 0;
+        result = 0;
+        do {
+            byte = str.charCodeAt(index++) - 63;
+            result |= (byte & 0x1f) << shift;
+            shift += 5;
+        } while (byte >= 0x20);
+        latitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
+        shift = result = 0;
+        do {
+            byte = str.charCodeAt(index++) - 63;
+            result |= (byte & 0x1f) << shift;
+            shift += 5;
+        } while (byte >= 0x20);
+        longitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
+        lat += latitude_change;
+        lng += longitude_change;
+        coordinates.push([lat / factor, lng / factor]);
+    }
+    return coordinates;
+};
+polyline.encode = function(coordinates, precision) {
+    if (!coordinates.length) { return ''; }
+    var factor = Math.pow(10, precision || 5),
+        output = encode(coordinates[0][0], 0, factor) + encode(coordinates[0][1], 0, factor);
+    for (var i = 1; i < coordinates.length; i++) {
+        var a = coordinates[i], b = coordinates[i - 1];
+        output += encode(a[0], b[0], factor);
+        output += encode(a[1], b[1], factor);
+    }
+    return output;
+};
+function flipped(coords) {
+    var flipped = [];
+    for (var i = 0; i < coords.length; i++) {
+        flipped.push(coords[i].slice().reverse());
+    }
+    return flipped;
+}
+polyline.fromGeoJSON = function(geojson, precision) {
+    if (geojson && geojson.type === 'Feature') {
+        geojson = geojson.geometry;
+    }
+    if (!geojson || geojson.type !== 'LineString') {
+        throw new Error('Input must be a GeoJSON LineString');
+    }
+    return polyline.encode(flipped(geojson.coordinates), precision);
+};
+polyline.toGeoJSON = function(str, precision) {
+    var coords = polyline.decode(str, precision);
+    return {
+        type: 'LineString',
+        coordinates: flipped(coords)
+    };
+};
+if ('object' === 'object' && module.exports) {
+    module.exports = polyline;
+}
+});
+
+function SVY21(config) {
+  var defaultConfig = {
+    a: 6378137,
+    f: 1 / 298.257223563,
+    oLat: 1.366666,
+    oLon: 103.833333,
+    oN: 38744.572,
+    oE: 28001.642,
+    k: 1
+  };
+  Object.assign(this, defaultConfig, config);
+  this.b = this.a * (1 - this.f);
+  this.e2 = 2 * this.f - this.f * this.f;
+  this.e4 = this.e2 * this.e2;
+  this.e6 = this.e4 * this.e2;
+  this.A0 = 1 - this.e2 / 4 - 3 * this.e4 / 64 - 5 * this.e6 / 256;
+  this.A2 = 3.0 / 8.0 * (this.e2 + this.e4 / 4 + 15 * this.e6 / 128);
+  this.A4 = 15.0 / 256.0 * (this.e4 + 3 * this.e6 / 4);
+  this.A6 = 35 * this.e6 / 3072;
+}
+SVY21.prototype.computeSVY21 = function (lat, lon) {
+  var latR = lat * Math.PI / 180;
+  var sinLat = Math.sin(latR);
+  var sin2Lat = sinLat * sinLat;
+  var cosLat = Math.cos(latR);
+  var cos2Lat = cosLat * cosLat;
+  var cos3Lat = cos2Lat * cosLat;
+  var cos4Lat = cos3Lat * cosLat;
+  var cos5Lat = cos4Lat * cosLat;
+  var cos6Lat = cos5Lat * cosLat;
+  var cos7Lat = cos6Lat * cosLat;
+  var rho = this.calcRho(sin2Lat);
+  var v = this.calcV(sin2Lat);
+  var psi = v / rho;
+  var t = Math.tan(latR);
+  var w = (lon - this.oLon) * Math.PI / 180;
+  var M = this.calcM(lat);
+  var Mo = this.calcM(this.oLat);
+  var w2 = w * w;
+  var w4 = w2 * w2;
+  var w6 = w4 * w2;
+  var w8 = w6 * w2;
+  var psi2 = psi * psi;
+  var psi3 = psi2 * psi;
+  var psi4 = psi3 * psi;
+  var t2 = t * t;
+  var t4 = t2 * t2;
+  var t6 = t4 * t2;
+  var nTerm1 = w2 / 2 * v * sinLat * cosLat;
+  var nTerm2 = w4 / 24 * v * sinLat * cos3Lat * (4 * psi2 + psi - t2);
+  var nTerm3 = w6 / 720 * v * sinLat * cos5Lat * (8 * psi4 * (11 - 24 * t2) - 28 * psi3 * (1 - 6 * t2) + psi2 * (1 - 32 * t2) - psi * 2 * t2 + t4);
+  var nTerm4 = w8 / 40320 * v * sinLat * cos7Lat * (1385 - 3111 * t2 + 543 * t4 - t6);
+  var N = this.oN + this.k * (M - Mo + nTerm1 + nTerm2 + nTerm3 + nTerm4);
+  var eTerm1 = w2 / 6 * cos2Lat * (psi - t2);
+  var eTerm2 = w4 / 120 * cos4Lat * (4 * psi3 * (1 - 6 * t2) + psi2 * (1 + 8 * t2) - psi * 2 * t2 + t4);
+  var eTerm3 = w6 / 5040 * cos6Lat * (61 - 479 * t2 + 179 * t4 - t6);
+  var E = this.oE + this.k * v * w * cosLat * (1 + eTerm1 + eTerm2 + eTerm3);
+  return { N: N, E: E };
+};
+SVY21.prototype.computeLatLon = function (N, E) {
+  var Nprime = N - this.oN;
+  var Mo = this.calcM(this.oLat);
+  var Mprime = Mo + Nprime / this.k;
+  var n = (this.a - this.b) / (this.a + this.b);
+  var n2 = n * n;
+  var n3 = n2 * n;
+  var n4 = n2 * n2;
+  var G = this.a * (1 - n) * (1 - n2) * (1 + 9 * n2 / 4 + 225 * n4 / 64) * (Math.PI / 180);
+  var sigma = Mprime * Math.PI / (180.0 * G);
+  var latPrimeT1 = (3 * n / 2 - 27 * n3 / 32) * Math.sin(2 * sigma);
+  var latPrimeT2 = (21 * n2 / 16 - 55 * n4 / 32) * Math.sin(4 * sigma);
+  var latPrimeT3 = 151 * n3 / 96 * Math.sin(6 * sigma);
+  var latPrimeT4 = 1097 * n4 / 512 * Math.sin(8 * sigma);
+  var latPrime = sigma + latPrimeT1 + latPrimeT2 + latPrimeT3 + latPrimeT4;
+  var sinLatPrime = Math.sin(latPrime);
+  var sin2LatPrime = sinLatPrime * sinLatPrime;
+  var rhoPrime = this.calcRho(sin2LatPrime);
+  var vPrime = this.calcV(sin2LatPrime);
+  var psiPrime = vPrime / rhoPrime;
+  var psiPrime2 = psiPrime * psiPrime;
+  var psiPrime3 = psiPrime2 * psiPrime;
+  var psiPrime4 = psiPrime3 * psiPrime;
+  var tPrime = Math.tan(latPrime);
+  var tPrime2 = tPrime * tPrime;
+  var tPrime4 = tPrime2 * tPrime2;
+  var tPrime6 = tPrime4 * tPrime2;
+  var Eprime = E - this.oE;
+  var x = Eprime / (this.k * vPrime);
+  var x2 = x * x;
+  var x3 = x2 * x;
+  var x5 = x3 * x2;
+  var x7 = x5 * x2;
+  var latFactor = tPrime / (this.k * rhoPrime);
+  var latTerm1 = latFactor * (Eprime * x / 2);
+  var latTerm2 = latFactor * (Eprime * x3 / 24) * (-4 * psiPrime2 + 9 * psiPrime * (1 - tPrime2) + 12 * tPrime2);
+  var latTerm3 = latFactor * (Eprime * x5 / 720) * (8 * psiPrime4 * (11 - 24 * tPrime2) - 12 * psiPrime3 * (21 - 71 * tPrime2) + 15 * psiPrime2 * (15 - 98 * tPrime2 + 15 * tPrime4) + 180 * psiPrime * (5 * tPrime2 - 3 * tPrime4) + 360 * tPrime4);
+  var latTerm4 = latFactor * (Eprime * x7 / 40320) * (1385 - 3633 * tPrime2 + 4095 * tPrime4 + 1575 * tPrime6);
+  var lat = latPrime - latTerm1 + latTerm2 - latTerm3 + latTerm4;
+  var secLatPrime = 1.0 / Math.cos(lat);
+  var lonTerm1 = x * secLatPrime;
+  var lonTerm2 = x3 * secLatPrime / 6 * (psiPrime + 2 * tPrime2);
+  var lonTerm3 = x5 * secLatPrime / 120 * (-4 * psiPrime3 * (1 - 6 * tPrime2) + psiPrime2 * (9 - 68 * tPrime2) + 72 * psiPrime * tPrime2 + 24 * tPrime4);
+  var lonTerm4 = x7 * secLatPrime / 5040 * (61 + 662 * tPrime2 + 1320 * tPrime4 + 720 * tPrime6);
+  var lon = this.oLon * Math.PI / 180 + lonTerm1 - lonTerm2 + lonTerm3 - lonTerm4;
+  return { lat: lat / (Math.PI / 180), lon: lon / (Math.PI / 180) };
+};
+SVY21.prototype.calcM = function (lat, lon) {
+  var latR = lat * Math.PI / 180;
+  return this.a * (this.A0 * latR - this.A2 * Math.sin(2 * latR) + this.A4 * Math.sin(4 * latR) - this.A6 * Math.sin(6 * latR));
+};
+SVY21.prototype.calcRho = function (sin2Lat) {
+  var num = this.a * (1 - this.e2);
+  var denom = Math.pow(1 - this.e2 * sin2Lat, 3.0 / 2.0);
+  return num / denom;
+};
+SVY21.prototype.calcV = function (sin2Lat) {
+  var poly = 1 - this.e2 * sin2Lat;
+  return this.a / Math.sqrt(poly);
+};
+
+var _slicedToArray$2 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var PRECISION = 7;
+var svy21 = new SVY21();
+function inside(_ref, polyline$$1) {
+  var _ref2 = _slicedToArray$2(_ref, 2),
+      lng = _ref2[0],
+      lat = _ref2[1];
+  var isInside = false;
+  for (var i = 1; i < polyline$$1.length; i++) {
+    var deltaY_plus = polyline$$1[i][1] - lat;
+    var deltaY_minus = lat - polyline$$1[i - 1][1];
+    if (deltaY_plus > 0 && deltaY_minus <= 0) continue;
+    if (deltaY_plus < 0 && deltaY_minus >= 0) continue;
+    var deltaX = (deltaY_plus * polyline$$1[i - 1][0] + deltaY_minus * polyline$$1[i][0]) / (deltaY_plus + deltaY_minus) - lng;
+    if (deltaX <= 0) continue;
+    isInside = !isInside;
+  }
+  return isInside;
+}
+function encodePolyline(arr) {
+  return polyline_1.encode(arr, PRECISION);
+}
+function decodePolyline(str) {
+  return polyline_1.decode(str, PRECISION).map(function (_ref3) {
+    var _ref4 = _slicedToArray$2(_ref3, 2),
+        lng = _ref4[0],
+        lat = _ref4[1];
+    return [Math.round(lng * Math.pow(10, PRECISION - 2)) / Math.pow(10, PRECISION - 2), Math.round(lat * Math.pow(10, PRECISION - 2)) / Math.pow(10, PRECISION - 2)];
+  });
+}
+
+
+function toLinearRing(polyline$$1) {
+  var linearRing = typeof polyline$$1 === 'string' ? decodePolyline(polyline$$1) : cloneDeep_1(polyline$$1);
+  var firstPoint = linearRing[0];
+  var lastPoint = linearRing[linearRing.length - 1];
+  if (firstPoint[0] !== lastPoint[0] || firstPoint[1] !== lastPoint[1]) {
+    linearRing.push(firstPoint);
+  }
+  return linearRing;
+}
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var SgHeatmap = function () {
+  function SgHeatmap(data) {
+    _classCallCheck(this, SgHeatmap);
+    var _data = typeof data === 'string' ? JSON.parse(data) : data;
+    if (!(_data instanceof Array)) throw new Error('Expects an array of feature objects');
+    this.children = _data.map(function (f) {
+      return new Feature(f);
+    });
+    this._defaultState = {};
+    this._updaters = [];
+    this._stats = {};
+  }
+  _createClass(SgHeatmap, [{
+    key: 'setDefaultState',
+    value: function setDefaultState(_key, value) {
+      this._defaultState[_key] = value;
+      this.children.forEach(function (c) {
+        if (_key in c.state) return;
+        c.state[_key] = cloneDeep_1(value);
+      });
+      return this;
+    }
+  }, {
+    key: 'resetState',
+    value: function resetState() {
+      var _this = this;
+      this.children.forEach(function (c) {
+        c.state = cloneDeep_1(_this._defaultState);
+      });
+      return this;
+    }
+  }, {
+    key: 'registerUpdater',
+    value: function registerUpdater(fn) {
+      this._updaters.push(fn);
+      return this;
+    }
+  }, {
+    key: 'inspectUpdaters',
+    value: function inspectUpdaters() {
+      this._updaters.map(function (fn, i) {
+        console.log('Inspecting updater "' + (i + 1) + '"');
+        console.log(fn);
+      });
+    }
+  }, {
+    key: 'registerStat',
+    value: function registerStat(key, fn) {
+      this._stats[key] = fn;
+      return this;
+    }
+  }, {
+    key: 'inspectStats',
+    value: function inspectStats() {
+      var _this2 = this;
+      Object.keys(this._stats).forEach(function (key, i) {
+        console.log('Inspecting stat "' + key + '"');
+        console.log(_this2._stats[key]);
+      });
+    }
+  }, {
+    key: 'bin',
+    value: function bin(lnglat) {
+      return this.children.filter(function (c) {
+        return c.inside(lnglat);
+      });
+    }
+  }, {
+    key: 'update',
+    value: function update(lnglat, weight) {
+      var _this3 = this;
+      this.bin(lnglat).forEach(function (c) {
+        c.state = _this3._updaters.reduce(function (nextState, fn) {
+          return Object.assign(nextState, fn(weight, c.state));
+        }, {});
+      });
+      return this;
+    }
+  }, {
+    key: 'getStat',
+    value: function getStat(stat) {
+      var _this4 = this;
+      var fn = typeof stat === 'function' ? stat : this._stats[stat];
+      var _partition = partition_1(this.children, function (c) {
+        return !isEqual_1(_this4._defaultState, c.state);
+      }),
+          _partition2 = _slicedToArray$1(_partition, 2),
+          changed = _partition2[0],
+          unchanged = _partition2[1];
+      var listedValues = [];
+      var values = changed.reduce(function (stats, c) {
+        var value = fn(c.state, c.properties);
+        listedValues.push(value);
+        return Object.assign(stats, _defineProperty({}, c.id, value));
+      }, {});
+      return {
+        stat: stat,
+        values: values,
+        unchanged: unchanged.map(function (c) {
+          return c.id;
+        }),
+        min: minBy_1(listedValues),
+        max: maxBy_1(listedValues)
+      };
+    }
+  }, {
+    key: 'initializeRenderer',
+    value: function initializeRenderer(colorScale) {
+      var _this5 = this;
+      var defaultStyle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var addonStyle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+      if (!window) throw new Error('Method initializeRenderer should only be called browser-side');
+      if (!window.google) throw new Error('Google Maps not loaded');
+      if ('renderer' in this) {
+        console.log('Existing renderer replaced');
+        this.renderer.setMap(null);
+      }
+      this.colorScale = colorScale;
+      this.renderer = new window.google.maps.Data({
+        style: function style(feature) {
+          var styleOptions = Object.assign({}, defaultStyle);
+          var color = feature.getProperty('color');
+          if (color) Object.assign(styleOptions, addonStyle, { fillColor: color });
+          return styleOptions;
+        }
+      });
+      this.children.forEach(function (c) {
+        _this5.renderer.addGeoJson({
+          id: c.id,
+          type: 'Feature',
+          geometry: c.geometry,
+          properties: Object.assign({ color: null }, c.properties)
+        });
+      });
+      return this.renderer;
+    }
+  }, {
+    key: 'render',
+    value: function render(stat) {
+      var _this6 = this;
+      var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      if (!this.renderer) throw new Error('Renderer has not been initialized');
+      var colorScale = options.colorScale || this.colorScale;
+      var _getStat = this.getStat(stat),
+          statValues = _getStat.values,
+          unchanged = _getStat.unchanged,
+          min = _getStat.min,
+          max = _getStat.max;
+      var domain = options.domain || [min, max];
+      function normalize(value) {
+        return (value - domain[0]) / (domain[1] - domain[0]);
+      }
+      Object.keys(statValues).forEach(function (key) {
+        var normalized = normalize(statValues[key]);
+        var transformed = Math.pow(normalized, options.transform || 1);
+        var color = colorScale(transformed);
+        _this6.renderer.getFeatureById(key).setProperty('color', color);
+      });
+      unchanged.forEach(function (key) {
+        _this6.renderer.getFeatureById(key).setProperty('color', null);
+      });
+    }
+  }, {
+    key: 'clone',
+    value: function clone() {
+      var includeState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var cloned = new SgHeatmap(this.children);
+      cloned._updaters = [].concat(_toConsumableArray(this._updaters));
+      cloned._stats = _extends({}, this._stats);
+      if (includeState) {
+        cloned._defaultState = this._defaultState;
+      } else {
+        cloned.children.forEach(function (c) {
+          c.state = {};
+        });
+      }
+      return cloned;
+    }
+  }, {
+    key: 'serialize',
+    value: function serialize() {
+      var includeState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      return '[' + this.children.map(function (c) {
+        return c.serialize(includeState);
+      }).join(',') + ']';
+    }
+  }]);
+  return SgHeatmap;
+}();
+var Feature = function () {
+  function Feature(data) {
+    _classCallCheck(this, Feature);
+    if (!('id' in data)) throw new Error('Feature object requires id');
+    if (!('geometry' in data)) throw new Error('Geometry not specified in feature object');
+    this.type = 'Feature';
+    this.id = data.id;
+    this.properties = data.properties ? cloneDeep_1(data.properties) : {};
+    this.geometry = {};
+    this.geometry.type = data.geometry.type;
+    if (this.geometry.type === 'Polygon') {
+      this.geometry.coordinates = data.geometry.coordinates.map(toLinearRing);
+      this.geometry.bbox = 'bbox' in data.geometry ? cloneDeep_1(data.geometry.bbox) : [minBy_1(this.geometry.coordinates[0], function (v) {
+        return v[0];
+      })[0], minBy_1(this.geometry.coordinates[0], function (v) {
+        return v[1];
+      })[1], maxBy_1(this.geometry.coordinates[0], function (v) {
+        return v[0];
+      })[0], maxBy_1(this.geometry.coordinates[0], function (v) {
+        return v[1];
+      })[1]];
+    } else if (this.geometry.type === 'MultiPolygon') {
+      this.geometry.coordinates = data.geometry.coordinates.map(function (polygon) {
+        return polygon.map(toLinearRing);
+      });
+      if ('bbox' in data.geometry) {
+        this.geometry.bbox = cloneDeep_1(data.geometry.bbox);
+      } else {
+        var bboxs = this.geometry.coordinates.map(function (polygon) {
+          return [minBy_1(polygon[0], function (v) {
+            return v[0];
+          })[0], minBy_1(polygon[0], function (v) {
+            return v[1];
+          })[1], maxBy_1(polygon[0], function (v) {
+            return v[0];
+          })[0], maxBy_1(polygon[0], function (v) {
+            return v[1];
+          })[1]];
+        });
+        this.geometry.bbox = [minBy_1(bboxs, function (v) {
+          return v[0];
+        })[0], minBy_1(bboxs, function (v) {
+          return v[1];
+        })[1], maxBy_1(bboxs, function (v) {
+          return v[2];
+        })[2], maxBy_1(bboxs, function (v) {
+          return v[3];
+        })[3]];
+      }
+    } else {
+      throw new Error('Feature geometry must be of type Polygon or MultiPolygon');
+    }
+    this.state = 'state' in data ? cloneDeep_1(data.state) : {};
+  }
+  _createClass(Feature, [{
+    key: 'inside',
+    value: function inside$$1(location) {
+      var _location = _slicedToArray$1(location, 2),
+          lng = _location[0],
+          lat = _location[1];
+      if (lng < this.geometry.bbox[0]) return false;
+      if (lat < this.geometry.bbox[1]) return false;
+      if (lng > this.geometry.bbox[2]) return false;
+      if (lat > this.geometry.bbox[3]) return false;
+      if (this.geometry.type === 'Polygon') {
+        return inside([lng, lat], this.geometry.coordinates[0]);
+      } else {
+        return this.geometry.coordinates.some(function (polygon) {
+          return inside([lng, lat], polygon[0]);
+        });
+      }
+    }
+  }, {
+    key: 'serialize',
+    value: function serialize() {
+      var includeState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      var id = this.id,
+          properties = this.properties,
+          geometry = this.geometry,
+          state = this.state;
+      var _geometry = {
+        type: geometry.type,
+        bbox: geometry.bbox,
+        coordinates: geometry.type === 'Polygon' ? geometry.coordinates.map(encodePolyline) : geometry.coordinates.map(function (polygon) {
+          return polygon.map(encodePolyline);
+        })
+      };
+      var _state = includeState ? state : {};
+      return JSON.stringify({ id: id, properties: properties, geometry: _geometry, state: _state });
+    }
+  }]);
+  return Feature;
+}();
+
+function supportLeaflet(heatmap) {
+  function initializeRenderer(colorScale) {
+    var defaultStyle = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var addonStyle = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    if (!window) throw new Error('Method initializeRenderer should only be called browser-side');
+    if (!window.L) throw new Error('Leaflet not loaded');
+    if ('renderer' in this) {
+      console.log('Existing renderer replaced');
+      this.renderer.remove();
+    }
+    this.colorScale = colorScale;
+    this.renderer = window.L.geoJSON(null, {
+      style: function style(feature) {
+        var styleOptions = Object.assign({}, defaultStyle);
+        var color = feature.properties.color;
+        if (color) Object.assign(styleOptions, addonStyle, { fillColor: color });
+        return styleOptions;
+      }
+    }).addData(this.children.map(function (c) {
+      return {
+        id: c.id,
+        type: 'Feature',
+        geometry: c.geometry,
+        properties: Object.assign({ color: null }, c.properties)
+      };
+    }));
+    return this.renderer;
+  }
+  function render(stat) {
+    var _this = this;
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    if (!this.renderer) throw new Error('Renderer has not been initialized');
+    var colorScale = options.colorScale || this.colorScale;
+    var _getStat = this.getStat(stat),
+        statValues = _getStat.values,
+        min = _getStat.min,
+        max = _getStat.max;
+    var domain = options.domain || [min, max];
+    function normalize(value) {
+      return (value - domain[0]) / (domain[1] - domain[0]);
+    }
+    this.renderer.eachLayer(function (layer) {
+      var key = layer.feature.id;
+      if (key in statValues) {
+        var normalized = normalize(statValues[key]);
+        var transformed = Math.pow(normalized, options.transform || 1);
+        layer.feature.properties.color = colorScale(transformed);
+      } else {
+        layer.feature.properties.color = null;
+      }
+      _this.renderer.resetStyle(layer);
+    });
+  }
+  heatmap.initializeRenderer = initializeRenderer.bind(heatmap);
+  heatmap.render = render.bind(heatmap);
 }
 
 var numeral = createCommonjsModule(function (module) {
@@ -5799,78 +5808,63 @@ var store = {
     this[layerId] = { source: null, heatmap: null };
     return layerId;
   },
-  load: function load(key, layer) {
+  load: function load(layer, key, colorScale, style) {
     var _this = this;
     if (key in this.cache) {
       if (this.cache[key] instanceof Promise) return this.cache[key];
       if (this[layer].heatmap) {
         this[layer].heatmap.renderer.removeFrom(this.map);
       }
+      var heatmap = this.cache[key].clone(true);
+      supportLeaflet(heatmap);
+      modifyGetStat(heatmap);
+      heatmap.initializeRenderer(colorScale, {
+        weight: 1,
+        color: 'black',
+        opacity: 0.3,
+        fillColor: 'white',
+        fillOpacity: 0.3
+      }, {
+        weight: 2,
+        fillOpacity: 0.7,
+        opacity: 1
+      });
+      heatmap.renderer.bindTooltip(function (layer) {
+        var content = [layer.feature.properties.Planning_Area_Name, layer.feature.properties.Subzone_Name, layer.feature.properties._value];
+        var $content = document.createElement('div');
+        content.filter(function (item) {
+          return item;
+        }).forEach(function (item) {
+          var $p = document.createElement('p');
+          $p.textContent = item;
+          $content.appendChild($p);
+        });
+        return $content;
+      });
       this[layer].source = key;
-      this[layer].heatmap = this.cache[key];
-      this[layer].heatmap._owner = layer;
-      this[layer].heatmap.renderer.addTo(this.map);
-      return this[layer].heatmap;
+      this[layer].heatmap = heatmap;
+      heatmap.renderer.addTo(this.map);
+      return heatmap;
     } else {
       this.cache[key] = window.fetch('./data/' + key + '.json').then(function (res) {
         return res.json();
       }).then(function (data) {
         return new SgHeatmap(data);
       }).then(function (heatmap) {
-        supportLeaflet(heatmap);
-        modifyGetStat(heatmap);
-        var colorScale = YlOrRd();
-        heatmap.initializeRenderer(colorScale, {
-          weight: 1,
-          color: 'black',
-          opacity: 0.3,
-          fillColor: 'white',
-          fillOpacity: 0.3
-        }, {
-          weight: 2,
-          fillOpacity: 0.7,
-          opacity: 1
-        });
-        heatmap.renderer.bindTooltip(function (layer) {
-          var content = [layer.feature.properties.Planning_Area_Name, layer.feature.properties.Subzone_Name, layer.feature.properties._value];
-          var $content = document.createElement('div');
-          content.filter(function (item) {
-            return item;
-          }).forEach(function (item) {
-            var $p = document.createElement('p');
-            $p.textContent = item;
-            $content.appendChild($p);
-          });
-          return $content;
-        });
         _this.cache[key] = heatmap;
         return heatmap;
-        function modifyGetStat(heatmap) {
-          var _getStat = heatmap.getStat;
-          heatmap.getStat = function () {
-            var stat = _getStat.apply(heatmap, arguments);
-            Object.keys(stat.values).forEach(function (key) {
-              if (stat.values[key] == null) {
-                stat.unchanged.push(key);
-                delete stat.values[key];
-              }
-            });
-            stat.min = Math.min.apply(Math, toConsumableArray(Object.values(stat.values)));
-            return stat;
-          };
-        }
       });
       return this.cache[key];
     }
   },
   unload: function unload(layer) {
-    if (this[layer].heatmap._owner === layer) {
-      this[layer].heatmap.renderer.removeFrom(this.map);
-    }
+    if (!this[layer].heatmap) return;
+    this[layer].heatmap.renderer.removeFrom(this.map);
     this[layer].source = null;
     this[layer].heatmap = null;
   },
   render: function render(layer, accessor, format) {
+    if (!this[layer].heatmap) return;
     var stat = this[layer].heatmap.getStat(accessor);
     this[layer].heatmap.renderer.eachLayer(function (layer) {
       if (layer.feature.id in stat.values) {
@@ -5881,8 +5875,28 @@ var store = {
       }
     });
     this[layer].heatmap.render(accessor, optimizePointSpread(stat));
+  },
+  adjust: function adjust(layer, style) {
+    if (!this[layer].heatmap) return;
+    this[layer].heatmap.renderer.setStyle(function (feature) {
+      return style;
+    });
   }
 };
+function modifyGetStat(heatmap) {
+  var _getStat = heatmap.getStat;
+  heatmap.getStat = function () {
+    var stat = _getStat.apply(heatmap, arguments);
+    Object.keys(stat.values).forEach(function (key) {
+      if (stat.values[key] == null) {
+        stat.unchanged.push(key);
+        delete stat.values[key];
+      }
+    });
+    stat.min = Math.min.apply(Math, toConsumableArray(Object.values(stat.values)));
+    return stat;
+  };
+}
 
 var layer = {
   data: function data() {
@@ -5893,7 +5907,9 @@ var layer = {
   },
   props: {
     theme: Object,
-    year: String
+    year: Number,
+    color: Function,
+    opacity: Number
   },
   computed: {
     source: function source() {
@@ -5953,22 +5969,31 @@ var layer = {
             };
           };
       }
+    },
+    style: function style() {
+      return {
+        opacity: this.opacity * 1,
+        fillOpacity: this.opacity * 0.7
+      };
     }
   },
   methods: {
     onChange: function onChange() {
       var _this = this;
-      if (!this.theme) return;
+      if (!this.accessor) return;
       if (store[this.id].source === this.source) {
         store.render(this.id, this.accessor(this.selectedItem), this.theme.format);
+        store.adjust(this.id, this.style);
+        return;
       }
-      var heatmap = store.load(this.source, this.id);
+      var heatmap = store.load(this.id, this.source, this.color);
       if (heatmap instanceof Promise) {
         heatmap.then(function () {
           return _this.onChange();
         });
       } else {
         store.render(this.id, this.accessor(this.selectedItem), this.theme.format);
+        store.adjust(this.id, this.style);
       }
     }
   },
@@ -5977,10 +6002,13 @@ var layer = {
     selectedItem: 'onChange',
     control: function control() {
       if (this.control) {
-        if (this.control.type === 'radio') this.selectedItem = 0;else if (this.control.type === 'checkbox') this.selectedItem = [];else if (this.control.type === 'range') this.selectedItem = [0, 0];
+        if (this.control.type === 'radio') this.selectedItem = 0;else if (this.control.type === 'checkbox') this.selectedItem = [0];else if (this.control.type === 'range') this.selectedItem = [0, 0];
       } else {
-        if (store[this.id].heatmap) store.unload(this.id);
+        store.unload(this.id);
       }
+    },
+    style: function style() {
+      store.adjust(this.id, this.style);
     }
   }
 };
@@ -6233,13 +6261,17 @@ var themes = [{
 }];
 
 Vue.component('v-select', vSelect);
+Vue.component('v-slider', vSlider);
 window.vm = new Vue({
   el: '#app',
   data: {
     themes: themes,
+    years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+    colors: [YlOrRd(), GnBu()],
     theme: null,
     theme2: null,
-    selectedYear: 0
+    selectedYear: 2016,
+    blend: 0
   },
   computed: {
     selectedTheme: {
@@ -6255,7 +6287,21 @@ window.vm = new Vue({
       }
     },
     year: function year() {
-      return this.theme && this.theme.years[this.selectedYear];
+      var _this = this;
+      return this.theme && this.theme.years.filter(function (year) {
+        return year <= _this.selectedYear;
+      }).pop();
+    },
+    year2: function year2() {
+      var _this2 = this;
+      return this.theme2 && this.theme2.years.filter(function (year) {
+        return year <= _this2.selectedYear;
+      }).pop();
+    }
+  },
+  watch: {
+    theme2: function theme2(value) {
+      if (!value) this.blend = 0;
     }
   },
   mounted: function mounted() {
@@ -6277,4 +6323,3 @@ window.vm = new Vue({
 });
 
 }());
-//# sourceMappingURL=bundle.js.map

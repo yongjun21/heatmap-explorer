@@ -9,7 +9,9 @@ export default {
   },
   props: {
     theme: Object,
-    year: String
+    year: Number,
+    color: Function,
+    opacity: Number
   },
   computed: {
     source () {
@@ -68,20 +70,29 @@ export default {
             }
           }
       }
+    },
+    style () {
+      return {
+        opacity: this.opacity * 1,
+        fillOpacity: this.opacity * 0.7
+      }
     }
   },
   methods: {
     onChange () {
-      if (!this.theme) return
+      if (!this.accessor) return
       if (store[this.id].source === this.source) {
         store.render(this.id, this.accessor(this.selectedItem), this.theme.format)
+        store.adjust(this.id, this.style)
+        return
       }
 
-      const heatmap = store.load(this.source, this.id)
+      const heatmap = store.load(this.id, this.source, this.color)
       if (heatmap instanceof Promise) {
         heatmap.then(() => this.onChange())
       } else {
         store.render(this.id, this.accessor(this.selectedItem), this.theme.format)
+        store.adjust(this.id, this.style)
       }
     }
   },
@@ -91,11 +102,14 @@ export default {
     control () {
       if (this.control) {
         if (this.control.type === 'radio') this.selectedItem = 0
-        else if (this.control.type === 'checkbox') this.selectedItem = []
+        else if (this.control.type === 'checkbox') this.selectedItem = [0]
         else if (this.control.type === 'range') this.selectedItem = [0, 0]
       } else {
-        if (store[this.id].heatmap) store.unload(this.id)
+        store.unload(this.id)
       }
+    },
+    style () {
+      store.adjust(this.id, this.style)
     }
   }
 }
