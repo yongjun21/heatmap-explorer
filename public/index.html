@@ -9,51 +9,55 @@
 </head>
 <body>
   <div id="app">
-    <div class="theme-container">
-      <label class="theme-label">Selected theme</label>
-      <v-select class="theme-control"
-        v-model="selectedTheme"
-        :options="themes"
-        multiple
-        placeholder="Pick one or two themes to display">
-      </v-select>
+    <div class="left-panel">
+      <div class="theme-container">
+        <label class="theme-label">Selected theme</label>
+        <v-select class="theme-control"
+          v-model="selectedTheme"
+          :options="themes"
+          multiple
+          placeholder="Pick one or two themes to display">
+        </v-select>
+      </div>
+      <div class="map-container" ref="map"></div>
+      <v-slider class="year-control"
+        v-model="selectedYear"
+        :data="years"
+        lazy
+        piecewise-label
+        :tooltip="false"
+        :speed="0.1"
+        width="90%"
+        height="8">
+      </v-slider>
+      <v-slider class="blend-control"
+        v-model="blend"
+        min="0"
+        max="1"
+        interval="0.05"
+        :disabled="!compareTheme"
+        direction="vertical"
+        reverse
+        :tooltip="false"
+        :speed="0"
+        width="8"
+        height="400px">
+      </v-slider>
     </div>
-    <div class="map-container" ref="map"></div>
-    <v-slider class="year-control"
-      v-model="selectedYear"
-      :data="years"
-      lazy
-      piecewise-label
-      :tooltip="false"
-      :speed="0.1"
-      width="90%"
-      height="8">
-    </v-slider>
-    <v-slider class="blend-control"
-      v-model="blend"
-      min="0"
-      max="1"
-      interval="0.05"
-      :disabled="!compareTheme"
-      direction="vertical"
-      reverse
-      :tooltip="false"
-      :speed="0"
-      width="8"
-      height="60%">
-    </v-slider>
-    <layer
-      :theme="baseTheme"
-      :year="baseYear"
-      :color="colors[0]"
-      :opacity="1 - blend">
-    </layer>
-    <layer
-      :theme="compareTheme"
-      :year="compareYear"
-      :color="colors[1]"
-      :opacity="blend">
-    </layer>
+    <div class="right-panel">
+      <layer
+        :theme="baseTheme"
+        :year="baseYear"
+        :color="colors[0]"
+        :opacity="1 - blend">
+      </layer>
+      <layer
+        :theme="compareTheme"
+        :year="compareYear"
+        :color="colors[1]"
+        :opacity="blend">
+      </layer>
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>

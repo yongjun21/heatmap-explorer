@@ -1,8 +1,8 @@
 <template lang="html">
-  <v-slider class="blend-control"
+  <v-slider class="range-selector"
     v-model="state"
     :data="options"
-    :formatter="option => option.label"
+    :formatter="option => option && option.label"
     lazy
     direction="vertical"
     reverse
@@ -21,7 +21,7 @@ export default {
     event: 'change'
   },
   props: {
-    selected: Object,
+    selected: Array,
     options: Array
   },
   computed: {
@@ -31,6 +31,13 @@ export default {
       },
       set (values) {
         const indexes = values.map(value => this.options.indexOf(value))
+        if (indexes[0] === indexes[1]) {
+          indexes[1] += 1
+        }
+        if (indexes[1] === this.options.length) {
+          indexes[0] -= 1
+          indexes[1] -= 1
+        }
         this.$emit('change', indexes)
       }
     }

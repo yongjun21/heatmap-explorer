@@ -8,7 +8,19 @@ html, body {
 #app {
   height: 100%;
   display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.left-panel {
+  display: flex;
   flex-direction: column;
+  flex-grow: 1;
+}
+
+.right-panel {
+  width: 300px;
+  flex-grow: 0;
 }
 
 .theme-container {
@@ -60,13 +72,19 @@ html, body {
   margin: 4px auto;
 }
 
+.filter-control {
+  height: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
 .blend-control {
   position: absolute !important;
   left: 0;
-  top: 0;
+  top: 50%;
   z-index: 1000;
   margin-left: 8px;
-  margin-top: 20%;
+  margin-top: -200px;
 }
 
 .blend-control.vue-slider-disabled {

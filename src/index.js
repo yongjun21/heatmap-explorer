@@ -5,8 +5,8 @@ import CheckboxRadio from 'vue-checkbox-radio'
 import {YlOrRd, GnBu} from 'sg-heatmap/dist/es/helpers/color'
 
 import store from './store'
-import layer from './layer'
 import themes from './themes'
+import Layer from './components/Layer.vue'
 
 Vue.use(CheckboxRadio)
 Vue.component('v-select', vSelect)
@@ -68,5 +68,5 @@ window.vm = new Vue({
     store.map.attributionControl
       .setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>')
   },
-  components: {layer}
+  components: {Layer}
 })

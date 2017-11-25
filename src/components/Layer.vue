@@ -1,14 +1,26 @@
-import store from './store'
+<template lang="html">
+  <div class="filter-control">
+    <component
+      :is="controlType"
+      v-if="control"
+      v-model="selectedFilter"
+      :options="control.items">
+    </component>
+  </div>
+</template>
 
-import RadioGroup from './components/RadioGroup.vue'
-import CheckboxGroup from './components/CheckboxGroup.vue'
-import RangeSelector from './components/RangeSelector.vue'
+<script>
+import store from '../store'
+
+import RadioGroup from './RadioGroup.vue'
+import CheckboxGroup from './CheckboxGroup.vue'
+import RangeSelector from './RangeSelector.vue'
 
 export default {
   data () {
     return {
       id: store.add(),
-      selectedItem: 0
+      selectedFilter: null
     }
   },
   props: {
@@ -23,6 +35,14 @@ export default {
     },
     control () {
       return this.theme && this.theme.controls[this.theme.mapping[this.year].control]
+    },
+    controlType () {
+      const component = {
+        radio: 'RadioGroup',
+        checkbox: 'CheckboxGroup',
+        range: 'RangeSelector'
+      }
+      return this.control && component[this.control.type]
     },
     accessor () {
       const {control, year} = this
@@ -65,7 +85,7 @@ export default {
           return (selected) => {
             return d => {
               const nom = accessors.reduce((sum, accessor, index) => {
-                if (index < selected[0] || index > selected[1]) return sum
+                if (index < selected[0] || index >= selected[1]) return sum
                 return sum + accessor(d)
               }, 0)
               const denom = norm(d)
@@ -86,7 +106,7 @@ export default {
     onChange () {
       if (!this.accessor) return
       if (store[this.id].source === this.source) {
-        store.render(this.id, this.accessor(this.selectedItem), this.theme.format)
+        store.render(this.id, this.accessor(this.selectedFilter), this.theme.format)
         store.adjust(this.id, this.style)
         return
       }
@@ -95,25 +115,28 @@ export default {
       if (heatmap instanceof Promise) {
         heatmap.then(() => this.onChange())
       } else {
-        store.render(this.id, this.accessor(this.selectedItem), this.theme.format)
+        store.render(this.id, this.accessor(this.selectedFilter), this.theme.format)
         store.adjust(this.id, this.style)
+        if (this.opacity > 0.5) store.reorder(this.id)
       }
     }
   },
   watch: {
     accessor: 'onChange',
-    selectedItem: 'onChange',
-    control () {
+    selectedFilter: 'onChange',
+    control (newValue, oldValue) {
+      if (newValue === oldValue) return
       if (this.control) {
-        if (this.control.type === 'radio') this.selectedItem = 0
-        else if (this.control.type === 'checkbox') this.selectedItem = [0]
-        else if (this.control.type === 'range') this.selectedItem = [0, 0]
+        if (this.control.type === 'radio') this.selectedFilter = 0
+        else if (this.control.type === 'checkbox') this.selectedFilter = [0]
+        else if (this.control.type === 'range') this.selectedFilter = [0, 1]
       } else {
         store.unload(this.id)
       }
     },
-    style () {
+    opacity () {
       store.adjust(this.id, this.style)
+      if (this.opacity > 0.5) store.reorder(this.id)
     }
   },
   components: {
@@ -130,3 +153,4 @@ function get (d, path) {
   })
   return value
 }
+</script>

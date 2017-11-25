@@ -52,6 +52,7 @@ export default {
       this[layer].source = key
       this[layer].heatmap = heatmap
       heatmap.renderer.addTo(this.map)
+      heatmap.renderer.bringToBack()
       return heatmap
     } else {
       this.cache[key] = window.fetch(`./data/${key}.json`)
@@ -86,6 +87,10 @@ export default {
   adjust (layer, style) {
     if (!this[layer].heatmap) return
     this[layer].heatmap.renderer.setStyle(feature => style)
+  },
+  reorder (layer) {
+    if (!this[layer].heatmap) return
+    this[layer].heatmap.renderer.bringToFront()
   }
 }
 

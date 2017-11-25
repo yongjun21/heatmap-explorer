@@ -5849,6 +5849,7 @@ var store = {
       this[layer].source = key;
       this[layer].heatmap = heatmap;
       heatmap.renderer.addTo(this.map);
+      heatmap.renderer.bringToBack();
       return heatmap;
     } else {
       this.cache[key] = window.fetch('./data/' + key + '.json').then(function (res) {
@@ -5886,6 +5887,10 @@ var store = {
     this[layer].heatmap.renderer.setStyle(function (feature) {
       return style;
     });
+  },
+  reorder: function reorder(layer) {
+    if (!this[layer].heatmap) return;
+    this[layer].heatmap.renderer.bringToFront();
   }
 };
 function modifyGetStat(heatmap) {
@@ -5903,230 +5908,13 @@ function modifyGetStat(heatmap) {
   };
 }
 
-var RadioGroup = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "radio-group" }, _vm._l(_vm.options, function (option, index) {
-      return _c('radio', { attrs: { "value": index }, model: { value: _vm.state, callback: function callback($$v) {
-            _vm.state = $$v;
-          }, expression: "state" } }, [_vm._v(" option.label ")]);
-    }));
-  }, staticRenderFns: [],
-  model: {
-    prop: 'selected',
-    event: 'change'
-  },
-  props: {
-    selected: Number,
-    options: Array
-  },
-  computed: {
-    state: {
-      get: function get() {
-        return this.selected;
-      },
-      set: function set(value) {
-        this.$emit('change', value);
-      }
-    }
-  }
-};
-
-var CheckboxGroup = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "checkbox-group" }, _vm._l(_vm.options, function (option, index) {
-      return _c('checkbox', { attrs: { "value": index }, model: { value: _vm.state, callback: function callback($$v) {
-            _vm.state = $$v;
-          }, expression: "state" } }, [_vm._v(" option.label ")]);
-    }));
-  }, staticRenderFns: [],
-  model: {
-    prop: 'selected',
-    event: 'change'
-  },
-  props: {
-    selected: Array,
-    options: Array
-  },
-  computed: {
-    state: {
-      get: function get() {
-        return this.selected;
-      },
-      set: function set(value) {
-        this.$emit('change', value);
-      }
-    }
-  }
-};
-
-var RangeSelector = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('v-slider', { staticClass: "blend-control", attrs: { "data": _vm.options, "formatter": function formatter(option) {
-          return option.label;
-        }, "lazy": "", "direction": "vertical", "reverse": "", "piecewise-label": "", "tooltip": false, "speed": 0.1, "width": "8", "height": "100%" }, model: { value: _vm.state, callback: function callback($$v) {
-          _vm.state = $$v;
-        }, expression: "state" } });
-  }, staticRenderFns: [],
-  model: {
-    prop: 'selected',
-    event: 'change'
-  },
-  props: {
-    selected: Object,
-    options: Array
-  },
-  computed: {
-    state: {
-      get: function get() {
-        var _this = this;
-
-        return this.selected.map(function (index) {
-          return _this.options[index];
-        });
-      },
-      set: function set(values) {
-        var _this2 = this;
-
-        var indexes = values.map(function (value) {
-          return _this2.options.indexOf(value);
-        });
-        this.$emit('change', indexes);
-      }
-    }
-  }
-};
-
-var layer = {
-  data: function data() {
-    return {
-      id: store.add(),
-      selectedItem: 0
-    };
-  },
-  props: {
-    theme: Object,
-    year: Number,
-    color: Function,
-    opacity: Number
-  },
-  computed: {
-    source: function source() {
-      return this.theme && this.theme.sources[this.theme.mapping[this.year].source];
-    },
-    control: function control() {
-      return this.theme && this.theme.controls[this.theme.mapping[this.year].control];
-    },
-    accessor: function accessor() {
-      var control = this.control,
-          year = this.year;
-      if (!control || !year) return;
-      var accessors = control.items.map(function (item) {
-        return function (d) {
-          return item.keys.reduce(function (sum, path) {
-            return sum + get$3(d[year], path);
-          }, 0);
-        };
-      });
-      var threshold = control.threshold || 0;
-      var norm = control.normalize ? function (d) {
-        return get$3(d[year], control.normalize);
-      } : function (d) {
-        return 1;
-      };
-      switch (control.type) {
-        case 'radio':
-          return function (selected) {
-            return function (d) {
-              var nom = accessors[selected](d);
-              var denom = norm(d);
-              if ((control.normalize ? denom : nom) < threshold) return null;
-              return nom / denom;
-            };
-          };
-        case 'checkbox':
-          return function (selected) {
-            return function (d) {
-              var nom = selected.reduce(function (sum, index) {
-                return sum + accessors[index](d);
-              }, 0);
-              var denom = norm(d);
-              if ((control.normalize ? denom : nom) < threshold) return null;
-              return nom / denom;
-            };
-          };
-        case 'range':
-          return function (selected) {
-            return function (d) {
-              var nom = accessors.reduce(function (sum, accessor, index) {
-                if (index < selected[0] || index > selected[1]) return sum;
-                return sum + accessor(d);
-              }, 0);
-              var denom = norm(d);
-              if ((control.normalize ? denom : nom) < threshold) return null;
-              return nom / denom;
-            };
-          };
-      }
-    },
-    style: function style() {
-      return {
-        opacity: this.opacity * 1,
-        fillOpacity: this.opacity * 0.7
-      };
-    }
-  },
-  methods: {
-    onChange: function onChange() {
-      var _this = this;
-      if (!this.accessor) return;
-      if (store[this.id].source === this.source) {
-        store.render(this.id, this.accessor(this.selectedItem), this.theme.format);
-        store.adjust(this.id, this.style);
-        return;
-      }
-      var heatmap = store.load(this.id, this.source, this.color);
-      if (heatmap instanceof Promise) {
-        heatmap.then(function () {
-          return _this.onChange();
-        });
-      } else {
-        store.render(this.id, this.accessor(this.selectedItem), this.theme.format);
-        store.adjust(this.id, this.style);
-      }
-    }
-  },
-  watch: {
-    accessor: 'onChange',
-    selectedItem: 'onChange',
-    control: function control() {
-      if (this.control) {
-        if (this.control.type === 'radio') this.selectedItem = 0;else if (this.control.type === 'checkbox') this.selectedItem = [0];else if (this.control.type === 'range') this.selectedItem = [0, 0];
-      } else {
-        store.unload(this.id);
-      }
-    },
-    style: function style() {
-      store.adjust(this.id, this.style);
-    }
-  },
-  components: {
-    RadioGroup: RadioGroup,
-    CheckboxGroup: CheckboxGroup,
-    RangeSelector: RangeSelector
-  }
-};
-function get$3(d, path) {
-  var value = d;
-  path.split('.').forEach(function (key) {
-    value = value[key];
-  });
-  return value;
-}
-
 var themes = [{
-  label: 'Resident Population By Planning Area',
+  label: 'Resident Population By Gender & Planning Area',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'radio',
-    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }],
+    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }],
     threshold: 1000
   }],
   mapping: {
@@ -6150,12 +5938,12 @@ var themes = [{
   },
   format: '0,0'
 }, {
-  label: 'Resident Population By Subzone',
+  label: 'Resident Population By Gender & Subzone',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'radio',
-    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }],
+    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }],
     threshold: 500
   }],
   mapping: {
@@ -6179,12 +5967,304 @@ var themes = [{
   },
   format: '0,0'
 }, {
+  label: 'Resident Population By Age & Planning Area',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Resident Population By Age & Subzone',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
+    threshold: 500
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Resident Population By Age & Planning Area (Female)',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Resident Population By Age & Subzone (Female)',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
+    threshold: 500
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Resident Population By Age & Planning Area (Male)',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Resident Population By Age & Subzone (Male)',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    threshold: 500
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Resident Population By Dwelling Type & Planning Area',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'checkbox',
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Resident Population By Dwelling Type & Subzone',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'checkbox',
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
+    threshold: 500
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0,0'
+}, {
+  label: 'Gender Distribution of Resident Population By Planning Area',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'radio',
+    items: [{ label: 'Male to Female', keys: ['Resident.Male.TOTAL'] }],
+    normalize: 'Resident.Female.TOTAL',
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0.00'
+}, {
+  label: 'Gender Distribution of Resident Population By Subzone',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'radio',
+    items: [{ label: 'Male to Female', keys: ['Resident.Male.TOTAL'] }],
+    normalize: 'Resident.Female.TOTAL',
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0.00'
+}, {
   label: 'Age Distribution of Resident Population By Planning Area',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: '0 to 4', keys: ['Resident.Total.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Total.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Total.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Total.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Total.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Total.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Total.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Total.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Total.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Total.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Total.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Total.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Total.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Total.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Total.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Total.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Total.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Total.OVER85'] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
     normalize: 'Resident.Total.TOTAL',
     threshold: 1000
   }],
@@ -6214,68 +6294,8 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: '0 to 4', keys: ['Resident.Total.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Total.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Total.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Total.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Total.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Total.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Total.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Total.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Total.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Total.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Total.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Total.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Total.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Total.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Total.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Total.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Total.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Total.OVER85'] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
     normalize: 'Resident.Total.TOTAL',
-    threshold: 500
-  }],
-  mapping: {
-    2000: { source: 0, control: 0 },
-    2001: { source: 1, control: 0 },
-    2002: { source: 1, control: 0 },
-    2003: { source: 1, control: 0 },
-    2004: { source: 1, control: 0 },
-    2005: { source: 1, control: 0 },
-    2006: { source: 1, control: 0 },
-    2007: { source: 1, control: 0 },
-    2008: { source: 1, control: 0 },
-    2009: { source: 1, control: 0 },
-    2010: { source: 1, control: 0 },
-    2011: { source: 2, control: 0 },
-    2012: { source: 2, control: 0 },
-    2013: { source: 2, control: 0 },
-    2014: { source: 2, control: 0 },
-    2015: { source: 2, control: 0 },
-    2016: { source: 2, control: 0 }
-  },
-  format: '0%'
-}, {
-  label: 'Age Distribution of Resident Population By Planning Area (Male)',
-  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
-  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
-  controls: [{
-    type: 'range',
-    items: [{ label: '0 to 4', keys: ['Resident.Male.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Male.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Male.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Male.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Male.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Male.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Male.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Male.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Male.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Male.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Male.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Male.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Male.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Male.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Male.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Male.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Male.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Male.OVER85'] }],
-    normalize: 'Resident.Male.TOTAL',
-    threshold: 1000
-  }],
-  mapping: {
-    2000: { source: 0, control: 0 },
-    2001: { source: 1, control: 0 },
-    2002: { source: 1, control: 0 },
-    2003: { source: 1, control: 0 },
-    2004: { source: 1, control: 0 },
-    2005: { source: 1, control: 0 },
-    2006: { source: 1, control: 0 },
-    2007: { source: 1, control: 0 },
-    2008: { source: 1, control: 0 },
-    2009: { source: 1, control: 0 },
-    2010: { source: 1, control: 0 },
-    2011: { source: 2, control: 0 },
-    2012: { source: 2, control: 0 },
-    2013: { source: 2, control: 0 },
-    2014: { source: 2, control: 0 },
-    2015: { source: 2, control: 0 },
-    2016: { source: 2, control: 0 }
-  },
-  format: '0%'
-}, {
-  label: 'Age Distribution of Resident Population By Subzone (Male)',
-  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
-  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
-  controls: [{
-    type: 'range',
-    items: [{ label: '0 to 4', keys: ['Resident.Male.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Male.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Male.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Male.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Male.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Male.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Male.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Male.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Male.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Male.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Male.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Male.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Male.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Male.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Male.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Male.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Male.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Male.OVER85'] }],
-    normalize: 'Resident.Male.TOTAL',
     threshold: 500
   }],
   mapping: {
@@ -6304,7 +6324,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: '0 to 4', keys: ['Resident.Female.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Female.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Female.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Female.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Female.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Female.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Female.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Female.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Female.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Female.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Female.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Female.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Female.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Female.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Female.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Female.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Female.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Female.OVER85'] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
     normalize: 'Resident.Female.TOTAL',
     threshold: 1000
   }],
@@ -6334,7 +6354,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: '0 to 4', keys: ['Resident.Female.BET0TO4'] }, { label: '5 to 9', keys: ['Resident.Female.BET5TO9'] }, { label: '10 to 14', keys: ['Resident.Female.BET10TO14'] }, { label: '15 to 19', keys: ['Resident.Female.BET15TO19'] }, { label: '20 to 24', keys: ['Resident.Female.BET20TO24'] }, { label: '25 to 29', keys: ['Resident.Female.BET25TO29'] }, { label: '30 to 34', keys: ['Resident.Female.BET30TO34'] }, { label: '35 to 39', keys: ['Resident.Female.BET35TO39'] }, { label: '40 to 44', keys: ['Resident.Female.BET40TO44'] }, { label: '45 to 49', keys: ['Resident.Female.BET45TO49'] }, { label: '50 to 54', keys: ['Resident.Female.BET50TO54'] }, { label: '55 to 59', keys: ['Resident.Female.BET55TO59'] }, { label: '60 to 64', keys: ['Resident.Female.BET60TO64'] }, { label: '65 to 69', keys: ['Resident.Female.BET65TO69'] }, { label: '70 to 74', keys: ['Resident.Female.BET70TO74'] }, { label: '75 to 79', keys: ['Resident.Female.BET75TO79'] }, { label: '80 to 84', keys: ['Resident.Female.BET80TO84'] }, { label: 'Over 85', keys: ['Resident.Female.OVER85'] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
     normalize: 'Resident.Female.TOTAL',
     threshold: 500
   }],
@@ -6358,9 +6378,436 @@ var themes = [{
     2016: { source: 2, control: 0 }
   },
   format: '0%'
+}, {
+  label: 'Age Distribution of Resident Population By Planning Area (Male)',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    normalize: 'Resident.Male.TOTAL',
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0%'
+}, {
+  label: 'Age Distribution of Resident Population By Subzone (Male)',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'range',
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    normalize: 'Resident.Male.TOTAL',
+    threshold: 500
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0%'
+}, {
+  label: 'Distribution of Dwelling Type By Planning Area',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'checkbox',
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
+    normalize: 'DwellingType.TOTAL',
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0%'
+}, {
+  label: 'Distribution of Dwelling Type By Subzone',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'checkbox',
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
+    normalize: 'DwellingType.TOTAL',
+    threshold: 500
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0%'
+}, {
+  label: 'Distribution of HDB Dwelling Type By Planning Area',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
+  controls: [{
+    type: 'checkbox',
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }],
+    normalize: 'DwellingType.HDB',
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0%'
+}, {
+  label: 'Distribution of HDB Dwelling Type By Subzone',
+  years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+  sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
+  controls: [{
+    type: 'checkbox',
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }],
+    normalize: 'DwellingType.HDB',
+    threshold: 1000
+  }],
+  mapping: {
+    2000: { source: 0, control: 0 },
+    2001: { source: 1, control: 0 },
+    2002: { source: 1, control: 0 },
+    2003: { source: 1, control: 0 },
+    2004: { source: 1, control: 0 },
+    2005: { source: 1, control: 0 },
+    2006: { source: 1, control: 0 },
+    2007: { source: 1, control: 0 },
+    2008: { source: 1, control: 0 },
+    2009: { source: 1, control: 0 },
+    2010: { source: 1, control: 0 },
+    2011: { source: 2, control: 0 },
+    2012: { source: 2, control: 0 },
+    2013: { source: 2, control: 0 },
+    2014: { source: 2, control: 0 },
+    2015: { source: 2, control: 0 },
+    2016: { source: 2, control: 0 }
+  },
+  format: '0%'
 }];
 
-var years = [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016];
+var RadioGroup = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "radio-group" }, _vm._l(_vm.options, function (option, index) {
+      return _c('radio', { attrs: { "value": index }, model: { value: _vm.state, callback: function callback($$v) {
+            _vm.state = $$v;
+          }, expression: "state" } }, [_vm._v(" " + _vm._s(option.label) + " ")]);
+    }));
+  }, staticRenderFns: [],
+  model: {
+    prop: 'selected',
+    event: 'change'
+  },
+  props: {
+    selected: Number,
+    options: Array
+  },
+  computed: {
+    state: {
+      get: function get() {
+        return this.selected;
+      },
+      set: function set(value) {
+        this.$emit('change', value);
+      }
+    }
+  }
+};
+
+var CheckboxGroup = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "checkbox-group" }, _vm._l(_vm.options, function (option, index) {
+      return _c('checkbox', { attrs: { "value": index }, model: { value: _vm.state, callback: function callback($$v) {
+            _vm.state = $$v;
+          }, expression: "state" } }, [_vm._v(" " + _vm._s(option.label) + " ")]);
+    }));
+  }, staticRenderFns: [],
+  model: {
+    prop: 'selected',
+    event: 'change'
+  },
+  props: {
+    selected: Array,
+    options: Array
+  },
+  computed: {
+    state: {
+      get: function get() {
+        return this.selected;
+      },
+      set: function set(value) {
+        this.$emit('change', value);
+      }
+    }
+  }
+};
+
+var RangeSelector = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('v-slider', { staticClass: "range-selector", attrs: { "data": _vm.options, "formatter": function formatter(option) {
+          return option && option.label;
+        }, "lazy": "", "direction": "vertical", "reverse": "", "piecewise-label": "", "tooltip": false, "speed": 0.1, "width": "8", "height": "100%" }, model: { value: _vm.state, callback: function callback($$v) {
+          _vm.state = $$v;
+        }, expression: "state" } });
+  }, staticRenderFns: [],
+  model: {
+    prop: 'selected',
+    event: 'change'
+  },
+  props: {
+    selected: Array,
+    options: Array
+  },
+  computed: {
+    state: {
+      get: function get() {
+        var _this = this;
+
+        return this.selected.map(function (index) {
+          return _this.options[index];
+        });
+      },
+      set: function set(values) {
+        var _this2 = this;
+
+        var indexes = values.map(function (value) {
+          return _this2.options.indexOf(value);
+        });
+        if (indexes[0] === indexes[1]) {
+          indexes[1] += 1;
+        }
+        if (indexes[1] === this.options.length) {
+          indexes[0] -= 1;
+          indexes[1] -= 1;
+        }
+        this.$emit('change', indexes);
+      }
+    }
+  }
+};
+
+var Layer = { render: function render() {
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "filter-control" }, [_vm.control ? _c(_vm.controlType, { tag: "component", attrs: { "options": _vm.control.items }, model: { value: _vm.selectedFilter, callback: function callback($$v) {
+          _vm.selectedFilter = $$v;
+        }, expression: "selectedFilter" } }) : _vm._e()], 1);
+  }, staticRenderFns: [],
+  data: function data() {
+    return {
+      id: store.add(),
+      selectedFilter: null
+    };
+  },
+
+  props: {
+    theme: Object,
+    year: Number,
+    color: Function,
+    opacity: Number
+  },
+  computed: {
+    source: function source() {
+      return this.theme && this.theme.sources[this.theme.mapping[this.year].source];
+    },
+    control: function control() {
+      return this.theme && this.theme.controls[this.theme.mapping[this.year].control];
+    },
+    controlType: function controlType() {
+      var component = {
+        radio: 'RadioGroup',
+        checkbox: 'CheckboxGroup',
+        range: 'RangeSelector'
+      };
+      return this.control && component[this.control.type];
+    },
+    accessor: function accessor() {
+      var control = this.control,
+          year = this.year;
+
+      if (!control || !year) return;
+      var accessors = control.items.map(function (item) {
+        return function (d) {
+          return item.keys.reduce(function (sum, path) {
+            return sum + get$3(d[year], path);
+          }, 0);
+        };
+      });
+
+      var threshold = control.threshold || 0;
+      var norm = control.normalize ? function (d) {
+        return get$3(d[year], control.normalize);
+      } : function (d) {
+        return 1;
+      };
+
+      switch (control.type) {
+        case 'radio':
+          return function (selected) {
+            return function (d) {
+              var nom = accessors[selected](d);
+              var denom = norm(d);
+              if ((control.normalize ? denom : nom) < threshold) return null;
+              return nom / denom;
+            };
+          };
+
+        case 'checkbox':
+          return function (selected) {
+            return function (d) {
+              var nom = selected.reduce(function (sum, index) {
+                return sum + accessors[index](d);
+              }, 0);
+              var denom = norm(d);
+              if ((control.normalize ? denom : nom) < threshold) return null;
+              return nom / denom;
+            };
+          };
+
+        case 'range':
+          return function (selected) {
+            return function (d) {
+              var nom = accessors.reduce(function (sum, accessor, index) {
+                if (index < selected[0] || index >= selected[1]) return sum;
+                return sum + accessor(d);
+              }, 0);
+              var denom = norm(d);
+              if ((control.normalize ? denom : nom) < threshold) return null;
+              return nom / denom;
+            };
+          };
+      }
+    },
+    style: function style() {
+      return {
+        opacity: this.opacity * 1,
+        fillOpacity: this.opacity * 0.7
+      };
+    }
+  },
+  methods: {
+    onChange: function onChange() {
+      var _this = this;
+
+      if (!this.accessor) return;
+      if (store[this.id].source === this.source) {
+        store.render(this.id, this.accessor(this.selectedFilter), this.theme.format);
+        store.adjust(this.id, this.style);
+        return;
+      }
+
+      var heatmap = store.load(this.id, this.source, this.color);
+      if (heatmap instanceof Promise) {
+        heatmap.then(function () {
+          return _this.onChange();
+        });
+      } else {
+        store.render(this.id, this.accessor(this.selectedFilter), this.theme.format);
+        store.adjust(this.id, this.style);
+        if (this.opacity > 0.5) store.reorder(this.id);
+      }
+    }
+  },
+  watch: {
+    accessor: 'onChange',
+    selectedFilter: 'onChange',
+    control: function control(newValue, oldValue) {
+      if (newValue === oldValue) return;
+      if (this.control) {
+        if (this.control.type === 'radio') this.selectedFilter = 0;else if (this.control.type === 'checkbox') this.selectedFilter = [0];else if (this.control.type === 'range') this.selectedFilter = [0, 1];
+      } else {
+        store.unload(this.id);
+      }
+    },
+    opacity: function opacity() {
+      store.adjust(this.id, this.style);
+      if (this.opacity > 0.5) store.reorder(this.id);
+    }
+  },
+  components: {
+    RadioGroup: RadioGroup,
+    CheckboxGroup: CheckboxGroup,
+    RangeSelector: RangeSelector
+  }
+};
+
+function get$3(d, path) {
+  var value = d;
+  path.split('.').forEach(function (key) {
+    value = value[key];
+  });
+  return value;
+}
+
 Vue.use(CheckboxRadio);
 Vue.component('v-select', vSelect);
 Vue.component('v-slider', vSlider);
@@ -6368,7 +6815,7 @@ window.vm = new Vue({
   el: '#app',
   data: {
     themes: themes,
-    years: years,
+    years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
     colors: [YlOrRd(), GnBu()],
     baseTheme: null,
     compareTheme: null,
@@ -6421,7 +6868,7 @@ window.vm = new Vue({
     }).addTo(store.map);
     store.map.attributionControl.setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>');
   },
-  components: { layer: layer }
+  components: { Layer: Layer }
 });
 
 }());

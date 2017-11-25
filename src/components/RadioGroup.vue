@@ -3,7 +3,7 @@
     <radio v-for="(option, index)  in options"
       v-model="state"
       :value="index">
-      option.label
+      {{option.label}}
     </radio>
   </div>
 </template>
