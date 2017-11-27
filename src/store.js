@@ -27,7 +27,7 @@ export default {
         weight: 1,
         color: 'black',
         opacity: 0.3,
-        fillColor: 'white',
+        fillColor: colorScale(0),
         fillOpacity: 0.3
       }, {
         weight: 2,
@@ -86,7 +86,9 @@ export default {
   },
   adjust (layer, style) {
     if (!this[layer].heatmap) return
-    this[layer].heatmap.renderer.setStyle(feature => style)
+    this[layer].heatmap.renderer.setStyle(feature => {
+      if (feature.properties.color) return style
+    })
   },
   reorder (layer) {
     if (!this[layer].heatmap) return
@@ -99,12 +101,14 @@ function modifyGetStat (heatmap) {
   heatmap.getStat = function () {
     const stat = _getStat.apply(heatmap, arguments)
     Object.keys(stat.values).forEach(key => {
-      if (stat.values[key] == null) {
+      if (stat.values[key] == null || isNaN(stat.values[key])) {
         stat.unchanged.push(key)
         delete stat.values[key]
       }
     })
     stat.min = Math.min(...Object.values(stat.values))
+    stat.max = Math.max(...Object.values(stat.values))
+    if (stat.max === stat.min) stat.max = stat.min + 1
     return stat
   }
 }

@@ -55,7 +55,10 @@ export default {
         }
       })
 
-      const threshold = control.threshold || 0
+      const exclude = control.threshold ? d => {
+        return get(d[year], control.threshold[0]) < control.threshold[1]
+      } : d => false
+
       const norm = control.normalize ? d => {
         return control.normalize.reduce((sum, path) => {
           return sum + get(d[year], path)
@@ -66,35 +69,41 @@ export default {
         case 'radio':
           return selected => {
             return d => {
-              const nom = accessors[selected](d)
-              const denom = norm(d)
-              if ((control.normalize ? denom : nom) < threshold) return null
-              return nom / denom
+              try {
+                if (exclude(d)) return null
+                return accessors[selected](d) / norm(d)
+              } catch (err) {
+                return null
+              }
             }
           }
 
         case 'checkbox':
           return selected => {
             return d => {
-              const nom = selected.reduce((sum, index) => {
-                return sum + accessors[index](d)
-              }, 0)
-              const denom = norm(d)
-              if ((control.normalize ? denom : nom) < threshold) return null
-              return nom / denom
+              try {
+                if (exclude(d)) return null
+                return selected.reduce((sum, index) => {
+                  return sum + accessors[index](d)
+                }, 0) / norm(d)
+              } catch (err) {
+                return null
+              }
             }
           }
 
         case 'range':
           return (selected) => {
             return d => {
-              const nom = accessors.reduce((sum, accessor, index) => {
-                if (index < selected[0] || index >= selected[1]) return sum
-                return sum + accessor(d)
-              }, 0)
-              const denom = norm(d)
-              if ((control.normalize ? denom : nom) < threshold) return null
-              return nom / denom
+              try {
+                if (exclude(d)) return null
+                return accessors.reduce((sum, accessor, index) => {
+                  if (index < selected[0] || index >= selected[1]) return sum
+                  return sum + accessor(d)
+                }, 0) / norm(d)
+              } catch (err) {
+                return null
+              }
             }
           }
       }

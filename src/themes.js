@@ -13,7 +13,7 @@ export default [{
       {label: 'Female', keys: ['Resident.Female.TOTAL']},
       {label: 'Male', keys: ['Resident.Male.TOTAL']}
     ],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -50,7 +50,7 @@ export default [{
       {label: 'Female', keys: ['Resident.Female.TOTAL']},
       {label: 'Male', keys: ['Resident.Male.TOTAL']}
     ],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -103,7 +103,7 @@ export default [{
       {label: '85', keys: ['Resident.Total.OVER85']},
       {label: 'Over 85', keys: []}
     ],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -156,7 +156,7 @@ export default [{
       {label: '85', keys: ['Resident.Total.OVER85']},
       {label: 'Over 85', keys: []}
     ],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -209,7 +209,7 @@ export default [{
       {label: '85', keys: ['Resident.Female.OVER85']},
       {label: 'Over 85', keys: []}
     ],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -262,7 +262,7 @@ export default [{
       {label: '85', keys: ['Resident.Female.OVER85']},
       {label: 'Over 85', keys: []}
     ],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -315,7 +315,7 @@ export default [{
       {label: '85', keys: ['Resident.Male.OVER85']},
       {label: 'Over 85', keys: []}
     ],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -368,7 +368,7 @@ export default [{
       {label: '85', keys: ['Resident.Male.OVER85']},
       {label: 'Over 85', keys: []}
     ],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -409,7 +409,7 @@ export default [{
       {label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO']},
       {label: 'Others', keys: ['DwellingType.OTHERS']}
     ],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -450,7 +450,7 @@ export default [{
       {label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO']},
       {label: 'Others', keys: ['DwellingType.OTHERS']}
     ],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -486,7 +486,7 @@ export default [{
       {label: 'Male to Female', keys: ['Resident.Male.TOTAL']}
     ],
     normalize: ['Resident.Female.TOTAL'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -522,7 +522,7 @@ export default [{
       {label: 'Male to Female', keys: ['Resident.Male.TOTAL']}
     ],
     normalize: ['Resident.Female.TOTAL'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -576,7 +576,7 @@ export default [{
       {label: 'Over 85', keys: []}
     ],
     normalize: ['Resident.Total.TOTAL'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -630,7 +630,7 @@ export default [{
       {label: 'Over 85', keys: []}
     ],
     normalize: ['Resident.Total.TOTAL'],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -684,7 +684,7 @@ export default [{
       {label: 'Over 85', keys: []}
     ],
     normalize: ['Resident.Female.TOTAL'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -738,7 +738,7 @@ export default [{
       {label: 'Over 85', keys: []}
     ],
     normalize: ['Resident.Female.TOTAL'],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -792,7 +792,7 @@ export default [{
       {label: 'Over 85', keys: []}
     ],
     normalize: ['Resident.Male.TOTAL'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -846,7 +846,7 @@ export default [{
       {label: 'Over 85', keys: []}
     ],
     normalize: ['Resident.Male.TOTAL'],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -888,7 +888,7 @@ export default [{
       {label: 'Others', keys: ['DwellingType.OTHERS']}
     ],
     normalize: ['DwellingType.TOTAL'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -930,7 +930,7 @@ export default [{
       {label: 'Others', keys: ['DwellingType.OTHERS']}
     ],
     normalize: ['DwellingType.TOTAL'],
-    threshold: 500
+    threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -969,7 +969,7 @@ export default [{
       {label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX']}
     ],
     normalize: ['DwellingType.HDB'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1008,7 +1008,7 @@ export default [{
       {label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX']}
     ],
     normalize: ['DwellingType.HDB'],
-    threshold: 1000
+    threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1044,8 +1044,7 @@ export default [{
       {label: '3 room HDB', keys: ['Electricity.THREE_RM']},
       {label: '4 room HDB', keys: ['Electricity.FOUR_RM']},
       {label: '5 room HDB & Executive Flats', keys: ['Electricity.FIVE_RM_EX']}
-    ],
-    threshold: 0
+    ]
   }],
   mapping: {
     2009: {source: 0, control: 0},
@@ -1075,7 +1074,7 @@ export default [{
       'getAllEconomicStatus.Female.unemployed', 'getAllEconomicStatus.Male.unemployed',
       'getAllEconomicStatus.Female.inactive', 'getAllEconomicStatus.Male.inactive'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1103,7 +1102,7 @@ export default [{
       'getAllEconomicStatus.Female.unemployed',
       'getAllEconomicStatus.Female.inactive'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1131,7 +1130,7 @@ export default [{
       'getAllEconomicStatus.Male.unemployed',
       'getAllEconomicStatus.Male.inactive'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1156,7 +1155,7 @@ export default [{
       'getAllEconomicStatus.Female.employed', 'getAllEconomicStatus.Male.employed',
       'getAllEconomicStatus.Female.unemployed', 'getAllEconomicStatus.Male.unemployed'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1181,7 +1180,7 @@ export default [{
       'getAllEconomicStatus.Female.employed',
       'getAllEconomicStatus.Female.unemployed'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1206,7 +1205,7 @@ export default [{
       'getAllEconomicStatus.Male.employed',
       'getAllEconomicStatus.Male.unemployed'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1231,7 +1230,7 @@ export default [{
       {label: 'Others', keys: ['getAllEthnicGroup.Female.others', 'getAllEthnicGroup.Male.others']}
     ],
     normalize: ['getAllEthnicGroup.Female.total', 'getAllEthnicGroup.Male.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1256,7 +1255,7 @@ export default [{
       {label: 'Others', keys: ['getAllEthnicGroup.Female.others']}
     ],
     normalize: ['getAllEthnicGroup.Female.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1281,7 +1280,7 @@ export default [{
       {label: 'Others', keys: ['getAllEthnicGroup.Male.others']}
     ],
     normalize: ['getAllEthnicGroup.Male.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1311,7 +1310,7 @@ export default [{
       'getAllMaritalStatus.Female.widowed', 'getAllMaritalStatus.Male.widowed',
       'getAllMaritalStatus.Female.divorced', 'getAllMaritalStatus.Male.divorced'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1341,7 +1340,7 @@ export default [{
       'getAllMaritalStatus.Female.widowed',
       'getAllMaritalStatus.Female.divorced'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1371,7 +1370,7 @@ export default [{
       'getAllMaritalStatus.Male.widowed',
       'getAllMaritalStatus.Male.divorced'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1407,7 +1406,7 @@ export default [{
       'getAllEducationAttending.prof_qualification_diploma',
       'getAllEducationAttending.university'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1447,7 +1446,7 @@ export default [{
       'getAllReligion.other_christians',
       'getAllReligion.other_religions'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1483,7 +1482,7 @@ export default [{
       'getAllSpokenAtHome.other_indian_languages',
       'getAllSpokenAtHome.others'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1546,7 +1545,7 @@ export default [{
       'getAllLanguageLiterate.l3_eng_mal_tam',
       'getAllLanguageLiterate.l3_other_three'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'checkbox',
     items: [{
@@ -1588,7 +1587,7 @@ export default [{
       'getAllLanguageLiterate.l2_other_two',
       'getAllLanguageLiterate.l3_or_more'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1659,7 +1658,7 @@ export default [{
       'getAllLanguageLiterate.l3_eng_mal_tam',
       'getAllLanguageLiterate.l3_other_three'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'checkbox',
     items: [{
@@ -1707,7 +1706,7 @@ export default [{
       'getAllLanguageLiterate.l2_other_two',
       'getAllLanguageLiterate.l3_or_more'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1736,7 +1735,7 @@ export default [{
       {label: 'Over SGD 6000', keys: []}
     ],
     normalize: ['getAllIncomeFromWork.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'range',
     items: [
@@ -1752,7 +1751,7 @@ export default [{
       {label: 'Over SGD 8000', keys: []}
     ],
     normalize: ['getAllIncomeFromWork.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'range',
     items: [
@@ -1772,7 +1771,7 @@ export default [{
       {label: 'Over SGD 12000', keys: []}
     ],
     normalize: ['getAllIncomeFromWork.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1803,7 +1802,7 @@ export default [{
       {label: 'Over SGD 8000', keys: []}
     ],
     normalize: ['getAllHouseholdMonthlyIncomeWork.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'range',
     items: [
@@ -1821,7 +1820,7 @@ export default [{
       {label: 'Over SGD 10000', keys: []}
     ],
     normalize: ['getAllHouseholdMonthlyIncomeWork.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'range',
     items: [
@@ -1846,7 +1845,7 @@ export default [{
       {label: 'Over SGD 20000', keys: []}
     ],
     normalize: ['getAllHouseholdMonthlyIncomeWork.total'],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1884,7 +1883,7 @@ export default [{
       'getAllHouseholdSize.person7',
       'getAllHouseholdSize.person_more_8'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'checkbox',
     items: [
@@ -1903,7 +1902,7 @@ export default [{
       'getAllHouseholdSize.person5',
       'getAllHouseholdSize.person_more_6'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -1939,7 +1938,7 @@ export default [{
       'getAllHouseholdStructure.tfn_3_more_gen',
       'getAllHouseholdStructure.three_more_fam_nucleus'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'checkbox',
     items: [
@@ -1956,12 +1955,40 @@ export default [{
       'getAllHouseholdStructure.ofn_3_more_gen',
       'getAllHouseholdStructure.two_more_fam_nucleus'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
     2010: {source: 1, control: 0},
     2015: {source: 2, control: 1}
+  },
+  format: '0%'
+}, {
+  label: 'Household Dwelling Type By Planning Area',
+  years: [2000, 2010, 2015],
+  sources: [
+    'Census2000',
+    'Census2010',
+    'Census2015'
+  ],
+  controls: [{
+    type: 'checkbox',
+    items: [
+      {label: '1 to 2 room HDB', keys: ['getAllTypeOfDwellingHousehold.hdb_1_and_2_room_flats']},
+      {label: '3 room HDB', keys: ['getAllTypeOfDwellingHousehold.hdb_3_room_flats']},
+      {label: '4 room HDB', keys: ['getAllTypeOfDwellingHousehold.hdb_4_room_flats']},
+      {label: '5 room HDB & Executive Flats', keys: ['getAllTypeOfDwellingHousehold.hdb_5_room_and_executive_flats']},
+      {label: 'Condos and Other Apartments', keys: ['getAllTypeOfDwellingHousehold.condominiums_and_other_apartments']},
+      {label: 'Landed Properties', keys: ['getAllTypeOfDwellingHousehold.landed_properties']},
+      {label: 'Others', keys: ['getAllTypeOfDwellingHousehold.others']}
+    ],
+    normalize: ['getAllTypeOfDwellingHousehold.total'],
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
+  }],
+  mapping: {
+    2000: {source: 0, control: 0},
+    2010: {source: 1, control: 0},
+    2015: {source: 2, control: 0}
   },
   format: '0%'
 }, {
@@ -1983,7 +2010,7 @@ export default [{
       'getAllTenancy.tenant',
       'getAllTenancy.others'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -2025,7 +2052,7 @@ export default [{
       'getAllOccupation.cleaners_labourers',
       'getAllOccupation.workers_not_classified'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -2062,7 +2089,7 @@ export default [{
       'getAllIndustry.other_services_industries',
       'getAllIndustry.others'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'checkbox',
     items: [
@@ -2098,7 +2125,7 @@ export default [{
       'getAllIndustry.other_comm_social_personal',
       'getAllIndustry.others'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -2150,7 +2177,7 @@ export default [{
       'getAllModeOfTransportWork.motorcycle_scooter',
       'getAllModeOfTransportWork.others'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},
@@ -2202,7 +2229,7 @@ export default [{
       'getAllModeOfTransportWork.motorcycle_scooter',
       'getAllModeOfTransportWork.others'
     ],
-    threshold: 1000
+    threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
   mapping: {
     2000: {source: 0, control: 0},

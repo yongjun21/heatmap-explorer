@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yongjun21/sg-heatmap-dos.git"
+    "url": "git+https://github.com/yongjun21/heatmap-explorer.git"
   },
   "keywords": [
     "heatmap",
@@ -20,9 +20,9 @@
   "author": "Yong Jun",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yongjun21/sg-heatmap-dos/issues"
+    "url": "https://github.com/yongjun21/heatmap-explorer/issues"
   },
-  "homepage": "https://github.com/yongjun21/sg-heatmap-dos#readme",
+  "homepage": "https://github.com/yongjun21/heatmap-explorer#readme",
   "babel": {
     "presets": [
       "es2015"
