@@ -1031,6 +1031,31 @@ export default [{
   },
   format: '0%'
 }, {
+  label: 'Household Electricity Consumption By Dwelling Type & Planning Area',
+  years: [2009, 2010, 2011, 2012, 2013],
+  sources: [
+    'ElectricityConsumption'
+  ],
+  controls: [{
+    type: 'radio',
+    items: [
+      {label: 'All HDB', keys: ['Electricity.TOTAL']},
+      {label: '1 to 2 room HDB', keys: ['Electricity.ONE_TO_TWO']},
+      {label: '3 room HDB', keys: ['Electricity.THREE_RM']},
+      {label: '4 room HDB', keys: ['Electricity.FOUR_RM']},
+      {label: '5 room HDB & Executive Flats', keys: ['Electricity.FIVE_RM_EX']}
+    ],
+    threshold: 0
+  }],
+  mapping: {
+    2009: {source: 0, control: 0},
+    2010: {source: 0, control: 0},
+    2011: {source: 0, control: 0},
+    2012: {source: 0, control: 0},
+    2013: {source: 0, control: 0}
+  },
+  format: '0.0'
+}, {
   label: 'Economic Status By Planning Area',
   years: [2000, 2010, 2015],
   sources: [
@@ -2079,6 +2104,110 @@ export default [{
     2000: {source: 0, control: 0},
     2010: {source: 1, control: 1},
     2015: {source: 2, control: 1}
+  },
+  format: '0%'
+}, {
+  label: 'Transport to Work By Planning Area',
+  years: [2000, 2010, 2015],
+  sources: [
+    'Census2000',
+    'Census2010',
+    'Census2015'
+  ],
+  controls: [{
+    type: 'checkbox',
+    items: [
+      {label: 'No transport required', keys: ['getAllModeOfTransportWork.no_transport_required']},
+      {label: 'Bus', keys: ['getAllModeOfTransportWork.bus']},
+      {label: 'MRT', keys: ['getAllModeOfTransportWork.mrt']},
+      {label: 'MRT & Bus', keys: ['getAllModeOfTransportWork.mrt_bus']},
+      {
+        label: 'Other combinations with MRT',
+        keys: [
+          'getAllModeOfTransportWork.mrt_car',
+          'getAllModeOfTransportWork.mrt_other',
+          'getAllModeOfTransportWork.other_combi_mrt_or_bus'
+        ]
+      },
+      {label: 'Taxi', keys: ['getAllModeOfTransportWork.taxi']},
+      {label: 'Car', keys: ['getAllModeOfTransportWork.car']},
+      {label: 'Chartered bus', keys: ['getAllModeOfTransportWork.pvt_chartered_bus']},
+      {label: 'Lorry pickup', keys: ['getAllModeOfTransportWork.lorry_pickup']},
+      {label: 'Motorcycle', keys: ['getAllModeOfTransportWork.motorcycle_scooter']}
+    ],
+    normalize: [
+      'getAllModeOfTransportWork.no_transport_required',
+      'getAllModeOfTransportWork.bus',
+      'getAllModeOfTransportWork.mrt',
+      'getAllModeOfTransportWork.mrt_bus',
+      'getAllModeOfTransportWork.mrt_car',
+      'getAllModeOfTransportWork.mrt_other',
+      'getAllModeOfTransportWork.other_combi_mrt_or_bus',
+      'getAllModeOfTransportWork.taxi',
+      'getAllModeOfTransportWork.car',
+      'getAllModeOfTransportWork.pvt_chartered_bus',
+      'getAllModeOfTransportWork.lorry_pickup',
+      'getAllModeOfTransportWork.motorcycle_scooter',
+      'getAllModeOfTransportWork.others'
+    ],
+    threshold: 1000
+  }],
+  mapping: {
+    2000: {source: 0, control: 0},
+    2010: {source: 1, control: 0},
+    2015: {source: 2, control: 0}
+  },
+  format: '0%'
+}, {
+  label: 'Transport to School By Planning Area',
+  years: [2000, 2010, 2015],
+  sources: [
+    'Census2000',
+    'Census2010',
+    'Census2015'
+  ],
+  controls: [{
+    type: 'checkbox',
+    items: [
+      {label: 'No transport required', keys: ['getAllModeOfTransportWork.no_transport_required']},
+      {label: 'Bus', keys: ['getAllModeOfTransportWork.bus']},
+      {label: 'MRT', keys: ['getAllModeOfTransportWork.mrt']},
+      {label: 'MRT & Bus', keys: ['getAllModeOfTransportWork.mrt_bus']},
+      {
+        label: 'Other combinations with MRT',
+        keys: [
+          'getAllModeOfTransportWork.mrt_car',
+          'getAllModeOfTransportWork.mrt_other',
+          'getAllModeOfTransportWork.other_combi_mrt_or_bus'
+        ]
+      },
+      {label: 'Taxi', keys: ['getAllModeOfTransportWork.taxi']},
+      {label: 'Car', keys: ['getAllModeOfTransportWork.car']},
+      {label: 'Chartered bus', keys: ['getAllModeOfTransportWork.pvt_chartered_bus']},
+      {label: 'Lorry pickup', keys: ['getAllModeOfTransportWork.lorry_pickup']},
+      {label: 'Motorcycle', keys: ['getAllModeOfTransportWork.motorcycle_scooter']}
+    ],
+    normalize: [
+      'getAllModeOfTransportWork.no_transport_required',
+      'getAllModeOfTransportWork.bus',
+      'getAllModeOfTransportWork.mrt',
+      'getAllModeOfTransportWork.mrt_bus',
+      'getAllModeOfTransportWork.mrt_car',
+      'getAllModeOfTransportWork.mrt_other',
+      'getAllModeOfTransportWork.other_combi_mrt_or_bus',
+      'getAllModeOfTransportWork.taxi',
+      'getAllModeOfTransportWork.car',
+      'getAllModeOfTransportWork.pvt_chartered_bus',
+      'getAllModeOfTransportWork.lorry_pickup',
+      'getAllModeOfTransportWork.motorcycle_scooter',
+      'getAllModeOfTransportWork.others'
+    ],
+    threshold: 1000
+  }],
+  mapping: {
+    2000: {source: 0, control: 0},
+    2010: {source: 1, control: 0},
+    2015: {source: 2, control: 0}
   },
   format: '0%'
 }]

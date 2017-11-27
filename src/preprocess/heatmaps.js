@@ -6,10 +6,12 @@ import SubzoneMP08 from 'sg-heatmap/dist/predefined/URA_subzone_mp08'
 import SubzoneMP98 from 'sg-heatmap/dist/predefined/URA_subzone_mp98'
 
 import DwellingTypeData from '../../data/raw/DwellingType.json'
-import ResidentData from '../../data/raw/Resident.json'
+import ResidentTotalData from '../../data/raw/Resident.Total.json'
+import ResidentMaleData from '../../data/raw/Resident.Male.json'
+import ElectricityData from '../../data/raw/Electricity.json'
 
 import {ONEMAP_ENDPOINTS, YEAR2MAP,
-  DWELLING_TYPES_BLANK, RESIDENT_BLANK} from './constants'
+  DWELLING_TYPES_BLANK, RESIDENT_BLANK, ELECTRICITY_BLANK} from './constants'
 
 import omit from 'lodash/omit'
 
@@ -130,6 +132,16 @@ export class PopulationPlanningAreaMP98 extends PlanningAreaMP98 {
   }
 }
 
+export class ElectricityConsumption extends PlanningAreaMP08 {
+  constructor () {
+    super()
+    this.registerUpdater(customUpdater)
+    matchPlanningAreaName(this)
+
+    YEAR2MAP['electricity'].forEach(processElectricityData().bind(this))
+  }
+}
+
 function processPopulationData () {
   return function (year) {
     const pathH = [year, 'DwellingType']
@@ -147,7 +159,7 @@ function processPopulationData () {
       })
     })
 
-    ResidentData[pathT.join('.')].forEach(record => {
+    ResidentTotalData[pathT.join('.')].forEach(record => {
       this.update({
         planningArea: record.PLN_AREA_N,
         subzone: record.SUBZONE_N
@@ -158,7 +170,7 @@ function processPopulationData () {
       })
     })
 
-    ResidentData[pathM.join('.')].forEach(record => {
+    ResidentMaleData[pathM.join('.')].forEach(record => {
       this.update({
         planningArea: record.PLN_AREA_N,
         subzone: record.SUBZONE_N
@@ -180,6 +192,22 @@ function processPopulationData () {
             c.state[year]['Resident']['Total'][k] -
             c.state[year]['Resident']['Male'][k]
         })
+      })
+    })
+  }
+}
+
+function processElectricityData () {
+  return function (year) {
+    const path = [year, 'Electricity']
+
+    ElectricityData[path.join('.')].forEach(record => {
+      this.update({
+        planningArea: record.PLN_AREA_N
+      }, {
+        path: path,
+        record: record,
+        template: ELECTRICITY_BLANK
       })
     })
   }
