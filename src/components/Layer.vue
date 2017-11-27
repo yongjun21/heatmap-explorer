@@ -56,7 +56,11 @@ export default {
       })
 
       const threshold = control.threshold || 0
-      const norm = control.normalize ? d => get(d[year], control.normalize) : d => 1
+      const norm = control.normalize ? d => {
+        return control.normalize.reduce((sum, path) => {
+          return sum + get(d[year], path)
+        }, 0)
+      } : d => 1
 
       switch (control.type) {
         case 'radio':

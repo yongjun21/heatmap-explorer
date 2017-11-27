@@ -13,7 +13,7 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    vue(),
+    vue({css: true}),
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
