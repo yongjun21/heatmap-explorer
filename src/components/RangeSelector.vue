@@ -8,7 +8,7 @@
     reverse
     piecewise-label
     :tooltip="false"
-    :speed="0.1"
+    :speed="0"
     width="8"
     height="100%">
   </v-slider>
@@ -41,6 +41,10 @@ export default {
         this.$emit('change', indexes)
       }
     }
+  },
+  created () {
+    const checked = this.options.filter(option => option.checked)
+    if (checked.length === 2) this.state = checked
   }
 }
 </script>

@@ -2,7 +2,8 @@
   <div class="radio-group">
     <radio v-for="(option, index)  in options"
       v-model="state"
-      :value="index">
+      :value="index"
+      :checked="option.checked">
       {{option.label}}
     </radio>
   </div>

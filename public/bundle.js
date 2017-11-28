@@ -5916,7 +5916,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'radio',
-    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }],
+    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'] }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
@@ -5945,7 +5945,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'radio',
-    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }],
+    items: [{ label: 'Total', keys: ['Resident.Total.TOTAL'] }, { label: 'Female', keys: ['Resident.Female.TOTAL'] }, { label: 'Male', keys: ['Resident.Male.TOTAL'] }],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
@@ -5974,7 +5974,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
@@ -6003,7 +6003,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
@@ -6032,7 +6032,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
@@ -6061,7 +6061,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
@@ -6090,7 +6090,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
@@ -6119,7 +6119,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
@@ -6266,7 +6266,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     normalize: ['Resident.Total.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
@@ -6296,7 +6296,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'] }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Total.BET0TO4'] }, { label: '5', keys: ['Resident.Total.BET5TO9'] }, { label: '10', keys: ['Resident.Total.BET10TO14'] }, { label: '15', keys: ['Resident.Total.BET15TO19'] }, { label: '20', keys: ['Resident.Total.BET20TO24'] }, { label: '25', keys: ['Resident.Total.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Total.BET30TO34'] }, { label: '35', keys: ['Resident.Total.BET35TO39'] }, { label: '40', keys: ['Resident.Total.BET40TO44'] }, { label: '45', keys: ['Resident.Total.BET45TO49'] }, { label: '50', keys: ['Resident.Total.BET50TO54'] }, { label: '55', keys: ['Resident.Total.BET55TO59'] }, { label: '60', keys: ['Resident.Total.BET60TO64'] }, { label: '65', keys: ['Resident.Total.BET65TO69'] }, { label: '70', keys: ['Resident.Total.BET70TO74'] }, { label: '75', keys: ['Resident.Total.BET75TO79'] }, { label: '80', keys: ['Resident.Total.BET80TO84'] }, { label: '85', keys: ['Resident.Total.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     normalize: ['Resident.Total.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
@@ -6326,7 +6326,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     normalize: ['Resident.Female.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
@@ -6356,7 +6356,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'] }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Female.BET0TO4'] }, { label: '5', keys: ['Resident.Female.BET5TO9'] }, { label: '10', keys: ['Resident.Female.BET10TO14'] }, { label: '15', keys: ['Resident.Female.BET15TO19'] }, { label: '20', keys: ['Resident.Female.BET20TO24'] }, { label: '25', keys: ['Resident.Female.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Female.BET30TO34'] }, { label: '35', keys: ['Resident.Female.BET35TO39'] }, { label: '40', keys: ['Resident.Female.BET40TO44'] }, { label: '45', keys: ['Resident.Female.BET45TO49'] }, { label: '50', keys: ['Resident.Female.BET50TO54'] }, { label: '55', keys: ['Resident.Female.BET55TO59'] }, { label: '60', keys: ['Resident.Female.BET60TO64'] }, { label: '65', keys: ['Resident.Female.BET65TO69'] }, { label: '70', keys: ['Resident.Female.BET70TO74'] }, { label: '75', keys: ['Resident.Female.BET75TO79'] }, { label: '80', keys: ['Resident.Female.BET80TO84'] }, { label: '85', keys: ['Resident.Female.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     normalize: ['Resident.Female.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
@@ -6386,7 +6386,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     normalize: ['Resident.Male.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
@@ -6416,7 +6416,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'range',
-    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'] }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [] }],
+    items: [{ label: 'Below 5', keys: ['Resident.Male.BET0TO4'] }, { label: '5', keys: ['Resident.Male.BET5TO9'] }, { label: '10', keys: ['Resident.Male.BET10TO14'] }, { label: '15', keys: ['Resident.Male.BET15TO19'] }, { label: '20', keys: ['Resident.Male.BET20TO24'] }, { label: '25', keys: ['Resident.Male.BET25TO29'], checked: true }, { label: '30', keys: ['Resident.Male.BET30TO34'] }, { label: '35', keys: ['Resident.Male.BET35TO39'] }, { label: '40', keys: ['Resident.Male.BET40TO44'] }, { label: '45', keys: ['Resident.Male.BET45TO49'] }, { label: '50', keys: ['Resident.Male.BET50TO54'] }, { label: '55', keys: ['Resident.Male.BET55TO59'] }, { label: '60', keys: ['Resident.Male.BET60TO64'] }, { label: '65', keys: ['Resident.Male.BET65TO69'] }, { label: '70', keys: ['Resident.Male.BET70TO74'] }, { label: '75', keys: ['Resident.Male.BET75TO79'] }, { label: '80', keys: ['Resident.Male.BET80TO84'] }, { label: '85', keys: ['Resident.Male.OVER85'] }, { label: 'Over 85', keys: [], checked: true }],
     normalize: ['Resident.Male.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
@@ -6774,7 +6774,7 @@ var themes = [{
   sources: ['Census2000', 'Census2010', 'Census2015'],
   controls: [{
     type: 'checkbox',
-    items: [{ label: 'Pre-primary', keys: ['getAllEducationAttending.pre_primary'] }, { label: 'Primary', keys: ['getAllEducationAttending.primary'] }, { label: 'Secondary', keys: ['getAllEducationAttending.secondary'] }, { label: 'Post-secondary', keys: ['getAllEducationAttending.post_secondary'] }, { label: 'Polytechnic', keys: ['getAllEducationAttending.polytechnic'] }, { label: 'Professional diploma', keys: ['getAllEducationAttending.prof_qualification_diploma'] }, { label: 'University', keys: ['getAllEducationAttending.university'] }],
+    items: [{ label: 'Pre-primary', keys: ['getAllEducationAttending.pre_primary'] }, { label: 'Primary', keys: ['getAllEducationAttending.primary'] }, { label: 'Secondary', keys: ['getAllEducationAttending.secondary'] }, { label: 'Post-secondary', keys: ['getAllEducationAttending.post_secondary'] }, { label: 'Polytechnic', keys: ['getAllEducationAttending.polytechnic'], checked: true }, { label: 'Professional diploma', keys: ['getAllEducationAttending.prof_qualification_diploma'], checked: true }, { label: 'University', keys: ['getAllEducationAttending.university'], checked: true }],
     normalize: ['getAllEducationAttending.pre_primary', 'getAllEducationAttending.primary', 'getAllEducationAttending.secondary', 'getAllEducationAttending.post_secondary', 'getAllEducationAttending.polytechnic', 'getAllEducationAttending.prof_qualification_diploma', 'getAllEducationAttending.university'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
@@ -6830,10 +6830,12 @@ var themes = [{
       keys: ['getAllLanguageLiterate.l1_chi', 'getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l1_mal', 'getAllLanguageLiterate.l1_tam', 'getAllLanguageLiterate.l1_non_off']
     }, {
       label: '2 languages',
-      keys: ['getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l2_other_two']
+      keys: ['getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l2_other_two'],
+      checked: true
     }, {
       label: '3 languages',
-      keys: ['getAllLanguageLiterate.l3_eng_chi_mal', 'getAllLanguageLiterate.l3_eng_mal_tam', 'getAllLanguageLiterate.l3_other_three']
+      keys: ['getAllLanguageLiterate.l3_eng_chi_mal', 'getAllLanguageLiterate.l3_eng_mal_tam', 'getAllLanguageLiterate.l3_other_three'],
+      checked: true
     }],
     normalize: ['getAllLanguageLiterate.no_literate', 'getAllLanguageLiterate.l1_chi', 'getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l1_mal', 'getAllLanguageLiterate.l1_tam', 'getAllLanguageLiterate.l1_non_off', 'getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l2_other_two', 'getAllLanguageLiterate.l3_eng_chi_mal', 'getAllLanguageLiterate.l3_eng_mal_tam', 'getAllLanguageLiterate.l3_other_three'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
@@ -6847,10 +6849,12 @@ var themes = [{
       keys: ['getAllLanguageLiterate.l1_chi', 'getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l1_mal', 'getAllLanguageLiterate.l1_tam', 'getAllLanguageLiterate.l1_non_off']
     }, {
       label: '2 languages',
-      keys: ['getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l2_other_two']
+      keys: ['getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l2_other_two'],
+      checked: true
     }, {
       label: '3 or more languages',
-      keys: ['getAllLanguageLiterate.l3_or_more']
+      keys: ['getAllLanguageLiterate.l3_or_more'],
+      checked: true
     }],
     normalize: ['getAllLanguageLiterate.no_literate', 'getAllLanguageLiterate.l1_chi', 'getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l1_mal', 'getAllLanguageLiterate.l1_tam', 'getAllLanguageLiterate.l1_non_off', 'getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l2_other_two', 'getAllLanguageLiterate.l3_or_more'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
@@ -6872,7 +6876,8 @@ var themes = [{
       keys: ['getAllLanguageLiterate.no_literate']
     }, {
       label: 'English',
-      keys: ['getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l3_eng_chi_mal', 'getAllLanguageLiterate.l3_eng_mal_tam']
+      keys: ['getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off', 'getAllLanguageLiterate.l3_eng_chi_mal', 'getAllLanguageLiterate.l3_eng_mal_tam'],
+      checked: true
     }, {
       label: 'Chinese',
       keys: ['getAllLanguageLiterate.l1_chi', 'getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l3_eng_chi_mal']
@@ -6892,7 +6897,8 @@ var themes = [{
       keys: ['getAllLanguageLiterate.no_literate']
     }, {
       label: 'English',
-      keys: ['getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off']
+      keys: ['getAllLanguageLiterate.l1_eng', 'getAllLanguageLiterate.l2_eng_chi', 'getAllLanguageLiterate.l2_eng_mal', 'getAllLanguageLiterate.l2_eng_tam', 'getAllLanguageLiterate.l2_eng_non_off'],
+      checked: true
     }, {
       label: 'Chinese',
       keys: ['getAllLanguageLiterate.l1_chi', 'getAllLanguageLiterate.l2_eng_chi']
@@ -6970,12 +6976,12 @@ var themes = [{
   sources: ['Census2000', 'Census2010', 'Census2015'],
   controls: [{
     type: 'checkbox',
-    items: [{ label: '1 person', keys: ['getAllHouseholdSize.person1'] }, { label: '2 persons', keys: ['getAllHouseholdSize.person2'] }, { label: '3 persons', keys: ['getAllHouseholdSize.person3'] }, { label: '4 persons', keys: ['getAllHouseholdSize.person4'] }, { label: '5 persons', keys: ['getAllHouseholdSize.person5'] }, { label: '6 persons', keys: ['getAllHouseholdSize.person6'] }, { label: '7 persons', keys: ['getAllHouseholdSize.person7'] }, { label: '8 or more persons', keys: ['getAllHouseholdSize.person_more_8'] }],
+    items: [{ label: '1 person', keys: ['getAllHouseholdSize.person1'], checked: true }, { label: '2 persons', keys: ['getAllHouseholdSize.person2'], checked: true }, { label: '3 persons', keys: ['getAllHouseholdSize.person3'] }, { label: '4 persons', keys: ['getAllHouseholdSize.person4'] }, { label: '5 persons', keys: ['getAllHouseholdSize.person5'] }, { label: '6 persons', keys: ['getAllHouseholdSize.person6'] }, { label: '7 persons', keys: ['getAllHouseholdSize.person7'] }, { label: '8 or more persons', keys: ['getAllHouseholdSize.person_more_8'] }],
     normalize: ['getAllHouseholdSize.person1', 'getAllHouseholdSize.person2', 'getAllHouseholdSize.person3', 'getAllHouseholdSize.person4', 'getAllHouseholdSize.person5', 'getAllHouseholdSize.person6', 'getAllHouseholdSize.person7', 'getAllHouseholdSize.person_more_8'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'checkbox',
-    items: [{ label: '1 person', keys: ['getAllHouseholdSize.person1'] }, { label: '2 persons', keys: ['getAllHouseholdSize.person2'] }, { label: '3 persons', keys: ['getAllHouseholdSize.person3'] }, { label: '4 persons', keys: ['getAllHouseholdSize.person4'] }, { label: '5 persons', keys: ['getAllHouseholdSize.person5'] }, { label: '6 or more persons', keys: ['getAllHouseholdSize.person_more_6'] }],
+    items: [{ label: '1 person', keys: ['getAllHouseholdSize.person1'], checked: true }, { label: '2 persons', keys: ['getAllHouseholdSize.person2'], checked: true }, { label: '3 persons', keys: ['getAllHouseholdSize.person3'] }, { label: '4 persons', keys: ['getAllHouseholdSize.person4'] }, { label: '5 persons', keys: ['getAllHouseholdSize.person5'] }, { label: '6 or more persons', keys: ['getAllHouseholdSize.person_more_6'] }],
     normalize: ['getAllHouseholdSize.person1', 'getAllHouseholdSize.person2', 'getAllHouseholdSize.person3', 'getAllHouseholdSize.person4', 'getAllHouseholdSize.person5', 'getAllHouseholdSize.person_more_6'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
@@ -6991,12 +6997,12 @@ var themes = [{
   sources: ['Census2000', 'Census2010', 'Census2015'],
   controls: [{
     type: 'checkbox',
-    items: [{ label: 'No family nucleus', keys: ['getAllHouseholdStructure.no_family_nucleus'] }, { label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen'] }, { label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen'] }, { label: '1 nucleus 3 or more generations persons', keys: ['getAllHouseholdStructure.ofn_3_more_gen'] }, { label: '2 nuclei 1 to 2 generations', keys: ['getAllHouseholdStructure.tfn_1to2_gen'] }, { label: '2 nuclei 3 or more generations', keys: ['getAllHouseholdStructure.tfn_3_more_gen'] }, { label: '3 or more family nuclei', keys: ['getAllHouseholdStructure.three_more_fam_nucleus'] }],
+    items: [{ label: 'No family nucleus', keys: ['getAllHouseholdStructure.no_family_nucleus'] }, { label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen'], checked: true }, { label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen'], checked: true }, { label: '1 nucleus 3 or more generations persons', keys: ['getAllHouseholdStructure.ofn_3_more_gen'], checked: true }, { label: '2 nuclei 1 to 2 generations', keys: ['getAllHouseholdStructure.tfn_1to2_gen'] }, { label: '2 nuclei 3 or more generations', keys: ['getAllHouseholdStructure.tfn_3_more_gen'] }, { label: '3 or more family nuclei', keys: ['getAllHouseholdStructure.three_more_fam_nucleus'] }],
     normalize: ['getAllHouseholdStructure.no_family_nucleus', 'getAllHouseholdStructure.ofn_1_gen', 'getAllHouseholdStructure.ofn_2_gen', 'getAllHouseholdStructure.ofn_3_more_gen', 'getAllHouseholdStructure.tfn_1to2_gen', 'getAllHouseholdStructure.tfn_3_more_gen', 'getAllHouseholdStructure.three_more_fam_nucleus'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }, {
     type: 'checkbox',
-    items: [{ label: 'No family nucleus', keys: ['getAllHouseholdStructure.no_family_nucleus'] }, { label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen'] }, { label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen'] }, { label: '1 nucleus 3 or more generations', keys: ['getAllHouseholdStructure.ofn_3_more_gen'] }, { label: '2 or more family nuclei', keys: ['getAllHouseholdStructure.two_more_fam_nucleus'] }],
+    items: [{ label: 'No family nucleus', keys: ['getAllHouseholdStructure.no_family_nucleus'] }, { label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen'], checked: true }, { label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen'], checked: true }, { label: '1 nucleus 3 or more generations', keys: ['getAllHouseholdStructure.ofn_3_more_gen'], checked: true }, { label: '2 or more family nuclei', keys: ['getAllHouseholdStructure.two_more_fam_nucleus'] }],
     normalize: ['getAllHouseholdStructure.no_family_nucleus', 'getAllHouseholdStructure.ofn_1_gen', 'getAllHouseholdStructure.ofn_2_gen', 'getAllHouseholdStructure.ofn_3_more_gen', 'getAllHouseholdStructure.two_more_fam_nucleus'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
@@ -7044,7 +7050,7 @@ var themes = [{
   sources: ['Census2000', 'Census2010', 'Census2015'],
   controls: [{
     type: 'checkbox',
-    items: [{ label: 'Managers', keys: ['getAllOccupation.senior_officials_managers'] }, { label: 'Professionals', keys: ['getAllOccupation.professionals'] }, { label: 'Technicians', keys: ['getAllOccupation.associate_professionals_tech'] }, { label: 'Clericals', keys: ['getAllOccupation.clerical'] }, { label: 'Service & Sales', keys: ['getAllOccupation.service_sales'] }, { label: 'Agricultural & Fishery', keys: ['getAllOccupation.agricultural_fishery'] }, { label: 'Production craftsmen', keys: ['getAllOccupation.production_craftsmen'] }, { label: 'Machine operators', keys: ['getAllOccupation.plant_machine_operators'] }, { label: 'Cleaners & Labourers', keys: ['getAllOccupation.cleaners_labourers'] }, { label: 'Workers not classified', keys: ['getAllOccupation.workers_not_classified'] }],
+    items: [{ label: 'Managers', keys: ['getAllOccupation.senior_officials_managers'], checked: true }, { label: 'Professionals', keys: ['getAllOccupation.professionals'], checked: true }, { label: 'Technicians', keys: ['getAllOccupation.associate_professionals_tech'], checked: true }, { label: 'Clericals', keys: ['getAllOccupation.clerical'] }, { label: 'Service & Sales', keys: ['getAllOccupation.service_sales'] }, { label: 'Agricultural & Fishery', keys: ['getAllOccupation.agricultural_fishery'] }, { label: 'Production craftsmen', keys: ['getAllOccupation.production_craftsmen'] }, { label: 'Machine operators', keys: ['getAllOccupation.plant_machine_operators'] }, { label: 'Cleaners & Labourers', keys: ['getAllOccupation.cleaners_labourers'] }, { label: 'Workers not classified', keys: ['getAllOccupation.workers_not_classified'] }],
     normalize: ['getAllOccupation.senior_officials_managers', 'getAllOccupation.professionals', 'getAllOccupation.associate_professionals_tech', 'getAllOccupation.clerical', 'getAllOccupation.service_sales', 'getAllOccupation.agricultural_fishery', 'getAllOccupation.production_craftsmen', 'getAllOccupation.plant_machine_operators', 'getAllOccupation.cleaners_labourers', 'getAllOccupation.workers_not_classified'],
     threshold: ['getAllPopulationAgeGroup.Total.total', 1000]
   }],
@@ -7129,7 +7135,7 @@ var themes = [{
 
 var RadioGroup = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "radio-group" }, _vm._l(_vm.options, function (option, index) {
-      return _c('radio', { attrs: { "value": index }, model: { value: _vm.state, callback: function callback($$v) {
+      return _c('radio', { attrs: { "value": index, "checked": option.checked }, model: { value: _vm.state, callback: function callback($$v) {
             _vm.state = $$v;
           }, expression: "state" } }, [_vm._v(" " + _vm._s(option.label) + " ")]);
     }));
@@ -7190,6 +7196,13 @@ var CheckboxGroup = { render: function render() {
         this.$emit('change', value);
       }
     }
+  },
+  created: function created() {
+    var checked = [];
+    this.options.forEach(function (option, index) {
+      if (option.checked) checked.push(index);
+    });
+    if (checked.length > 0) this.state = checked;
   }
 };
 
@@ -7208,7 +7221,7 @@ var CheckboxGroup = { render: function render() {
 var RangeSelector = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('v-slider', { staticClass: "range-selector", attrs: { "data": _vm.options, "formatter": function formatter(option) {
           return option && option.label;
-        }, "lazy": "", "direction": "vertical", "reverse": "", "piecewise-label": "", "tooltip": false, "speed": 0.1, "width": "8", "height": "100%" }, model: { value: _vm.state, callback: function callback($$v) {
+        }, "lazy": "", "direction": "vertical", "reverse": "", "piecewise-label": "", "tooltip": false, "speed": 0, "width": "8", "height": "100%" }, model: { value: _vm.state, callback: function callback($$v) {
           _vm.state = $$v;
         }, expression: "state" } });
   }, staticRenderFns: [],
@@ -7245,8 +7258,84 @@ var RangeSelector = { render: function render() {
         this.$emit('change', indexes);
       }
     }
+  },
+  created: function created() {
+    var checked = this.options.filter(function (option) {
+      return option.checked;
+    });
+    if (checked.length === 2) this.state = checked;
   }
 };
+
+function generateAccessor(control, year) {
+  if (!control || !year) return;
+  var accessors = control.items.map(function (item) {
+    return function (d) {
+      return item.keys.reduce(function (sum, path) {
+        return sum + get$3(d[year], path);
+      }, 0);
+    };
+  });
+  var exclude = control.threshold ? function (d) {
+    return get$3(d[year], control.threshold[0]) < control.threshold[1];
+  } : function (d) {
+    return false;
+  };
+  var norm = control.normalize ? function (d) {
+    return control.normalize.reduce(function (sum, path) {
+      return sum + get$3(d[year], path);
+    }, 0);
+  } : function (d) {
+    return 1;
+  };
+  switch (control.type) {
+    case 'radio':
+      return function (selected) {
+        return function (d) {
+          try {
+            if (exclude(d)) return null;
+            return accessors[selected](d) / norm(d);
+          } catch (err) {
+            return null;
+          }
+        };
+      };
+    case 'checkbox':
+      return function (selected) {
+        return function (d) {
+          try {
+            if (exclude(d)) return null;
+            return selected.reduce(function (sum, index) {
+              return sum + accessors[index](d);
+            }, 0) / norm(d);
+          } catch (err) {
+            return null;
+          }
+        };
+      };
+    case 'range':
+      return function (selected) {
+        return function (d) {
+          try {
+            if (exclude(d)) return null;
+            return accessors.reduce(function (sum, accessor, index) {
+              if (index < selected[0] || index >= selected[1]) return sum;
+              return sum + accessor(d);
+            }, 0) / norm(d);
+          } catch (err) {
+            return null;
+          }
+        };
+      };
+  }
+}
+function get$3(d, path) {
+  var value = d;
+  path.split('.').forEach(function (key) {
+    value = value[key];
+  });
+  return value;
+}
 
 (function () {
   if (typeof document !== 'undefined') {
@@ -7294,74 +7383,7 @@ var Layer = { render: function render() {
       return this.control && component[this.control.type];
     },
     accessor: function accessor() {
-      var control = this.control,
-          year = this.year;
-
-      if (!control || !year) return;
-      var accessors = control.items.map(function (item) {
-        return function (d) {
-          return item.keys.reduce(function (sum, path) {
-            return sum + get$3(d[year], path);
-          }, 0);
-        };
-      });
-
-      var exclude = control.threshold ? function (d) {
-        return get$3(d[year], control.threshold[0]) < control.threshold[1];
-      } : function (d) {
-        return false;
-      };
-
-      var norm = control.normalize ? function (d) {
-        return control.normalize.reduce(function (sum, path) {
-          return sum + get$3(d[year], path);
-        }, 0);
-      } : function (d) {
-        return 1;
-      };
-
-      switch (control.type) {
-        case 'radio':
-          return function (selected) {
-            return function (d) {
-              try {
-                if (exclude(d)) return null;
-                return accessors[selected](d) / norm(d);
-              } catch (err) {
-                return null;
-              }
-            };
-          };
-
-        case 'checkbox':
-          return function (selected) {
-            return function (d) {
-              try {
-                if (exclude(d)) return null;
-                return selected.reduce(function (sum, index) {
-                  return sum + accessors[index](d);
-                }, 0) / norm(d);
-              } catch (err) {
-                return null;
-              }
-            };
-          };
-
-        case 'range':
-          return function (selected) {
-            return function (d) {
-              try {
-                if (exclude(d)) return null;
-                return accessors.reduce(function (sum, accessor, index) {
-                  if (index < selected[0] || index >= selected[1]) return sum;
-                  return sum + accessor(d);
-                }, 0) / norm(d);
-              } catch (err) {
-                return null;
-              }
-            };
-          };
-      }
+      return generateAccessor(this.control, this.year);
     },
     style: function style() {
       return {
@@ -7399,7 +7421,7 @@ var Layer = { render: function render() {
     control: function control(newValue, oldValue) {
       if (newValue === oldValue) return;
       if (this.control) {
-        if (this.control.type === 'radio') this.selectedFilter = 0;else if (this.control.type === 'checkbox') this.selectedFilter = [0];else if (this.control.type === 'range') this.selectedFilter = [0, 1];
+        if (this.control.type === 'radio') this.selectedFilter = 0;else if (this.control.type === 'checkbox') this.selectedFilter = [];else if (this.control.type === 'range') this.selectedFilter = [0, 1];
       } else {
         store.unload(this.id);
       }
@@ -7415,14 +7437,6 @@ var Layer = { render: function render() {
     RangeSelector: RangeSelector
   }
 };
-
-function get$3(d, path) {
-  var value = d;
-  path.split('.').forEach(function (key) {
-    value = value[key];
-  });
-  return value;
-}
 
 Vue.use(CheckboxRadio);
 Vue.component('v-select', vSelect);

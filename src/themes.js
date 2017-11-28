@@ -9,7 +9,7 @@ export default [{
   controls: [{
     type: 'radio',
     items: [
-      {label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true},
+      {label: 'Total', keys: ['Resident.Total.TOTAL']},
       {label: 'Female', keys: ['Resident.Female.TOTAL']},
       {label: 'Male', keys: ['Resident.Male.TOTAL']}
     ],
@@ -46,7 +46,7 @@ export default [{
   controls: [{
     type: 'radio',
     items: [
-      {label: 'Total', keys: ['Resident.Total.TOTAL'], selected: true},
+      {label: 'Total', keys: ['Resident.Total.TOTAL']},
       {label: 'Female', keys: ['Resident.Female.TOTAL']},
       {label: 'Male', keys: ['Resident.Male.TOTAL']}
     ],
@@ -88,7 +88,7 @@ export default [{
       {label: '10', keys: ['Resident.Total.BET10TO14']},
       {label: '15', keys: ['Resident.Total.BET15TO19']},
       {label: '20', keys: ['Resident.Total.BET20TO24']},
-      {label: '25', keys: ['Resident.Total.BET25TO29']},
+      {label: '25', keys: ['Resident.Total.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Total.BET30TO34']},
       {label: '35', keys: ['Resident.Total.BET35TO39']},
       {label: '40', keys: ['Resident.Total.BET40TO44']},
@@ -101,7 +101,7 @@ export default [{
       {label: '75', keys: ['Resident.Total.BET75TO79']},
       {label: '80', keys: ['Resident.Total.BET80TO84']},
       {label: '85', keys: ['Resident.Total.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
@@ -141,7 +141,7 @@ export default [{
       {label: '10', keys: ['Resident.Total.BET10TO14']},
       {label: '15', keys: ['Resident.Total.BET15TO19']},
       {label: '20', keys: ['Resident.Total.BET20TO24']},
-      {label: '25', keys: ['Resident.Total.BET25TO29']},
+      {label: '25', keys: ['Resident.Total.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Total.BET30TO34']},
       {label: '35', keys: ['Resident.Total.BET35TO39']},
       {label: '40', keys: ['Resident.Total.BET40TO44']},
@@ -154,7 +154,7 @@ export default [{
       {label: '75', keys: ['Resident.Total.BET75TO79']},
       {label: '80', keys: ['Resident.Total.BET80TO84']},
       {label: '85', keys: ['Resident.Total.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
@@ -194,7 +194,7 @@ export default [{
       {label: '10', keys: ['Resident.Female.BET10TO14']},
       {label: '15', keys: ['Resident.Female.BET15TO19']},
       {label: '20', keys: ['Resident.Female.BET20TO24']},
-      {label: '25', keys: ['Resident.Female.BET25TO29']},
+      {label: '25', keys: ['Resident.Female.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Female.BET30TO34']},
       {label: '35', keys: ['Resident.Female.BET35TO39']},
       {label: '40', keys: ['Resident.Female.BET40TO44']},
@@ -207,7 +207,7 @@ export default [{
       {label: '75', keys: ['Resident.Female.BET75TO79']},
       {label: '80', keys: ['Resident.Female.BET80TO84']},
       {label: '85', keys: ['Resident.Female.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
@@ -247,7 +247,7 @@ export default [{
       {label: '10', keys: ['Resident.Female.BET10TO14']},
       {label: '15', keys: ['Resident.Female.BET15TO19']},
       {label: '20', keys: ['Resident.Female.BET20TO24']},
-      {label: '25', keys: ['Resident.Female.BET25TO29']},
+      {label: '25', keys: ['Resident.Female.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Female.BET30TO34']},
       {label: '35', keys: ['Resident.Female.BET35TO39']},
       {label: '40', keys: ['Resident.Female.BET40TO44']},
@@ -260,7 +260,7 @@ export default [{
       {label: '75', keys: ['Resident.Female.BET75TO79']},
       {label: '80', keys: ['Resident.Female.BET80TO84']},
       {label: '85', keys: ['Resident.Female.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
@@ -300,7 +300,7 @@ export default [{
       {label: '10', keys: ['Resident.Male.BET10TO14']},
       {label: '15', keys: ['Resident.Male.BET15TO19']},
       {label: '20', keys: ['Resident.Male.BET20TO24']},
-      {label: '25', keys: ['Resident.Male.BET25TO29']},
+      {label: '25', keys: ['Resident.Male.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Male.BET30TO34']},
       {label: '35', keys: ['Resident.Male.BET35TO39']},
       {label: '40', keys: ['Resident.Male.BET40TO44']},
@@ -313,7 +313,7 @@ export default [{
       {label: '75', keys: ['Resident.Male.BET75TO79']},
       {label: '80', keys: ['Resident.Male.BET80TO84']},
       {label: '85', keys: ['Resident.Male.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
@@ -353,7 +353,7 @@ export default [{
       {label: '10', keys: ['Resident.Male.BET10TO14']},
       {label: '15', keys: ['Resident.Male.BET15TO19']},
       {label: '20', keys: ['Resident.Male.BET20TO24']},
-      {label: '25', keys: ['Resident.Male.BET25TO29']},
+      {label: '25', keys: ['Resident.Male.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Male.BET30TO34']},
       {label: '35', keys: ['Resident.Male.BET35TO39']},
       {label: '40', keys: ['Resident.Male.BET40TO44']},
@@ -366,7 +366,7 @@ export default [{
       {label: '75', keys: ['Resident.Male.BET75TO79']},
       {label: '80', keys: ['Resident.Male.BET80TO84']},
       {label: '85', keys: ['Resident.Male.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
@@ -560,7 +560,7 @@ export default [{
       {label: '10', keys: ['Resident.Total.BET10TO14']},
       {label: '15', keys: ['Resident.Total.BET15TO19']},
       {label: '20', keys: ['Resident.Total.BET20TO24']},
-      {label: '25', keys: ['Resident.Total.BET25TO29']},
+      {label: '25', keys: ['Resident.Total.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Total.BET30TO34']},
       {label: '35', keys: ['Resident.Total.BET35TO39']},
       {label: '40', keys: ['Resident.Total.BET40TO44']},
@@ -573,7 +573,7 @@ export default [{
       {label: '75', keys: ['Resident.Total.BET75TO79']},
       {label: '80', keys: ['Resident.Total.BET80TO84']},
       {label: '85', keys: ['Resident.Total.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     normalize: ['Resident.Total.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 1000]
@@ -614,7 +614,7 @@ export default [{
       {label: '10', keys: ['Resident.Total.BET10TO14']},
       {label: '15', keys: ['Resident.Total.BET15TO19']},
       {label: '20', keys: ['Resident.Total.BET20TO24']},
-      {label: '25', keys: ['Resident.Total.BET25TO29']},
+      {label: '25', keys: ['Resident.Total.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Total.BET30TO34']},
       {label: '35', keys: ['Resident.Total.BET35TO39']},
       {label: '40', keys: ['Resident.Total.BET40TO44']},
@@ -627,7 +627,7 @@ export default [{
       {label: '75', keys: ['Resident.Total.BET75TO79']},
       {label: '80', keys: ['Resident.Total.BET80TO84']},
       {label: '85', keys: ['Resident.Total.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     normalize: ['Resident.Total.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 500]
@@ -668,7 +668,7 @@ export default [{
       {label: '10', keys: ['Resident.Female.BET10TO14']},
       {label: '15', keys: ['Resident.Female.BET15TO19']},
       {label: '20', keys: ['Resident.Female.BET20TO24']},
-      {label: '25', keys: ['Resident.Female.BET25TO29']},
+      {label: '25', keys: ['Resident.Female.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Female.BET30TO34']},
       {label: '35', keys: ['Resident.Female.BET35TO39']},
       {label: '40', keys: ['Resident.Female.BET40TO44']},
@@ -681,7 +681,7 @@ export default [{
       {label: '75', keys: ['Resident.Female.BET75TO79']},
       {label: '80', keys: ['Resident.Female.BET80TO84']},
       {label: '85', keys: ['Resident.Female.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     normalize: ['Resident.Female.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 1000]
@@ -722,7 +722,7 @@ export default [{
       {label: '10', keys: ['Resident.Female.BET10TO14']},
       {label: '15', keys: ['Resident.Female.BET15TO19']},
       {label: '20', keys: ['Resident.Female.BET20TO24']},
-      {label: '25', keys: ['Resident.Female.BET25TO29']},
+      {label: '25', keys: ['Resident.Female.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Female.BET30TO34']},
       {label: '35', keys: ['Resident.Female.BET35TO39']},
       {label: '40', keys: ['Resident.Female.BET40TO44']},
@@ -735,7 +735,7 @@ export default [{
       {label: '75', keys: ['Resident.Female.BET75TO79']},
       {label: '80', keys: ['Resident.Female.BET80TO84']},
       {label: '85', keys: ['Resident.Female.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     normalize: ['Resident.Female.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 500]
@@ -776,7 +776,7 @@ export default [{
       {label: '10', keys: ['Resident.Male.BET10TO14']},
       {label: '15', keys: ['Resident.Male.BET15TO19']},
       {label: '20', keys: ['Resident.Male.BET20TO24']},
-      {label: '25', keys: ['Resident.Male.BET25TO29']},
+      {label: '25', keys: ['Resident.Male.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Male.BET30TO34']},
       {label: '35', keys: ['Resident.Male.BET35TO39']},
       {label: '40', keys: ['Resident.Male.BET40TO44']},
@@ -789,7 +789,7 @@ export default [{
       {label: '75', keys: ['Resident.Male.BET75TO79']},
       {label: '80', keys: ['Resident.Male.BET80TO84']},
       {label: '85', keys: ['Resident.Male.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     normalize: ['Resident.Male.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 1000]
@@ -830,7 +830,7 @@ export default [{
       {label: '10', keys: ['Resident.Male.BET10TO14']},
       {label: '15', keys: ['Resident.Male.BET15TO19']},
       {label: '20', keys: ['Resident.Male.BET20TO24']},
-      {label: '25', keys: ['Resident.Male.BET25TO29']},
+      {label: '25', keys: ['Resident.Male.BET25TO29'], checked: true},
       {label: '30', keys: ['Resident.Male.BET30TO34']},
       {label: '35', keys: ['Resident.Male.BET35TO39']},
       {label: '40', keys: ['Resident.Male.BET40TO44']},
@@ -843,7 +843,7 @@ export default [{
       {label: '75', keys: ['Resident.Male.BET75TO79']},
       {label: '80', keys: ['Resident.Male.BET80TO84']},
       {label: '85', keys: ['Resident.Male.OVER85']},
-      {label: 'Over 85', keys: []}
+      {label: 'Over 85', keys: [], checked: true}
     ],
     normalize: ['Resident.Male.TOTAL'],
     threshold: ['Resident.Total.TOTAL', 500]
@@ -1393,9 +1393,9 @@ export default [{
       {label: 'Primary', keys: ['getAllEducationAttending.primary']},
       {label: 'Secondary', keys: ['getAllEducationAttending.secondary']},
       {label: 'Post-secondary', keys: ['getAllEducationAttending.post_secondary']},
-      {label: 'Polytechnic', keys: ['getAllEducationAttending.polytechnic']},
-      {label: 'Professional diploma', keys: ['getAllEducationAttending.prof_qualification_diploma']},
-      {label: 'University', keys: ['getAllEducationAttending.university']}
+      {label: 'Polytechnic', keys: ['getAllEducationAttending.polytechnic'], checked: true},
+      {label: 'Professional diploma', keys: ['getAllEducationAttending.prof_qualification_diploma'], checked: true},
+      {label: 'University', keys: ['getAllEducationAttending.university'], checked: true}
     ],
     normalize: [
       'getAllEducationAttending.pre_primary',
@@ -1520,14 +1520,16 @@ export default [{
         'getAllLanguageLiterate.l2_eng_tam',
         'getAllLanguageLiterate.l2_eng_non_off',
         'getAllLanguageLiterate.l2_other_two'
-      ]
+      ],
+      checked: true
     }, {
       label: '3 languages',
       keys: [
         'getAllLanguageLiterate.l3_eng_chi_mal',
         'getAllLanguageLiterate.l3_eng_mal_tam',
         'getAllLanguageLiterate.l3_other_three'
-      ]
+      ],
+      checked: true
     }],
     normalize: [
       'getAllLanguageLiterate.no_literate',
@@ -1568,10 +1570,12 @@ export default [{
         'getAllLanguageLiterate.l2_eng_tam',
         'getAllLanguageLiterate.l2_eng_non_off',
         'getAllLanguageLiterate.l2_other_two'
-      ]
+      ],
+      checked: true
     }, {
       label: '3 or more languages',
-      keys: ['getAllLanguageLiterate.l3_or_more']
+      keys: ['getAllLanguageLiterate.l3_or_more'],
+      checked: true
     }],
     normalize: [
       'getAllLanguageLiterate.no_literate',
@@ -1618,7 +1622,8 @@ export default [{
         'getAllLanguageLiterate.l2_eng_non_off',
         'getAllLanguageLiterate.l3_eng_chi_mal',
         'getAllLanguageLiterate.l3_eng_mal_tam'
-      ]
+      ],
+      checked: true
     }, {
       label: 'Chinese',
       keys: [
@@ -1672,7 +1677,8 @@ export default [{
         'getAllLanguageLiterate.l2_eng_mal',
         'getAllLanguageLiterate.l2_eng_tam',
         'getAllLanguageLiterate.l2_eng_non_off'
-      ]
+      ],
+      checked: true
     }, {
       label: 'Chinese',
       keys: [
@@ -1864,8 +1870,8 @@ export default [{
   controls: [{
     type: 'checkbox',
     items: [
-      {label: '1 person', keys: ['getAllHouseholdSize.person1']},
-      {label: '2 persons', keys: ['getAllHouseholdSize.person2']},
+      {label: '1 person', keys: ['getAllHouseholdSize.person1'], checked: true},
+      {label: '2 persons', keys: ['getAllHouseholdSize.person2'], checked: true},
       {label: '3 persons', keys: ['getAllHouseholdSize.person3']},
       {label: '4 persons', keys: ['getAllHouseholdSize.person4']},
       {label: '5 persons', keys: ['getAllHouseholdSize.person5']},
@@ -1887,8 +1893,8 @@ export default [{
   }, {
     type: 'checkbox',
     items: [
-      {label: '1 person', keys: ['getAllHouseholdSize.person1']},
-      {label: '2 persons', keys: ['getAllHouseholdSize.person2']},
+      {label: '1 person', keys: ['getAllHouseholdSize.person1'], checked: true},
+      {label: '2 persons', keys: ['getAllHouseholdSize.person2'], checked: true},
       {label: '3 persons', keys: ['getAllHouseholdSize.person3']},
       {label: '4 persons', keys: ['getAllHouseholdSize.person4']},
       {label: '5 persons', keys: ['getAllHouseholdSize.person5']},
@@ -1922,9 +1928,9 @@ export default [{
     type: 'checkbox',
     items: [
       {label: 'No family nucleus', keys: ['getAllHouseholdStructure.no_family_nucleus']},
-      {label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen']},
-      {label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen']},
-      {label: '1 nucleus 3 or more generations persons', keys: ['getAllHouseholdStructure.ofn_3_more_gen']},
+      {label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen'], checked: true},
+      {label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen'], checked: true},
+      {label: '1 nucleus 3 or more generations persons', keys: ['getAllHouseholdStructure.ofn_3_more_gen'], checked: true},
       {label: '2 nuclei 1 to 2 generations', keys: ['getAllHouseholdStructure.tfn_1to2_gen']},
       {label: '2 nuclei 3 or more generations', keys: ['getAllHouseholdStructure.tfn_3_more_gen']},
       {label: '3 or more family nuclei', keys: ['getAllHouseholdStructure.three_more_fam_nucleus']}
@@ -1943,9 +1949,9 @@ export default [{
     type: 'checkbox',
     items: [
       {label: 'No family nucleus', keys: ['getAllHouseholdStructure.no_family_nucleus']},
-      {label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen']},
-      {label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen']},
-      {label: '1 nucleus 3 or more generations', keys: ['getAllHouseholdStructure.ofn_3_more_gen']},
+      {label: '1 nucleus 1 generation', keys: ['getAllHouseholdStructure.ofn_1_gen'], checked: true},
+      {label: '1 nucleus 2 generations', keys: ['getAllHouseholdStructure.ofn_2_gen'], checked: true},
+      {label: '1 nucleus 3 or more generations', keys: ['getAllHouseholdStructure.ofn_3_more_gen'], checked: true},
       {label: '2 or more family nuclei', keys: ['getAllHouseholdStructure.two_more_fam_nucleus']}
     ],
     normalize: [
@@ -2029,9 +2035,9 @@ export default [{
   controls: [{
     type: 'checkbox',
     items: [
-      {label: 'Managers', keys: ['getAllOccupation.senior_officials_managers']},
-      {label: 'Professionals', keys: ['getAllOccupation.professionals']},
-      {label: 'Technicians', keys: ['getAllOccupation.associate_professionals_tech']},
+      {label: 'Managers', keys: ['getAllOccupation.senior_officials_managers'], checked: true},
+      {label: 'Professionals', keys: ['getAllOccupation.professionals'], checked: true},
+      {label: 'Technicians', keys: ['getAllOccupation.associate_professionals_tech'], checked: true},
       {label: 'Clericals', keys: ['getAllOccupation.clerical']},
       {label: 'Service & Sales', keys: ['getAllOccupation.service_sales']},
       {label: 'Agricultural & Fishery', keys: ['getAllOccupation.agricultural_fishery']},

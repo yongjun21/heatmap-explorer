@@ -27,6 +27,13 @@ export default {
         this.$emit('change', value)
       }
     }
+  },
+  created () {
+    const checked = []
+    this.options.forEach((option, index) => {
+      if (option.checked) checked.push(index)
+    })
+    if (checked.length > 0) this.state = checked
   }
 }
 </script>
