@@ -70,3 +70,27 @@ function get (d, path) {
   })
   return value
 }
+
+export const querystring = {
+  parse (qs) {
+    const parsed = {}
+    if (qs) {
+      qs.slice(1).split('&').forEach(keyValue => {
+        const [key, value] = keyValue.split('=')
+        parsed[key] = value
+      })
+    }
+    return parsed
+  },
+  stringify (query) {
+    let stringified = []
+    Object.keys(query).forEach(key => {
+      const value = query[key] instanceof Array
+        ? query[key].join(',')
+        : query[key]
+      if (value) stringified.push(key + '=' + value)
+    })
+    if (stringified.length > 0) stringified = '?' + stringified.join('&')
+    return stringified
+  }
+}

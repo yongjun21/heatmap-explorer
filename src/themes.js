@@ -1,4 +1,6 @@
-export default [{
+import hash from 'shorthash'
+
+const themes = [{
   label: 'Resident Population By Gender & Planning Area',
   years: [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
   sources: [
@@ -401,10 +403,10 @@ export default [{
   controls: [{
     type: 'checkbox',
     items: [
-      {label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO']},
-      {label: '3 room HDB', keys: ['DwellingType.THREE_RM']},
-      {label: '4 room HDB', keys: ['DwellingType.FOUR_RM']},
-      {label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX']},
+      {label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'], checked: true},
+      {label: '3 room HDB', keys: ['DwellingType.THREE_RM'], checked: true},
+      {label: '4 room HDB', keys: ['DwellingType.FOUR_RM'], checked: true},
+      {label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'], checked: true},
       {label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH']},
       {label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO']},
       {label: 'Others', keys: ['DwellingType.OTHERS']}
@@ -442,10 +444,10 @@ export default [{
   controls: [{
     type: 'checkbox',
     items: [
-      {label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO']},
-      {label: '3 room HDB', keys: ['DwellingType.THREE_RM']},
-      {label: '4 room HDB', keys: ['DwellingType.FOUR_RM']},
-      {label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX']},
+      {label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'], checked: true},
+      {label: '3 room HDB', keys: ['DwellingType.THREE_RM'], checked: true},
+      {label: '4 room HDB', keys: ['DwellingType.FOUR_RM'], checked: true},
+      {label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'], checked: true},
       {label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH']},
       {label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO']},
       {label: 'Others', keys: ['DwellingType.OTHERS']}
@@ -2244,3 +2246,9 @@ export default [{
   },
   format: '0%'
 }]
+
+themes.forEach(theme => {
+  theme.hash = hash.unique(theme.label)
+})
+
+export default themes

@@ -55,7 +55,8 @@ export default {
       heatmap.renderer.bringToBack()
       return heatmap
     } else {
-      this.cache[key] = window.fetch(`./data/${key}.json`)
+      this.cache[key] = this.canLoad
+        .then(() => window.fetch(`./data/${key}.json`))
         .then(res => res.json())
         .then(data => new SgHeatmap(data))
         .then(heatmap => {
@@ -93,7 +94,8 @@ export default {
   reorder (layer) {
     if (!this[layer].heatmap) return
     this[layer].heatmap.renderer.bringToFront()
-  }
+  },
+  canLoad: Promise.resolve()
 }
 
 function modifyGetStat (heatmap) {

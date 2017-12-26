@@ -30,6 +30,160 @@ var dist$1 = createCommonjsModule(function (module, exports) {
 });
 var CheckboxRadio = unwrapExports(dist$1);
 
+var slicedToArray = function () {
+  function sliceIterator(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+
+    try {
+      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"]) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  return function (arr, i) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i);
+    } else {
+      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+    }
+  };
+}();
+
+
+
+
+
+
+
+
+
+
+
+
+
+var toConsumableArray = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+};
+
+function generateAccessor(control, year) {
+  if (!control || !year) return;
+  var accessors = control.items.map(function (item) {
+    return function (d) {
+      return item.keys.reduce(function (sum, path) {
+        return sum + get(d[year], path);
+      }, 0);
+    };
+  });
+  var exclude = control.threshold ? function (d) {
+    return get(d[year], control.threshold[0]) < control.threshold[1];
+  } : function (d) {
+    return false;
+  };
+  var norm = control.normalize ? function (d) {
+    return control.normalize.reduce(function (sum, path) {
+      return sum + get(d[year], path);
+    }, 0);
+  } : function (d) {
+    return 1;
+  };
+  switch (control.type) {
+    case 'radio':
+      return function (selected) {
+        return function (d) {
+          try {
+            if (exclude(d)) return null;
+            return accessors[selected](d) / norm(d);
+          } catch (err) {
+            return null;
+          }
+        };
+      };
+    case 'checkbox':
+      return function (selected) {
+        return function (d) {
+          try {
+            if (exclude(d)) return null;
+            return selected.reduce(function (sum, index) {
+              return sum + accessors[index](d);
+            }, 0) / norm(d);
+          } catch (err) {
+            return null;
+          }
+        };
+      };
+    case 'range':
+      return function (selected) {
+        return function (d) {
+          try {
+            if (exclude(d)) return null;
+            return accessors.reduce(function (sum, accessor, index) {
+              if (index < selected[0] || index >= selected[1]) return sum;
+              return sum + accessor(d);
+            }, 0) / norm(d);
+          } catch (err) {
+            return null;
+          }
+        };
+      };
+  }
+}
+function get(d, path) {
+  var value = d;
+  path.split('.').forEach(function (key) {
+    value = value[key];
+  });
+  return value;
+}
+var querystring = {
+  parse: function parse(qs) {
+    var parsed = {};
+    if (qs) {
+      qs.slice(1).split('&').forEach(function (keyValue) {
+        var _keyValue$split = keyValue.split('='),
+            _keyValue$split2 = slicedToArray(_keyValue$split, 2),
+            key = _keyValue$split2[0],
+            value = _keyValue$split2[1];
+        parsed[key] = value;
+      });
+    }
+    return parsed;
+  },
+  stringify: function stringify(query) {
+    var stringified = [];
+    Object.keys(query).forEach(function (key) {
+      var value = query[key] instanceof Array ? query[key].join(',') : query[key];
+      if (value) stringified.push(key + '=' + value);
+    });
+    if (stringified.length > 0) stringified = '?' + stringified.join('&');
+    return stringified;
+  }
+};
+
 var chroma = createCommonjsModule(function (module, exports) {
 /**
  * @license
@@ -3800,11 +3954,11 @@ function baseGet(object, path) {
 }
 var _baseGet = baseGet;
 
-function get(object, path, defaultValue) {
+function get$2(object, path, defaultValue) {
   var result = object == null ? undefined : _baseGet(object, path);
   return result === undefined ? defaultValue : result;
 }
-var get_1 = get;
+var get_1 = get$2;
 
 function baseHasIn(object, key) {
   return object != null && key in Object(object);
@@ -3928,14 +4082,14 @@ function arrayEach(array, iteratee) {
 }
 var _arrayEach = arrayEach;
 
-var defineProperty = (function() {
+var defineProperty$1 = (function() {
   try {
     var func = _getNative(Object, 'defineProperty');
     func({}, '', {});
     return func;
   } catch (e) {}
 }());
-var _defineProperty$1 = defineProperty;
+var _defineProperty$1 = defineProperty$1;
 
 function baseAssignValue(object, key, value) {
   if (key == '__proto__' && _defineProperty$1) {
@@ -4699,7 +4853,7 @@ function toLinearRing(polyline$$1) {
   return linearRing;
 }
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 var _slicedToArray$1 = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -4873,7 +5027,7 @@ var SgHeatmap = function () {
       var includeState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
       var cloned = new SgHeatmap(this.children);
       cloned._updaters = [].concat(_toConsumableArray(this._updaters));
-      cloned._stats = _extends({}, this._stats);
+      cloned._stats = _extends$1({}, this._stats);
       if (includeState) {
         cloned._defaultState = this._defaultState;
       } else {
@@ -5795,16 +5949,6 @@ return numeral;
 }));
 });
 
-var toConsumableArray = function (arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
-
-    return arr2;
-  } else {
-    return Array.from(arr);
-  }
-};
-
 var store = {
   map: null,
   cache: {},
@@ -5852,7 +5996,9 @@ var store = {
       heatmap.renderer.bringToBack();
       return heatmap;
     } else {
-      this.cache[key] = window.fetch('./data/' + key + '.json').then(function (res) {
+      this.cache[key] = this.canLoad.then(function () {
+        return window.fetch('./data/' + key + '.json');
+      }).then(function (res) {
         return res.json();
       }).then(function (data) {
         return new SgHeatmap(data);
@@ -5891,7 +6037,8 @@ var store = {
   reorder: function reorder(layer) {
     if (!this[layer].heatmap) return;
     this[layer].heatmap.renderer.bringToFront();
-  }
+  },
+  canLoad: Promise.resolve()
 };
 function modifyGetStat(heatmap) {
   var _getStat = heatmap.getStat;
@@ -5909,6 +6056,67 @@ function modifyGetStat(heatmap) {
     return stat;
   };
 }
+
+var bitwise_1 = bitwise;
+var binaryTransfer_1 = binaryTransfer;
+var unique_1 = unique;
+var random_1 = random;
+function bitwise(str){
+	var hash = 0;
+	if (str.length == 0) return hash;
+	for (var i = 0; i < str.length; i++) {
+		var ch = str.charCodeAt(i);
+		hash = ((hash<<5)-hash) + ch;
+		hash = hash & hash;
+	}
+	return hash;
+}
+function binaryTransfer(integer, binary) {
+	binary = binary || 62;
+	var stack = [];
+	var num;
+	var result = '';
+	var sign = integer < 0 ? '-' : '';
+	function table (num) {
+		var t = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		return t[num];
+	}
+	integer = Math.abs(integer);
+	while (integer >= binary) {
+		num = integer % binary;
+		integer = Math.floor(integer / binary);
+		stack.push(table(num));
+	}
+	if (integer > 0) {
+		stack.push(table(integer));
+	}
+	for (var i = stack.length - 1; i >= 0; i--) {
+		result += stack[i];
+	}
+	return sign + result;
+}
+function unique (text) {
+	var id = binaryTransfer(bitwise(text), 61);
+	return id.replace('-', 'Z');
+}
+function random (_len) {
+	var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+	var rs = '';
+	var len = _len || 8;
+	for (var i=0; i< len; i++) {
+		var pos = Math.floor( Math.random() * chars.length);
+		rs += chars.substring(pos, pos + 1);
+	}
+	return rs;
+}
+var shorthash$1 = {
+	bitwise: bitwise_1,
+	binaryTransfer: binaryTransfer_1,
+	unique: unique_1,
+	random: random_1
+};
+
+var shorthash = shorthash$1;
 
 var themes = [{
   label: 'Resident Population By Gender & Planning Area',
@@ -6148,7 +6356,7 @@ var themes = [{
   sources: ['PopulationPlanningAreaMP98', 'PopulationPlanningAreaMP08', 'PopulationPlanningAreaMP14'],
   controls: [{
     type: 'checkbox',
-    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'], checked: true }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'], checked: true }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'], checked: true }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'], checked: true }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
     threshold: ['Resident.Total.TOTAL', 1000]
   }],
   mapping: {
@@ -6177,7 +6385,7 @@ var themes = [{
   sources: ['PopulationSubzoneMP98', 'PopulationSubzoneMP08', 'PopulationSubzoneMP14'],
   controls: [{
     type: 'checkbox',
-    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'] }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'] }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'] }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'] }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
+    items: [{ label: '1 to 2 room HDB', keys: ['DwellingType.ONE_TO_TWO'], checked: true }, { label: '3 room HDB', keys: ['DwellingType.THREE_RM'], checked: true }, { label: '4 room HDB', keys: ['DwellingType.FOUR_RM'], checked: true }, { label: '5 room HDB & Executive Flats', keys: ['DwellingType.FIVE_RM_EX'], checked: true }, { label: 'Condos and Other Apartments', keys: ['DwellingType.CONDOS_OTH'] }, { label: 'Landed Properties', keys: ['DwellingType.LANDED_PRO'] }, { label: 'Others', keys: ['DwellingType.OTHERS'] }],
     threshold: ['Resident.Total.TOTAL', 500]
   }],
   mapping: {
@@ -7120,6 +7328,9 @@ var themes = [{
   },
   format: '0%'
 }];
+themes.forEach(function (theme) {
+  theme.hash = shorthash.unique(theme.label);
+});
 
 (function () {
   if (typeof document !== 'undefined') {
@@ -7267,76 +7478,6 @@ var RangeSelector = { render: function render() {
   }
 };
 
-function generateAccessor(control, year) {
-  if (!control || !year) return;
-  var accessors = control.items.map(function (item) {
-    return function (d) {
-      return item.keys.reduce(function (sum, path) {
-        return sum + get$3(d[year], path);
-      }, 0);
-    };
-  });
-  var exclude = control.threshold ? function (d) {
-    return get$3(d[year], control.threshold[0]) < control.threshold[1];
-  } : function (d) {
-    return false;
-  };
-  var norm = control.normalize ? function (d) {
-    return control.normalize.reduce(function (sum, path) {
-      return sum + get$3(d[year], path);
-    }, 0);
-  } : function (d) {
-    return 1;
-  };
-  switch (control.type) {
-    case 'radio':
-      return function (selected) {
-        return function (d) {
-          try {
-            if (exclude(d)) return null;
-            return accessors[selected](d) / norm(d);
-          } catch (err) {
-            return null;
-          }
-        };
-      };
-    case 'checkbox':
-      return function (selected) {
-        return function (d) {
-          try {
-            if (exclude(d)) return null;
-            return selected.reduce(function (sum, index) {
-              return sum + accessors[index](d);
-            }, 0) / norm(d);
-          } catch (err) {
-            return null;
-          }
-        };
-      };
-    case 'range':
-      return function (selected) {
-        return function (d) {
-          try {
-            if (exclude(d)) return null;
-            return accessors.reduce(function (sum, accessor, index) {
-              if (index < selected[0] || index >= selected[1]) return sum;
-              return sum + accessor(d);
-            }, 0) / norm(d);
-          } catch (err) {
-            return null;
-          }
-        };
-      };
-  }
-}
-function get$3(d, path) {
-  var value = d;
-  path.split('.').forEach(function (key) {
-    value = value[key];
-  });
-  return value;
-}
-
 (function () {
   if (typeof document !== 'undefined') {
     var head = document.head || document.getElementsByTagName('head')[0],
@@ -7476,14 +7617,50 @@ window.vm = new Vue({
       return this.compareTheme && this.compareTheme.years.filter(function (year) {
         return year <= _this2.selectedYear;
       }).pop();
+    },
+    query: function query() {
+      return {
+        theme: this.selectedTheme.map(function (theme) {
+          return theme.hash;
+        }),
+        year: this.selectedYear !== 2016 ? this.selectedYear : null,
+        blend: this.blend !== 0 ? this.blend : null
+      };
     }
   },
   watch: {
     compareTheme: function compareTheme(theme) {
       if (!theme) this.blend = 0;
+    },
+    query: function query(q) {
+      window.history.replaceState(q, '', window.location.origin + querystring.stringify(q));
     }
   },
   mounted: function mounted() {
+    if (window.location.search) {
+      var query = querystring.parse(window.location.search);
+      if ('theme' in query) {
+        this.selectedTheme = query.theme.split(',').map(function (hash) {
+          return themes.find(function (theme) {
+            return theme.hash === hash;
+          });
+        });
+      }
+      if ('year' in query) {
+        var year = +query.year;
+        if (this.years.filter(function (y) {
+          return y === year;
+        }).length > 0) {
+          this.selectedYear = year;
+        }
+      }
+      if ('blend' in query) {
+        var blend = +query.blend;
+        if (blend >= 0 && blend <= 1) {
+          this.blend = blend;
+        }
+      }
+    }
     store.map = L.map(this.$refs.map, {
       center: [1.352083, 103.819836],
       zoom: 12,
@@ -7492,10 +7669,20 @@ window.vm = new Vue({
       maxBounds: [[1.16, 103.582], [1.48073, 104.1647]],
       maxBoundsViscosity: 1.0
     });
-    L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
+    store.tile = L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
       detectRetina: true,
       attribution: 'Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
-    }).addTo(store.map);
+    });
+    store.tile.on('loading', function (event) {
+      store.canLoad = new Promise(function (resolve, reject) {
+        store.tile.on('load', onLoad);
+        function onLoad() {
+          setTimeout(resolve, 100);
+          store.tile.off('load', onLoad);
+        }
+      });
+    });
+    store.tile.addTo(store.map);
     store.map.attributionControl.setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>');
   },
   components: { Layer: Layer }

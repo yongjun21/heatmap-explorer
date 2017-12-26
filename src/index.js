@@ -2,6 +2,8 @@ import vSelect from 'vue-select'
 import vSlider from 'vue-slider-component'
 import CheckboxRadio from 'vue-checkbox-radio'
 
+import {querystring} from './helpers'
+
 import {YlOrRd, GnBu} from 'sg-heatmap/dist/es/helpers/color'
 
 import store from './store'
@@ -43,14 +45,45 @@ window.vm = new Vue({
     compareYear () {
       return this.compareTheme &&
         this.compareTheme.years.filter(year => year <= this.selectedYear).pop()
+    },
+    query () {
+      return {
+        theme: this.selectedTheme.map(theme => theme.hash),
+        year: this.selectedYear !== 2016 ? this.selectedYear : null,
+        blend: this.blend !== 0 ? this.blend : null
+      }
     }
   },
   watch: {
     compareTheme (theme) {
       if (!theme) this.blend = 0
+    },
+    query (q) {
+      window.history.replaceState(q, '', window.location.origin + querystring.stringify(q))
     }
   },
   mounted () {
+    if (window.location.search) {
+      const query = querystring.parse(window.location.search)
+      if ('theme' in query) {
+        this.selectedTheme = query.theme.split(',')
+          .map(hash => themes.find(theme => theme.hash === hash))
+      }
+      if ('year' in query) {
+        const year = +query.year
+        if (this.years.filter(y => y === year).length > 0) {
+          this.selectedYear = year
+        }
+      }
+
+      if ('blend' in query) {
+        const blend = +query.blend
+        if (blend >= 0 && blend <= 1) {
+          this.blend = blend
+        }
+      }
+    }
+
     store.map = L.map(this.$refs.map, {
       center: [1.352083, 103.819836],
       zoom: 12,
@@ -60,10 +93,22 @@ window.vm = new Vue({
       maxBoundsViscosity: 1.0
     })
 
-    L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
+    store.tile = L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
       detectRetina: true,
       attribution: 'Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
-    }).addTo(store.map)
+    })
+
+    store.tile.on('loading', event => {
+      store.canLoad = new Promise((resolve, reject) => {
+        store.tile.on('load', onLoad)
+        function onLoad () {
+          setTimeout(resolve, 100)
+          store.tile.off('load', onLoad)
+        }
+      })
+    })
+
+    store.tile.addTo(store.map)
 
     store.map.attributionControl
       .setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>')
