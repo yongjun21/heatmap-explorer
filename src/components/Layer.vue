@@ -51,8 +51,7 @@ export default {
     },
     style () {
       return {
-        opacity: this.opacity * 1,
-        fillOpacity: this.opacity * 0.7
+        'fill-opacity': this.opacity * 0.7
       }
     }
   },
@@ -65,14 +64,15 @@ export default {
         return
       }
 
-      const heatmap = store.load(this.id, this.source, this.color)
-      if (heatmap instanceof Promise) {
-        heatmap.then(() => this.onChange())
-      } else {
-        store.render(this.id, this.accessor(this.selectedFilter), this.theme.format)
-        store.adjust(this.id, this.style)
-        if (this.opacity > 0.5) store.reorder(this.id)
-      }
+      store.load(this.id, this.source, this.color).then(heatmap => {
+        if (heatmap) {
+          store.render(this.id, this.accessor(this.selectedFilter), this.theme.format)
+          store.adjust(this.id, this.style)
+          if (this.opacity > 0.5) store.reorder(this.id)
+        } else {
+          this.onChange()
+        }
+      })
     }
   },
   watch: {

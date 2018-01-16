@@ -1,5 +1,5 @@
 import SgHeatmap from 'sg-heatmap'
-import supportLeaflet from 'sg-heatmap/dist/es/plugins/leaflet'
+import supportMapboxGL from 'sg-heatmap/src/plugins/mapboxgl'
 import {optimizePointSpread} from 'sg-heatmap/dist/es/helpers/color'
 
 import numeral from 'numeral'
@@ -17,83 +17,93 @@ export default {
       if (this.cache[key] instanceof Promise) return this.cache[key]
 
       if (this[layer].heatmap) {
-        this[layer].heatmap.renderer.removeFrom(this.map)
+        this[layer].heatmap.renderer.remove()
       }
 
       const heatmap = this.cache[key].clone(true)
-      supportLeaflet(heatmap)
+      supportMapboxGL(heatmap)
       modifyGetStat(heatmap)
-      heatmap.initializeRenderer(colorScale, {
-        weight: 1,
-        color: 'black',
-        opacity: 0.3,
-        fillColor: colorScale(0),
-        fillOpacity: 0.3
-      }, {
-        weight: 2,
-        fillOpacity: 0.7,
-        opacity: 1
-      })
-      heatmap.renderer.bindTooltip(layer => {
-        const content = [
-          layer.feature.properties.Planning_Area_Name,
-          layer.feature.properties.Subzone_Name,
-          layer.feature.properties._value
-        ]
-        const $content = document.createElement('div')
-        content.filter(item => item).forEach(item => {
-          const $p = document.createElement('p')
-          $p.textContent = item
-          $content.appendChild($p)
-        })
-        return $content
-      })
 
-      this[layer].source = key
-      this[layer].heatmap = heatmap
-      heatmap.renderer.addTo(this.map)
-      heatmap.renderer.bringToBack()
-      return heatmap
+      return this.canLoad.then(() => {
+        heatmap.initializeRenderer(this.map, colorScale, {
+          'fill-outline-color': 'black',
+          'fill-color': colorScale(0),
+          'fill-opacity': 0.3
+        }, {
+          'fill-opacity': 0.7
+        })
+
+        // const tooltip = new mapboxgl.Popup({
+        //   closeButton: false,
+        //   closeOnClick: false
+        // })
+        //
+        // this.map.on('mouseenter', heatmap.renderer.layer, e => {
+        //   const feature = e.features[0]
+        //   const content = [
+        //     feature.properties.Planning_Area_Name,
+        //     feature.properties.Subzone_Name,
+        //     feature.properties._value
+        //   ]
+        //   const $content = document.createElement('div')
+        //   content.filter(item => item).forEach(item => {
+        //     const $p = document.createElement('p')
+        //     $p.textContent = item
+        //     $content.appendChild($p)
+        //   })
+        //   tooltip
+        //     .setLngLat(JSON.parse(feature.properties.Address))
+        //     .setDOMContent($content)
+        //     .addTo(this.map)
+        // })
+        //
+        // this.map.on('mouseleave', heatmap.renderer.layer, e => {
+        //   tooltip.remove()
+        // })
+
+        this[layer].source = key
+        this[layer].heatmap = heatmap
+        return heatmap
+      })
     } else {
-      this.cache[key] = this.canLoad
-        .then(() => window.fetch(`./data/${key}.json`))
+      this.cache[key] = window.fetch(`./data/${key}.json`)
         .then(res => res.json())
         .then(data => new SgHeatmap(data))
         .then(heatmap => {
           this.cache[key] = heatmap
-          return heatmap
         })
       return this.cache[key]
     }
   },
   unload (layer) {
     if (!this[layer].heatmap) return
-    this[layer].heatmap.renderer.removeFrom(this.map)
+    this[layer].heatmap.renderer.remove()
     this[layer].source = null
     this[layer].heatmap = null
   },
   render (layer, accessor, format) {
     if (!this[layer].heatmap) return
     const stat = this[layer].heatmap.getStat(accessor)
-    this[layer].heatmap.renderer.eachLayer(layer => {
-      if (layer.feature.id in stat.values) {
-        const formatted = numeral(stat.values[layer.feature.id]).format(format || '0')
-        layer.feature.properties._value = formatted
+    this[layer].heatmap.children.forEach(c => {
+      if (c.id in stat.values) {
+        const formatted = numeral(stat.values[c.id]).format(format || '0')
+        c.properties._value = formatted
       } else {
-        delete layer.feature.properties._value
+        delete c.properties._value
       }
     })
     this[layer].heatmap.render(accessor, optimizePointSpread(stat))
   },
   adjust (layer, style) {
     if (!this[layer].heatmap) return
-    this[layer].heatmap.renderer.setStyle(feature => {
-      if (feature.properties.color) return style
+    Object.keys(style).forEach(key => {
+      this.map.setPaintProperty(this[layer].heatmap.renderer.layer, key, style[key])
     })
   },
   reorder (layer) {
     if (!this[layer].heatmap) return
-    this[layer].heatmap.renderer.bringToFront()
+    this.map.moveLayer(this[layer].heatmap.renderer.layer + '-default')
+    this.map.moveLayer(this[layer].heatmap.renderer.layer)
   },
   canLoad: Promise.resolve()
 }

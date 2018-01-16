@@ -84,34 +84,40 @@ window.vm = new Vue({
       }
     }
 
-    store.map = L.map(this.$refs.map, {
-      center: [1.352083, 103.819836],
-      zoom: 12,
-      minZoom: 12,
-      maxZoom: 17,
-      maxBounds: [[1.16, 103.582], [1.48073, 104.1647]],
-      maxBoundsViscosity: 1.0
+    mapboxgl.accessToken = 'pk.eyJ1IjoieW9uZ2p1bjIxIiwiYSI6ImNpdTY5c2tyZzBqaDgyemxwYjk0Nnlic2UifQ.A5OHCYPcLTupbo1Qi3t5OQ'
+
+    store.map = new mapboxgl.Map({
+      container: this.$refs.map,
+      center: [103.819836, 1.352083],
+      zoom: 10,
+      minZoom: 10,
+      maxZoom: 15,
+      style: 'mapbox://styles/yongjun21/cjcer1xlm3nqo2rp4tv7g45y7'
     })
 
-    store.tile = L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
-      detectRetina: true,
-      attribution: 'Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
+    store.canLoad = new Promise((resolve, reject) => {
+      store.map.on('load', resolve)
     })
 
-    store.tile.on('loading', event => {
-      store.canLoad = new Promise((resolve, reject) => {
-        store.tile.on('load', onLoad)
-        function onLoad () {
-          setTimeout(resolve, 100)
-          store.tile.off('load', onLoad)
-        }
-      })
-    })
-
-    store.tile.addTo(store.map)
-
-    store.map.attributionControl
-      .setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>')
+    // store.tile = L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
+    //   detectRetina: true,
+    //   attribution: 'Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
+    // })
+    //
+    // store.tile.on('loading', event => {
+    //   store.canLoad = new Promise((resolve, reject) => {
+    //     store.tile.on('load', onLoad)
+    //     function onLoad () {
+    //       setTimeout(resolve, 200)
+    //       store.tile.off('load', onLoad)
+    //     }
+    //   })
+    // })
+    //
+    // store.tile.addTo(store.map)
+    //
+    // store.map.attributionControl
+    //   .setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>')
   },
   components: {Layer}
 })
