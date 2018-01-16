@@ -5156,7 +5156,7 @@ var SgHeatmap = function () {
           id: c.id,
           type: 'Feature',
           geometry: c.geometry,
-          properties: Object.assign({ color: null }, c.properties)
+          properties: Object.assign({}, c.properties, { color: null })
         });
       });
       return this.renderer;
@@ -5506,27 +5506,43 @@ function supportMapboxGL(heatmap) {
     };
     map.addSource(id, { type: 'geojson', data: data });
     map.addLayer({
-      id: id + '-default',
+      id: id + '-fill-default',
       source: id,
       type: 'fill',
       filter: ['!has', 'color'],
-      paint: pick_1(defaultStyle, ['fill-color', 'fill-opacity', 'fill-outline-color'])
+      paint: Object.assign(pick_1(defaultStyle, ['fill-color', 'fill-opacity']))
     });
     map.addLayer({
-      id: id,
+      id: id + '-line-default',
+      source: id,
+      type: 'line',
+      filter: ['!has', 'color'],
+      paint: Object.assign(pick_1(defaultStyle, ['line-width', 'line-color', 'line-opacity']))
+    });
+    map.addLayer({
+      id: id + '-fill',
       source: id,
       type: 'fill',
       filter: ['has', 'color'],
-      paint: Object.assign(pick_1(defaultStyle, ['fill-color', 'fill-opacity', 'fill-outline-color']), pick_1(addonStyle, ['fill-opacity', 'fill-outline-color']), { 'fill-color': ['get', 'color'] })
+      paint: Object.assign(pick_1(defaultStyle, ['fill-color', 'fill-opacity']), pick_1(addonStyle, ['fill-opacity']), { 'fill-color': ['get', 'color'] })
+    });
+    map.addLayer({
+      id: id + '-line',
+      source: id,
+      type: 'line',
+      filter: ['has', 'color'],
+      paint: Object.assign(pick_1(defaultStyle, ['line-width', 'line-color', 'line-opacity']), pick_1(addonStyle, ['line-width', 'line-color', 'line-opacity']))
     });
     this.renderer = {
       layer: id,
+      layers: [id + '-fill-default', id + '-line-default', id + '-fill', id + '-line'],
       get source() {
         return map.getSource(id);
       },
       remove: function remove() {
-        map.removeLayer(id + '-default');
-        map.removeLayer(id);
+        this.layers.forEach(function (layer) {
+          map.removeLayer(layer);
+        });
         map.removeSource(id);
       }
     };
@@ -6344,11 +6360,13 @@ var store = {
       modifyGetStat(heatmap);
       return this.canLoad.then(function () {
         heatmap.initializeRenderer(_this.map, colorScale, {
-          'fill-outline-color': 'black',
+          'line-width': 1,
+          'line-color': 'black',
+          'line-opacity': 0,
           'fill-color': colorScale(0),
-          'fill-opacity': 0.3
+          'fill-opacity': 0
         }, {
-          'fill-opacity': 0.7
+          'line-width': 2
         });
         _this[layer].source = key;
         _this[layer].heatmap = heatmap;
@@ -6388,13 +6406,19 @@ var store = {
     var _this2 = this;
     if (!this[layer].heatmap) return;
     Object.keys(style).forEach(function (key) {
-      _this2.map.setPaintProperty(_this2[layer].heatmap.renderer.layer, key, style[key]);
+      var _key$split = key.split('.'),
+          _key$split2 = slicedToArray(_key$split, 2),
+          id = _key$split2[0],
+          prop = _key$split2[1];
+      _this2.map.setPaintProperty(_this2[layer].heatmap.renderer.layer + '-' + id, prop, style[key]);
     });
   },
   reorder: function reorder(layer) {
+    var _this3 = this;
     if (!this[layer].heatmap) return;
-    this.map.moveLayer(this[layer].heatmap.renderer.layer + '-default');
-    this.map.moveLayer(this[layer].heatmap.renderer.layer);
+    this[layer].heatmap.renderer.layers.forEach(function (layer) {
+      _this3.map.moveLayer(layer);
+    });
   },
   canLoad: Promise.resolve()
 };
@@ -7886,7 +7910,10 @@ var Layer = { render: function render() {
     },
     style: function style() {
       return {
-        'fill-opacity': this.opacity * 0.7
+        'fill.fill-opacity': this.opacity * 0.7,
+        'line.line-opacity': this.opacity * 1,
+        'fill-default.fill-opacity': this.opacity * 0.3,
+        'line-default.line-opacity': this.opacity * 0.3
       };
     }
   },
@@ -8025,6 +8052,33 @@ window.vm = new Vue({
       minZoom: 10,
       maxZoom: 15,
       style: 'mapbox://styles/yongjun21/cjcer1xlm3nqo2rp4tv7g45y7'
+    });
+    var tooltip = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    });
+    store.map.on('mousemove', function (e) {
+      var feature = store.map.queryRenderedFeatures(e.point, { filter: ['has', 'color'] })[0];
+      if (feature) {
+        store.map.getCanvas().style.cursor = 'pointer';
+        var content = [feature.properties.Planning_Area_Name, feature.properties.Subzone_Name, feature.properties._value];
+        var $content = document.createElement('div');
+        content.forEach(function (item) {
+          var $p = document.createElement('p');
+          if (item) {
+            $p.textContent = item;
+            $content.appendChild($p);
+          }
+        });
+        tooltip.setLngLat(JSON.parse(feature.properties.Address)).setDOMContent($content).addTo(store.map);
+      } else {
+        store.map.getCanvas().style.cursor = '';
+        tooltip.remove();
+      }
+    });
+    store.map.on('mouseleave', function (e) {
+      store.map.getCanvas().style.cursor = '';
+      tooltip.remove();
     });
     store.canLoad = new Promise(function (resolve, reject) {
       store.map.on('load', resolve);

@@ -1,5 +1,5 @@
 import SgHeatmap from 'sg-heatmap'
-import supportMapboxGL from 'sg-heatmap/src/plugins/mapboxgl'
+import supportMapboxGL from 'sg-heatmap/dist/es/plugins/mapboxgl'
 import {optimizePointSpread} from 'sg-heatmap/dist/es/helpers/color'
 
 import numeral from 'numeral'
@@ -26,40 +26,14 @@ export default {
 
       return this.canLoad.then(() => {
         heatmap.initializeRenderer(this.map, colorScale, {
-          'fill-outline-color': 'black',
+          'line-width': 1,
+          'line-color': 'black',
+          'line-opacity': 0,
           'fill-color': colorScale(0),
-          'fill-opacity': 0.3
+          'fill-opacity': 0
         }, {
-          'fill-opacity': 0.7
+          'line-width': 2
         })
-
-        // const tooltip = new mapboxgl.Popup({
-        //   closeButton: false,
-        //   closeOnClick: false
-        // })
-        //
-        // this.map.on('mouseenter', heatmap.renderer.layer, e => {
-        //   const feature = e.features[0]
-        //   const content = [
-        //     feature.properties.Planning_Area_Name,
-        //     feature.properties.Subzone_Name,
-        //     feature.properties._value
-        //   ]
-        //   const $content = document.createElement('div')
-        //   content.filter(item => item).forEach(item => {
-        //     const $p = document.createElement('p')
-        //     $p.textContent = item
-        //     $content.appendChild($p)
-        //   })
-        //   tooltip
-        //     .setLngLat(JSON.parse(feature.properties.Address))
-        //     .setDOMContent($content)
-        //     .addTo(this.map)
-        // })
-        //
-        // this.map.on('mouseleave', heatmap.renderer.layer, e => {
-        //   tooltip.remove()
-        // })
 
         this[layer].source = key
         this[layer].heatmap = heatmap
@@ -97,13 +71,15 @@ export default {
   adjust (layer, style) {
     if (!this[layer].heatmap) return
     Object.keys(style).forEach(key => {
-      this.map.setPaintProperty(this[layer].heatmap.renderer.layer, key, style[key])
+      const [id, prop] = key.split('.')
+      this.map.setPaintProperty(this[layer].heatmap.renderer.layer + '-' + id, prop, style[key])
     })
   },
   reorder (layer) {
     if (!this[layer].heatmap) return
-    this.map.moveLayer(this[layer].heatmap.renderer.layer + '-default')
-    this.map.moveLayer(this[layer].heatmap.renderer.layer)
+    this[layer].heatmap.renderer.layers.forEach(layer => {
+      this.map.moveLayer(layer)
+    })
   },
   canLoad: Promise.resolve()
 }

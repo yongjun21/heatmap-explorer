@@ -104,3 +104,15 @@ html, body {
 .leaflet-tooltip p:first-child {
   font-weight: 500;
 }
+
+.mapboxgl-popup, .mapboxgl-popup * {
+  pointer-events: none;
+}
+
+.mapboxgl-popup p {
+  pointer-events: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 10px;
+  line-height: 1.5em;
+}

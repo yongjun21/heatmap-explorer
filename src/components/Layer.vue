@@ -51,7 +51,10 @@ export default {
     },
     style () {
       return {
-        'fill-opacity': this.opacity * 0.7
+        'fill.fill-opacity': this.opacity * 0.7,
+        'line.line-opacity': this.opacity * 1,
+        'fill-default.fill-opacity': this.opacity * 0.3,
+        'line-default.line-opacity': this.opacity * 0.3
       }
     }
   },

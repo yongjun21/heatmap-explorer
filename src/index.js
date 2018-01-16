@@ -95,29 +95,46 @@ window.vm = new Vue({
       style: 'mapbox://styles/yongjun21/cjcer1xlm3nqo2rp4tv7g45y7'
     })
 
+    const tooltip = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    })
+
+    store.map.on('mousemove', e => {
+      const feature = store.map.queryRenderedFeatures(e.point, {filter: ['has', 'color']})[0]
+      if (feature) {
+        store.map.getCanvas().style.cursor = 'pointer'
+        const content = [
+          feature.properties.Planning_Area_Name,
+          feature.properties.Subzone_Name,
+          feature.properties._value
+        ]
+        const $content = document.createElement('div')
+        content.forEach(item => {
+          const $p = document.createElement('p')
+          if (item) {
+            $p.textContent = item
+            $content.appendChild($p)
+          }
+        })
+        tooltip
+          .setLngLat(JSON.parse(feature.properties.Address))
+          .setDOMContent($content)
+          .addTo(store.map)
+      } else {
+        store.map.getCanvas().style.cursor = ''
+        tooltip.remove()
+      }
+    })
+
+    store.map.on('mouseleave', e => {
+      store.map.getCanvas().style.cursor = ''
+      tooltip.remove()
+    })
+
     store.canLoad = new Promise((resolve, reject) => {
       store.map.on('load', resolve)
     })
-
-    // store.tile = L.tileLayer('https://maps-{s}.onemap.sg/v3/Default/{z}/{x}/{y}.png', {
-    //   detectRetina: true,
-    //   attribution: 'Map data © contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
-    // })
-    //
-    // store.tile.on('loading', event => {
-    //   store.canLoad = new Promise((resolve, reject) => {
-    //     store.tile.on('load', onLoad)
-    //     function onLoad () {
-    //       setTimeout(resolve, 200)
-    //       store.tile.off('load', onLoad)
-    //     }
-    //   })
-    // })
-    //
-    // store.tile.addTo(store.map)
-    //
-    // store.map.attributionControl
-    //   .setPrefix('<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/>')
   },
   components: {Layer}
 })
