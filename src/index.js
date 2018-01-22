@@ -101,7 +101,9 @@ window.vm = new Vue({
     })
 
     store.map.on('mousemove', e => {
-      const feature = store.map.queryRenderedFeatures(e.point, {filter: ['has', 'color']})[0]
+      const feature = store.map.queryRenderedFeatures(e.point, {
+        filter: ['has', 'Planning_Area_Name']
+      })[0]
       if (feature) {
         store.map.getCanvas().style.cursor = 'pointer'
         const content = [

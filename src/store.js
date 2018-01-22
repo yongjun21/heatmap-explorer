@@ -7,6 +7,7 @@ import numeral from 'numeral'
 export default {
   map: null,
   cache: {},
+  topLayer: null,
   add () {
     const layerId = Symbol()
     this[layerId] = {source: null, heatmap: null}
@@ -71,14 +72,16 @@ export default {
   adjust (layer, style) {
     if (!this[layer].heatmap) return
     Object.keys(style).forEach(key => {
-      const [id, prop] = key.split('.')
-      this.map.setPaintProperty(this[layer].heatmap.renderer.layer + '-' + id, prop, style[key])
+      const [subLayer, prop] = key.split('.')
+      const layerId = this[layer].heatmap.renderer.layer + '-' + subLayer
+      if (this.map.getLayer(layerId)) this.map.setPaintProperty(layerId, prop, style[key])
     })
   },
   reorder (layer) {
-    if (!this[layer].heatmap) return
-    this[layer].heatmap.renderer.layers.forEach(layer => {
-      this.map.moveLayer(layer)
+    if (layer) this.topLayer = layer
+    if (!this[this.topLayer].heatmap) return
+    this[this.topLayer].heatmap.renderer.layers.forEach(layerId => {
+      if (this.map.getLayer(layerId)) this.map.moveLayer(layerId)
     })
   },
   canLoad: Promise.resolve()

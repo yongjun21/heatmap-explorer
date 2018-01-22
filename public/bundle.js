@@ -6343,6 +6343,7 @@ return numeral;
 var store = {
   map: null,
   cache: {},
+  topLayer: null,
   add: function add() {
     var layerId = Symbol();
     this[layerId] = { source: null, heatmap: null };
@@ -6408,16 +6409,18 @@ var store = {
     Object.keys(style).forEach(function (key) {
       var _key$split = key.split('.'),
           _key$split2 = slicedToArray(_key$split, 2),
-          id = _key$split2[0],
+          subLayer = _key$split2[0],
           prop = _key$split2[1];
-      _this2.map.setPaintProperty(_this2[layer].heatmap.renderer.layer + '-' + id, prop, style[key]);
+      var layerId = _this2[layer].heatmap.renderer.layer + '-' + subLayer;
+      if (_this2.map.getLayer(layerId)) _this2.map.setPaintProperty(layerId, prop, style[key]);
     });
   },
   reorder: function reorder(layer) {
     var _this3 = this;
-    if (!this[layer].heatmap) return;
-    this[layer].heatmap.renderer.layers.forEach(function (layer) {
-      _this3.map.moveLayer(layer);
+    if (layer) this.topLayer = layer;
+    if (!this[this.topLayer].heatmap) return;
+    this[this.topLayer].heatmap.renderer.layers.forEach(function (layerId) {
+      if (_this3.map.getLayer(layerId)) _this3.map.moveLayer(layerId);
     });
   },
   canLoad: Promise.resolve()
@@ -7932,7 +7935,7 @@ var Layer = { render: function render() {
         if (heatmap) {
           store.render(_this.id, _this.accessor(_this.selectedFilter), _this.theme.format);
           store.adjust(_this.id, _this.style);
-          if (_this.opacity > 0.5) store.reorder(_this.id);
+          store.reorder(_this.opacity > 0.5 ? _this.id : null);
         } else {
           _this.onChange();
         }
@@ -7952,7 +7955,7 @@ var Layer = { render: function render() {
     },
     opacity: function opacity() {
       store.adjust(this.id, this.style);
-      if (this.opacity > 0.5) store.reorder(this.id);
+      store.reorder(this.opacity > 0.5 ? this.id : null);
     }
   },
   components: {
@@ -8058,7 +8061,9 @@ window.vm = new Vue({
       closeOnClick: false
     });
     store.map.on('mousemove', function (e) {
-      var feature = store.map.queryRenderedFeatures(e.point, { filter: ['has', 'color'] })[0];
+      var feature = store.map.queryRenderedFeatures(e.point, {
+        filter: ['has', 'Planning_Area_Name']
+      })[0];
       if (feature) {
         store.map.getCanvas().style.cursor = 'pointer';
         var content = [feature.properties.Planning_Area_Name, feature.properties.Subzone_Name, feature.properties._value];

@@ -71,7 +71,7 @@ export default {
         if (heatmap) {
           store.render(this.id, this.accessor(this.selectedFilter), this.theme.format)
           store.adjust(this.id, this.style)
-          if (this.opacity > 0.5) store.reorder(this.id)
+          store.reorder(this.opacity > 0.5 ? this.id : null)
         } else {
           this.onChange()
         }
@@ -93,7 +93,7 @@ export default {
     },
     opacity () {
       store.adjust(this.id, this.style)
-      if (this.opacity > 0.5) store.reorder(this.id)
+      store.reorder(this.opacity > 0.5 ? this.id : null)
     }
   },
   components: {
