@@ -32,9 +32,9 @@
       </v-slider>
       <v-slider class="blend-control"
         v-model="blend"
-        min="0"
-        max="1"
-        interval="0.05"
+        :min="0"
+        :max="1"
+        :interval="0.05"
         :disabled="!compareTheme"
         direction="vertical"
         reverse
@@ -49,13 +49,17 @@
         :theme="baseTheme"
         :year="baseYear"
         :color="colors[0]"
-        :opacity="1 - blend">
+        :opacity="1 - blend"
+        :default-selected="baseFilter"
+        @update="baseFilter = $event">
       </layer>
       <layer
         :theme="compareTheme"
         :year="compareYear"
         :color="colors[1]"
-        :opacity="blend">
+        :opacity="blend"
+        :default-selected="compareFilter"
+        @update="compareFilter = $event">
       </layer>
     </div>
   </div>

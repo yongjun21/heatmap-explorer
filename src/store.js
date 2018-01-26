@@ -88,7 +88,7 @@ export default {
   adjust (layer, style) {
     if (!this[layer].heatmap) return
     this[layer].heatmap.renderer.setStyle(feature => {
-      if (feature.properties.color) return style
+      return feature.properties.color ? style.color : style.default
     })
   },
   reorder (layer) {

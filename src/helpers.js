@@ -83,14 +83,13 @@ export const querystring = {
     return parsed
   },
   stringify (query) {
-    let stringified = []
+    const stringified = []
     Object.keys(query).forEach(key => {
       const value = query[key] instanceof Array
         ? query[key].join(',')
         : query[key]
       if (value) stringified.push(key + '=' + value)
     })
-    if (stringified.length > 0) stringified = '?' + stringified.join('&')
-    return stringified
+    return stringified.length > 0 ? ('?' + stringified.join('&')) : ''
   }
 }

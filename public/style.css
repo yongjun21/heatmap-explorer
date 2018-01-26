@@ -43,6 +43,7 @@ html, body {
   display: inline-block;
   width: 600px;
   margin: 4px 0;
+  z-index: 2000;
 }
 
 .theme-control .dropdown-toggle {
@@ -103,4 +104,8 @@ html, body {
 
 .leaflet-tooltip p:first-child {
   font-weight: 500;
+}
+
+.leaflet-overlay-pane path {
+  mix-blend-mode: overlay;
 }

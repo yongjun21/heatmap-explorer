@@ -29,7 +29,8 @@ export default {
     theme: Object,
     year: Number,
     color: Function,
-    opacity: Number
+    opacity: Number,
+    defaultSelected: [Number, Array]
   },
   computed: {
     source () {
@@ -51,8 +52,14 @@ export default {
     },
     style () {
       return {
-        opacity: this.opacity * 1,
-        fillOpacity: this.opacity * 0.7
+        color: {
+          opacity: this.opacity * 1,
+          fillOpacity: this.opacity * 0.7
+        },
+        default: {
+          opacity: this.opacity * 0.3,
+          fillOpacity: this.opacity * 0.3
+        }
       }
     }
   },
@@ -62,6 +69,7 @@ export default {
       if (store[this.id].source === this.source) {
         store.render(this.id, this.accessor(this.selectedFilter), this.theme.format)
         store.adjust(this.id, this.style)
+        this.$emit('update', this.selectedFilter)
         return
       }
 
@@ -72,20 +80,30 @@ export default {
         store.render(this.id, this.accessor(this.selectedFilter), this.theme.format)
         store.adjust(this.id, this.style)
         if (this.opacity > 0.5) store.reorder(this.id)
+        this.$emit('update', this.selectedFilter)
       }
     }
   },
   watch: {
     accessor: 'onChange',
     selectedFilter: 'onChange',
-    control (newValue, oldValue) {
-      if (newValue === oldValue) return
-      if (this.control) {
-        if (this.control.type === 'radio') this.selectedFilter = 0
-        else if (this.control.type === 'checkbox') this.selectedFilter = []
-        else if (this.control.type === 'range') this.selectedFilter = [0, 1]
+    control (newControl, oldControl) {
+      if (newControl === oldControl) return
+      if (newControl) {
+        if (newControl.type === 'radio') {
+          this.selectedFilter = this.defaultSelected instanceof Array
+            ? this.defaultSelected[0] : (this.defaultSelected || 0)
+        } else if (newControl.type === 'checkbox') {
+          this.selectedFilter = this.defaultSelected instanceof Array
+            ? this.defaultSelected : []
+        } else if (newControl.type === 'range') {
+          this.selectedFilter = this.defaultSelected instanceof Array
+            ? this.defaultSelected : []
+        }
       } else {
         store.unload(this.id)
+        this.selectedFilter = null
+        this.$emit('update', null)
       }
     },
     opacity () {

@@ -29,6 +29,7 @@ export default {
     }
   },
   created () {
+    if (this.selected.length > 0) return
     const checked = []
     this.options.forEach((option, index) => {
       if (option.checked) checked.push(index)

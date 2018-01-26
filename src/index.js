@@ -1,6 +1,7 @@
 import vSelect from 'vue-select'
 import vSlider from 'vue-slider-component'
 import CheckboxRadio from 'vue-checkbox-radio'
+import _debounce from 'lodash/debounce'
 
 import {querystring} from './helpers'
 
@@ -22,6 +23,8 @@ window.vm = new Vue({
     colors: [YlOrRd(), GnBu()],
     baseTheme: null,
     compareTheme: null,
+    baseFilter: null,
+    compareFilter: null,
     selectedYear: 2016,
     blend: 0
   },
@@ -50,7 +53,9 @@ window.vm = new Vue({
       return {
         theme: this.selectedTheme.map(theme => theme.hash),
         year: this.selectedYear !== 2016 ? this.selectedYear : null,
-        blend: this.blend !== 0 ? this.blend : null
+        base: this.baseFilter,
+        compare: this.compareFilter,
+        blend: this.blend
       }
     }
   },
@@ -58,9 +63,9 @@ window.vm = new Vue({
     compareTheme (theme) {
       if (!theme) this.blend = 0
     },
-    query (q) {
+    query: _debounce(function (q) {
       window.history.replaceState(q, '', window.location.origin + querystring.stringify(q))
-    }
+    }, 200)
   },
   mounted () {
     if (window.location.search) {
@@ -75,7 +80,12 @@ window.vm = new Vue({
           this.selectedYear = year
         }
       }
-
+      if ('base' in query) {
+        this.baseFilter = query.base.split(',').map(v => +v)
+      }
+      if ('compare' in query) {
+        this.compareFilter = query.compare.split(',').map(v => +v)
+      }
       if ('blend' in query) {
         const blend = +query.blend
         if (blend >= 0 && blend <= 1) {

@@ -30,6 +30,210 @@ var dist$1 = createCommonjsModule(function (module, exports) {
 });
 var CheckboxRadio = unwrapExports(dist$1);
 
+function isObject(value) {
+  var type = typeof value;
+  return value != null && (type == 'object' || type == 'function');
+}
+var isObject_1 = isObject;
+
+var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
+var _freeGlobal = freeGlobal;
+
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+var root = _freeGlobal || freeSelf || Function('return this')();
+var _root = root;
+
+var now = function() {
+  return _root.Date.now();
+};
+var now_1 = now;
+
+var Symbol$1 = _root.Symbol;
+var _Symbol = Symbol$1;
+
+var objectProto = Object.prototype;
+var hasOwnProperty = objectProto.hasOwnProperty;
+var nativeObjectToString = objectProto.toString;
+var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag$1),
+      tag = value[symToStringTag$1];
+  try {
+    value[symToStringTag$1] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag$1] = tag;
+    } else {
+      delete value[symToStringTag$1];
+    }
+  }
+  return result;
+}
+var _getRawTag = getRawTag;
+
+var objectProto$1 = Object.prototype;
+var nativeObjectToString$1 = objectProto$1.toString;
+function objectToString(value) {
+  return nativeObjectToString$1.call(value);
+}
+var _objectToString = objectToString;
+
+var nullTag = '[object Null]';
+var undefinedTag = '[object Undefined]';
+var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? _getRawTag(value)
+    : _objectToString(value);
+}
+var _baseGetTag = baseGetTag;
+
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+var isObjectLike_1 = isObjectLike;
+
+var symbolTag = '[object Symbol]';
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
+}
+var isSymbol_1 = isSymbol;
+
+var NAN = 0 / 0;
+var reTrim = /^\s+|\s+$/g;
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+var reIsBinary = /^0b[01]+$/i;
+var reIsOctal = /^0o[0-7]+$/i;
+var freeParseInt = parseInt;
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol_1(value)) {
+    return NAN;
+  }
+  if (isObject_1(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject_1(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+var toNumber_1 = toNumber;
+
+var FUNC_ERROR_TEXT = 'Expected a function';
+var nativeMax = Math.max;
+var nativeMin = Math.min;
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber_1(wait) || 0;
+  if (isObject_1(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber_1(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+  function leadingEdge(time) {
+    lastInvokeTime = time;
+    timerId = setTimeout(timerExpired, wait);
+    return leading ? invokeFunc(time) : result;
+  }
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        result = wait - timeSinceLastCall;
+    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+  }
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+  function timerExpired() {
+    var time = now_1();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+  function trailingEdge(time) {
+    timerId = undefined;
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now_1());
+  }
+  function debounced() {
+    var time = now_1(),
+        isInvoking = shouldInvoke(time);
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+var debounce_1 = debounce;
+
 var slicedToArray = function () {
   function sliceIterator(arr, i) {
     var _arr = [];
@@ -179,8 +383,7 @@ var querystring = {
       var value = query[key] instanceof Array ? query[key].join(',') : query[key];
       if (value) stringified.push(key + '=' + value);
     });
-    if (stringified.length > 0) stringified = '?' + stringified.join('&');
-    return stringified;
+    return stringified.length > 0 ? '?' + stringified.join('&') : '';
   }
 };
 
@@ -219,7 +422,7 @@ var chroma = createCommonjsModule(function (module, exports) {
  *
  */
 (function() {
-  var Color, DEG2RAD, LAB_CONSTANTS, PI, PITHIRD, RAD2DEG, TWOPI, _guess_formats, _guess_formats_sorted, _input, _interpolators, abs, atan2, bezier, blend, blend_f, brewer, burn, chroma, clip_rgb, cmyk2rgb, colors, cos, css2rgb, darken, dodge, each, floor, hcg2rgb, hex2rgb, hsi2rgb, hsl2css, hsl2rgb, hsv2rgb, interpolate, interpolate_hsx, interpolate_lab, interpolate_num, interpolate_rgb, lab2lch, lab2rgb, lab_xyz, lch2lab, lch2rgb, lighten, limit, log, luminance_x, m, max, multiply, normal, num2rgb, overlay, pow, rgb2cmyk, rgb2css, rgb2hcg, rgb2hex, rgb2hsi, rgb2hsl, rgb2hsv, rgb2lab, rgb2lch, rgb2luminance, rgb2num, rgb2temperature, rgb2xyz, rgb_xyz, rnd, root, round, screen, sin, sqrt, temperature2rgb, type, unpack, w3cx11, xyz_lab, xyz_rgb,
+  var Color, DEG2RAD, LAB_CONSTANTS, PI, PITHIRD, RAD2DEG, TWOPI, _average_lrgb, _guess_formats, _guess_formats_sorted, _input, _interpolators, abs, atan2, bezier, blend, blend_f, brewer, burn, chroma, clip_rgb, cmyk2rgb, colors, cos, css2rgb, darken, dodge, each, floor, hcg2rgb, hex2rgb, hsi2rgb, hsl2css, hsl2rgb, hsv2rgb, interpolate, interpolate_hsx, interpolate_lab, interpolate_lrgb, interpolate_num, interpolate_rgb, lab2lch, lab2rgb, lab_xyz, lch2lab, lch2rgb, lighten, limit, log, luminance_x, m, max, multiply, normal, num2rgb, overlay, pow, rgb2cmyk, rgb2css, rgb2hcg, rgb2hex, rgb2hsi, rgb2hsl, rgb2hsv, rgb2lab, rgb2lch, rgb2luminance, rgb2num, rgb2temperature, rgb2xyz, rgb_xyz, rnd, root, round, screen, sin, sqrt, temperature2rgb, type, unpack, w3cx11, xyz_lab, xyz_rgb,
     slice = [].slice;
   type = (function() {
     var classToType, len, name, o, ref;
@@ -301,6 +504,7 @@ var chroma = createCommonjsModule(function (module, exports) {
       return Object(result) === result ? result : child;
     })(Color, arguments, function(){});
   };
+  chroma["default"] = chroma;
   _interpolators = [];
   if (('object' !== "undefined" && module !== null) && (module.exports != null)) {
     module.exports = chroma;
@@ -313,7 +517,7 @@ var chroma = createCommonjsModule(function (module, exports) {
     root = 'object' !== "undefined" && exports !== null ? exports : this;
     root.chroma = chroma;
   }
-  chroma.version = '1.3.4';
+  chroma.version = '1.3.5';
   _input = {};
   _guess_formats = [];
   _guess_formats_sorted = false;
@@ -328,7 +532,9 @@ var chroma = createCommonjsModule(function (module, exports) {
           args.push(arg);
         }
       }
-      mode = args[args.length - 1];
+      if (args.length > 1) {
+        mode = args[args.length - 1];
+      }
       if (_input[mode] != null) {
         me._rgb = clip_rgb(_input[mode](unpack(args.slice(0, -1))));
       } else {
@@ -862,61 +1068,39 @@ var chroma = createCommonjsModule(function (module, exports) {
     }
     return new Color(code);
   };
-  chroma.average = function(colors, mode) {
-    var A, alpha, c, cnt, dx, dy, first, i, l, len, o, xyz, xyz2;
-    if (mode == null) {
-      mode = 'rgb';
+  _interpolators = [];
+  interpolate = function(col1, col2, f, m) {
+    var interpol, len, o, res;
+    if (f == null) {
+      f = 0.5;
     }
-    l = colors.length;
-    colors = colors.map(function(c) {
-      return chroma(c);
-    });
-    first = colors.splice(0, 1)[0];
-    xyz = first.get(mode);
-    cnt = [];
-    dx = 0;
-    dy = 0;
-    for (i in xyz) {
-      xyz[i] = xyz[i] || 0;
-      cnt.push(!isNaN(xyz[i]) ? 1 : 0);
-      if (mode.charAt(i) === 'h' && !isNaN(xyz[i])) {
-        A = xyz[i] / 180 * PI;
-        dx += cos(A);
-        dy += sin(A);
+    if (m == null) {
+      m = 'rgb';
+    }
+    if (type(col1) !== 'object') {
+      col1 = chroma(col1);
+    }
+    if (type(col2) !== 'object') {
+      col2 = chroma(col2);
+    }
+    for (o = 0, len = _interpolators.length; o < len; o++) {
+      interpol = _interpolators[o];
+      if (m === interpol[0]) {
+        res = interpol[1](col1, col2, f, m);
+        break;
       }
     }
-    alpha = first.alpha();
-    for (o = 0, len = colors.length; o < len; o++) {
-      c = colors[o];
-      xyz2 = c.get(mode);
-      alpha += c.alpha();
-      for (i in xyz) {
-        if (!isNaN(xyz2[i])) {
-          xyz[i] += xyz2[i];
-          cnt[i] += 1;
-          if (mode.charAt(i) === 'h') {
-            A = xyz[i] / 180 * PI;
-            dx += cos(A);
-            dy += sin(A);
-          }
-        }
-      }
+    if (res == null) {
+      throw "color mode " + m + " is not supported";
     }
-    for (i in xyz) {
-      xyz[i] = xyz[i] / cnt[i];
-      if (mode.charAt(i) === 'h') {
-        A = atan2(dy / cnt[i], dx / cnt[i]) / PI * 180;
-        while (A < 0) {
-          A += 360;
-        }
-        while (A >= 360) {
-          A -= 360;
-        }
-        xyz[i] = A;
-      }
-    }
-    return chroma(xyz, mode).alpha(alpha / l);
+    return res.alpha(col1.alpha() + f * (col2.alpha() - col1.alpha()));
   };
+  chroma.interpolate = interpolate;
+  Color.prototype.interpolate = function(col2, f, m) {
+    return interpolate(this, col2, f, m);
+  };
+  chroma.mix = interpolate;
+  Color.prototype.mix = Color.prototype.interpolate;
   _input.rgb = function() {
     var k, ref, results, v;
     ref = unpack(arguments);
@@ -966,6 +1150,89 @@ var chroma = createCommonjsModule(function (module, exports) {
       }
     }
   });
+  _input.lrgb = _input.rgb;
+  interpolate_lrgb = function(col1, col2, f, m) {
+    var xyz0, xyz1;
+    xyz0 = col1._rgb;
+    xyz1 = col2._rgb;
+    return new Color(sqrt(pow(xyz0[0], 2) * (1 - f) + pow(xyz1[0], 2) * f), sqrt(pow(xyz0[1], 2) * (1 - f) + pow(xyz1[1], 2) * f), sqrt(pow(xyz0[2], 2) * (1 - f) + pow(xyz1[2], 2) * f), m);
+  };
+  _average_lrgb = function(colors) {
+    var col, f, len, o, rgb, xyz;
+    f = 1 / colors.length;
+    xyz = [0, 0, 0, 0];
+    for (o = 0, len = colors.length; o < len; o++) {
+      col = colors[o];
+      rgb = col._rgb;
+      xyz[0] += pow(rgb[0], 2) * f;
+      xyz[1] += pow(rgb[1], 2) * f;
+      xyz[2] += pow(rgb[2], 2) * f;
+      xyz[3] += rgb[3] * f;
+    }
+    xyz[0] = sqrt(xyz[0]);
+    xyz[1] = sqrt(xyz[1]);
+    xyz[2] = sqrt(xyz[2]);
+    return new Color(xyz);
+  };
+  _interpolators.push(['lrgb', interpolate_lrgb]);
+  chroma.average = function(colors, mode) {
+    var A, alpha, c, cnt, dx, dy, first, i, l, len, o, xyz, xyz2;
+    if (mode == null) {
+      mode = 'rgb';
+    }
+    l = colors.length;
+    colors = colors.map(function(c) {
+      return chroma(c);
+    });
+    first = colors.splice(0, 1)[0];
+    if (mode === 'lrgb') {
+      return _average_lrgb(colors);
+    }
+    xyz = first.get(mode);
+    cnt = [];
+    dx = 0;
+    dy = 0;
+    for (i in xyz) {
+      xyz[i] = xyz[i] || 0;
+      cnt.push(!isNaN(xyz[i]) ? 1 : 0);
+      if (mode.charAt(i) === 'h' && !isNaN(xyz[i])) {
+        A = xyz[i] / 180 * PI;
+        dx += cos(A);
+        dy += sin(A);
+      }
+    }
+    alpha = first.alpha();
+    for (o = 0, len = colors.length; o < len; o++) {
+      c = colors[o];
+      xyz2 = c.get(mode);
+      alpha += c.alpha();
+      for (i in xyz) {
+        if (!isNaN(xyz2[i])) {
+          xyz[i] += xyz2[i];
+          cnt[i] += 1;
+          if (mode.charAt(i) === 'h') {
+            A = xyz[i] / 180 * PI;
+            dx += cos(A);
+            dy += sin(A);
+          }
+        }
+      }
+    }
+    for (i in xyz) {
+      xyz[i] = xyz[i] / cnt[i];
+      if (mode.charAt(i) === 'h') {
+        A = atan2(dy / cnt[i], dx / cnt[i]) / PI * 180;
+        while (A < 0) {
+          A += 360;
+        }
+        while (A >= 360) {
+          A -= 360;
+        }
+        xyz[i] = A;
+      }
+    }
+    return chroma(xyz, mode).alpha(alpha / l);
+  };
   hex2rgb = function(hex) {
     var a, b, g, r, rgb, u;
     if (hex.match(/^#?([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)) {
@@ -1587,39 +1854,6 @@ var chroma = createCommonjsModule(function (module, exports) {
       return pow((x + 0.055) / 1.055, 2.4);
     }
   };
-  _interpolators = [];
-  interpolate = function(col1, col2, f, m) {
-    var interpol, len, o, res;
-    if (f == null) {
-      f = 0.5;
-    }
-    if (m == null) {
-      m = 'rgb';
-    }
-    if (type(col1) !== 'object') {
-      col1 = chroma(col1);
-    }
-    if (type(col2) !== 'object') {
-      col2 = chroma(col2);
-    }
-    for (o = 0, len = _interpolators.length; o < len; o++) {
-      interpol = _interpolators[o];
-      if (m === interpol[0]) {
-        res = interpol[1](col1, col2, f, m);
-        break;
-      }
-    }
-    if (res == null) {
-      throw "color mode " + m + " is not supported";
-    }
-    return res.alpha(col1.alpha() + f * (col2.alpha() - col1.alpha()));
-  };
-  chroma.interpolate = interpolate;
-  Color.prototype.interpolate = function(col2, f, m) {
-    return interpolate(this, col2, f, m);
-  };
-  chroma.mix = interpolate;
-  Color.prototype.mix = Color.prototype.interpolate;
   interpolate_rgb = function(col1, col2, f, m) {
     var xyz0, xyz1;
     xyz0 = col1._rgb;
@@ -1990,7 +2224,7 @@ var chroma = createCommonjsModule(function (module, exports) {
     return r;
   };
   chroma.scale = function(colors, positions) {
-    var _classes, _colorCache, _colors, _correctLightness, _domain, _fixed, _max, _min, _mode, _nacol, _out, _padding, _pos, _spread, _useCache, classifyValue, f, getClass, getColor, resetCache, setColors, tmap;
+    var _classes, _colorCache, _colors, _correctLightness, _domain, _fixed, _gamma, _max, _min, _mode, _nacol, _out, _padding, _pos, _spread, _useCache, classifyValue, f, getClass, getColor, resetCache, setColors, tmap;
     _mode = 'rgb';
     _nacol = chroma('#ccc');
     _spread = 0;
@@ -2005,6 +2239,7 @@ var chroma = createCommonjsModule(function (module, exports) {
     _correctLightness = false;
     _colorCache = {};
     _useCache = true;
+    _gamma = 1;
     setColors = function(colors) {
       var c, col, o, ref, ref1, w;
       if (colors == null) {
@@ -2056,11 +2291,8 @@ var chroma = createCommonjsModule(function (module, exports) {
         if (_classes && _classes.length > 2) {
           c = getClass(val);
           t = c / (_classes.length - 2);
-          t = _padding[0] + (t * (1 - _padding[0] - _padding[1]));
         } else if (_max !== _min) {
           t = (val - _min) / (_max - _min);
-          t = _padding[0] + (t * (1 - _padding[0] - _padding[1]));
-          t = Math.min(1, Math.max(0, t));
         } else {
           t = 1;
         }
@@ -2070,6 +2302,11 @@ var chroma = createCommonjsModule(function (module, exports) {
       if (!bypassMap) {
         t = tmap(t);
       }
+      if (_gamma !== 1) {
+        t = pow(t, _gamma);
+      }
+      t = _padding[0] + (t * (1 - _padding[0] - _padding[1]));
+      t = Math.min(1, Math.max(0, t));
       k = Math.floor(t * 10000);
       if (_useCache && _colorCache[k]) {
         col = _colorCache[k];
@@ -2273,9 +2510,18 @@ var chroma = createCommonjsModule(function (module, exports) {
     };
     f.cache = function(c) {
       if (c != null) {
-        return _useCache = c;
+        _useCache = c;
+        return f;
       } else {
         return _useCache;
+      }
+    };
+    f.gamma = function(g) {
+      if (g != null) {
+        _gamma = g;
+        return f;
+      } else {
+        return _gamma;
       }
     };
     return f;
@@ -2709,71 +2955,6 @@ function YlOrRd() {
   return getColorScale('YlOrRd', { correctLightness: false });
 }
 
-var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
-var _freeGlobal = freeGlobal;
-
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-var root = _freeGlobal || freeSelf || Function('return this')();
-var _root = root;
-
-var Symbol$1 = _root.Symbol;
-var _Symbol = Symbol$1;
-
-var objectProto = Object.prototype;
-var hasOwnProperty = objectProto.hasOwnProperty;
-var nativeObjectToString = objectProto.toString;
-var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
-function getRawTag(value) {
-  var isOwn = hasOwnProperty.call(value, symToStringTag$1),
-      tag = value[symToStringTag$1];
-  try {
-    value[symToStringTag$1] = undefined;
-    var unmasked = true;
-  } catch (e) {}
-  var result = nativeObjectToString.call(value);
-  if (unmasked) {
-    if (isOwn) {
-      value[symToStringTag$1] = tag;
-    } else {
-      delete value[symToStringTag$1];
-    }
-  }
-  return result;
-}
-var _getRawTag = getRawTag;
-
-var objectProto$1 = Object.prototype;
-var nativeObjectToString$1 = objectProto$1.toString;
-function objectToString(value) {
-  return nativeObjectToString$1.call(value);
-}
-var _objectToString = objectToString;
-
-var nullTag = '[object Null]';
-var undefinedTag = '[object Undefined]';
-var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
-function baseGetTag(value) {
-  if (value == null) {
-    return value === undefined ? undefinedTag : nullTag;
-  }
-  return (symToStringTag && symToStringTag in Object(value))
-    ? _getRawTag(value)
-    : _objectToString(value);
-}
-var _baseGetTag = baseGetTag;
-
-function isObjectLike(value) {
-  return value != null && typeof value == 'object';
-}
-var isObjectLike_1 = isObjectLike;
-
-var symbolTag = '[object Symbol]';
-function isSymbol(value) {
-  return typeof value == 'symbol' ||
-    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
-}
-var isSymbol_1 = isSymbol;
-
 function baseExtremum(array, iteratee, comparator) {
   var index = -1,
       length = array.length;
@@ -2897,12 +3078,6 @@ function stackHas(key) {
   return this.__data__.has(key);
 }
 var _stackHas = stackHas;
-
-function isObject(value) {
-  var type = typeof value;
-  return value != null && (type == 'object' || type == 'function');
-}
-var isObject_1 = isObject;
 
 var asyncTag = '[object AsyncFunction]';
 var funcTag = '[object Function]';
@@ -3841,10 +4016,10 @@ function isKey(value, object) {
 }
 var _isKey = isKey;
 
-var FUNC_ERROR_TEXT = 'Expected a function';
+var FUNC_ERROR_TEXT$1 = 'Expected a function';
 function memoize(func, resolver) {
   if (typeof func != 'function' || (resolver != null && typeof resolver != 'function')) {
-    throw new TypeError(FUNC_ERROR_TEXT);
+    throw new TypeError(FUNC_ERROR_TEXT$1);
   }
   var memoized = function() {
     var args = arguments,
@@ -4990,7 +5165,7 @@ var SgHeatmap = function () {
           id: c.id,
           type: 'Feature',
           geometry: c.geometry,
-          properties: Object.assign({ color: null }, c.properties)
+          properties: Object.assign({}, c.properties, { color: null })
         });
       });
       return this.renderer;
@@ -5165,7 +5340,7 @@ function supportLeaflet(heatmap) {
         id: c.id,
         type: 'Feature',
         geometry: c.geometry,
-        properties: Object.assign({ color: null }, c.properties)
+        properties: Object.assign({}, c.properties, { color: null })
       };
     }));
     return this.renderer;
@@ -6031,7 +6206,7 @@ var store = {
   adjust: function adjust(layer, style) {
     if (!this[layer].heatmap) return;
     this[layer].heatmap.renderer.setStyle(function (feature) {
-      if (feature.properties.color) return style;
+      return feature.properties.color ? style.color : style.default;
     });
   },
   reorder: function reorder(layer) {
@@ -7409,6 +7584,7 @@ var CheckboxGroup = { render: function render() {
     }
   },
   created: function created() {
+    if (this.selected.length > 0) return;
     var checked = [];
     this.options.forEach(function (option, index) {
       if (option.checked) checked.push(index);
@@ -7471,6 +7647,7 @@ var RangeSelector = { render: function render() {
     }
   },
   created: function created() {
+    if (this.selected.length > 0) return;
     var checked = this.options.filter(function (option) {
       return option.checked;
     });
@@ -7506,7 +7683,8 @@ var Layer = { render: function render() {
     theme: Object,
     year: Number,
     color: Function,
-    opacity: Number
+    opacity: Number,
+    defaultSelected: [Number, Array]
   },
   computed: {
     source: function source() {
@@ -7528,8 +7706,14 @@ var Layer = { render: function render() {
     },
     style: function style() {
       return {
-        opacity: this.opacity * 1,
-        fillOpacity: this.opacity * 0.7
+        color: {
+          opacity: this.opacity * 1,
+          fillOpacity: this.opacity * 0.7
+        },
+        default: {
+          opacity: this.opacity * 0.3,
+          fillOpacity: this.opacity * 0.3
+        }
       };
     }
   },
@@ -7541,6 +7725,7 @@ var Layer = { render: function render() {
       if (store[this.id].source === this.source) {
         store.render(this.id, this.accessor(this.selectedFilter), this.theme.format);
         store.adjust(this.id, this.style);
+        this.$emit('update', this.selectedFilter);
         return;
       }
 
@@ -7553,18 +7738,27 @@ var Layer = { render: function render() {
         store.render(this.id, this.accessor(this.selectedFilter), this.theme.format);
         store.adjust(this.id, this.style);
         if (this.opacity > 0.5) store.reorder(this.id);
+        this.$emit('update', this.selectedFilter);
       }
     }
   },
   watch: {
     accessor: 'onChange',
     selectedFilter: 'onChange',
-    control: function control(newValue, oldValue) {
-      if (newValue === oldValue) return;
-      if (this.control) {
-        if (this.control.type === 'radio') this.selectedFilter = 0;else if (this.control.type === 'checkbox') this.selectedFilter = [];else if (this.control.type === 'range') this.selectedFilter = [0, 1];
+    control: function control(newControl, oldControl) {
+      if (newControl === oldControl) return;
+      if (newControl) {
+        if (newControl.type === 'radio') {
+          this.selectedFilter = this.defaultSelected instanceof Array ? this.defaultSelected[0] : this.defaultSelected || 0;
+        } else if (newControl.type === 'checkbox') {
+          this.selectedFilter = this.defaultSelected instanceof Array ? this.defaultSelected : [];
+        } else if (newControl.type === 'range') {
+          this.selectedFilter = this.defaultSelected instanceof Array ? this.defaultSelected : [];
+        }
       } else {
         store.unload(this.id);
+        this.selectedFilter = null;
+        this.$emit('update', null);
       }
     },
     opacity: function opacity() {
@@ -7590,6 +7784,8 @@ window.vm = new Vue({
     colors: [YlOrRd(), GnBu()],
     baseTheme: null,
     compareTheme: null,
+    baseFilter: null,
+    compareFilter: null,
     selectedYear: 2016,
     blend: 0
   },
@@ -7624,7 +7820,9 @@ window.vm = new Vue({
           return theme.hash;
         }),
         year: this.selectedYear !== 2016 ? this.selectedYear : null,
-        blend: this.blend !== 0 ? this.blend : null
+        base: this.baseFilter,
+        compare: this.compareFilter,
+        blend: this.blend
       };
     }
   },
@@ -7632,9 +7830,9 @@ window.vm = new Vue({
     compareTheme: function compareTheme(theme) {
       if (!theme) this.blend = 0;
     },
-    query: function query(q) {
+    query: debounce_1(function (q) {
       window.history.replaceState(q, '', window.location.origin + querystring.stringify(q));
-    }
+    }, 200)
   },
   mounted: function mounted() {
     if (window.location.search) {
@@ -7653,6 +7851,16 @@ window.vm = new Vue({
         }).length > 0) {
           this.selectedYear = year;
         }
+      }
+      if ('base' in query) {
+        this.baseFilter = query.base.split(',').map(function (v) {
+          return +v;
+        });
+      }
+      if ('compare' in query) {
+        this.compareFilter = query.compare.split(',').map(function (v) {
+          return +v;
+        });
       }
       if ('blend' in query) {
         var blend = +query.blend;

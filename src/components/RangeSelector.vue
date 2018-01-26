@@ -43,6 +43,7 @@ export default {
     }
   },
   created () {
+    if (this.selected.length > 0) return
     const checked = this.options.filter(option => option.checked)
     if (checked.length === 2) this.state = checked
   }
