@@ -1,1 +1,1 @@
-# sg-heatmap-dos
+# heatmap-explorer
